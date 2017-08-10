@@ -1,4 +1,9 @@
 1.Jak ymry to pohovaite
+<<<<<<< HEAD
 6. І Дніпро, і кручі
 10. Y sunjeje more
 
+=======
+7. Було видно, було чути,
+10. Y sunjeje more
+>>>>>>> 16b18cfd6a4f9678eb7b367dfd21a2a2c0bcd2f2
