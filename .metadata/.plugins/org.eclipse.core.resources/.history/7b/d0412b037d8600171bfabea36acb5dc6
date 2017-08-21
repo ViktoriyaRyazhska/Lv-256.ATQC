@@ -1,0 +1,13 @@
+package input_numbers;
+
+public class FloatNum {
+
+	boolean isInRange(float n){
+		if(n>=-5 && n<=5) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+}
