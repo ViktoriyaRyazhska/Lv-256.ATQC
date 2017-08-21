@@ -17,14 +17,19 @@ public class FloatNum {
 	public void inputNumbers(){
 		Scanner scanner= new Scanner(System.in);
 		
-		System.out.println("Enter first number: ");
-		isInRange(scanner.nextFloat());
-		
-		System.out.println("Enter second number: ");
-		isInRange(scanner.nextFloat());
-		
-		System.out.println("Enter third number: ");
-		isInRange(scanner.nextFloat());
+		try {
+			System.out.println("Enter first number: ");
+			isInRange(scanner.nextFloat());
+			
+			System.out.println("Enter second number: ");
+			isInRange(scanner.nextFloat());
+			
+			System.out.println("Enter third number: ");
+			isInRange(scanner.nextFloat());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Input error");
+		}
 		
 		
 	}
