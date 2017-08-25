@@ -13,7 +13,8 @@ public class IntNum  {
 
 	private Integer MaxNumber;
 	private Integer MinNumber;
-	Set<Integer> numberset;
+	Set<Integer> numberset; //pominyatu na list. perevuznachutu ToString() .. source- generate- tostring
+	//v klas dog perevuznachutu equals
 	
 	public IntNum(){
 		numberset= new HashSet<Integer>();
@@ -25,6 +26,7 @@ public class IntNum  {
 	}
 	
 	public int getMin(){
+		
 		return MinNumber;
 	}
 	
@@ -33,10 +35,11 @@ public class IntNum  {
 		Integer temp=null;
 		
 		try {
-			System.out.println("Enter number: ");
+			System.out.println("Enter number1: ");
 			Scanner scanner = new Scanner(System.in);
 			temp = scanner.nextInt();
 			numberset.add(temp);
+			
 		} catch (Exception e) {
 			System.out.println("Input error");
 		}
@@ -51,11 +54,7 @@ public class IntNum  {
 	
 	}
 	
-	public void findBoundary(){
-		
-		if(numberset.isEmpty()){
-			System.out.println("No numbers were input");
-		}
+	public void findBoundary() {
 		
 		for(Integer i:numberset){
 			if(i<=MinNumber){
@@ -66,8 +65,33 @@ public class IntNum  {
 				MaxNumber=i;
 			}
 		}
+		
 	
 	}
 	
+	public String toString() {
+		
+		if(MaxNumber==null | MinNumber==null ) {
+			
+			return "No numbers were input";
+		}
+		
+		else {
+			
+			return "Max number is: "+MaxNumber + " Min number is: "+ MinNumber;
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		IntNum i= new IntNum();
+		
+		for(int k=0;k<3;k++){
+			i.input();
+		}
+		i.findBoundary();
+		System.out.println(i);
+		
+	}
 	
 }

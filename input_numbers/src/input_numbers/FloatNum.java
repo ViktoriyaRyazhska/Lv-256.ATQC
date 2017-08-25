@@ -33,4 +33,10 @@ public class FloatNum {
 		
 		
 	}
+	
+	public static void main(String[] args) {
+		
+		FloatNum f= new FloatNum();
+		f.inputNumbers();
+	}
 }
