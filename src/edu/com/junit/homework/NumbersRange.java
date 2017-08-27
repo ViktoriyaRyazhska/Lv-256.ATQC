@@ -3,7 +3,7 @@ package edu.com.junit.homework;
 import java.util.Scanner;
 
 /**
- * The FloatNumbersRange program implements an application that read 3 float
+ * The NumbersRange program implements an application that read 3 float
  * numbers and check: they all belong to the range [-5,5];
  *
  * @version 1.0
