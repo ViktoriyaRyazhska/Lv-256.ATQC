@@ -41,9 +41,9 @@ public class IntNumTest {
 	public void TestFindBoundaryMin() {
 		
 		IntNum intnum = new IntNum();
-		intnum.numberset.add(1);
-		intnum.numberset.add(2);
-		intnum.numberset.add(3);
+		intnum.input("1");
+		intnum.input("2");
+		intnum.input("3");
 		intnum.findBoundary();
 		
 		int expectedMin=1;
@@ -57,14 +57,14 @@ public class IntNumTest {
 	public void TestFindBoundaryMax() {
 		
 		IntNum intnum = new IntNum();
-		intnum.numberset.add(1);
-		intnum.numberset.add(2);
-		intnum.numberset.add(3);
+		intnum.input("1");
+		intnum.input("2");
+		intnum.input("3");
 		intnum.findBoundary();
 		
 		int expectedMax=3;
 		
-		Assert.assertEquals(expectedMax, intnum.getMin());
+		Assert.assertEquals(expectedMax, intnum.getMax());
 		
 		
 	}
