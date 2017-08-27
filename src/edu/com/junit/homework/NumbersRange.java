@@ -26,11 +26,11 @@ public class NumbersRange {
 	}
 
 	/**
-	 * Read float number from command-line input and return that
+	 * Read 3 float number from command-line input and return they
 	 * 
 	 * @return array of float numbers
 	 */
-	public float[] readFloatThreeNumbers() {
+	public float[] readFloatNumbers() {
 
 		float[] floatNum = { 0, 0, 0 };
 		for (int i = 0; i < 3; i++) {
@@ -73,6 +73,6 @@ public class NumbersRange {
 		System.out.println("Read 3 float numbers and check: they all belong to the range [-5,5];");
 		NumbersRange numRange = new NumbersRange();
 		// get 3 float numbers and check
-		numRange.checkNumbersAreInTheRange(numRange.readFloatThreeNumbers());
+		numRange.checkNumbersAreInTheRange(numRange.readFloatNumbers());
 	}
 }
