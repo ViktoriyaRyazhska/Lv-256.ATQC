@@ -13,8 +13,7 @@ public class IntNum  {
 
 	private Integer MaxNumber;
 	private Integer MinNumber;
-	Set<Integer> numberset; //pominyatu na list. perevuznachutu ToString() .. source- generate- tostring
-	//v klas dog perevuznachutu equals
+	Set<Integer> numberset; 
 	
 	public IntNum(){
 		numberset= new HashSet<Integer>();
