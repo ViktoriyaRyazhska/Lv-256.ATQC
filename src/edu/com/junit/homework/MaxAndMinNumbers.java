@@ -41,8 +41,13 @@ public class MaxAndMinNumbers {
 	 * @return max
 	 */
 	public int getMax(int[] numArr) {
-		Arrays.sort(numArr);
-		return numArr[numArr.length - 1];
+		int max = numArr[0];
+		for (int i = 1; i < numArr.length; i++) {
+			if (numArr[i] > max) {
+				max = numArr[i];
+			}
+		}
+		return max;
 	}
 
 	/**
@@ -52,8 +57,13 @@ public class MaxAndMinNumbers {
 	 * @return min
 	 */
 	public int getMin(int[] numArr) {
-		Arrays.sort(numArr);
-		return numArr[0];
+		int min = numArr[0];
+		for (int i = 1; i < numArr.length; i++) {
+			if (numArr[i] < min) {
+				min = numArr[i];
+			}
+		}
+		return min;
 	}
 
 	public static void main(String[] args) {
