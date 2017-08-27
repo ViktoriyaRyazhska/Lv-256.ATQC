@@ -33,7 +33,7 @@ public class DogCollection {
 			
 	}
 	
-	public void GetTheOldest() {
+	public String GetTheOldest() {
 		Dog doge = new Dog();
 		
 		for(Dog d:Dogs){
@@ -42,10 +42,10 @@ public class DogCollection {
 			}
 		}
 		if(doge.name!=null) {
-			System.out.println("The oldest dog is: "+doge.getName()+". It's breed is: "+doge.getBr()  );
+			return "The oldest dog is: "+doge.getName()+". It's breed is: "+doge.getBr()  ;
 		}
 		else {
-			System.out.println("No dogs was found");
+			return "No dogs was found";
 		}
 		
 	}
@@ -60,7 +60,7 @@ public class DogCollection {
 		d.AddDog("Brovko",breed.haski,2);
 		
 		System.out.println(d.Dogs.toString());
-		d.GetTheOldest();
+		System.out.println(d.GetTheOldest());
 	}
 
 }

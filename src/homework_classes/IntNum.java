@@ -29,14 +29,13 @@ public class IntNum  {
 		return MinNumber;
 	}
 	
-	public void input(){
+	public void input(String s){
 		
 		Integer temp=null;
 		
 		try {
-			System.out.println("Enter number1: ");
-			Scanner scanner = new Scanner(System.in);
-			temp = scanner.nextInt();
+			
+			temp = Integer.parseInt(s);
 			numberset.add(temp);
 			
 		} catch (Exception e) {
@@ -86,7 +85,9 @@ public class IntNum  {
 		IntNum i= new IntNum();
 		
 		for(int k=0;k<3;k++){
-			i.input();
+			System.out.println("Enter number1: ");
+			Scanner scanner = new Scanner(System.in);
+			i.input(scanner.nextLine());
 		}
 		i.findBoundary();
 		System.out.println(i);
