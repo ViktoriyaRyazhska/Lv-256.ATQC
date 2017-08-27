@@ -1,6 +1,5 @@
 package edu.com.junit.homework;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
