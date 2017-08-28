@@ -46,7 +46,7 @@ public class Dog {
 
 	@Override
 	public String toString() {
-		return "Dog [name=" + name + ", age=" + age + ", breed=" + breed + "]";
+		return "Dog [name=" + name +  ", breed=" + breed + "]";
 	}
 	
 

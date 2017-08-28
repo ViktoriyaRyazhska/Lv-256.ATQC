@@ -21,8 +21,9 @@ public class DogList {
 		this.dogs = dogs;
 	}
 
-	public void getTheOldest() {
+	public String getTheOldest() {
 		Dog dog = new Dog();
+		dog.setAge(0);
 
 		for (Dog d : this.dogs) {
 			if (d.getAge() > dog.getAge()) {
@@ -31,8 +32,10 @@ public class DogList {
 		}
 		if (dog.getName() != null) {
 			System.out.println("The oldest dog is: " + dog.getName() + ". It's breed is: " + dog.getBreed());
+			return dog.toString();
 		} else {
 			System.out.println("No dogs was found");
+			return null;
 		}
 
 	}
