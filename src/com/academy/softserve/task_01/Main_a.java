@@ -11,7 +11,7 @@ public class Main_a {
         float number2 = sc.nextFloat();
         System.out.println("Enter third value");
         float number3 = sc.nextFloat();
-        if (rangeCheck(number1) == true && rangeCheck(number2) == true && rangeCheck(number3) == true) {
+        if (rangeCheck(number1)  && rangeCheck(number2)  && rangeCheck(number3) ) {
             System.out.println("All numbers belong to the range [-5,5];");
         } else {
             System.out.println("Not all numbers belong to the range [-5,5];");
