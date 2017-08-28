@@ -18,7 +18,7 @@ public class Dogs {
 	 * @param dogList ArrayList with type Dog
 	 * @return true/false
 	 */
-	public boolean isDuplicate(ArrayList<Dog> dogList) {
+	public boolean isDuplicateDogName(ArrayList<Dog> dogList) {
 		//remove all duplicate name in set from Dog array
 		Set<String> set = new HashSet<String>();
 
@@ -48,7 +48,9 @@ public class Dogs {
 	}
 	
 	public static void main(String[] args) {
+		
 		ArrayList<Dog> dogList = new ArrayList<Dog>();
+		
 		dogList.add( new Dog("Sharik", Breed.Chow_Chow, 5));
 		dogList.add( new Dog("Nika", Breed.Cocker_Spaniel, 3));
 		dogList.add( new Dog("Chakki", Breed.Boxer, 7));
@@ -56,7 +58,7 @@ public class Dogs {
 		
 		Dogs dogs = new Dogs();
 		Dog oldDog = dogs.getOldestDog(dogList);
-		boolean bool = dogs.isDuplicate(dogList);
+		boolean bool = dogs.isDuplicateDogName(dogList);
 		
 		System.out.println("The oldest dog is: " + oldDog.toString());
 		System.out.println("Is duplicate name: " + bool);
