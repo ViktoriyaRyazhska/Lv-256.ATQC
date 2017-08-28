@@ -97,8 +97,7 @@ public class HTTPErrorStatus {
 			// create a scanner for read the command-line input
 			code = new Scanner(System.in).nextInt();
 		} catch (InputMismatchException e) {
-			System.out.println("Please provide correct input");
-			return -1;
+		    System.out.println("Please provide correct input");
 		}
 		return code;
 	}
@@ -108,8 +107,6 @@ public class HTTPErrorStatus {
 		HTTPErrorStatus status = new HTTPErrorStatus();
 		//get http error code
 		int code = status.read();
-		//check if read correct value  
-		if (-1 != code) {
 			//catch IllegalArgumentException if data not found 
 			try {
 				StatusCode statusCode = StatusCode.valueOf("HTTPStatus" + code);
@@ -117,6 +114,5 @@ public class HTTPErrorStatus {
 			}catch (IllegalArgumentException  e) {
 				System.out.println("It is not HTTP Error status code");
 			}
-		}
 	}
 }
