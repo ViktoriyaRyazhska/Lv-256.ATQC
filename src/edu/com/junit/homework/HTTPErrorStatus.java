@@ -80,6 +80,7 @@ public class HTTPErrorStatus {
 		 * 
 		 * @return the string with status code and description
 		 */
+		@Override
 		public String toString() {
 			return "HTTP Error: " + code + " " + desc ;
 		}
