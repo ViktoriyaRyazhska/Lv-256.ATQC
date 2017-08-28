@@ -73,22 +73,15 @@ public class HTTPErrorStatus {
 		public String getDesc() {
 			return desc;
 		}
-
+		
 		/**
-		 * Get Status code and description from name element
+		 * Get String with HTTP Error 'code' and 'desc' 
 		 * 
-		 * @param code the HTTP error status code   
-		 * @return status element or null if status false
+		 * @return the string with HTTP Error status code and description
 		 */
-	    public static StatusCode getElementFromName(int code) {
-	    	String name = "HTTPStatus" + code;
-	        for(StatusCode status : StatusCode.values()) {
-	            if(status.toString().equalsIgnoreCase(name)) {
-	                return status;
-	            }
-	        }
-	        return null;
-	    }
+		public String toString() {
+			return "HTTP Error: " + code + " " + desc ;
+		}
 	}
 	
 	/**
@@ -102,7 +95,7 @@ public class HTTPErrorStatus {
 		try {
 			// create a scanner for read the command-line input
 			code = new Scanner(System.in).nextInt();
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
 			System.out.println("Please provide correct input");
 		}
 		return code;
@@ -111,7 +104,7 @@ public class HTTPErrorStatus {
 	public static void main(String[] args) {
 		
 		HTTPErrorStatus status = new HTTPErrorStatus();
-		StatusCode statusCode = StatusCode.getElementFromName(status.read());
+		StatusCode statusCode = StatusCode.valueOf("HTTPStatus" + status.read());
 		try {
 			System.out.println(statusCode.getDesc());
 		}catch (Exception e) {
