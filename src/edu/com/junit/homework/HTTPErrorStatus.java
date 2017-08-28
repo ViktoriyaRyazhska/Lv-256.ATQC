@@ -1,5 +1,6 @@
 package edu.com.junit.homework;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -77,7 +78,7 @@ public class HTTPErrorStatus {
 		/**
 		 * Get String with HTTP Error 'code' and 'desc' 
 		 * 
-		 * @return the string with HTTP Error status code and description
+		 * @return the string with status code and description
 		 */
 		public String toString() {
 			return "HTTP Error: " + code + " " + desc ;
@@ -95,8 +96,9 @@ public class HTTPErrorStatus {
 		try {
 			// create a scanner for read the command-line input
 			code = new Scanner(System.in).nextInt();
-		} catch (NullPointerException e) {
+		} catch (InputMismatchException e) {
 			System.out.println("Please provide correct input");
+			return -1;
 		}
 		return code;
 	}
@@ -104,11 +106,17 @@ public class HTTPErrorStatus {
 	public static void main(String[] args) {
 		
 		HTTPErrorStatus status = new HTTPErrorStatus();
-		StatusCode statusCode = StatusCode.valueOf("HTTPStatus" + status.read());
-		try {
-			System.out.println(statusCode.getDesc());
-		}catch (Exception e) {
-			System.out.println("It is not HTTP Error status code");
+		//get http error code
+		int code = status.read();
+		//check if read correct value  
+		if (-1 != code) {
+			//catch IllegalArgumentException if data not found 
+			try {
+				StatusCode statusCode = StatusCode.valueOf("HTTPStatus" + code);
+				System.out.println(statusCode.getDesc());
+			}catch (IllegalArgumentException  e) {
+				System.out.println("It is not HTTP Error status code");
+			}
 		}
 	}
 }
