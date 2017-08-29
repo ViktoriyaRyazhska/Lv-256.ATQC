@@ -1,36 +1,36 @@
 package edu.com.homework.tasksbook;
 
 public class NaturalNumb {
-	private Integer number;
+	private Integer numberr;
 
 	public NaturalNumb() {
 	}
 
 	public NaturalNumb(Integer number) {
 		if (number > 0) {
-			this.number = number;
+			this.numberr = number;
 		}
 	}
 
 	public Integer quantity() {
-		return Integer.toString(this.number).length();
+		return Integer.toString(this.numberr).length();
 	}
 
 	public Integer sumOfDigits() {
 		Integer sum = 0;
-		for (int i = 0; i < Integer.toString(this.number).length(); i++) {
-			sum += Integer.parseInt(String.valueOf(Integer.toString(this.number).charAt(i)));
+		for (int i = 0; i < Integer.toString(this.numberr).length(); i++) {
+			sum += Integer.parseInt(String.valueOf(Integer.toString(this.numberr).charAt(i)));
 		}
 		return sum;
 	}
 
 	public Integer getNumber() {
-		return number;
+		return numberr;
 	}
 
 	public void setNumber(Integer number) {
 		if (number > 0) {
-			this.number = number;
+			this.numberr = number;
 		}
 	}
 

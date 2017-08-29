@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PerfectNumb {
-	private Integer value;
+	private Integer valuee;
 
 	public PerfectNumb() {
 	}
 
 	public PerfectNumb(Integer value) {
 		if (value > 0) {
-			this.value = value;
+			this.valuee = value;
 		}
 	}
 
 	public List<Integer> perfectNumbers() {
 		List<Integer> perfectValues = new ArrayList<>();
-		for (int i = 1; i < this.value; i++) {
+		for (int i = 1; i < this.valuee; i++) {
 			int sum = 0;
 			for (int n = 1; n < i; n++) {
 				if (i % n == 0)
@@ -33,12 +33,12 @@ public class PerfectNumb {
 	}
 
 	public Integer getValue() {
-		return value;
+		return valuee;
 	}
 
 	public void setValue(Integer value) {
 		if (value > 0) {
-			this.value = value;
+			this.valuee = value;
 		}
 	}
 
