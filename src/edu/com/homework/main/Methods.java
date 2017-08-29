@@ -1,6 +1,6 @@
 package edu.com.homework.main;
 
-import edu.com.homework.junit.HTTPError;
+
 import edu.com.homework.tasksbook.NaturalNumb;
 import edu.com.homework.tasksbook.PerfectNumb;
 public enum Methods {
