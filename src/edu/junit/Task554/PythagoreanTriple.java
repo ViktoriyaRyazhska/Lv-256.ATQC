@@ -1,4 +1,4 @@
-package edu.junit.pythagoreantriple;
+package edu.junit.Task554;
 
 public class PythagoreanTriple {
 
