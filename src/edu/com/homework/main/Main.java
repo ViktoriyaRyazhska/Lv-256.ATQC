@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		//Do not work ((
+		//Does not work (((
 			Scanner scan = new Scanner(System.in);
 			System.out.print("Enter method number: ");
 			String methodName = scan.next();
