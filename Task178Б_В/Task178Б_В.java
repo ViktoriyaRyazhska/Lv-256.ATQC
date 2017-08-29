@@ -5,12 +5,12 @@ public class Task178Á_Â {
 		int[] list = { 3, 4, 9, 12, 16, 34, 35, 36, 37, 38, 39, 64 };
 
 		Task178Á_Â task178Á_Â = new Task178Á_Â();
-		task178Á_Â.loopTest(list);
-		task178Á_Â.loopTest2(list);
+		task178Á_Â.Checklist1(list);
+		task178Á_Â.CheckCondition2(list);
 
 	}
 
-	public void loopTest(int[] list) {
+	public void CheckCondition(int[] list) {
 
 		int totalCount = 0;
 
@@ -29,7 +29,7 @@ public class Task178Á_Â {
 		System.out.println("Total count " + totalCount);
 	}
 
-	public void loopTest2(int[] list) {
+	public void CheckCondition2(int[] list) {
 
 		int totalCount = 0;
 
