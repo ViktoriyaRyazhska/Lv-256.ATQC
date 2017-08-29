@@ -2,6 +2,7 @@ package edu.com.junit.homework;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import edu.com.junit.homework.Dog.Breed;
@@ -18,7 +19,7 @@ public class Dogs {
 	 * @param dogList ArrayList with type Dog
 	 * @return true/false
 	 */
-	public boolean isDuplicateDogName(ArrayList<Dog> dogList) {
+	public boolean isDuplicateDogName(List<Dog> dogList) {
 		//remove all duplicate name in set from Dog array
 		Set<String> set = new HashSet<String>();
 
@@ -37,7 +38,7 @@ public class Dogs {
 	 * @param dogList ArrayList with type Dog
 	 * @return dog the oldest Dog 
 	 */
-	public Dog getOldestDog(ArrayList<Dog> dogList) {
+	public Dog getOldestDog(List<Dog> dogList) {
 		Dog dog = dogList.get(0);
 		for (int i = 1; i < dogList.size(); i++) {
 			if (dogList.get(i).getAge() > dog.getAge()) {
@@ -49,7 +50,7 @@ public class Dogs {
 	
 	public static void main(String[] args) {
 		
-		ArrayList<Dog> dogList = new ArrayList<Dog>();
+		List<Dog> dogList = new ArrayList<Dog>();
 		
 		dogList.add( new Dog("Sharik", Breed.Chow_Chow, 5));
 		dogList.add( new Dog("Nika", Breed.Cocker_Spaniel, 3));
