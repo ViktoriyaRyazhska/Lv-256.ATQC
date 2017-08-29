@@ -1,8 +1,8 @@
 package edu.com.homework.main;
 
-
 import edu.com.homework.tasksbook.NaturalNumb;
 import edu.com.homework.tasksbook.PerfectNumb;
+
 public enum Methods {
 	m86a(NaturalNumb.class, "quantity"), 
 	m86b(NaturalNumb.class, "sumOfDigits"), 
