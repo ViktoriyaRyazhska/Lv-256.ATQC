@@ -6,7 +6,6 @@ public class Dog {
 	private Breed breed;
 	
 	public Dog() {
-		super();
 	}
 
 	public Dog(String name, int age, Breed breed) {

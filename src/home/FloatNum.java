@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class FloatNum {
 	private Float[] numbers = null;
 
+	public FloatNum() {
+		super();
+	}
+
 	public FloatNum(Float[] numbers) {
 		this.numbers = numbers;
 	}
@@ -23,7 +27,7 @@ public class FloatNum {
 		this.numbers = numbers;
 	}
 
-	public void CheckFloat() {
+	public Float[] checkBelongToRange() {
 		for (int i = 0; i < this.numbers.length; i++) {
 			if (this.numbers[i] >= -5 && this.numbers[i] <= 5) {
 				System.out.println(" Float number " + numbers[i] + " belong to the range [-5,5]");
@@ -31,10 +35,6 @@ public class FloatNum {
 				System.out.println(" Float number " + numbers[i] + " not belong to the range [-5,5]");
 			}
 		}
-	}
-
-	@Override
-	public String toString() {
-		return "FloatNum numbers=" + Arrays.toString(numbers) + "]";
+		return numbers;
 	}
 }

@@ -2,8 +2,17 @@ package home;
 //import java.util.Arrays;
 import java.util.Scanner;
 
-public class Min_max {
+public class MinMax {
 	private Integer[] numbers = null;
+	
+
+	public MinMax() {
+	}
+
+	public MinMax(Integer[] numbers) {
+		super();
+		this.numbers = numbers;
+	}
 
 	public Integer[] getNumbers() {
 		return numbers;
@@ -19,24 +28,33 @@ public class Min_max {
 		this.numbers = numbers;
 	}
 
-	public void findMin() {
+	public int findMin() {
 		int minValue = numbers[0];
 		for (int i = 0; i < this.numbers.length; i++) {
 			if (numbers[i] < minValue) {
 				minValue = numbers[i];
-			}
-		}
-		System.out.println("The min of three is: " + minValue);		
+			} 
+		} 
+		System.out.println("The min of three is: " + minValue);	
+		return minValue;
 	}
 	
-	public void findMax() {
+	public int findMax() {
 		int maxValue = numbers[0];
-		for (int i = 0; i > this.numbers.length; i++) {
+		for (int i = 0; i < this.numbers.length; i++) {
 			if (numbers[i] > maxValue) {
 				maxValue = numbers[i];
 			}
 		}
-		System.out.println("The min of three is: " + maxValue);		
+		System.out.println("The max of three is: " + maxValue);
+		return maxValue;
+	}
+	public static void main(String[] args) {
+		MinMax minMax = new MinMax();
+		minMax.setNumbers();
+		minMax.findMax();
+		minMax.findMin();
+
 	}
 
 	/*public static void main(String[] args) {

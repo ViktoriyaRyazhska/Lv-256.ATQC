@@ -21,8 +21,8 @@ public class TaskBookD {
 	}
 
 	public static void main(String[] args) {
-		TaskBookD g = new TaskBookD();
-		g.checkCondition(3);
-		g.checkCondition(6);
+		TaskBookD taskBookD = new TaskBookD();
+		taskBookD.checkCondition(3);
+		taskBookD.checkCondition(6);
 	}
 }

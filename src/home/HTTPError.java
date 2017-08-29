@@ -104,19 +104,25 @@ public int setErrors() {
 	int error = 0;
 	try{
 		Scanner scan = new Scanner(System.in);
-	System.out.print("Enter code error: ");
-	error = scan.nextInt();	
-	} catch (Exception e) {
-		System.out.println("Input error");
-	}
+		System.out.print("Enter code error: ");
+		error = scan.nextInt();	
+		} catch (Exception err) {
+			System.out.println("Input error");
+			}
 	return error;
 }
-
+public String toString() {
+	if (code == 0) {
+		return message;
+	} else {
+		return "Error " + code + " " + message;
+	}
+}
 
 public static void main(String[] args) {
-	HTTPError e = HTTPError.HTTP0;
-	e = e.setValue(e.setErrors());
-	System.out.println(e);
+	HTTPError err = HTTPError.HTTP0;
+	err = err.setValue(err.setErrors());
+	System.out.println(err.toString());
 	}
 }
 
