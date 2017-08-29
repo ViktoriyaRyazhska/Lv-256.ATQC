@@ -18,6 +18,7 @@ public class FloatNum {
 	}
 
 	public void setNumbers() {
+		try {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter 3 numbers: ");
 		float number1 = scan.nextFloat();
@@ -25,6 +26,9 @@ public class FloatNum {
 		float number3 = scan.nextFloat();
 		Float[] numbers = { number1, number2, number3 };
 		this.numbers = numbers;
+		} catch (Exception err) {
+			System.out.println("Input error");
+		}		
 	}
 
 	public Float[] checkBelongToRange() {

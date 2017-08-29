@@ -1,8 +1,11 @@
-package home;
+package taskbook;
 
 import java.util.Scanner;
+	/*
+	 * Find n lines of Pascal triangle
+	 * */
 
-public class TrianglePaskal {
+public class TaskBook_555 {
 	private int lines = 0;;
 	public int setNumberOfLines() {
 		Scanner scan = new Scanner(System.in);
@@ -29,7 +32,7 @@ public class TrianglePaskal {
 
 	}
 	public static void main(String[] args) {
-		TrianglePaskal trianglePaskal = new TrianglePaskal();
+		TaskBook_555 trianglePaskal = new TaskBook_555();
 		trianglePaskal.setNumberOfLines();
 		trianglePaskal.doCalculation();
 		

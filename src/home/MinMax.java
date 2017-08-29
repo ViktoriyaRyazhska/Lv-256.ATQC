@@ -19,6 +19,15 @@ public class MinMax {
 	}
 
 	public void setNumbers() {
+//		Scanner scan = new Scanner(System.in);
+//		System.out.print("Enter 3 int numbers: ");
+//		int number1 = scan.nextInt();
+//		int number2 = scan.nextInt();
+//		int number3 = scan.nextInt();
+//		Integer[] numbers = { number1, number2, number3 };
+//		this.numbers = numbers;
+//	}
+		try {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter 3 int numbers: ");
 		int number1 = scan.nextInt();
@@ -26,6 +35,9 @@ public class MinMax {
 		int number3 = scan.nextInt();
 		Integer[] numbers = { number1, number2, number3 };
 		this.numbers = numbers;
+		} catch (Exception err) {
+			System.out.println("Input error");
+		}
 	}
 
 	public int findMin() {
@@ -44,7 +56,7 @@ public class MinMax {
 		for (int i = 0; i < this.numbers.length; i++) {
 			if (numbers[i] > maxValue) {
 				maxValue = numbers[i];
-			}
+			} 
 		}
 		System.out.println("The max of three is: " + maxValue);
 		return maxValue;
@@ -67,3 +79,4 @@ public class MinMax {
 		System.out.println("The max of three is: " + maxValue);
 	}*/
 }
+
