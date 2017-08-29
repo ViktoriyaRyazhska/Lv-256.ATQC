@@ -1,4 +1,4 @@
-package PythagoreanTtriple;
+package edu.junit.pythagoreantriple;
 
 public class PythagoreanTriple {
 
