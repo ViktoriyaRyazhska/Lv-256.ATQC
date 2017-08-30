@@ -1,4 +1,4 @@
-package tasks88v88g332;
+package edu.com.homework.tasksbook;
 
 import java.io.BufferedReader;
 import java.io.IOException;
