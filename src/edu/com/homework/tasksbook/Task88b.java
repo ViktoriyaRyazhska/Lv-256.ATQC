@@ -40,7 +40,8 @@ public class Task88b {
 	 * 
 	 */
 	public void resolve() {
-
+		
+		System.out.println("This program reverses order of digits of integer number.");
 		System.out.println("Enter integer");
 		Scanner scanner = new Scanner(System.in);
 		try {

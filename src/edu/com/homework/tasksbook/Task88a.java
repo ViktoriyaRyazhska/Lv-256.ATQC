@@ -46,7 +46,7 @@ public class Task88a {
 	 */
 	
 	public void resolve() {
-
+		System.out.println("This programm checks  if the number 3 is present in the n^2 for Integer n.");
 		System.out.println("Enter number");
 		Scanner scanner = new Scanner(System.in);
 
