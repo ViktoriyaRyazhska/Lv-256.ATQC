@@ -8,7 +8,7 @@ package edu.com.junit.homework;
 class Dog {
 	private String name;
 	private Breed breed;
-	int age;
+	private int age;
 
 	public Dog() {
 	}
