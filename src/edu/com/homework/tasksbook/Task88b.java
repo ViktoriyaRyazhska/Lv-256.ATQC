@@ -34,12 +34,12 @@ public class Task88b {
 
 	}
 
-	/** Method Reverse
+	/** Method resolve
 	 * Provides input of numbers from the console.
 	 * Triggers method reverser and outputs the reversed number
 	 * 
 	 */
-	public void Reverse() {
+	public void resolve() {
 
 		System.out.println("Enter integer");
 		Scanner scanner = new Scanner(System.in);

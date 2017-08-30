@@ -1,11 +1,14 @@
 package edu.com.homework.main;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
+
+import edu.com.homework.tasksbook.Task322;
 import edu.com.homework.tasksbook.Task330;
 import edu.com.homework.tasksbook.Task86a;
 import edu.com.homework.tasksbook.Task86b;
+import edu.com.homework.tasksbook.Task88a;
+import edu.com.homework.tasksbook.Task88b;
 
 public class Main {
 
@@ -32,11 +35,11 @@ public class Main {
 		case "559":
 			return null;
 		case "88a":
-			return null;
+			return new Task88a();
 		case "88b":
-			return null;
+			return new Task88b();
 		case "322":
-			return null;
+			return new Task322();
 		case "88w":
 			return null;
 		case "88g":

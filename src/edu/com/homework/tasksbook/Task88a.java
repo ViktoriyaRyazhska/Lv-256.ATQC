@@ -20,7 +20,7 @@ public class Task88a {
 	 *It is made because we bring given number to the power of 2. We make sure that result number won't exceed integer range.
 	 * 
 	 */
-	private boolean Check(int n) {
+	private boolean check(int n) {
 		if (n > Math.sqrt(Integer.MAX_VALUE) || n < Integer.MIN_VALUE) {
 			throw new IllegalArgumentException();
 		}
@@ -39,19 +39,19 @@ public class Task88a {
 
 	}
 
-	/** Method Has3inN2
+	/** Method resolve
 	 * Provides input of numbers from the console.
 	 * Triggers method Check and says if number 3 is included in n^2, where n is given number.
 	 * 
 	 */
 	
-	public void Has3inN2() {
+	public void resolve() {
 
 		System.out.println("Enter number");
 		Scanner scanner = new Scanner(System.in);
 
 		try {
-			if (Check(scanner.nextInt())) {
+			if (check(scanner.nextInt())) {
 				System.out.println("Contains 3");
 			} else {
 				System.out.println("Doesn't contain 3");

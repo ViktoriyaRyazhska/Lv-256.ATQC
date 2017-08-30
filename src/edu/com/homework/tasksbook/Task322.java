@@ -9,7 +9,7 @@ package edu.com.homework.tasksbook;
  */
 public class Task322 {
 
-	public String MaxSum() {
+	public String maxSum() {
 		Integer maxS = 0;
 		Integer maxN = 0;
 		for (int i = 1; i <= 10000; i++) {
@@ -25,6 +25,17 @@ public class Task322 {
 			}
 		}
 		return "Number with the biggest sum of dividers is:" + maxN + "\nSum of its dividers is:" + maxS;
+	}
+	
+	/**
+	 * This method outputs the number with the biggest sum of dividers,
+	 * found by the MaxSum() method
+	 *  
+	 */
+	public void resolve() {
+		
+		System.out.println("This programm finds the number with the  maximum sum of dividers in range from 1 to 10000");
+		System.out.println(maxSum());
 	}
 
 }
