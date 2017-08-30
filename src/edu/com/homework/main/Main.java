@@ -3,8 +3,11 @@ package edu.com.homework.main;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
+import edu.com.homework.tasksbook.Task108;
 import edu.com.homework.tasksbook.Task322;
 import edu.com.homework.tasksbook.Task330;
+import edu.com.homework.tasksbook.Task331a;
+import edu.com.homework.tasksbook.Task331b;
 import edu.com.homework.tasksbook.Task86a;
 import edu.com.homework.tasksbook.Task86b;
 import edu.com.homework.tasksbook.Task88a;
@@ -56,11 +59,11 @@ public class Main {
 		case "243b":
 			return null;
 		case "108":
-			return null;
+			return new Task108();
 		case "331a":
-			return null;
+			return new Task331a();
 		case "331b":
-			return null;
+			return new Task331b();
 		case "178b":
 			return null;
 		case "178w":
