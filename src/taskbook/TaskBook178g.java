@@ -1,17 +1,16 @@
 package taskbook;
-	/*
-	 * Find quantity of numbers which satisfy condition - 2^k<ak<k!
-	 * */
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TaskBook178d {
-
+public class TaskBook178g {
+	/*
+	 * Find quantity of numbers which satisfy condition - ak<(a(k-1)+a(k+1)/2
+	 */
 	public void resolve() {
 		ArrayList<Integer> num = new ArrayList<Integer>();
         Scanner scan = new Scanner(System.in);
-        System.out.println(" Find quantity of numbers which satisfy condition - 2^k<ak<k! ");
+        System.out.println(" Find quantity of numbers which satisfy condition - ak<(a(k-1)+a(k+1)/2");
         System.out.print("Enter some numbers: ");
         try{
         	while ( scan.hasNextInt() ) {
@@ -24,10 +23,11 @@ public class TaskBook178d {
 	}
         
 	}
+    
 	public void checkCondition(ArrayList<Integer> num) {	
 		int count = 0;
 		for (int i = 1; i < num.size()-1; i++) {
-			if ((Math.pow(2, i) < num.get(i) && (num.get(i) < factorial(i)))) {
+			if (num.get(i) < ((num.get(i - 1) + num.get(i - 1)) / 2)) {
 				count += 1;			
 				} 			
 			} 
@@ -38,18 +38,8 @@ public class TaskBook178d {
 			}
 		}
 
-	
-	public int factorial(int j) {
-		int y = 1;
-		for (int i = 1; i <= j; i++) {
-			y = y * i;
-		}
-		return y;
-	}
-
 //	public static void main(String[] args) {
-//		TaskBook178d taskBookD = new TaskBook178d();
-//		taskBookD.checkCondition(3);
-//		taskBookD.checkCondition(6);
+//		TaskBook178g taskBookG = new TaskBook178g();
+//		taskBookG.resolve();
 //	}
 }

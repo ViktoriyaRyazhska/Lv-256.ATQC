@@ -9,6 +9,9 @@ import edu.com.homework.tasksbook.Task86a;
 import edu.com.homework.tasksbook.Task86b;
 import edu.com.homework.tasksbook.Task88a;
 import edu.com.homework.tasksbook.Task88b;
+import taskbook.TaskBook178d;
+import taskbook.TaskBook178g;
+import taskbook.TaskBook555;
 
 public class Main {
 
@@ -62,6 +65,12 @@ public class Main {
 			return null;
 		case "178w":
 			return null;
+		case "178g":
+			return new TaskBook178g();
+		case "178d":
+			return new TaskBook178d();
+		case "555":
+			return new TaskBook555();
 		case "554":
 			return null;
 		default:
