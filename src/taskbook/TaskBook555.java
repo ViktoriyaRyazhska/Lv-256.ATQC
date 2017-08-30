@@ -5,9 +5,10 @@ import java.util.Scanner;
 	 * Find n lines of Pascal triangle
 	 * */
 
-public class TaskBook_555 {
+public class TaskBook555 {
 	private int lines = 0;;
-	public int setNumberOfLines() {
+//	public int setNumberOfLines() {
+	public int resolve() {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter number of lines for Pascal Triangle: ");
 		int lines = scan.nextInt();
@@ -31,10 +32,10 @@ public class TaskBook_555 {
 		}
 
 	}
-	public static void main(String[] args) {
-		TaskBook_555 trianglePaskal = new TaskBook_555();
-		trianglePaskal.setNumberOfLines();
-		trianglePaskal.doCalculation();
-		
-	}
+//	public static void main(String[] args) {
+//		TaskBook555 trianglePaskal = new TaskBook555();
+//		trianglePaskal.setNumberOfLines();
+//		trianglePaskal.doCalculation();
+//		
+//	}
 }
