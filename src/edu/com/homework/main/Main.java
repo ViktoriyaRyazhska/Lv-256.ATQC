@@ -9,9 +9,9 @@ import edu.com.homework.tasksbook.Task86a;
 import edu.com.homework.tasksbook.Task86b;
 import edu.com.homework.tasksbook.Task88a;
 import edu.com.homework.tasksbook.Task88b;
-import taskbook.TaskBook178d;
-import taskbook.TaskBook178g;
-import taskbook.TaskBook555;
+import edu.com.homework.tasksbook.TaskBook178d;
+import edu.com.homework.tasksbook.TaskBook178g;
+import edu.com.homework.tasksbook.TaskBook555;
 
 public class Main {
 

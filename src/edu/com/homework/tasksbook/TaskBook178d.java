@@ -1,4 +1,4 @@
-package taskbook;
+package edu.com.homework.tasksbook;
 	/*
 	 * Find quantity of numbers which satisfy condition - 2^k<ak<k!
 	 * */

@@ -1,4 +1,4 @@
-package taskbook;
+package edu.com.homework.tasksbook;
 
 import java.util.ArrayList;
 import java.util.Scanner;
