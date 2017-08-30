@@ -1,12 +1,16 @@
-package homework;
+package tasks88v88g332;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Task88G {
+public class Task88g {
+	public String addOne(int n) {
+		return "1" + n + "1";
+	}
 
-	public static void main(String[] args) {
+	public void resolve() {
+		System.out.println("Adding 1 at begin and end of number");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter natural number:");
 		int n = 0;
@@ -14,13 +18,9 @@ public class Task88G {
 			n = Integer.parseInt(br.readLine());
 		} catch (NumberFormatException e) {
 			System.err.println("You can enter only numbers");
-			e.printStackTrace();
 		} catch (IOException e) {
 			System.err.println("IO Exception");
-			e.printStackTrace();
 		}
-		System.out.println("1" + n + "1");
-
+		System.out.println(addOne(n));
 	}
-
 }

@@ -18,6 +18,9 @@ import edu.com.homework.tasksbook.TaskBook555;
 import edu.com.homework.tasksbook.Task182;
 import edu.com.homework.tasksbook.Task323;
 import edu.com.homework.tasksbook.Task560;
+import edu.com.homework.tasksbook.Task88w;
+import edu.com.homework.tasksbook.Task88g;
+import edu.com.homework.tasksbook.Task332;
 
 public class Main {
 
@@ -50,11 +53,11 @@ public class Main {
 		case "322":
 			return new Task322();
 		case "88w":
-			return null;
+			return new Task88w();
 		case "88g":
-			return null;
+			return new Task88g();
 		case "332":
-			return null;
+			return new Task332();
 		case "107":
 			return null;
 		case "243a":
