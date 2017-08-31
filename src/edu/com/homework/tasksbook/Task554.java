@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Task554 {
 
-		public void rezolve() {
+		public void resolve() {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter a number: ");
 		int number = scan.nextInt();
