@@ -6,15 +6,24 @@ import java.util.Scanner;
 	 * */
 
 public class TaskBook555 {
-	private int lines = 0;;
-//	public int setNumberOfLines() {
-	public int resolve() {
+	public int lines = 0;
+	
+	public void resolve() {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter number of lines for Pascal Triangle: ");
-		int lines = scan.nextInt();
-		return this.lines = lines;
+		try {
+			while (scan.hasNextInt()) {
+				lines=scan.nextInt();
+				doCalculation(lines);
+			} }catch(NumberFormatException ex){
+        		System.out.println("You didn't enter a number ");
+        		resolve();
 		}
-	public void doCalculation() {	
+//		int lines = scan.nextInt();
+//		this.lines = lines;
+//		doCalculation(lines);
+		}
+	public void doCalculation(int lines) {	
 		int[][] p = new int[lines][];
 		p[0] = new int[1];
 		p[1] = new int[2];
@@ -34,7 +43,7 @@ public class TaskBook555 {
 	}
 //	public static void main(String[] args) {
 //		TaskBook555 trianglePaskal = new TaskBook555();
-//		trianglePaskal.setNumberOfLines();
+//		trianglePaskal.resolve();
 //		trianglePaskal.doCalculation();
 //		
 //	}
