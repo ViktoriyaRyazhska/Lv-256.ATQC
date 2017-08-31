@@ -28,7 +28,7 @@ public class Task178w {
 
 		
 
-		checkNumber2(numbers);
+		System.out.println(checkNumber2(numbers)); 
 
 	}
 
