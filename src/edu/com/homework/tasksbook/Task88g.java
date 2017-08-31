@@ -21,6 +21,10 @@ public class Task88g {
 		} catch (IOException e) {
 			System.err.println("IO Exception");
 		}
-		System.out.println(addOne(n));
+		if (n >= 0) {
+			System.out.println(addOne(n));
+		} else {
+			System.out.println("You can enter only natural number. Can not enter negative number");
+		}
 	}
 }

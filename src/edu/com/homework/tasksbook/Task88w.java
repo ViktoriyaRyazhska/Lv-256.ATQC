@@ -3,22 +3,16 @@ package edu.com.homework.tasksbook;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class Task88w {
 	public String replaceFirstLast(int n) {
 		String s1 = Integer.toString(n);
-		String[] arr = s1.split("");
-
-		String tmp = arr[0];
-		arr[0] = arr[arr.length - 1];
-		arr[arr.length - 1] = tmp;
-
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i]);
-		}
-		String s = Arrays.toString(arr);
-		return s;
+		StringBuilder sb = new StringBuilder(s1);
+		char last = sb.charAt(sb.length() - 1);
+		char first = sb.charAt(0);
+		sb.setCharAt(0, last);
+		sb.setCharAt(sb.length() - 1, first);
+		return sb.toString();
 	}
 
 	public void resolve() {
@@ -33,6 +27,10 @@ public class Task88w {
 		} catch (IOException e) {
 			System.err.println("IO Exception");
 		}
-		System.out.println(replaceFirstLast(n));
+		if (n >= 0) {
+			System.out.println(replaceFirstLast(n));
+		} else {
+			System.out.println("You can enter only natural number. Can not enter negative number");
+		}
 	}
 }

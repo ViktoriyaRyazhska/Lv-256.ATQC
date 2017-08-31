@@ -6,19 +6,17 @@ import java.io.InputStreamReader;
 
 public class Task332 {
 	public String sumOfFourSquares(int n) {
-		int x = (int) (Math.floor(Math.sqrt(n)));
-		n = n - x * x;
-		int y = (int) (Math.floor(Math.sqrt(n)));
-		n = n - y * y;
-		int z = (int) (Math.floor(Math.sqrt(n)));
-		n = n - z * z;
-		int t = (int) (Math.floor(Math.sqrt(n)));
-		n = n - z * z;
-		return "x = " + x + " y = " + y + " z = " + z + " t = " + t;
+		int x[] = new int[4];
+		for (int i = 0; i < 4; i++) {
+			x[i] = (int) (Math.floor(Math.sqrt(n)));
+			n = n - x[i] * x[i];
+		}
+		String s = Arrays.toString(x);
+		return "x = " + s;
 	}
 
 	public void resolve() {
-		System.out.println("n = x^2 + y^2 + z^2 + t^2 ");
+		System.out.println("n = x1^2 + x2^2 + x3^2 + x4^2 ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter natural number:");
 		int n = 0;
@@ -29,7 +27,11 @@ public class Task332 {
 		} catch (IOException e) {
 			System.err.println("IO Exception");
 		}
-		System.out.println(sumOfFourSquares(n));
+		if (n >= 0) {
+			System.out.println(sumOfFourSquares(n));
+		} else {
+			System.out.println("You can enter only natural number. Can not enter negative number");
+		}
 	}
 
 }
