@@ -1,60 +1,253 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="15" passed="15">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="37" started-at="2017-08-29T07:03:54Z" finished-at="2017-08-29T07:03:54Z">
+  <suite name="Default suite" duration-ms="84" started-at="2017-08-31T07:32:27Z" finished-at="2017-08-31T07:32:27Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="37" started-at="2017-08-29T07:03:54Z" finished-at="2017-08-29T07:03:54Z">
-      <class name="home.home.CalcTest">
-        <test-method status="PASS" signature="test1()[pri:0, instance:home.home.CalcTest@7c0e2abd]" name="test1" duration-ms="9" started-at="2017-08-29T10:03:54Z" finished-at="2017-08-29T10:03:54Z">
+    <test name="Default test" duration-ms="84" started-at="2017-08-31T07:32:27Z" finished-at="2017-08-31T07:32:27Z">
+      <class name="home.home.UrlTest">
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://localhost/index.html]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- test1 -->
-        <test-method status="FAIL" signature="test2()[pri:0, instance:home.home.CalcTest@7c0e2abd]" name="test2" duration-ms="1" started-at="2017-08-29T10:03:54Z" finished-at="2017-08-29T10:03:54Z">
-          <exception class="java.lang.Error">
-            <message>
-              <![CDATA[Unresolved compilation problem: 
-	The method div(int, int) in the type Calc is not applicable for the arguments (double, double)
-]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Error: Unresolved compilation problem: 
-	The method div(int, int) in the type Calc is not applicable for the arguments (double, double)
-
-	at home.home.CalcTest.test2(CalcTest.java:18)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-	at org.testng.TestRunner.privateRun(TestRunner.java:744)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
-	at org.testng.TestNG.runSuites(TestNG.java:1144)
-	at org.testng.TestNG.run(TestNG.java:1115)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Error -->
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="15" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://localhost/myapplication]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- test2 -->
-      </class> <!-- home.home.CalcTest -->
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://localhost]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="16" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://en.wikipedia.org/wiki/SoftServe]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://lvtest.org.ua:8080/lvivprobne/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://2plus2.ua/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://localhost:8080/myapplication]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://www.google.com.ua/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://www.yahoo.com/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://en.wikipedia.org/wiki/Uniform_resource_locator]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://www.softserveinc.com/en-us/home/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://ita.edu.softserveinc.com/]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ita.edu.softserveinc.com/login/index.php]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://ita.edu.softserveinc.com/login/index.php]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+        <test-method status="PASS" signature="parameterString(java.lang.String, boolean)[pri:0, instance:home.home.UrlTest@402f32ff]" name="parameterString" duration-ms="0" started-at="2017-08-31T10:32:27Z" data-provider="parameterStringTestProvider" finished-at="2017-08-31T10:32:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[file:///C:/Program%20Files]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[false]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- parameterString -->
+      </class> <!-- home.home.UrlTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
