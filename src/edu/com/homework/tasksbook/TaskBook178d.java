@@ -19,7 +19,7 @@ public class TaskBook178d {
         		checkCondition(num);
         		}
         	} catch (NumberFormatException ex){
-        		System.out.println("¬ведено не число");
+        		System.out.println("You didn't enter a number ");
         		resolve();
 	}
         
