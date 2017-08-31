@@ -17,7 +17,7 @@ public class Task88b {
 	 * @throws If reversed number is bigger that max size of integer method throws IllegalArgumentException
 	 * 
 	 */
-	private Integer reverser(int n) {
+	private Integer reverser(int n)throws IllegalArgumentException {
 
 		long result = 0;
 		long number = n;
@@ -28,7 +28,7 @@ public class Task88b {
 		}
 
 		if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Reversed number exceeds Integer max value.");
 		}
 		return (int) result;
 
@@ -48,15 +48,12 @@ public class Task88b {
 
 			System.out.println("Reversed integer is: " + reverser(scanner.nextInt()));
 
+		} catch (IllegalArgumentException ae) {
+
+			System.out.println(ae.getMessage());
+
 		} catch (Exception e) {
-
-			if (e instanceof IllegalArgumentException) {
-				System.out.println("Result number is not in Int range");
-			}
-
-			else {
-				System.out.println("input error");
-			}
+			System.out.println("Input error");
 		}
 
 	}

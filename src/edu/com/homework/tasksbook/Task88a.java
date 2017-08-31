@@ -14,15 +14,15 @@ import org.omg.CosNaming.NamingContextExtHolder;
 public class Task88a {
 
 	/** Method Check
-	 * @param Any integer number.
+	 * @param Integer n.
 	 * @return Returns true if number contains 3. Otherwise returns false.
 	 * @throws If given number is bigger than square root of max value of integer - throws IllegalArgumentException
 	 *It is made because we bring given number to the power of 2. We make sure that result number won't exceed integer range.
 	 * 
 	 */
-	private boolean check(int n) {
-		if (n > Math.sqrt(Integer.MAX_VALUE) || n < Integer.MIN_VALUE) {
-			throw new IllegalArgumentException();
+	private boolean check(int n) throws IllegalArgumentException{
+		if (n > Math.sqrt(Integer.MAX_VALUE) || n < Math.sqrt(Math.abs(Integer.MIN_VALUE))) {
+			throw new IllegalArgumentException("Number is too big");
 		}
 
 		else {
@@ -47,7 +47,7 @@ public class Task88a {
 	
 	public void resolve() {
 		System.out.println("This programm checks  if the number 3 is present in the n^2 for Integer n.");
-		System.out.println("Enter number");
+		System.out.println("Enter number:");
 		Scanner scanner = new Scanner(System.in);
 
 		try {
@@ -56,16 +56,12 @@ public class Task88a {
 			} else {
 				System.out.println("Doesn't contain 3");
 			}
+		} catch (IllegalArgumentException ae) {
+
+			System.out.println(ae.getMessage());
+
 		} catch (Exception e) {
-
-			if (e instanceof IllegalArgumentException) {
-				System.out.println("Number is not in range");
-			}
-
-			else {
-				System.out.println("input error");
-			}
-
+			System.out.println("Input error");
 		}
 
 	}
