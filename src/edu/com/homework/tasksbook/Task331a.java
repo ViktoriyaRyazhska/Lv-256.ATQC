@@ -1,5 +1,6 @@
 package edu.com.homework.tasksbook;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import edu.com.homework.tasksbook.task331.ThreeSquareNaturalNumbers;
@@ -67,7 +68,7 @@ public class Task331a {
 				}
 			}
 
-		} catch (IllegalArgumentException e) {
+		} catch (InputMismatchException e) {// catch inconsistency with the type of input value;
 			System.out.println("Please provide correct input");
 		}
 	}

@@ -1,4 +1,5 @@
 package edu.com.homework.tasksbook;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -47,7 +48,7 @@ public class Task108 {
 				System.out.println("The smallest number is: " + getTheSmallestNumber(nutN));
 			}
 
-		} catch (IllegalArgumentException e) {
+		} catch (InputMismatchException e) { // catch inconsistency with the type of input value;
 			System.out.println("Please provide correct input");
 		}
 	}

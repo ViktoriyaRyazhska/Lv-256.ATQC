@@ -1,6 +1,7 @@
 package edu.com.homework.tasksbook;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -45,7 +46,6 @@ public class Task331b {
 	 * This method outputs all triples X, Y, Z for which n = x2 + y2 + z2.
 	 */
 	public void resolve() {
-		
 		System.out.println("Given a natural number n. "
 				+ "If it can possible to represent a number as a sum of 3 squares of natural numbers. "
 				+ "nIf it possible then:"
@@ -73,7 +73,7 @@ public class Task331b {
 	 			}
 			}
 
-		} catch (IllegalArgumentException e) {
+		} catch (InputMismatchException e) { // catch inconsistency with the type of input value;
 			System.out.println("Please provide correct input");
 		}
 	}
