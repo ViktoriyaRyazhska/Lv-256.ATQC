@@ -8,14 +8,7 @@ import org.testng.annotations.Test;
 import home.Url;
 
 public class task88wTest {
-	 @Test(dataProvider = "parameterStringTestProvider")
-	 public void parameterString(int task88wTest, Object s) {
-	  Assert.assertEquals(s, task88w.replaceFirstLast(task88wTest));
-	 }
-
-	 @DataProvider(name = "parameterStringTestProvider")
-	 public Object[][] parameterStringTestProvider() {
-	  return new Object[][] {
-		  { 44, {4, 4} }, { 56,  [6, 5]} };
-	 }
+	task88wTest threenum = task88w.task88wTest();
+	String expected = "x = 2, y = 2, z = 2";
+	Assert.assertEquals(expected , threenum.toString());
 	}
