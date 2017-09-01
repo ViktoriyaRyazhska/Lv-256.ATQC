@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.com.homework.tasksbook.Task331a;
-import edu.com.homework.tasksbook.ThreeSquareNaturalNumbers;
+import edu.com.homework.tasksbook.task331.ThreeSquareNaturalNumbers;
 
 
 
