@@ -8,7 +8,7 @@ package taskbook;
 	import java.util.Arrays;
 
 	public class task88w {
-		public String replaceFirstLast(int n) {
+		public static String replaceFirstLast(int n) {
 			String s1 = Integer.toString(n);
 			String[] arr = s1.split("");
 

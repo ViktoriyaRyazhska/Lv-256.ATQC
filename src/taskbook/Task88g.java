@@ -5,7 +5,7 @@ package taskbook;
 	import java.io.InputStreamReader;
 
 	public class Task88g {
-		public String addOne(int n) {
+		public static String addOne(String n) {
 			return "1" + n + "1";
 		}
 
@@ -13,9 +13,9 @@ package taskbook;
 			System.out.println("Adding 1 at begin and end of number");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Enter natural number:");
-			int n = 0;
+			String n = "0";
 			try {
-				n = Integer.parseInt(br.readLine());
+				n = br.readLine();
 			} catch (NumberFormatException e) {
 				System.err.println("You can enter only numbers");
 			} catch (IOException e) {
