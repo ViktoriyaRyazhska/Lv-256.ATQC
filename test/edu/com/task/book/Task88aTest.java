@@ -18,7 +18,6 @@ public class Task88aTest {
 	@Before
 	public void setUpStreams() {
 		System.setOut(new PrintStream(outContent)); // setting outstream
-		task = new Task88a();
 	}
 
 	@After
@@ -29,11 +28,11 @@ public class Task88aTest {
 	/**
 	 * Tests method resolve from Task88a class.
 	 * Verifies that after setting 'Integer.Max_Value - 1' number won't exceed integer range,
-	 * method returns correct message.
+	 * method returns correct message: "Number is too big"
 	 */
 	@Test
 	public void TestIntegerMaxValue() {
-		ByteArrayInputStream in = new ByteArrayInputStream("2147483647".getBytes()); // setting Integer.Max_Value - 1 in input stream 
+		ByteArrayInputStream in = new ByteArrayInputStream("2147483647".getBytes()); // setting Integer.Max_Value - 1 "(2^31)-1" in input stream 
 		System.setIn(in);
 		task.resolve();
 		
@@ -43,11 +42,11 @@ public class Task88aTest {
 	/**
 	 * Tests method resolve from Task88a class.
 	 * Verifies that after setting 'Integer.Min_Value' number won't exceed integer range,
-	 * method returns correct message.
+	 * method returns correct message: "Number is too big"
 	 */
 	@Test
 	public void TestIntegerMinValue() {
-		ByteArrayInputStream in = new ByteArrayInputStream("-2147483648".getBytes()); // setting Integer.Min_Value in input stream
+		ByteArrayInputStream in = new ByteArrayInputStream("-2147483648".getBytes()); // setting Integer.Min_Value "2^31" in input stream
 		System.setIn(in);
 		task.resolve();
 		
@@ -56,8 +55,38 @@ public class Task88aTest {
 	
 	/**
 	 * Tests method resolve from Task88a class.
+	 * Verifies that after setting exceed integer range number 'n' 
+	 * method returns correct message: "Input error"
+	 */
+	@Test
+	public void TestToLongInteger() {
+		ByteArrayInputStream in = 
+				new ByteArrayInputStream("2147483648".getBytes()); // setting Integer.Max_Value 2^31 input stream
+		System.setIn(in);
+		task.resolve();
+		
+		Assert.assertTrue(outContent.toString().contains("Input error"));
+	}
+	
+	/**
+	 * Tests method resolve from Task88a class.
+	 * Verifies that after setting negative exceed integer range number 'n' 
+	 * method returns correct message: "Input error"
+	 */
+	@Test
+	public void TestToLongNegativeInteger() {
+		ByteArrayInputStream in = 
+				new ByteArrayInputStream("-2147483649".getBytes()); // setting Integer.Min_Value+1 -(2^31)-1 input stream
+		System.setIn(in);
+		task.resolve();
+		
+		Assert.assertTrue(outContent.toString().contains("Input error"));
+	}
+	
+	/**
+	 * Tests method resolve from Task88a class.
 	 * Verifies that after setting characters,
-	 * method returns correct message.
+	 * method returns correct message: "Input error"
 	 */
 	@Test
 	public void TestInputInvalidValue() {
@@ -72,7 +101,7 @@ public class Task88aTest {
 	 * Tests method resolve from Task88a class.
 	 * Verifies that after setting valid number 'n' 
 	 * and number 3 is present in the n^2 for Integer n. ,
-	 * method returns correct message.
+	 * method returns correct message: "Contains 3"
 	 */
 	@Test
 	public void TestHasNumberThree() {
@@ -87,7 +116,7 @@ public class Task88aTest {
 	 * Tests method resolve from Task88a class.
 	 * Verifies that after setting valid number 'n'
 	 * and number 3 is not present in the n^2 for Integer n. ,
-	 * method returns correct message.
+	 * method returns correct message: "Doesn't contain 3"
 	 */
 	@Test
 	public void TestHasNotNumberThree() {
