@@ -3,11 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="taskbook.Task88gTest">
+      <class name="home.home.NewTest">
         <methods>
-          <include name="testAddOneToNumberR" invocation-numbers="0 1 2"/>
+          <include name="tearDown"/>
+          <include name="testFace"/>
         </methods>
-      </class> <!-- taskbook.Task88gTest -->
+      </class> <!-- home.home.NewTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

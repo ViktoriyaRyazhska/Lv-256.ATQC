@@ -13,9 +13,9 @@ package taskbook;
 			System.out.println("Adding 1 at begin and end of number");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Enter natural number:");
-			String n = "0";
+			int n = 0;
 			try {
-				n = br.readLine();
+				n = Integer.parseInt(br.readLine());
 			} catch (NumberFormatException e) {
 				System.err.println("You can enter only numbers");
 			} catch (IOException e) {
