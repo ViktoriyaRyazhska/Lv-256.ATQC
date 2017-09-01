@@ -4,9 +4,10 @@ import java.util.Objects;
 
 /**
  * TaskBook Task 331 Given a natural number n. If it can possible to represent a
- * number as a sum of 3 squares of natural numbers. If it possible then: a)
- * Specify a triple X, Y, Z for which n = x2 + y2 + z2. b) Specify all triples
- * X, Y, Z for which n = x2 + y2 + z2.
+ * number as a sum of 3 squares of natural numbers. 
+ * If it possible then: 
+ *  a) Specify a triple X, Y, Z for which n = x2 + y2 + z2. 
+ *  b) Specify all triples X, Y, Z for which n = x2 + y2 + z2.
  * 
  * @author Bohdan Zhyvko
  *
@@ -62,7 +63,7 @@ public class ThreeSquareNaturalNumbers {
 	}
 
 	/**
-	 * Override equal
+	 * Override equals
 	 */
 	@Override
 	public boolean equals(Object obj) {

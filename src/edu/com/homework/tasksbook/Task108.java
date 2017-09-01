@@ -23,7 +23,7 @@ public class Task108 {
 	 */
 	public int getTheSmallestNumber(int naturalNum) throws IllegalArgumentException{
 		int pow = 1; // initial
-		if (naturalNum > (Math.pow(2, 30) - 1)) {
+		if (naturalNum <= 0 || naturalNum > (Math.pow(2, 30) - 1)) {
 			throw new IllegalArgumentException("Number is too big");
 		} else {
 			// get 2 ^ r
@@ -59,7 +59,6 @@ public class Task108 {
 			System.out.println("Please provide correct input");
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-
 		}
 	}
 }

@@ -25,21 +25,28 @@ public class Task331b {
 	 * @return Returns a list of objects 'ThreeSquareNaturalNumbers'
 	 */
 	public List<ThreeSquareNaturalNumbers> getThreeSquareNumbers(int naturalNum) {
-		int sum = 0;
-		List<ThreeSquareNaturalNumbers> squares = new ArrayList<>();
-		int n = (int) Math.sqrt(naturalNum);
-		
-		for (int x = 1; x < n; x++) {
-			for (int y = 1; y < n; y++) {
-				for (int z = 1; z < n; z++) {
-					sum = (x * x) + (y * y) + (z * z);
-					if (naturalNum == sum) {
-						squares.add( new ThreeSquareNaturalNumbers (x,y,z));
+		//check if 'naturalNum' is natural number
+		if (naturalNum <= 0 ) {
+			System.out.println("It is not natural number!");
+			return new ArrayList<>() ;
+		} else {
+			
+			int sum = 0;
+			List<ThreeSquareNaturalNumbers> squares = new ArrayList<>();
+			int n = (int) Math.sqrt(naturalNum);
+			
+			for (int x = 1; x < n; x++) {
+				for (int y = 1; y < n; y++) {
+					for (int z = 1; z < n; z++) {
+						sum = (x * x) + (y * y) + (z * z);
+						if (naturalNum == sum) {
+							squares.add( new ThreeSquareNaturalNumbers (x,y,z));
+						}
 					}
 				}
 			}
+			return squares;
 		}
-		return squares;
 	}
 	
 	/**
@@ -60,19 +67,14 @@ public class Task331b {
 		try {
 			// create a scanner for read the command-line input
 			nutN = scanner.nextInt();
-			if (nutN < 0) {
-				System.out.println("It is not natural number!");
-			} else {
-				squares = getThreeSquareNumbers(nutN);
-				if(!squares.isEmpty()) {
-	 				for(ThreeSquareNaturalNumbers squarXYZ : squares) {
-	 					System.out.println(squarXYZ.toString());
-	 				}
-	 			} else {
-	 				System.out.println("There aren't three squares for the entered natural number!");
+			squares = getThreeSquareNumbers(nutN);
+			if(!squares.isEmpty()) {
+	 			for(ThreeSquareNaturalNumbers squarXYZ : squares) {
+	 				System.out.println(squarXYZ.toString());
 	 			}
-			}
-
+	 		} else {
+	 				System.out.println("There aren't three squares for the entered natural number!");
+	 		}
 		} catch (InputMismatchException e) { // catch inconsistency with the type of input value;
 			System.out.println("Please provide correct input");
 		}
