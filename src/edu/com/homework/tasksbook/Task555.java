@@ -5,7 +5,7 @@ import java.util.Scanner;
 	 * Find n lines of Pascal triangle
 	 * */
 
-public class TaskBook555 {
+public class Task555 {
 	public int lines = 0;
 	
 	public void resolve() {

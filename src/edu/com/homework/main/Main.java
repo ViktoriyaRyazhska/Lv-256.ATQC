@@ -14,9 +14,9 @@ import edu.com.homework.tasksbook.Task86a;
 import edu.com.homework.tasksbook.Task86b;
 import edu.com.homework.tasksbook.Task88a;
 import edu.com.homework.tasksbook.Task88b;
-import edu.com.homework.tasksbook.TaskBook178d;
-import edu.com.homework.tasksbook.TaskBook178g;
-import edu.com.homework.tasksbook.TaskBook555;
+import edu.com.homework.tasksbook.Task178d;
+import edu.com.homework.tasksbook.Task178g;
+import edu.com.homework.tasksbook.Task555;
 import edu.com.homework.tasksbook.Task182;
 import edu.com.homework.tasksbook.Task323;
 import edu.com.homework.tasksbook.Task560;
@@ -78,11 +78,11 @@ public class Main {
 		case "178w":
 			return new Task178w();
 		case "178g":
-			return new TaskBook178g();
+			return new Task178g();
 		case "178d":
-			return new TaskBook178d();
+			return new Task178d();
 		case "555":
-			return new TaskBook555();
+			return new Task555();
 		case "554":
 			return new Task554();
 		case "182":

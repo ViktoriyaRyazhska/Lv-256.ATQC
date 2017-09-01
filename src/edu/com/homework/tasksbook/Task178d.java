@@ -6,7 +6,7 @@ package edu.com.homework.tasksbook;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TaskBook178d {
+public class Task178d {
 
 	public void resolve() {
 		ArrayList<Integer> num = new ArrayList<Integer>();

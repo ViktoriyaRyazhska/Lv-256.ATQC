@@ -3,7 +3,7 @@ package edu.com.homework.tasksbook;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TaskBook178g {
+public class Task178g {
 	/*
 	 * Find quantity of numbers which satisfy condition - ak<(a(k-1)+a(k+1)/2
 	 */
