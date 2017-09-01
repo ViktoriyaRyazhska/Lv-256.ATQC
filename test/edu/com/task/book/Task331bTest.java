@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.com.homework.tasksbook.Task331b;
-import edu.com.homework.tasksbook.ThreeSquareNaturalNumbers;
+import edu.com.homework.tasksbook.task331.ThreeSquareNaturalNumbers;
 
 public class Task331bTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
