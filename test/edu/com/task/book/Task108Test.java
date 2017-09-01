@@ -56,8 +56,8 @@ public class Task108Test {
 	@Test
 	public void testNotNaturalNumbersParam() {
 		
-		Assert.assertEquals(1, instance.getTheSmallestNumber(-5));
-		Assert.assertEquals(1, instance.getTheSmallestNumber(0));
+		Assert.assertEquals(0, instance.getTheSmallestNumber(-5));
+		Assert.assertEquals(0, instance.getTheSmallestNumber(0));
 		
 	}
 	
