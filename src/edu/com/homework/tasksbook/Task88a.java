@@ -21,11 +21,12 @@ public class Task88a {
 	 * 
 	 */
 	private boolean check(int n) throws IllegalArgumentException{
-		if (n > Math.sqrt(Integer.MAX_VALUE) || n < Math.sqrt(Math.abs(Integer.MIN_VALUE))) {
+		if (n > Math.sqrt(Integer.MAX_VALUE) || n < -(Math.sqrt((Integer.MAX_VALUE)))) {
 			throw new IllegalArgumentException("Number is too big");
 		}
 
 		else {
+			
 			Integer n2 = (int) Math.pow(n, 2);
 			while (n2 != 0) {
 				if (n2 % 10 == 3) {
@@ -47,6 +48,7 @@ public class Task88a {
 	
 	public void resolve() {
 		System.out.println("This programm checks  if the number 3 is present in the n^2 for Integer n.");
+		System.out.println( Math.sqrt(Integer.MIN_VALUE));
 		System.out.println("Enter number:");
 		Scanner scanner = new Scanner(System.in);
 
