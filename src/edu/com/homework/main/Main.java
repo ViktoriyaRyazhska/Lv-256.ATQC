@@ -4,10 +4,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 import edu.com.homework.tasksbook.Task108;
+import edu.com.homework.tasksbook.Task178b;
+import edu.com.homework.tasksbook.Task178w;
 import edu.com.homework.tasksbook.Task322;
 import edu.com.homework.tasksbook.Task330;
 import edu.com.homework.tasksbook.Task331a;
 import edu.com.homework.tasksbook.Task331b;
+import edu.com.homework.tasksbook.Task554;
 import edu.com.homework.tasksbook.Task86a;
 import edu.com.homework.tasksbook.Task86b;
 import edu.com.homework.tasksbook.Task88a;
@@ -65,9 +68,9 @@ public class Main {
 		case "331b":
 			return new Task331b();
 		case "178b":
-			return null;
+			return new Task178b();
 		case "178w":
-			return null;
+			return new Task178w();
 		case "178g":
 			return new TaskBook178g();
 		case "178d":
@@ -75,7 +78,7 @@ public class Main {
 		case "555":
 			return new TaskBook555();
 		case "554":
-			return null;
+			return new Task554();
 		default:
 			return null;
 		}
