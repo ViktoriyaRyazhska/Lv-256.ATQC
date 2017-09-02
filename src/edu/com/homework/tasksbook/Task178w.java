@@ -30,7 +30,6 @@ public class Task178w {
 			task178w.getNaturalNumberCount(numbers);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-
 		}
 	}
 

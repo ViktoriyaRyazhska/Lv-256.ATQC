@@ -4,10 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Task554 {
-
 	public void resolve() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Get all the Pythagorean triples of natural numbers than a^ 2 + b ^ 2 = c ^ 2 a≤b≤c≤n");
+		System.out
+				.println("Get all the Pythagorean triples of natural numbers than a^ 2 + b ^ 2 = c ^ 2 a≤b≤c≤n");
 		System.out.println("Enter a number: ");
 
 		try {
