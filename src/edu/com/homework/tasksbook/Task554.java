@@ -1,33 +1,38 @@
 package edu.com.homework.tasksbook;
- /**
- * TaskBook
- * Task 178w  
- * Дано натуральне число n. Отримати всі піфагорові трійки натуральних чисел, кожне з яких не перевищує n. Всі такі натуральні трійки чисел а, b, c, де а^2+b^2=c^2  a≤b≤c≤n
- *
- * @author Khrystyna Terletska
- *
- */
 
-
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Task554 {
 
-		public void rezolve() {
+	public void resolve() {
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter a number: ");
-		int number = scan.nextInt();
-		Task554 pythagoreanTriple = new Task554();
-		pythagoreanTriple.checkPythagoreanTriple(number);
+		System.out.println("Get all the Pythagorean triples of natural numbers than a^ 2 + b ^ 2 = c ^ 2 a≤b≤c≤n");
+		System.out.println("Enter a number: ");
+
+		try {
+			int number = scan.nextInt();
+			Task554 pythagoreanTriple = new Task554();
+			pythagoreanTriple.printPythagoreanTriple(number);
+
+		} catch (InputMismatchException e) {
+			System.out.println("Please provide correct input. The correct format of numbers does not contain letters");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	public void checkPythagoreanTriple(int n) {
+	public void printPythagoreanTriple(int n) {
 
-		for (int a = 1; a <= n; a++) { 
-			for (int b = a + 1; b <= n; b++) { 
-				for (int c = b + 1; c <= n; c++) { 
-					if (a <= b && b <= c) { 
-						if ((a * a + b * b) == c * c) { 
+		if (n <= 0) {
+			throw new IllegalArgumentException("Please enter number greater than 0");
+		}
+
+		for (int a = 1; a <= n; a++) {
+			for (int b = a + 1; b <= n; b++) {
+				for (int c = b + 1; c <= n; c++) {
+					if (a <= b && b <= c) {
+						if ((a * a + b * b) == c * c) {
 							System.out.println("a = " + a + " " + "b = " + b + " " + " c= " + c);
 						}
 					}
@@ -35,4 +40,5 @@ public class Task554 {
 			}
 		}
 	}
+
 }
