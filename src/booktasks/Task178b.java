@@ -1,5 +1,6 @@
 package BookTasks;
 
+
 /**
  * TaskBook
  * Task 178b  
@@ -13,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Task178b {
-	public static void main(String[] array) {
+	public void resolve() {
 		// —творюЇмо Set ≥ додаЇмо в нього числа
 		Set<Integer> numbers = new HashSet<Integer>();
 		numbers.add(3);
@@ -28,19 +29,10 @@ public class Task178b {
 		numbers.add(39);
 		numbers.add(64);
 
-		Task178b task178b = new Task178b();
-		try {
-			task178b.getNaturalNumberCount(numbers); // ¬икликаЇмо метод checkNumber ≥ передаЇмо в нього Set з числами
-		} catch (IllegalArgumentException e) {
-			System.out.println("");
-		}
+		checkNumber(numbers); // ¬икликаЇмо метод checkNumber ≥ передаЇмо в нього Set з числами
 	}
 
-	public int getNaturalNumberCount(Set<Integer> numbers) {
-		if (numbers == null || numbers.isEmpty()) {
-			throw new IllegalArgumentException("You didn't entered value. Please enter digital value greater than 0");
-		}
-		System.out.println("Determine the number of sequence members that are multiples of 3 and not multiple 5");
+	public int checkNumber(Set<Integer> numbers) {
 
 		int totalCount = 0; // —творюЇмо зм≥нну totalCount, €ка буде п≥драховувати к≥льк≥сть чисел, €к≥
 							// задов≥льн€ють умову
@@ -52,7 +44,7 @@ public class Task178b {
 
 				System.out.println("Value is - " + value);
 
-				totalCount = totalCount + 1; // «б≥льшуЇмо л≥чильник елемент≥в, €к≥ задов≥льн€ють умову
+				totalCount = totalCount + 1; // «б≥дбшуЇмо л≥чильник елемент≥в, €к≥ задов≥льн€ють умову
 			}
 
 		}
