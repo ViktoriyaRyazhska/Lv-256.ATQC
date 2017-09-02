@@ -1,10 +1,9 @@
-import com.academy.softserve.task_02.Breed;
-import com.academy.softserve.task_02.Dog;
+package com.academy.softserve.task_02;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 public class DogTest {
-
     @Test
     public void dogCreateTest() {
         Dog actual = new Dog("Alabay", Breed.VOLF, 1);

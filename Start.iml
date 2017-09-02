@@ -38,5 +38,24 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/groovy-all-2.4.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="testng">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/testng/lib/testng.jar!/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/testng/lib/jcommander.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

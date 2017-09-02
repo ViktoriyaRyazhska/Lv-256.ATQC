@@ -21,7 +21,8 @@ public class Main_b {
 
     }
 
-    public static void maxNumber(ArrayList arrayList) {
-        System.out.println("Max value = "+Collections.max(arrayList));
+    public static int maxNumber(ArrayList arrayList) {
+        int max=(Integer) Collections.max(arrayList);
+        return max;
     }
 }
