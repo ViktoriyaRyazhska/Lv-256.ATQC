@@ -1,16 +1,15 @@
 package edu.com.booktasks;
 
 import java.util.Scanner;
-
-public class Calculate {
+public class Task107 {
 	public static void main(String[] args) {
-		int n = 1;
-		int k = 0;
 		int m = readM();
-		findK(n, k, m);
+		findK(m);
 	}
 
-	public static int findK(int n, int k, int m) {
+	public static int findK(int m) {
+		int k = 0;
+		int n = 1;
 		while ((n = n * 4) < m) {
 			k++;
 		}
