@@ -25,14 +25,19 @@ public class Task178w {
 		numbers.add(38);
 		numbers.add(39);
 		numbers.add(64);
-
-		
-
-		System.out.println(checkNumber2(numbers)); 
-
+		Task178w task178w = new Task178w();
+		try {
+			task178w.getNaturalNumberCount(numbers);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	public int checkNumber2(Set<Integer> numbers) {
+	public int getNaturalNumberCount(Set<Integer> numbers) {
+		if (numbers == null || numbers.isEmpty()) {
+			throw new IllegalArgumentException("You didn't entered value. Please enter digital value greater than 0");
+		}
+		System.out.println("Determine the number of members of a sequence that are squares of even numbers");
 
 		int totalCount = 0;
 

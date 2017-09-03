@@ -22,11 +22,16 @@ public class Task108 {
 	 * It is made because we bring given number to the power of 2. We make sure that result number won't exceed integer range.
 	 */
 	public int getTheSmallestNumber(int naturalNum) throws IllegalArgumentException{
-		int pow = 1; // initial
-		if (naturalNum <= 0 || naturalNum > (Math.pow(2, 30) - 1)) {
+		int pow = 0; // initial
+		//check exceed integer range
+		if(naturalNum > (Math.pow(2, 30) - 1)) {
 			throw new IllegalArgumentException("Number is too big");
+			//check is it natural number
+		} else if (naturalNum <= 0) {
+			System.out.println("It is not natural number!");
 		} else {
 			// get 2 ^ r
+			pow++;
 			while (pow <= naturalNum) {
 				pow = pow * 2; // 2 ^ r
 			}
@@ -48,12 +53,7 @@ public class Task108 {
 		try {
 			// create a scanner for read the command-line input
 			nutN = scanner.nextInt();
-			if (nutN < 0) {
-				System.out.println("It is not natural number!");
-			} else {
-
-				System.out.println("The smallest number is: " + getTheSmallestNumber(nutN));
-			}
+			System.out.println("The smallest number is: " + getTheSmallestNumber(nutN));
 
 		} catch (InputMismatchException e) { // catch inconsistency with the type of input value;
 			System.out.println("Please provide correct input");
