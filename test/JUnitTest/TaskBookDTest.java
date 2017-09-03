@@ -1,4 +1,4 @@
-package home;
+package JUnitTest;
 
 import static org.junit.Assert.*;
 
