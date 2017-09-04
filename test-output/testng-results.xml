@@ -1,173 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="10" passed="10">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="84" started-at="2017-08-29T16:37:53Z" finished-at="2017-08-29T16:37:53Z">
+  <suite name="Default suite" duration-ms="28474" started-at="2017-09-04T17:49:54Z" finished-at="2017-09-04T17:50:23Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="84" started-at="2017-08-29T16:37:53Z" finished-at="2017-08-29T16:37:53Z">
-      <class name="edu.com.test.ConcurrencyTest2">
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="18" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[17]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[18]]>
-              </value>
-            </param>
-          </params>
+    <test name="Default test" duration-ms="28474" started-at="2017-09-04T17:49:54Z" finished-at="2017-09-04T17:50:23Z">
+      <class name="com.edu.OMS_Locators">
+        <test-method status="PASS" signature="checkLogin()[pri:0, instance:com.edu.OMS_Locators@402f32ff]" name="checkLogin" duration-ms="9104" started-at="2017-09-04T20:49:54Z" finished-at="2017-09-04T20:50:03Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="24" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[11]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[12]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- checkLogin -->
+        <test-method status="PASS" signature="createUser()[pri:0, instance:com.edu.OMS_Locators@402f32ff]" name="createUser" duration-ms="19345" started-at="2017-09-04T20:50:03Z" finished-at="2017-09-04T20:50:23Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="34" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[9]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[10]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="30" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[5]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[6]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="12" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[15]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[16]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="13" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[1]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[2]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="13" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[13]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[14]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="16" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[7]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[8]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="20" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[19]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[20]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-        <test-method status="PASS" signature="testParallelData(java.lang.String, java.lang.String)[pri:0, instance:edu.com.test.ConcurrencyTest2@a38d7a3]" name="testParallelData" duration-ms="13" started-at="2017-08-29T19:37:53Z" data-provider="concurrencyData" finished-at="2017-08-29T19:37:53Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[3]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[4]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParallelData -->
-      </class> <!-- edu.com.test.ConcurrencyTest2 -->
+        </test-method> <!-- createUser -->
+      </class> <!-- com.edu.OMS_Locators -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
