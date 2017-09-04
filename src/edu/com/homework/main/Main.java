@@ -26,9 +26,9 @@ public class Main {
 		case "87":
 			return new Task87();
 		case "226":
-			return null;
+			return new Task226();
 		case "559":
-			return null;
+			return new Task559();
 		case "88a":
 			return new Task88a();
 		case "88b":
