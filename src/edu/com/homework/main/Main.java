@@ -1,30 +1,9 @@
 package edu.com.homework.main;
 
+import edu.com.homework.tasksbook.*;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
-
-import edu.com.homework.tasksbook.Task108;
-import edu.com.homework.tasksbook.Task178b;
-import edu.com.homework.tasksbook.Task178w;
-import edu.com.homework.tasksbook.Task322;
-import edu.com.homework.tasksbook.Task330;
-import edu.com.homework.tasksbook.Task331a;
-import edu.com.homework.tasksbook.Task331b;
-import edu.com.homework.tasksbook.Task554;
-import edu.com.homework.tasksbook.Task86a;
-import edu.com.homework.tasksbook.Task86b;
-import edu.com.homework.tasksbook.Task88a;
-import edu.com.homework.tasksbook.Task88b;
-import edu.com.homework.tasksbook.Task178d;
-import edu.com.homework.tasksbook.Task178g;
-import edu.com.homework.tasksbook.Task555;
-import edu.com.homework.tasksbook.Task182;
-import edu.com.homework.tasksbook.Task323;
-import edu.com.homework.tasksbook.Task560;
-import edu.com.homework.tasksbook.Task88w;
-import edu.com.homework.tasksbook.Task88g;
-import edu.com.homework.tasksbook.Task332;
-import edu.com.homework.tasksbook.Task554;
 
 public class Main {
 
@@ -45,7 +24,7 @@ public class Main {
 		case "330":
 			return new Task330();
 		case "87":
-			return null;
+			return new Task87();
 		case "226":
 			return null;
 		case "559":

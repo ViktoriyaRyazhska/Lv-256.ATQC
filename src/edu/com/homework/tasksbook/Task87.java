@@ -1,4 +1,4 @@
-package com.academy.softserve.task_04_book;
+package edu.com.homework.tasksbook;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
