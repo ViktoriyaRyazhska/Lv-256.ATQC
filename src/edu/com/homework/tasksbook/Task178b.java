@@ -10,40 +10,49 @@ package edu.com.homework.tasksbook;
  **/
 
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Task178b {
 	public void resolve() {
-		// Створюємо Set і додаємо в нього числа
-		Set<Integer> numbers = new HashSet<Integer>();
-		numbers.add(3);
-		numbers.add(4);
-		numbers.add(9);
-		numbers.add(12);
-		numbers.add(16);
-		numbers.add(34);
-		numbers.add(36);
-		numbers.add(37);
-		numbers.add(38);
-		numbers.add(39);
-		numbers.add(64);
+		Task178b task = new Task178b();
+		System.out.println("Determine the number of sequence members that are multiples of 3 and not multiple 5");
+		System.out.println("Please enter the numbers (When you type 'quit' word counting numbers to stop)");
 
-		Task178b task178b = new Task178b();
-		try {
-			task178b.getNaturalNumberCount(numbers); // Викликаємо метод checkNumber і передаємо в нього Set з числами
-		} catch (IllegalArgumentException e) {
-			System.out.println("");
+		Scanner scan = new Scanner(System.in);
+		Set<Integer> numbers = new HashSet<Integer>();
+
+		// вводимо змінну для того щоб знати чи ще зчитувати дані з консолі чи вже ні
+		boolean shouldStopReading = false;
+		// поки не зупинено читання то пробуємо
+		while (!shouldStopReading) {
+			try {
+				// читаємо введений текст
+				String text = scan.next();
+				// перевіряємо чи той текст рівний слову quit
+				if (text.equals("quit")) {
+					shouldStopReading = true; // ставимо значення змінної в тру щоб зупитини зчитування, бо в нас цикл
+												// поки це значення false то він біжить постійно
+				} else {
+					// переводимо введений текст в ціле значення
+					int number = Integer.parseInt(text);
+					// додаємо зчитане переведене число в колекцію
+					numbers.add(number);
+				}
+			} catch (Exception e) {
+				System.out.println("Incorrect input value");
+			}
 		}
+
+		int result = task.getNaturalNumberCount(numbers);
 	}
 
 	public int getNaturalNumberCount(Set<Integer> numbers) {
 		if (numbers == null || numbers.isEmpty()) {
 			throw new IllegalArgumentException("You didn't entered value. Please enter digital value greater than 0");
 		}
-		System.out.println("Determine the number of sequence members that are multiples of 3 and not multiple 5");
-
 		int totalCount = 0; // Створюємо змінну totalCount, яка буде підраховувати кількість чисел, які
-							// задовільняють умову
+		// задовільняють умову
 
 		for (int n : numbers) {
 			int value = n; // Перебираємо всі елементи із множини і вибираємо елемент
