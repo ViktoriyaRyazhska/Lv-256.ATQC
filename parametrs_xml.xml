@@ -5,6 +5,11 @@
     <parameter name="number" value="2"/>
     <classes>
        <class name="edu.com.test.TestNGTest6" />
+       <class name="edu.com.test.TestNGTest2">
+       <methods>
+       <include name="divisionWithException1"></include>
+       </methods>
+       </class>
     </classes>
   </test>
 </suite>
