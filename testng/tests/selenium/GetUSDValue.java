@@ -42,6 +42,7 @@ public class GetUSDValue {
 	  WebDriver driver = new FirefoxDriver();
 	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	  driver.get("https://www.google.com.ua/");
+	  driver.findElement(By.id("lst-ib")).clear();
 	  driver.findElement(By.id("lst-ib")).sendKeys("Курс валют");
 	  driver.findElement(By.id("lst-ib")).submit();
 	  

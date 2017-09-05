@@ -2,32 +2,32 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="14062" started-at="2017-09-04T20:56:53Z" finished-at="2017-09-04T20:57:07Z">
+  <suite name="Default suite" duration-ms="24724" started-at="2017-09-05T19:34:30Z" finished-at="2017-09-05T19:34:54Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="14062" started-at="2017-09-04T20:56:53Z" finished-at="2017-09-04T20:57:07Z">
-      <class name="tests.selenium.ATQCQ159">
-        <test-method status="PASS" signature="beforeClass()[pri:0, instance:tests.selenium.ATQCQ159@6d00a15d]" name="beforeClass" is-config="true" duration-ms="11" started-at="2017-09-04T23:56:53Z" finished-at="2017-09-04T23:56:53Z">
+    <test name="Default test" duration-ms="24724" started-at="2017-09-05T19:34:30Z" finished-at="2017-09-05T19:34:54Z">
+      <class name="tests.selenium.SoftServeScheduleTest">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:tests.selenium.SoftServeScheduleTest@6d00a15d]" name="beforeClass" is-config="true" duration-ms="16" started-at="2017-09-05T22:34:30Z" finished-at="2017-09-05T22:34:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ159@6d00a15d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2017-09-04T23:56:53Z" finished-at="2017-09-04T23:56:53Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.SoftServeScheduleTest@6d00a15d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2017-09-05T22:34:30Z" finished-at="2017-09-05T22:34:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findGroup()[pri:0, instance:tests.selenium.ATQCQ159@6d00a15d]" name="findGroup" duration-ms="14025" started-at="2017-09-04T23:56:53Z" finished-at="2017-09-04T23:57:07Z">
+        <test-method status="PASS" signature="findGroup()[pri:0, instance:tests.selenium.SoftServeScheduleTest@6d00a15d]" name="findGroup" duration-ms="24656" started-at="2017-09-05T22:34:30Z" finished-at="2017-09-05T22:34:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findGroup -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:tests.selenium.ATQCQ159@6d00a15d]" name="afterMethod" is-config="true" duration-ms="2" started-at="2017-09-04T23:57:07Z" finished-at="2017-09-04T23:57:07Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="afterClass()[pri:0, instance:tests.selenium.ATQCQ159@6d00a15d]" name="afterClass" is-config="true" duration-ms="0" started-at="2017-09-04T23:57:07Z" finished-at="2017-09-04T23:57:07Z">
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:tests.selenium.SoftServeScheduleTest@6d00a15d]" name="afterClass" is-config="true" duration-ms="1" started-at="2017-09-05T22:34:54Z" finished-at="2017-09-05T22:34:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-      </class> <!-- tests.selenium.ATQCQ159 -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:tests.selenium.SoftServeScheduleTest@6d00a15d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2017-09-05T22:34:54Z" finished-at="2017-09-05T22:34:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- tests.selenium.SoftServeScheduleTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

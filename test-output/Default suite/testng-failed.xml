@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="tests.selenium.SoftServeScheduleTest">
+      <class name="tests.selenium.ATQCQ158">
         <methods>
-          <include name="findGroup"/>
-          <include name="afterMethod"/>
           <include name="afterClass"/>
           <include name="beforeMethod"/>
           <include name="beforeClass"/>
+          <include name="afterMethod"/>
+          <include name="findGroup"/>
         </methods>
-      </class> <!-- tests.selenium.SoftServeScheduleTest -->
+      </class> <!-- tests.selenium.ATQCQ158 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

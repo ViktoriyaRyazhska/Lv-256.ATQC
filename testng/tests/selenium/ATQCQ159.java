@@ -18,6 +18,7 @@ import java.util.List;
 
 public class ATQCQ159 {
  
+	WebDriver driver;
   @BeforeMethod
   public void beforeMethod() {
   }
@@ -26,10 +27,21 @@ public class ATQCQ159 {
   public void afterMethod() {
   }
 
+	/**
+	 * Logging in before class
+	 */
   @BeforeClass
   public void beforeClass() {
 	  
 	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
+	  driver = new FirefoxDriver();
+	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+	  driver.get("http://regres.herokuapp.com/");
+	  driver.findElement(By.id("login")).clear();
+	  driver.findElement(By.id("password")).clear();
+	  driver.findElement(By.id("login")).sendKeys("admin");
+	  driver.findElement(By.id("password")).sendKeys("admin");
+	  driver.findElement(By.xpath("//*[@type='submit']")).click();
   }
 
   @AfterClass
@@ -43,17 +55,13 @@ public class ATQCQ159 {
    * and clicking on Clear form, both fields must become blank
    */
   @Test
-  public void findGroup(){
-	  WebDriver driver = new FirefoxDriver();
-	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-	  driver.get("http://regres.herokuapp.com/");
-	  
-	  driver.findElement(By.id("login")).sendKeys("admin");
-	  driver.findElement(By.id("password")).sendKeys("admin");
-	  driver.findElement(By.xpath("//*[@type='submit']")).click();
+  public void testClearButton(){
 	  
 	  driver.findElement(By.xpath("//*[@class='nav navbar-nav']//a[@href='/administrator/communities/show-all-communities']")).click(); //href???
 	  driver.findElement(By.xpath("//p[@class='pull-left']/*[@class='btn btn-success']")).click();
+	 
+	  driver.findElement(By.name("name")).clear();
+	  driver.findElement(By.name("registrationNumber")).clear();
 	  
 	  driver.findElement(By.name("name")).sendKeys("anyletters");
 	  driver.findElement(By.name("registrationNumber")).sendKeys("123456789");
