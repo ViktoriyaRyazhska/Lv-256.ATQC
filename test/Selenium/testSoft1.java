@@ -25,8 +25,7 @@ class testSoft1{
 	  @Test
 	  public void checkATQC()  {
 	    driver.get("https://softserve.academy/");
-	    //driver.findElement(By.xpath("//a[contains(span, 'Lviv')]")).click();
-	    driver.findElement(By.partialLinkText("Lviv")).click();
+	    driver.findElement(By.partialLinkText("Lviv")).click();//a[contains(span, 'Lviv')]")).click();
 	    Iterator<String> windowIter = driver.getWindowHandles().iterator();
 	    windowIter.next();
 	    String nextWindow=windowIter.next();
