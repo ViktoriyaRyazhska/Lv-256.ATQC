@@ -1,29 +1,43 @@
 package edu.com.homework.tasksbook;
-	/*
-	 * Find quantity of numbers which satisfy condition - 2^k<ak<k!
-	 * */
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Task178d {
+/**
+ * TaskBook
+ * Task 178
+ * Given natural numbers n, a1,...an. Find quantity of members 
+ * ak of sequence a1, ...an:
+ * d)  which satisfy condition - 2^k<ak<k!
+ * 
+ * @author Kryvenko Yaroslava
+ *
+ */
 
+public class Task178d {
+	
+	/** Method resolve
+	 * Provides input of numbers from the console.
+	 * Calls condition test method and outputs the quantity of numbers.
+	 */
+	
 	public void resolve() {
 		ArrayList<Integer> num = new ArrayList<Integer>();
         Scanner scan = new Scanner(System.in);
-        System.out.println(" Find quantity of numbers which satisfy condition - 2^k<ak<k! ");
-        System.out.print("Enter some numbers: ");
-        try{
-        	while ( scan.hasNextInt() ) {
-        		num.add(scan.nextInt());      
-        		checkCondition(num);
-        		}
-        	} catch (NumberFormatException ex){
-        		System.out.println("You didn't enter a number ");
-        		resolve();
-	}
-        
-	}
+        System.out.print("Enter some numbers through a space between them and press enter : ");
+        if ( scan.hasNextInt() ) {
+        	num.add(scan.nextInt());      
+    		checkCondition(num);
+        } else {
+        	System.out.println("You didn't enter a number ");
+        }
+	}        
+	
+	/** Condition test method
+	 * @param List of integer numbers.
+	 * @return Returns count of numbers which satisfy condition.
+	 */
+	
 	public void checkCondition(ArrayList<Integer> num) {	
 		int count = 0;
 		for (int i = 1; i < num.size()-1; i++) {
@@ -31,14 +45,16 @@ public class Task178d {
 				count += 1;			
 				} 			
 			} 
-		System.out.println("The quantity of numbers which satisfy condition is "+count);
-		
+		System.out.println("The quantity of numbers which satisfy condition is "+count);		
 		if (count==0) {
 			System.out.println("The numbers doesn't satisfy condition");
 			}
 		}
 
-	
+	/** Calculation factorial method
+	 * @param Integer number.
+	 * @return Returns factorial of number.
+	 */
 	public int factorial(int j) {
 		int y = 1;
 		for (int i = 1; i <= j; i++) {

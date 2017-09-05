@@ -1,28 +1,40 @@
 package edu.com.homework.tasksbook;
 
 import java.util.Scanner;
-	/*
-	 * Find n lines of Pascal triangle
-	 * */
+
+/**
+ * TaskBook
+ * Task 555
+ * Given a natural n. Find n lines of Pascal triangle
+ * 
+ * @author Kryvenko Yaroslava
+ *
+ */
 
 public class Task555 {
 	public int lines = 0;
 	
+	/** Method resolve
+	 * Provides input of number from the console.
+	 * Calls calculation test method and outputs lines of Pascal triangle
+	 */
+	
 	public void resolve() {
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter number of lines for Pascal Triangle: ");
-		try {
-			while (scan.hasNextInt()) {
-				lines=scan.nextInt();
-				doCalculation(lines);
-			} }catch(NumberFormatException ex){
+		System.out.print("Enter number of lines for Pascal Triangle and press enter: ");
+		if (scan.hasNextInt()) {
+			lines=scan.nextInt();
+			doCalculation(lines);			
+		} else {
         		System.out.println("You didn't enter a number ");
-        		resolve();
+        		}
 		}
-//		int lines = scan.nextInt();
-//		this.lines = lines;
-//		doCalculation(lines);
-		}
+
+	/** Calculation method
+	 * @param Number of lines.
+	 * @return Returns lines of Pascal triangle.
+	 */
+	
 	public void doCalculation(int lines) {	
 		int[][] p = new int[lines][];
 		p[0] = new int[1];
@@ -42,9 +54,8 @@ public class Task555 {
 
 	}
 //	public static void main(String[] args) {
-//		TaskBook555 trianglePaskal = new TaskBook555();
+//		Task555 trianglePaskal = new Task555();
 //		trianglePaskal.resolve();
-//		trianglePaskal.doCalculation();
-//		
+//		trianglePaskal.doCalculation(7);		
 //	}
 }
