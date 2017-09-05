@@ -17,7 +17,7 @@ class testSoft2{
 	}
 	
 	  @Test
-	  public void checkATQC()  {
+	  public void checkCourseDollar()  {
 			driver.get("https://privatbank.ua/ru/");
 			String usd = driver.findElement(By.xpath("//*[@id='selectByPB']/tr[3]/td[2]")).getText();
 	        System.out.println("current course of dollar " + usd);

@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="12499" started-at="2017-09-05T06:13:09Z" finished-at="2017-09-05T06:13:21Z">
+  <suite name="Default suite" duration-ms="9770" started-at="2017-09-05T07:53:06Z" finished-at="2017-09-05T07:53:15Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="12499" started-at="2017-09-05T06:13:09Z" finished-at="2017-09-05T06:13:21Z">
-      <class name="Selenium.testSoft2">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.testSoft2@6d00a15d]" name="setUp" is-config="true" duration-ms="4523" started-at="2017-09-05T09:13:09Z" finished-at="2017-09-05T09:13:13Z">
+    <test name="Default test" duration-ms="9770" started-at="2017-09-05T07:53:06Z" finished-at="2017-09-05T07:53:15Z">
+      <class name="Selenium.testSoft1">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.testSoft1@6d00a15d]" name="setUp" is-config="true" duration-ms="4334" started-at="2017-09-05T10:53:06Z" finished-at="2017-09-05T10:53:10Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="checkATQC()[pri:0, instance:Selenium.testSoft2@6d00a15d]" name="checkATQC" duration-ms="7197" started-at="2017-09-05T09:13:13Z" finished-at="2017-09-05T09:13:20Z">
+        <test-method status="PASS" signature="checkATQC()[pri:0, instance:Selenium.testSoft1@6d00a15d]" name="checkATQC" duration-ms="4851" started-at="2017-09-05T10:53:10Z" finished-at="2017-09-05T10:53:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkATQC -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.testSoft2@6d00a15d]" name="tearDown" is-config="true" duration-ms="765" started-at="2017-09-05T09:13:20Z" finished-at="2017-09-05T09:13:21Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.testSoft1@6d00a15d]" name="tearDown" is-config="true" duration-ms="580" started-at="2017-09-05T10:53:15Z" finished-at="2017-09-05T10:53:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- Selenium.testSoft2 -->
+      </class> <!-- Selenium.testSoft1 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

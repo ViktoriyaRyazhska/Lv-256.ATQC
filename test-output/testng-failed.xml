@@ -3,13 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Selenium.testSoft2">
+      <class name="Selenium.Atqcq161">
         <methods>
-          <include name="checkATQC"/>
           <include name="setUp"/>
-          <include name="tearDown"/>
+          <include name="test161"/>
         </methods>
-      </class> <!-- Selenium.testSoft2 -->
+      </class> <!-- Selenium.Atqcq161 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
