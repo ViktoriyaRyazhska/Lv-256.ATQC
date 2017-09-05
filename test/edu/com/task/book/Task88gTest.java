@@ -3,8 +3,7 @@ package edu.com.task.book;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import taskbook.Task88g;
+import edu.com.homework.tasksbook.Task88g;;
 
 public class Task88gTest {
   @Test

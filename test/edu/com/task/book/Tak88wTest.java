@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class Tak88wTest {
 
   public class task88wTest {
-  	task88wTest task = task88w.task88wTest();
+  	Task88wTest task = task88w.task88wTest();
   	String expected = "x = 2, y = 2, z = 2";
   	Assert.assertEquals(expected , threenum.toString());
   	}

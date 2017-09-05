@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="edu.com.task.book.Task332Test">
+      <class name="edu.com.task.book.Task559Test">
         <methods>
-          <include name="TestNumberInputResolve"/>
+          <include name="testMersennePrimes" invocation-numbers="0 1 2"/>
         </methods>
-      </class> <!-- edu.com.task.book.Task332Test -->
+      </class> <!-- edu.com.task.book.Task559Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

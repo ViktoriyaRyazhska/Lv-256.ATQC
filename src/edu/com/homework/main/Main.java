@@ -7,14 +7,27 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-			Scanner scan = new Scanner(System.in);
+	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, NoSuchMethodException, SecurityException {
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter method number: ");
+		String methodName = null;
+		methodName = scan.next();
+		while (!methodName.equals("exit")) {
+			Object obj = null;
+			try {
+			obj = setValue(methodName);
+			obj.getClass().getMethod("resolve", null).invoke(obj, null);}catch (NullPointerException e) {
+				System.out.println("Non existing method");
+			}
 			System.out.print("Enter method number: ");
-			String methodName = scan.next();
-			Object obj = setValue(methodName);
-			obj.getClass().getMethod("resolve", null).invoke(obj, null);
-			
+			methodName = scan.next();
+		} 
+
+		
+
 	}
+
 	public static Object setValue(String value) {
 		switch (value) {
 		case "86a":
@@ -75,5 +88,5 @@ public class Main {
 			return null;
 		}
 
-}
+	}
 }
