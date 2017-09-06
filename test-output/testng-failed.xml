@@ -6,6 +6,7 @@
       <class name="Selenium.Atqcq161">
         <methods>
           <include name="setUp"/>
+          <include name="tearDown"/>
           <include name="test161"/>
         </methods>
       </class> <!-- Selenium.Atqcq161 -->

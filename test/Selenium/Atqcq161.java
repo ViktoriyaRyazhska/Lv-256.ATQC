@@ -33,14 +33,14 @@ public class Atqcq161 {
 	    driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-primary")).click();
 //	    driver.findElement(By.className("btn btn-primary btn-sm dropdown-toggle")).click();
 //	    driver.findElement(By.linkText("Вихід")).click();
-	    driver.findElement(By.xpath("//div[@id='header']/div[2]/div/div/button[2]")).click();
+	    driver.findElement(By.xpath("//a[contains(@href,'logout')]")).click();
 	    driver.findElement(By.xpath("//a[text()='Вихід']")).click();
 	  }
 
-//	  @AfterClass(alwaysRun = true)
-//	  public void tearDown() throws Exception {
-//	    driver.quit();
-//	  }
+	  @AfterClass(alwaysRun = true)
+	  public void tearDown() throws Exception {
+	    driver.quit();
+	  }
 
 	}
 
