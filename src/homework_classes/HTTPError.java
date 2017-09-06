@@ -46,76 +46,17 @@ public enum HTTPError {
 		this.message = message;
 	}
 
-	public HTTPError setValue(int value) {
-		switch (value) {
-
-		case 400:
-			return HTTPError.HTTP400;
-		case 401:
-			return HTTPError.HTTP401;
-		case 402:
-			return HTTPError.HTTP402;
-		case 403:
-			return HTTPError.HTTP403;
-		case 404:
-			return HTTPError.HTTP404;
-		case 405:
-			return HTTPError.HTTP405;
-		case 406:
-			return HTTPError.HTTP406;
-		case 407:
-			return HTTPError.HTTP407;
-		case 408:
-			return HTTPError.HTTP408;
-		case 409:
-			return HTTPError.HTTP409;
-		case 410:
-			return HTTPError.HTTP410;
-		case 411:
-			return HTTPError.HTTP411;
-		case 412:
-			return HTTPError.HTTP412;
-		case 413:
-			return HTTPError.HTTP413;
-		case 414:
-			return HTTPError.HTTP414;
-		case 415:
-			return HTTPError.HTTP415;
-		case 416:
-			return HTTPError.HTTP416;
-		case 417:
-			return HTTPError.HTTP417;
-		case 418:
-			return HTTPError.HTTP418;
-		case 419:
-			return HTTPError.HTTP419;
-		case 420:
-			return HTTPError.HTTP420;
-		case 422:
-			return HTTPError.HTTP422;
-		case 423:
-			return HTTPError.HTTP423;
-		case 424:
-			return HTTPError.HTTP424;
-		case 428:
-			return HTTPError.HTTP428;
-		case 429:
-			return HTTPError.HTTP429;
-		case 431:
-			return HTTPError.HTTP431;
-		case 440:
-			return HTTPError.HTTP440;
-		case 444:
-			return HTTPError.HTTP444;
-		case 449:
-			return HTTPError.HTTP449;
-		case 450:
-			return HTTPError.HTTP450;
-		case 451:
-			return HTTPError.HTTP451;
-		default:
+	public HTTPError setValue(Integer value) {
+		
+		try {
+			
+			String error="HTTP"+value.toString();
+			return HTTPError.valueOf(error.toString());
+			
+		} catch(Exception ex) {
 			return HTTPError.HTTPnone;
 		}
+		
 
 	}
 
