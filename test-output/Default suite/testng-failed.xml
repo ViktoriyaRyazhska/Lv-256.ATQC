@@ -3,12 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.softserve.edu.FirefoxProfilesTest">
+      <class name="com.softserve.edu.wait.Selenium4Ajax">
         <methods>
-          <include name="ourSettingsForFireFox"/>
-          <include name="startDriver"/>
+          <include name="Ajax"/>
         </methods>
-      </class> <!-- com.softserve.edu.FirefoxProfilesTest -->
+      </class> <!-- com.softserve.edu.wait.Selenium4Ajax -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
