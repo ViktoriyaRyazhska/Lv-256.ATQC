@@ -15,7 +15,7 @@ public class HaveClassTodayTest {
 	public void testDayclass() {
 
 		ScheduleTest switchTab = new ScheduleTest();
-		System.setProperty("webdriver.gecko.driver", "resources\\geckodriver-v0.18.0-win64\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "resources//geckodriver.exe");//"D:\\1\\drivers\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
