@@ -29,13 +29,10 @@ public class GetUSDValue {
   @BeforeClass
   public void beforeClass() {
 	  
-	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
+	  System.setProperty("webdriver.gecko.driver","D:\\1\\drivers\\geckodriver.exe");      
   }
 
-  @AfterClass
-  public void afterClass() {
-  }
-  
+
   
   @Test
   public void findGroup(){
@@ -43,7 +40,7 @@ public class GetUSDValue {
 	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	  driver.get("https://www.google.com.ua/");
 	  driver.findElement(By.id("lst-ib")).clear();
-	  driver.findElement(By.id("lst-ib")).sendKeys("РљСѓСЂСЃ РІР°Р»СЋС‚");
+	  driver.findElement(By.id("lst-ib")).sendKeys("Курс валют");
 	  driver.findElement(By.id("lst-ib")).submit();
 	  
 	  //using xpath because of cyrillic chars problem By.linktext
@@ -52,10 +49,10 @@ public class GetUSDValue {
 	  String dollarBuy = driver.findElement(By.xpath("//div[@class='widget-currency_bank']//table[@class='table table-data -important']//th[text()='USD']/../td[1]/span//span[1]")).getText();
 	  String dollarSell = driver.findElement(By.xpath("//div[@class='widget-currency_bank']//table[@class='table table-data -important']//th[text()='USD']/../td[2]/span//span[1]")).getText();
 	  String dollarNbu = driver.findElement(By.xpath("//div[@class='widget-currency_bank']//table[@class='table table-data -important']//th[text()='USD']/../td[3]/span//span[1]")).getText();
-	  System.out.println("РљСѓСЂСЃ РґРѕР»Р»Р°СЂР°:");
-	  System.out.println("РљСѓРїС–РІР»СЏ:"+dollarBuy);
-	  System.out.println("РџСЂРѕРґР°Р¶:"+dollarSell);
-	  System.out.println("РќР‘РЈ:"+dollarNbu);
+	  System.out.println("курс долара:");
+	  System.out.println("купівля:"+dollarBuy);
+	  System.out.println("продаж"+dollarSell);
+	  System.out.println("нбу:"+dollarNbu);
   }
 
 }

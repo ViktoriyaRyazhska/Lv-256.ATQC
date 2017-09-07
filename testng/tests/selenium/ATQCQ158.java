@@ -57,7 +57,7 @@ public class ATQCQ158 {
 
 		Object[] parameters = result.getParameters(); // get current parametrs
 
-		System.out.println(parameters[0] + "         kok   " + parameters[1]);
+		
 		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='" + parameters[0].toString() 
 				+ "']/../../td[text()='" + parameters[1].toString() + "']/..//*[@id='deletecommunity']")).click(); //Locating recently created Community 
 																												   //and clicking on delete
@@ -72,7 +72,7 @@ public class ATQCQ158 {
   @BeforeClass
   public void beforeClass() {
 	  
-	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
+	  System.setProperty("webdriver.gecko.driver","D:\\1\\drivers\\geckodriver.exe");   
 	  driver = new FirefoxDriver();
 	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	  driver.get("http://regres.herokuapp.com/");

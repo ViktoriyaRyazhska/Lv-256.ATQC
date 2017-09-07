@@ -33,7 +33,7 @@ public class ATQCQ159 {
   @BeforeClass
   public void beforeClass() {
 	  
-	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
+	  System.setProperty("webdriver.gecko.driver","D:\\1\\drivers\\geckodriver.exe");      
 	  driver = new FirefoxDriver();
 	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	  driver.get("http://regres.herokuapp.com/");
@@ -44,10 +44,8 @@ public class ATQCQ159 {
 	  driver.findElement(By.xpath("//*[@type='submit']")).click();
   }
 
-  @AfterClass
-  public void afterClass() {
-  }
-  
+
+
   /**
    * This test verifies 'Clear form' button 
    * on Communities/Add new community page

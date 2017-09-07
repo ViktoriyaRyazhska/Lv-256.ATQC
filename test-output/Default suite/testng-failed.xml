@@ -5,11 +5,8 @@
     <classes>
       <class name="tests.selenium.ATQCQ158">
         <methods>
-          <include name="afterClass"/>
-          <include name="beforeMethod"/>
           <include name="beforeClass"/>
-          <include name="afterMethod"/>
-          <include name="findGroup"/>
+          <include name="createCommunity" invocation-numbers="0 1 2 3"/>
         </methods>
       </class> <!-- tests.selenium.ATQCQ158 -->
     </classes>
