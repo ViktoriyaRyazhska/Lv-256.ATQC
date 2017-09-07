@@ -20,7 +20,7 @@ public class Test143 {
 
 	@Test
 	public void CheckLogOutButton() {
-		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("http://regres.herokuapp.com/");
@@ -35,7 +35,6 @@ public class Test143 {
 		System.out.println("title of page is: " + driver.getTitle());
 		driver.quit();
 
-		driver.quit();
-
+		
 	}
 }

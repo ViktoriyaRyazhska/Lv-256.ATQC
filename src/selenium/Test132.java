@@ -20,7 +20,7 @@ public class Test132 {
 
 	@Before
 	public void Set() {
-		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("http://regres.herokuapp.com/");
@@ -36,6 +36,6 @@ public class Test132 {
 		assertEquals("Повідомлення відравленне на вашу адресу", driver.findElement(By.cssSelector("strong")).getText());
 		driver.quit();
 
-		driver.quit();
+		
 	}
 }
