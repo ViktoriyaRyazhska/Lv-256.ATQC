@@ -28,7 +28,7 @@ public class BrowsersTest {
 
 	// @Test
 	public void findChromeTest() {
-		System.setProperty("webdriver.chrome.driver", "D:\\ATQC_new\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:\\1\\drivers\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -47,14 +47,15 @@ public class BrowsersTest {
 
 	// @Test
 	public void findChromeCustomiseTest() {
-		System.setProperty("webdriver.chrome.driver", "D:\\ATQC_new\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:\\1\\drivers\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--ignore-certificate-errors");
 		options.addArguments("--start-maximized");
 		// driver = new ChromeDriver(options);
 
-		options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-		// options.setBinary("C:\\WINDOWS\\notepad.exe");
+		// options.setBinary("C:\\Program Files
+		// (x86)\\Google\\Chrome\\Application\\chrome.exe");
+		options.setBinary("C:\\WINDOWS\\notepad.exe");
 
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
@@ -96,10 +97,10 @@ public class BrowsersTest {
 		driver.quit();
 	}
 
-//	@Test
+	@Test
 	public void findHTMLUnitTest() {
 
-		WebDriver driver = new HtmlUnitDriver(BrowserVersion.CHROME);
+		WebDriver driver = new HtmlUnitDriver(BrowserVersion.EDGE);
 		// ((HtmlUnitDriver) driver).setJavascriptEnabled(true);
 
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -145,7 +146,7 @@ public class BrowsersTest {
 	 @Test
 	public void remoteDriver() throws Exception {
 		ChromeDriverService service = new ChromeDriverService.Builder()
-				.usingDriverExecutable(new File("D:\\ATQC_new\\chromedriver.exe")).usingPort(8181).build();
+				.usingDriverExecutable(new File("D:\\1\\drivers\\chromedriver.exe")).usingPort(8181).build();
 		// .usingAnyFreePort()
 
 		service.start();

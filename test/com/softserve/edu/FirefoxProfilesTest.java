@@ -23,7 +23,7 @@ public class FirefoxProfilesTest {
 
 	@BeforeTest
 	public void startDriver() {
-		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 	}
 
 	// @Test
@@ -35,7 +35,6 @@ public class FirefoxProfilesTest {
 		WebElement element = driver.findElement(By.name("q"));
 		element.sendKeys("Cheese!");
 		element.submit();
-		Thread.sleep(2000);
 		System.out.println("Page title is: " + driver.getTitle());
 		// WebElement button = driver.findElement(By.id("_fZl"));;
 		// button.click();
@@ -52,7 +51,7 @@ public class FirefoxProfilesTest {
 			}
 		});
 		System.out.println("Page title is: " + driver.getTitle());
-		Assert.assertEquals(driver.getTitle(), "Cheese! - РџРѕС€СѓРє Google");
+		Assert.assertEquals(driver.getTitle(), "Cheese! - Пошук Google");
 
 	}
 
@@ -60,7 +59,7 @@ public class FirefoxProfilesTest {
 	public void testWithProfile() {
 		ProfilesIni profileIni = new ProfilesIni();
 		// First verify name of default profile name
-		FirefoxProfile profile = profileIni.getProfile("user"); // user_profile
+		FirefoxProfile profile = profileIni.getProfile("User"); // user_profile
 		profile.setAcceptUntrustedCertificates(false);
 		profile.setPreference("app.update.enabled", false);
 		// driver = new FirefoxDriver(profile);
@@ -85,7 +84,7 @@ public class FirefoxProfilesTest {
 				return d.getTitle().toLowerCase().startsWith("cheese!");
 			}
 		});
-		Assert.assertEquals(driver.getTitle(), "Cheese! - РџРѕС€СѓРє Google");
+		Assert.assertEquals(driver.getTitle(), "Cheese! - Пошук Google");
 	}
 
 	@Test
@@ -101,8 +100,8 @@ public class FirefoxProfilesTest {
 		System.out.println("Ok");
 		profile.setPreference("extensions.firebug.currentVersion", "2.0.18");
 		profile.setPreference("extensions.firebug.cookies.enableSites", true);
-//		driver = new FirefoxDriver(profile);
-		
+		// driver = new FirefoxDriver(profile);
+
 		FirefoxOptions options = new FirefoxOptions().setProfile(profile);
 		driver = new FirefoxDriver(options);
 
@@ -113,8 +112,8 @@ public class FirefoxProfilesTest {
 		element.sendKeys("Cheese!");
 		element.submit();
 		System.out.println("Page title is: " + driver.getTitle());
-//		WebElement button = driver.findElement(By.id("_fZl"));
-//		button.click();
+		// WebElement button = driver.findElement(By.id("_fZl"));
+		// button.click();
 		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver d) {
 				System.out.println("running apply");
