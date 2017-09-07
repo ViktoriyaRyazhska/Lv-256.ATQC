@@ -27,7 +27,7 @@ public class Test144 {
 
 	@Test
 	public void checkRegisterLink() {
-		driver.findElement(By.className("forgot-password align-left")).click();
+		driver.findElement(By.xpath(".//*[@id='login_fieldset']/div/span[2]/a")).click();
 		Assert.assertEquals(driver.getTitle(), "Register new user");
 		System.out.println("Page title is: " + driver.getTitle());
 
@@ -38,7 +38,7 @@ public class Test144 {
 
 	@Test
 	public void checkLoginLink() {
-		driver.findElement(By.className("forgot-password align-right")).click();
+		driver.findElement(By.xpath(".//*[@id='login_fieldset']/div/span[1]/a")).click();
 		Assert.assertEquals(driver.getTitle(), "Login");
 		System.out.println("Page title is: " + driver.getTitle());
 

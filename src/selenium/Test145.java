@@ -28,8 +28,7 @@ public class Test145 {
 	@Test
 	public void checkUnblockUser() {
 		driver.findElement(By.id("unlockUsers")).click();
-		assertEquals("Ви успішно розблокували всіх співвласників",
-		driver.findElement(By.cssSelector("div.bootbox-body")).getText());
+		assertEquals("Ви успішно розблокували всіх співвласників", driver.findElement(By.cssSelector("div.bootbox-body")).getText());
 		driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-primary")).click();
 		driver.quit();
 
