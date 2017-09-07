@@ -52,7 +52,7 @@ public class VerifyLogin extends MyTestBase {
 	
 	private void fillLoginForm(String email, String password) {
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login")));
 		driver.findElement(By.id("login")).clear();
 		driver.findElement(By.id("login")).sendKeys(email);
