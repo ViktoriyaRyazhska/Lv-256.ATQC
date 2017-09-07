@@ -29,12 +29,12 @@ public class Atqcq191 {
 	 */
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
-		//driver sets up
+		// driver sets up
 		System.setProperty("webdriver.gecko.driver", "D:\\QA\\ATQC\\selenium drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		//Set the wndow size
-		driver.manage().window().setSize(new Dimension(1920,1080));
+		// Set the wndow size
+		driver.manage().window().setSize(new Dimension(1920, 1080));
 		// login:
 		driver.get("http://regres.herokuapp.com/" + "/login?logout");
 		driver.findElement(By.id("login")).clear();
@@ -50,43 +50,39 @@ public class Atqcq191 {
 	/**
 	 * This method counts rows of table Active co-owners
 	 */
-	 public int count=0;
-	@Test
+	public int count = 0;
+
 	public int countTableRows() throws Exception {
 		new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("edit")));
+		// Нужно добавить show all
 		List<WebElement> tableRows = driver.findElements(By.xpath("//tbody/tr"));
 		for (WebElement tableRow : tableRows) {
 			count++;
 		}
 		return count;
 	}
+
 	/**
-	 * This method find Commisioner community 
+	 * This method find Commisioner community
 	 */
 	@Test(dataProvider = "commisionerLoggin")
 	public void verifyCommisionerCommunity(String login, String password) throws Exception {
-		//Serch commisioner in table
+		// Serch commisioner in table
 		driver.findElement(By.id("inputIndex3")).click();
 		driver.findElement(By.id("inputIndex3")).clear();
 		driver.findElement(By.id("inputIndex3")).sendKeys(login);
 		driver.findElement(By.id("bth-search")).click();
 		String commisionerCommnuityName = driver.findElement(By.className("territorialCommunity_name")).getText();
-		//Return Active co-owners table
+		// Return Active co-owners table
 		driver.findElement(By.id("inputIndex3")).clear();
 		driver.findElement(By.id("bth-search")).click();
+		// Verify every row with commisioner community name
+		for (int row = 0; row < count - 1; row++) {
+			assertEquals(driver.findElement(By.className("territorialCommunity_name")).getText(),
+					commisionerCommnuityName);// community nameof all users should have the same name with community of
+												// commisioner
+		}
 	}
-	/**
-	 * 
-	 * This method checks every table row and verifies their equals 
-	 */	
-	 @Test
-	public void testCommunitiesEqual() throws Exception {
-		//Verify every row with commisioner community name
-		 for(int row=0; row<count-1; row++){
-			 assertEquals(driver.findElement(By.className("territorialCommunity_name")).getText(), "Село");
-		 }
-	}
-
 
 	@AfterClass(alwaysRun = true)
 	public void tearDown() throws Exception {
