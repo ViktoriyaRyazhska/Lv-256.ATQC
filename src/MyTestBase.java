@@ -12,7 +12,7 @@ public class MyTestBase {
     @BeforeSuite
     public void setUp() throws Exception {
 
-        System.setProperty("webdriver.firefox.marionette", "C:\\git\\Lv-256.ATQC\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
         driver = new FirefoxDriver();
         baseURL = "http://regres.herokuapp.com/login";
 
