@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="5" passed="5">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="12990" started-at="2017-09-07T07:55:43Z" finished-at="2017-09-07T07:55:56Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="12990" started-at="2017-09-07T07:55:43Z" finished-at="2017-09-07T07:55:56Z">
+      <class name="VerifyLogin">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:VerifyLogin@d2cc05a]" name="setUp" is-config="true" duration-ms="5220" started-at="2017-09-07T10:55:38Z" finished-at="2017-09-07T10:55:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testEmptyLoginAndPassword()[pri:0, instance:VerifyLogin@d2cc05a]" name="testEmptyLoginAndPassword" duration-ms="4515" started-at="2017-09-07T10:55:43Z" finished-at="2017-09-07T10:55:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEmptyLoginAndPassword -->
+        <test-method status="PASS" signature="testInvalidLoginAdnInvalidPass()[pri:0, instance:VerifyLogin@d2cc05a]" name="testInvalidLoginAdnInvalidPass" duration-ms="2569" started-at="2017-09-07T10:55:47Z" finished-at="2017-09-07T10:55:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testInvalidLoginAdnInvalidPass -->
+        <test-method status="PASS" signature="testInvalidLoginAdnValidPass()[pri:0, instance:VerifyLogin@d2cc05a]" name="testInvalidLoginAdnValidPass" duration-ms="1807" started-at="2017-09-07T10:55:50Z" finished-at="2017-09-07T10:55:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testInvalidLoginAdnValidPass -->
+        <test-method status="PASS" signature="testValidLoginAdnInvalidPass()[pri:0, instance:VerifyLogin@d2cc05a]" name="testValidLoginAdnInvalidPass" duration-ms="1932" started-at="2017-09-07T10:55:52Z" finished-at="2017-09-07T10:55:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidLoginAdnInvalidPass -->
+        <test-method status="PASS" signature="testValidLoginAndPassword()[pri:0, instance:VerifyLogin@d2cc05a]" name="testValidLoginAndPassword" duration-ms="2155" started-at="2017-09-07T10:55:54Z" finished-at="2017-09-07T10:55:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidLoginAndPassword -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:VerifyLogin@d2cc05a]" name="tearDown" is-config="true" duration-ms="4200" started-at="2017-09-07T10:55:56Z" finished-at="2017-09-07T10:56:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- VerifyLogin -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
