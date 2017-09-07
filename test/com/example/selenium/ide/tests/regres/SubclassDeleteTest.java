@@ -16,7 +16,7 @@ public class SubclassDeleteTest {
 
 	@BeforeMethod
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "resources\\geckodriver-v0.18.0-win64\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		wait = new WebDriverWait(driver, 10);
 		baseUrl = "http://regres.herokuapp.com/";
@@ -44,7 +44,7 @@ public class SubclassDeleteTest {
 		driver.findElement(By.id("valid")).click();
 	}
 
-	@Test
+//	@Test
 	public void testConfirmMessageAppear() {
 		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*//*[@href]")).click();
 		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*//*[@href]")).click();
@@ -54,7 +54,7 @@ public class SubclassDeleteTest {
 	}
 
 	@Test
-	public void testCancelDelettingByX() {
+	public void testCancelDelettingByCloseButton() {
 		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*//*[@href]")).click();
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
 				"Do you really want to delete this class?");
@@ -69,7 +69,7 @@ public class SubclassDeleteTest {
 				"Do you really want to delete this class?");
 		driver.findElement(By.xpath("//button[text() = 'Cancel']")).click();
 
-		assertEquals(driver.findElement(By.xpath("//td[text() = 'Test']")).getText(), "Test");
+		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Text']")));
 	}
 
 	@Test
