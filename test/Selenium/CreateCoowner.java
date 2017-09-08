@@ -3,6 +3,8 @@ package Selenium;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
+
+import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -67,17 +69,18 @@ public class CreateCoowner {
 		new Select(driver.findElement(By.id("territorial_Community"))).selectByVisibleText(territorialCommunity);
 		driver.findElement(By.id("submit")).click();
 		
-//		Assert.assertTrue((
+		Assert.assertEquals((By.id("login.errors")),("Цей логін уже використовується"), territorialCommunity;
 				
+
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void tearDown() throws Exception {
 		// logout:
 		driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle")).click();
 		new WebDriverWait(driver, 10)
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(@href,'logout')]")));
 		driver.findElement(By.xpath("//a[contains(@href,'logout')]")).click();
-	}
-
-	@AfterClass(alwaysRun = true)
-	public void tearDown() throws Exception {
 		driver.quit();
 	}
 }
