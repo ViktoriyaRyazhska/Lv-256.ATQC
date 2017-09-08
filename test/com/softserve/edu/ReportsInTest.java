@@ -20,7 +20,7 @@ public class ReportsInTest {
 
 	@BeforeClass(groups = {"group1", "group2"})
 	public void start() {
-		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
@@ -40,11 +40,11 @@ public class ReportsInTest {
 			}
 		});
 		WebElement element = driver.findElement(By.cssSelector("div.kno-rdesc span"));
-		Assert.assertTrue(element.getText().contains("SoftServe — провідна українська ІТ компанія"));
+		Assert.assertTrue(element.getText().contains("SoftServe "));
 		System.out.println("Method - testingMethod11( ): " + element.getText());
 	}
 
-//	@Test(groups = "group1")
+	@Test(groups = "group1")
 	public void testingMethod12() {
 		Reporter.log("Running Testing method12");
 		driver.get("http://www.msn.com/");
@@ -53,7 +53,7 @@ public class ReportsInTest {
 		System.out.println("Method - testingMethod12( ): " + element.getAttribute("href"));
 	}
 
-//	@Test(groups = "group2")
+	@Test(groups = "group2")
 	public void testingMethod21() {
 		Reporter.log("Running Testing method21");
 		driver.get("http://auto.ria.com/");
@@ -63,7 +63,7 @@ public class ReportsInTest {
 		System.out.println("Method - testingMethod21( ): " + element.getTagName() + " " + element.isSelected());
 	}
 
-//	@Test(groups = "group3")
+	@Test(groups = "group3")
 	public void testingMethod31() {
 		Reporter.log("Running Testing method31");
 		WebElement element = driver.findElement(By.xpath("/html/body/img"));

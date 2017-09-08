@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Selenium1Waits {
 	public static void main(String[] args) {
-		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		// Preconditions
 		WebDriver driver = new FirefoxDriver();
 		driver.get("http://www.google.com");

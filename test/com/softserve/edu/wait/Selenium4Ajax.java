@@ -17,7 +17,7 @@ public class Selenium4Ajax {
 	@Test
 	public void Ajax() throws Exception {
 		// Preconditions
-		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://www.w3schools.com/xml/ajax_intro.asp");
@@ -33,28 +33,28 @@ public class Selenium4Ajax {
 		driver.findElement(By.cssSelector("#demo button")).click();
 
 		// Store the current window handle
-		// String ajaxPage = driver.getWindowHandle();
-		// System.out.println(ajaxPage);
+		String ajaxPage = driver.getWindowHandle();
+		System.out.println(ajaxPage);
 
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		// Wait until an element is no longer attached to the DOM.
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(ajaxChange));
-
-		// Check
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		Thread.sleep(1000);
-		Assert.assertEquals(driver
-				.findElement(By.xpath("//div[@id='demo']/p[contains(text(), 'AJAX is not a programming')]")).getText(),
-				"AJAX is not a programming language.");
-		Assert.assertTrue(
-				driver.findElement(By.xpath("//div[@id='demo']/p[contains(text(), 'AJAX is a technique for ')]"))
-						.getText().contains("AJAX is a technique for accessing web servers from a web page"));
+//		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+//		// Wait until an element is no longer attached to the DOM.
+//		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(ajaxChange));
+//
+//		// Check
+//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		Thread.sleep(1000);
+//		Assert.assertEquals(driver
+//				.findElement(By.xpath("//div[@id='demo']/p[contains(text(), 'AJAX is not a programming')]")).getText(),
+//				"AJAX is not a programming language.");
+//		Assert.assertTrue(
+//				driver.findElement(By.xpath("//div[@id='demo']/p[contains(text(), 'AJAX is a technique for ')]"))
+//						.getText().contains("AJAX is a technique for accessing web servers from a web page"));
 
 		//
-//		driver.findElement(By.partialLinkText("Try it Yourself")).click();
-//		Thread.sleep(2000);
-//		driver.switchTo().window(ajaxPage);
-//		Thread.sleep(2000);
+		driver.findElement(By.partialLinkText("Try it Yourself")).click();
+		Thread.sleep(2000);
+		driver.switchTo().window(ajaxPage);
+		Thread.sleep(2000);
 //		driver.quit();
 	}
 }

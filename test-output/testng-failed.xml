@@ -1,29 +1,13 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.softserve.edu.wait.Selenium4Ajax">
+      <class name="com.softserve.edu.wait.Selenium2Waits">
         <methods>
-          <include name="Ajax"/>
+          <include name="testSelen"/>
         </methods>
-      </class> <!-- com.softserve.edu.wait.Selenium4Ajax -->
+      </class> <!-- com.softserve.edu.wait.Selenium2Waits -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
-    <classes>
-      <class name="com.softserve.edu.BrowsersTest">
-        <methods>
-          <include name="findHTMLUnitTest"/>
-        </methods>
-      </class> <!-- com.softserve.edu.BrowsersTest -->
-    </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
->>>>>>> 796290eca63fd2c07144a8b0d5389d0b744b2da6

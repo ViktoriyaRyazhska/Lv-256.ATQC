@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="27434" started-at="2017-09-07T19:46:37Z" finished-at="2017-09-07T19:47:05Z">
+  <suite name="Default suite" duration-ms="13947" started-at="2017-09-08T08:00:35Z" finished-at="2017-09-08T08:00:49Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="27434" started-at="2017-09-07T19:46:37Z" finished-at="2017-09-07T19:47:05Z">
-      <class name="com.softserve.edu.wait.Selenium4Ajax">
-        <test-method status="PASS" signature="Ajax()[pri:0, instance:com.softserve.edu.wait.Selenium4Ajax@4de8b406]" name="Ajax" duration-ms="27410" started-at="2017-09-07T22:46:37Z" finished-at="2017-09-07T22:47:05Z">
+    <test name="Default test" duration-ms="13947" started-at="2017-09-08T08:00:35Z" finished-at="2017-09-08T08:00:49Z">
+      <class name="com.softserve.edu.wait.Selenium3Javascript">
+        <test-method status="PASS" signature="testSelen()[pri:0, instance:com.softserve.edu.wait.Selenium3Javascript@5034c75a]" name="testSelen" duration-ms="13932" started-at="2017-09-08T11:00:35Z" finished-at="2017-09-08T11:00:49Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Ajax -->
-      </class> <!-- com.softserve.edu.wait.Selenium4Ajax -->
-=======
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
-  <reporter-output>
-  </reporter-output>
-  <suite name="Default suite" duration-ms="55413" started-at="2017-09-06T09:02:27Z" finished-at="2017-09-06T09:03:22Z">
-    <groups>
-    </groups>
-    <test name="Default test" duration-ms="55413" started-at="2017-09-06T09:02:27Z" finished-at="2017-09-06T09:03:22Z">
-      <class name="com.softserve.edu.BrowsersTest">
-        <test-method status="PASS" signature="findHTMLUnitTest()[pri:0, instance:com.softserve.edu.BrowsersTest@6d00a15d]" name="findHTMLUnitTest" duration-ms="3855" started-at="2017-09-06T12:02:27Z" finished-at="2017-09-06T12:02:31Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- findHTMLUnitTest -->
-        <test-method status="PASS" signature="remoteDriver()[pri:0, instance:com.softserve.edu.BrowsersTest@6d00a15d]" name="remoteDriver" duration-ms="51543" started-at="2017-09-06T12:02:31Z" finished-at="2017-09-06T12:03:22Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- remoteDriver -->
-      </class> <!-- com.softserve.edu.BrowsersTest -->
->>>>>>> 796290eca63fd2c07144a8b0d5389d0b744b2da6
+        </test-method> <!-- testSelen -->
+      </class> <!-- com.softserve.edu.wait.Selenium3Javascript -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

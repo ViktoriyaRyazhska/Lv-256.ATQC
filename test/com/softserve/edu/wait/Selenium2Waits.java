@@ -16,7 +16,7 @@ public class Selenium2Waits {
 
 	@Test
 	public void testSelen() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		//
@@ -25,21 +25,23 @@ public class Selenium2Waits {
 
 		new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
 		Thread.sleep(2000);
-		new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("СѓРєСЂР°С—РЅСЃСЊРєР°");
+		new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("українська");
 		Thread.sleep(2000);
 		new Select(driver.findElement(By.id("changeLanguage"))).selectByValue("ru");
 		Thread.sleep(2000);
 		
+		
+
 		driver.findElement(By.id("login")).clear();
 		driver.findElement(By.id("login")).sendKeys("ha-ha-ha");
 		Thread.sleep(2000);
 		//
 		driver.navigate().refresh();
 		//
-		driver.findElement(By.id("login")).sendKeys("admin");
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		WebElement login = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id("login")));
+		driver.findElement(By.id("login")).sendKeys("admin");
 //		login.sendKeys("admin");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		// login.sendKeys("admin");

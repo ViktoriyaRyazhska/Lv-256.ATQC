@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,12 +28,16 @@ public class ScreenShotTest {
 
 	@BeforeClass
 	public void oneTimeSetUp() {
-		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		// System.setProperty("webdriver.gecko.driver",
+		// "D:\\1\\drivers\\geckodriver.exe");
+
+		// driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", "D:\\1\\drivers\\chromedriver.exe");
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
-//	@AfterClass
+	// @AfterClass
 	public void oneTimeTearDown() {
 		driver.quit();
 	}
@@ -48,7 +53,7 @@ public class ScreenShotTest {
 		if (isCaptureScreen) {
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			// For example copy somewhere
-			FileUtils.copyFile(scrFile, new File("d:\\1\\screenshot.png"));
+			FileUtils.copyFile(scrFile, new File("d:\\1\\screenshot2.png"));
 		}
 	}
 
@@ -63,16 +68,18 @@ public class ScreenShotTest {
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.titleContains("selenium ide download"));
 		//
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		// For example copy somewhere
-		FileUtils.copyFile(scrFile, new File("d:\\2\\screenshot.png"));
+		FileUtils.copyFile(scrFile, new File("d:\\1\\screenshot1.png"));
 
 		Thread.sleep(500);
 		driver.findElement(By.partialLinkText("Selenium IDE")).click();
 		// Thread.sleep(1000);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String text = driver.findElement(By.id("addon-summary")).getText();
-		Assert.assertTrue(text.contains("Selenium IDE is an integrated development"));
+		Assert.assertTrue(text.contains("22Selenium IDE is an integrated development"));
 		//
 
 		isCaptureScreen = false;
