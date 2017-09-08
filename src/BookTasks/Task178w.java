@@ -1,18 +1,11 @@
 package BookTasks;
-/**
- * TaskBook
- * Task 178w  
- * Дані натуральні числа n, a_1...a_n. Визначити кількість членів a_k  послідовності a_1...a_n, які є квадратами парних чисел.
- *
- * @author Khrystyna Terletska
- *
- */
+
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Task178w {
-	public static void main(String[] array) {
+	public void resolve() {
 		Set<Integer> numbers = new HashSet<Integer>();
 		numbers.add(3);
 		numbers.add(4);
@@ -25,20 +18,14 @@ public class Task178w {
 		numbers.add(38);
 		numbers.add(39);
 		numbers.add(64);
-		Task178w task178w = new Task178w();
-		try {
-			task178w.getNaturalNumberCount(numbers);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
 
-		}
+		
+
+		checkNumber2(numbers);
+
 	}
 
-	public int getNaturalNumberCount(Set<Integer> numbers) {
-		if (numbers == null || numbers.isEmpty()) {
-			throw new IllegalArgumentException("You didn't entered value. Please enter digital value greater than 0");
-		}
-		System.out.println("Determine the number of members of a sequence that are squares of even numbers");
+	public int checkNumber2(Set<Integer> numbers) {
 
 		int totalCount = 0;
 
