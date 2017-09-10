@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="30837" started-at="2017-09-05T19:29:22Z" finished-at="2017-09-05T19:29:53Z">
+  <suite name="Default suite" duration-ms="28369" started-at="2017-09-10T20:25:21Z" finished-at="2017-09-10T20:25:50Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="30837" started-at="2017-09-05T19:29:22Z" finished-at="2017-09-05T19:29:53Z">
+    <test name="Default test" duration-ms="28369" started-at="2017-09-10T20:25:21Z" finished-at="2017-09-10T20:25:50Z">
       <class name="com.edu.OMS_Locators">
-        <test-method status="PASS" signature="checkLogin()[pri:0, instance:com.edu.OMS_Locators@4de8b406]" name="checkLogin" duration-ms="10071" started-at="2017-09-05T22:29:22Z" finished-at="2017-09-05T22:29:32Z">
+        <test-method status="PASS" signature="checkLogin()[pri:0, instance:com.edu.OMS_Locators@1efbd816]" name="checkLogin" duration-ms="7883" started-at="2017-09-10T23:25:21Z" finished-at="2017-09-10T23:25:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkLogin -->
-        <test-method status="PASS" signature="createUser()[pri:0, instance:com.edu.OMS_Locators@4de8b406]" name="createUser" duration-ms="20739" started-at="2017-09-05T22:29:32Z" finished-at="2017-09-05T22:29:53Z">
+        <test-method status="PASS" signature="createUser()[pri:0, instance:com.edu.OMS_Locators@1efbd816]" name="createUser" duration-ms="20449" started-at="2017-09-10T23:25:29Z" finished-at="2017-09-10T23:25:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createUser -->

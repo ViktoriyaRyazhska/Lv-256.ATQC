@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class OMS_Locators {
 
 	@Test
@@ -18,7 +17,7 @@ public class OMS_Locators {
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-		driver.get("http://localhost:8080/OMS");
+		driver.get("http://localhost:8081/OMS");
 
 		driver.findElement(By.name("j_username")).clear();
 		driver.findElement(By.name("j_username")).sendKeys("iva");
