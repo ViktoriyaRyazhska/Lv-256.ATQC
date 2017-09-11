@@ -3,15 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.example.selenium.ide.tests.regres.SubclassDeleteTest">
+      <class name="com.example.selenium.ide.tests.ExchangeRateUsd">
         <methods>
-          <include name="testDeleteByOkButton"/>
-          <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="testCancelDelettingByCancelButton"/>
-          <include name="testCancelDelettingBySystem"/>
+          <include name="tearDown"/>
+          <include name="testExchangeRateUSD"/>
         </methods>
-      </class> <!-- com.example.selenium.ide.tests.regres.SubclassDeleteTest -->
+      </class> <!-- com.example.selenium.ide.tests.ExchangeRateUsd -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
