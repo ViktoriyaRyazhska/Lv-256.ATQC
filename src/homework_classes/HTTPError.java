@@ -47,16 +47,15 @@ public enum HTTPError {
 	}
 
 	public HTTPError setValue(Integer value) {
-		
+
 		try {
-			
-			String error="HTTP"+value.toString();
+
+			String error = "HTTP" + value.toString();
 			return HTTPError.valueOf(error.toString());
-			
-		} catch(Exception ex) {
+
+		} catch (Exception ex) {
 			return HTTPError.HTTPnone;
 		}
-		
 
 	}
 
