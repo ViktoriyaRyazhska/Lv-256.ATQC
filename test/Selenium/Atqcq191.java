@@ -1,5 +1,6 @@
 package Selenium;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
@@ -21,7 +22,7 @@ public class Atqcq191 {
 
 	@DataProvider
 	public Object[][] commisionerLoggin() {
-		return new Object[][] { { "andriy", "andriy" } };
+		return new Object[][] { { "andriy", "andriy" }};
 	}
 
 	/**
@@ -34,7 +35,7 @@ public class Atqcq191 {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		// Set the wndow size
-		driver.manage().window().setSize(new Dimension(1920, 1080));
+//		driver.manage().window().setSize(new Dimension(1920, 1080));
 		// login:
 		driver.get("http://regres.herokuapp.com/" + "/login?logout");
 		driver.findElement(By.id("login")).clear();
@@ -63,25 +64,34 @@ public class Atqcq191 {
 	}
 
 	/**
-	 * This method find Commisioner community
+	 * This method find Commissioner community
 	 */
 	@Test(dataProvider = "commisionerLoggin")
+
 	public void verifyCommisionerCommunity(String login, String password) throws Exception {
-		// Serch commisioner in table
-		driver.findElement(By.id("inputIndex3")).click();
-		driver.findElement(By.id("inputIndex3")).clear();
-		driver.findElement(By.id("inputIndex3")).sendKeys(login);
-		driver.findElement(By.id("bth-search")).click();
-		String commisionerCommnuityName = driver.findElement(By.className("territorialCommunity_name")).getText();
-		// Return Active co-owners table
-		driver.findElement(By.id("inputIndex3")).clear();
-		driver.findElement(By.id("bth-search")).click();
-		// Verify every row with commisioner community name
-		for (int row = 0; row < count - 1; row++) {
-			assertEquals(driver.findElement(By.className("territorialCommunity_name")).getText(),
-					commisionerCommnuityName);// community nameof all users should have the same name with community of
-												// commisioner
+
+//		List<WebElement> tablePages = driver.findElements(By.cssSelector(".paginate_button"));
+//		for (WebElement tablePage : tablePages) {
+			// Search commissioner in table
+			driver.findElement(By.id("inputIndex3")).click();
+			driver.findElement(By.id("inputIndex3")).clear();
+			driver.findElement(By.id("inputIndex3")).sendKeys(login);
+			driver.findElement(By.id("bth-search")).click();
+			String commisionerCommnuityName = driver.findElement(By.className("territorialCommunity_name")).getText();
+			// Return Active co-owners table
+			driver.findElement(By.id("inputIndex3")).clear();
+			driver.findElement(By.id("bth-search")).click();
+			// Verify every row with commissioner community name
+			for (int row = 0; row < count - 1; row++) {
+				assertEquals(driver.findElement(By.className("territorialCommunity_name")).getText(),
+						commisionerCommnuityName);// community name of all users should have the same name with community
+													// of
+													// commissioner
+			
+			driver.findElement(By.cssSelector(".paginate_button")).click();
 		}
+			
+
 	}
 
 	@AfterClass(alwaysRun = true)
