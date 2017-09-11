@@ -22,9 +22,9 @@ public class SoftServeScheduleTest {
 
 	@BeforeClass
 	public void beforeClass() {
-
+		System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		System.setProperty("webdriver.gecko.driver", "D:\\stuff_for_testng_firefox\\geckodriver.exe");
+		
 	}
 
 	@AfterClass
@@ -43,8 +43,12 @@ public class SoftServeScheduleTest {
 		driver.findElement(By.id("lst-ib")).submit();
 		driver.findElement(By.linkText("SoftServe IT Academy. Learning Management System")).click();
 		//switch to
-		driver.get("https://softserve.academy/mod/resource/view.php?id=5001&redirect=1");
-
+		String winHandleBefore = driver.getWindowHandle();
+		
+		driver.findElement(By.partialLinkText("Lviv: schedule")).click();
+		for(String winHandle : driver.getWindowHandles()){
+		    driver.switchTo().window(winHandle);
+		}
 		driver.findElement(By.xpath("//*[contains(text(),'September')]/../..//tr/td/a[text()='5']")).click();
 		driver.findElement(By.xpath("//a[contains(text(),'Lv-256 ATQC')]")).click();
 		Assert.assertTrue(driver.findElement(By.xpath("//tr/td[3][@class='ffffcc']")) != null);
