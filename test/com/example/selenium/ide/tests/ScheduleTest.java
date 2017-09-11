@@ -62,7 +62,7 @@ public class ScheduleTest {
 	@AfterClass
 	public void tearDown() {
 		// close WebDriver
-	//	driver.quit();
+		driver.quit();
 	}
 
 	/* switch WebDriver to new Tab */

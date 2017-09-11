@@ -8,101 +8,154 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Select;
 
 public class SubclassDeleteTest {
 	private WebDriver driver;
-	private String baseUrl;
 	private WebDriverWait wait;
 
-	@BeforeMethod
-	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
+	@BeforeClass
+	public void setUpClass() {
+		// initial property
+		System.setProperty("webdriver.gecko.driver", "resources//geckodriver.exe");// "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		wait = new WebDriverWait(driver, 10);
-		baseUrl = "http://regres.herokuapp.com/";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 10);
 
-		driver.get(baseUrl);
-		driver.findElement(By.id("login")).clear();
-		driver.findElement(By.id("login")).sendKeys("registrator");
-		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("registrator");
-		driver.findElement(By.xpath("//*[@id='loginForm']//button[@type='submit']")).click();
-		driver.findElement(By.xpath("//*[@id='navigationbar']//a[@href = '/registrator/resourcetypes/show-res-types']"))
-				.click();
-		driver.findElement(By.xpath("//*[@id='changeLanguage']/*[@value = 'en']")).click();
-		// add new subclass
-		driver.findElement(By.linkText("Add new subclass")).click();
-		driver.findElement(By.name("typeName")).clear();
-		driver.findElement(By.name("typeName")).sendKeys("Test");
-		driver.findElement(By.id("clickmeshow")).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("myparam0"))).clear();
-		driver.findElement(By.id("myparam0")).sendKeys("123450");
-		driver.findElement(By.id("myparam1")).clear();
-		driver.findElement(By.id("myparam1")).sendKeys("123450");
-		driver.findElement(By.xpath("//*[@value = 'linearParameters']")).click();
-		driver.findElement(By.id("valid")).click();
+		// go to RegRes LogIn page
+		driver.get("http://regres.herokuapp.com/");
+		logIn();
 	}
 
-//	@Test
+	@BeforeMethod
+	public void setUpMethod() {
+
+		driver.findElement(By.partialLinkText("Subclasses of objects")).click();
+		addSubclass();
+
+	}
+
+	// @Test
 	public void testConfirmMessageAppear() {
-		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*//*[@href]")).click();
-		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*//*[@href]")).click();
+		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
 
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
 				"Do you really want to delete this class?");
 	}
 
-	@Test
+	//@Test
 	public void testCancelDelettingByCloseButton() {
-		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*//*[@href]")).click();
+		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
 				"Do you really want to delete this class?");
-		driver.findElement(By.xpath("//div[@class='bootbox-body']/preceding-sibling::button")).click();
-		assertEquals(driver.findElement(By.xpath("//td[text() = 'Test']")).getText(), "Test");
+		driver.findElement(By.cssSelector(".close")).click();
+		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Test']")));
 	}
 
 	@Test
 	public void testCancelDelettingByCancelButton() {
-		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*/div/a")).click();
+		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
 				"Do you really want to delete this class?");
-		driver.findElement(By.xpath("//button[text() = 'Cancel']")).click();
 
-		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Text']")));
+		// 'Cancel' - button
+		driver.findElement(By.cssSelector(".btn.btn-default")).click();
+
+		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Test']")));
 	}
 
 	@Test
 	public void testDeleteByOkButton() {
 
-		driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*/div/a")).click();
+		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
 				"Do you really want to delete this class?");
+		// 'OK' - button
+		driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")).click();
 
-		driver.findElement(By.xpath("//button[text() = 'OK']")).click();
-		
 		assertEquals(driver.findElement(By.xpath("//td[text() = 'Test']")).getText(), "Test");
 	}
 
-	@Test // existing class is not deleted if resources already exist
-	public void testCancelDelettingBySystem() {
-		driver.findElement(By.xpath("//td[text()='земельний']/following-sibling::*//*[@href]")).click();
+	//@Test // existing class is not deleted if resources already exist
+	public void testCancelDelettingBySystemConfirmByOKButton() {
+		driver.findElement(By.xpath("//td[text() = 'Water']/following::a")).click();
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
 				"Do you really want to delete this class?");
-		driver.findElement(By.xpath("//button[text() = 'OK']")).click();
+		// 'OK' - button
+		driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bootbox-body")));
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
 				"This subclass cannot be deleted because resources already exist");
-		driver.findElement(By.xpath("//button[text() = 'OK']")).click();
-		assertEquals(driver.findElement(By.xpath("//td[text()='земельний'")).getText(), "земельний");
+		// 'OK' - button
+		driver.findElement(By.xpath("//button[@data-bb-handler='ok']")).click();
+		assertNotNull(driver.findElement(By.xpath("//td[text()='Water']")));
+	}
+	
+	//@Test // existing class is not deleted if resources already exist
+	public void testCancelDelettingBySystemConfirmByCloseButton() {
+		driver.findElement(By.xpath("//td[text() = 'Water']/following::a")).click();
+		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
+				"Do you really want to delete this class?");
+		// 'OK' - button
+		driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bootbox-body")));
+		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
+				"This subclass cannot be deleted because resources already exist");
+		// 'Close' - button
+		driver.findElement(By.cssSelector(".close")).click();
+		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Water']")));
 	}
 
 	@AfterMethod
-	public void tearDown() {
-		if(driver.findElement(By.xpath("//td[text() = 'Test']")).getText() != null){
-			driver.findElement(By.xpath("//td[text() = 'Test']/following-sibling::*/div/a")).click();
-			driver.findElement(By.xpath("//button[text() = 'OK']")).click();
+	public void deleteTestData() {
+		System.out.println("---"+driver.findElement(By.xpath("//td[text() = 'Test']")).isDisplayed());
+		//driver.navigate().refresh();
+		driver.get(driver.getCurrentUrl());
+		System.out.println("---"+driver.findElement(By.xpath("//td[text() = 'Test']")).isEnabled());
+		if (driver.findElement(By.xpath("//td[text() = 'Test']")).isDisplayed()) {
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[text() = 'Test']/following::a"))).click();
+			// 'OK' - button
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@data-bb-handler='confirm']"))).click();
 		}
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void tearDown() {
 		driver.quit();
+	}
+
+	/*
+	 * Log In to RegRes
+	 */
+	public void logIn() {
+		// choose English localization
+		new Select(driver.findElement(By.id("changeLanguage"))).selectByValue("en");
+		// clear login input field
+		driver.findElement(By.id("login")).clear();
+		// write login
+		driver.findElement(By.id("login")).sendKeys("registrator");
+		// clear password input field
+		driver.findElement(By.id("password")).clear();
+		// write password
+		driver.findElement(By.id("password")).sendKeys("registrator");
+		driver.findElement(By.id("password")).submit();
+		// click on 'Sign In'
+	}
+
+	/*
+	 * Add new Subclass
+	 */
+	public void addSubclass() {
+		// add new subclass
+		driver.findElement(By.linkText("Add new subclass")).click();
+		driver.findElement(By.name("typeName")).clear();
+		driver.findElement(By.name("typeName")).sendKeys("Test");
+		driver.findElement(By.id("clickmeshow")).click();
+		driver.findElement(By.id("myparam0")).clear();
+		driver.findElement(By.id("myparam0")).sendKeys("123450");
+		driver.findElement(By.id("myparam1")).clear();
+		driver.findElement(By.id("myparam1")).sendKeys("123450");
+		new Select(driver.findElement(By.id("myparam2"))).selectByValue("linearParameters");
+		driver.findElement(By.id("valid")).click();
 	}
 }
