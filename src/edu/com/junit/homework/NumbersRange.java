@@ -6,7 +6,6 @@ import java.util.Scanner;
  * The NumbersRange program implements an application that read 3 float
  * numbers and check: they all belong to the range [-5,5];
  *
- * @version 1.0
  * @author Bohdan Zhyvko
  */
 public class NumbersRange {

@@ -5,10 +5,9 @@ import java.util.Scanner;
 
 /**
  * The HTTPErrorStatus program implements an application that read number of
- * HTTP Error (400, 401,402, ...) and write the name of this error (Declare enum
- * HTTPError);
+ * HTTP Error (400, 401, 402, ...) and write the name of this error 
+ * (Declare enum HTTPError);
  *
- * @version 1.0
  * @author Bohdan Zhyvko
  */
 public class HTTPErrorStatus {

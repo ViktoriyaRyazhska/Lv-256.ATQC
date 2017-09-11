@@ -6,7 +6,6 @@ import java.util.Scanner;
  * The MaxAndMinNumbers program implements an application that read 3 integer
  * numbers and and write max and min of them;
  *
- * @version 1.0
  * @author Bohdan Zhyvko
  */
 public class MaxAndMinNumbers {

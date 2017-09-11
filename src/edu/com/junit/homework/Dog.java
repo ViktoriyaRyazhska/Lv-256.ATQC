@@ -2,7 +2,6 @@ package edu.com.junit.homework;
 
 /**
  * 
- * @version 1.0
  * @author Bohdan Zhyvko
  */
 class Dog {

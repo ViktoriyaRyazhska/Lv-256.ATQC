@@ -9,7 +9,6 @@ import edu.com.junit.homework.Dog.Breed;
 
 /**
  * 
- * @version 1.0
  * @author Bohdan Zhyvko
  */
 public class Dogs {
