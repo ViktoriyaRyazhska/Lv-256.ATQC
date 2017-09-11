@@ -6,7 +6,11 @@ import static org.testng.Assert.*;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
+/**
+ * output on console a current course of dollar
+ * 
+ * @author Bohdan Zhyvko
+ */
 public class ExchangeRateUsd {
 	// initial WebDriver
 	WebDriver driver;
@@ -31,9 +35,6 @@ public class ExchangeRateUsd {
 
 		// check is element 'USD' present on page
 		assertNotNull("//table[@id='js-tb-currency']//span[contains(text(), 'USD')]");
-
-		// print exchange rate
-		printExchangeRateUSD();
 	}
 
 	@AfterClass
@@ -45,6 +46,7 @@ public class ExchangeRateUsd {
 	/*
 	 * print Exchange Rate USD on console
 	 */
+	@AfterMethod
 	private void printExchangeRateUSD() {
 		// get buying course
 		String buying = driver
