@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="20790" started-at="2017-09-11T08:50:30Z" finished-at="2017-09-11T08:50:51Z">
+  <suite name="Default suite" duration-ms="18415" started-at="2017-09-11T10:19:53Z" finished-at="2017-09-11T10:20:11Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="20790" started-at="2017-09-11T08:50:30Z" finished-at="2017-09-11T08:50:51Z">
-      <class name="com.example.selenium.ide.tests.ExchangeRateUsd">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.example.selenium.ide.tests.ExchangeRateUsd@5c3bd550]" name="setUp" is-config="true" duration-ms="17753" started-at="2017-09-11T11:50:30Z" finished-at="2017-09-11T11:50:48Z">
+    <test name="Default test" duration-ms="18415" started-at="2017-09-11T10:19:53Z" finished-at="2017-09-11T10:20:11Z">
+      <class name="com.example.selenium.ide.tests.ScheduleTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.example.selenium.ide.tests.ScheduleTest@91161c7]" name="setUp" is-config="true" duration-ms="9454" started-at="2017-09-11T13:19:53Z" finished-at="2017-09-11T13:20:02Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testExchangeRateUSD()[pri:0, instance:com.example.selenium.ide.tests.ExchangeRateUsd@5c3bd550]" name="testExchangeRateUSD" duration-ms="1181" started-at="2017-09-11T11:50:48Z" finished-at="2017-09-11T11:50:49Z">
+        <test-method status="PASS" signature="goToSchedule()[pri:0, instance:com.example.selenium.ide.tests.ScheduleTest@91161c7]" name="goToSchedule" is-config="true" duration-ms="4618" started-at="2017-09-11T13:20:02Z" finished-at="2017-09-11T13:20:07Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testExchangeRateUSD -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.example.selenium.ide.tests.ExchangeRateUsd@5c3bd550]" name="tearDown" is-config="true" duration-ms="1806" started-at="2017-09-11T11:50:49Z" finished-at="2017-09-11T11:50:51Z">
+        </test-method> <!-- goToSchedule -->
+        <test-method status="PASS" signature="testHaveClassToday()[pri:0, instance:com.example.selenium.ide.tests.ScheduleTest@91161c7]" name="testHaveClassToday" duration-ms="704" started-at="2017-09-11T13:20:07Z" finished-at="2017-09-11T13:20:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testHaveClassToday -->
+        <test-method status="PASS" signature="goToSchedule()[pri:0, instance:com.example.selenium.ide.tests.ScheduleTest@91161c7]" name="goToSchedule" is-config="true" duration-ms="3555" started-at="2017-09-11T13:20:08Z" finished-at="2017-09-11T13:20:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- goToSchedule -->
+        <test-method status="PASS" signature="testScheduleAtqcGroup()[pri:0, instance:com.example.selenium.ide.tests.ScheduleTest@91161c7]" name="testScheduleAtqcGroup" duration-ms="27" started-at="2017-09-11T13:20:11Z" finished-at="2017-09-11T13:20:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testScheduleAtqcGroup -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.example.selenium.ide.tests.ScheduleTest@91161c7]" name="tearDown" is-config="true" duration-ms="0" started-at="2017-09-11T13:20:11Z" finished-at="2017-09-11T13:20:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.example.selenium.ide.tests.ExchangeRateUsd -->
+      </class> <!-- com.example.selenium.ide.tests.ScheduleTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -3,13 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.example.selenium.ide.tests.ExchangeRateUsd">
+      <class name="com.example.selenium.ide.tests.ScheduleTest">
         <methods>
+          <include name="testHaveClassToday"/>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="testExchangeRateUSD"/>
+          <include name="preCondition"/>
+          <include name="testSchedule"/>
         </methods>
-      </class> <!-- com.example.selenium.ide.tests.ExchangeRateUsd -->
+      </class> <!-- com.example.selenium.ide.tests.ScheduleTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
