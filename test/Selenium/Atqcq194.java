@@ -26,8 +26,9 @@ public class Atqcq194 {
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {		
 		System.setProperty("webdriver.gecko.driver", "D:\\QA\\ATQC\\selenium drivers\\geckodriver.exe");
+//		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		//Set the wndow size
+		//Set the window size
 		driver.manage().window().setSize(new Dimension(1920,1080));
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.get("http://regres.herokuapp.com/" + "/login");

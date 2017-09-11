@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  */
 
-public class Atqcq191 {
+public class NewTest {
 	private WebDriver driver;
 
 	@DataProvider
