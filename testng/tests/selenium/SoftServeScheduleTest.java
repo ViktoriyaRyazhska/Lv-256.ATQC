@@ -42,7 +42,7 @@ public class SoftServeScheduleTest {
 		driver.findElement(By.id("lst-ib")).sendKeys("softserve.academy");
 		driver.findElement(By.id("lst-ib")).submit();
 		driver.findElement(By.linkText("SoftServe IT Academy. Learning Management System")).click();
-
+		//switch to
 		driver.get("https://softserve.academy/mod/resource/view.php?id=5001&redirect=1");
 
 		driver.findElement(By.xpath("//*[contains(text(),'September')]/../..//tr/td/a[text()='5']")).click();
