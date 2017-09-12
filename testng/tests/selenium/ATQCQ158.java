@@ -65,12 +65,13 @@ public class ATQCQ158 {
 				.click();
 		driver.findElement(By.xpath("//p[@class='pull-left']/*[@class='btn btn-success']")).click();
 	}
-/**
- * This method is used to delete recently created Communites,
- * Created by createCommunity test.
- * @param result is used to get parameters of current test run
- * 
- */
+	
+	/**
+	 * This method is used to delete recently created Communites,
+ 	* Created by createCommunity test.
+ 	* @param result is used to get parameters of current test run
+ 	* 
+ 	*/
 	@AfterMethod
 	public void deleteCommunity(ITestResult result) {
 

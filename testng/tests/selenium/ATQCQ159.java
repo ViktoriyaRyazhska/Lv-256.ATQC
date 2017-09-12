@@ -42,6 +42,7 @@ public class ATQCQ159 {
 
   @AfterClass
   public void afterClass() {
+	  driver.quit();
   }
   
   /**

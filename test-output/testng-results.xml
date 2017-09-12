@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+<testng-results skipped="0" failed="0" ignored="0" total="11" passed="11">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="31029" started-at="2017-09-11T20:37:32Z" finished-at="2017-09-11T20:38:03Z">
+  <suite name="Suite_Community" duration-ms="148877" started-at="2017-09-12T16:09:32Z" finished-at="2017-09-12T16:12:01Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="31029" started-at="2017-09-11T20:37:32Z" finished-at="2017-09-11T20:38:03Z">
+    <test name="Test" duration-ms="148877" started-at="2017-09-12T16:09:32Z" finished-at="2017-09-12T16:12:01Z">
       <class name="tests.selenium.ATQCQ158">
-        <test-method status="PASS" signature="beforeClass()[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="beforeClass" is-config="true" duration-ms="10957" started-at="2017-09-11T23:37:32Z" finished-at="2017-09-11T23:37:43Z">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="beforeClass" is-config="true" duration-ms="13511" started-at="2017-09-12T19:09:47Z" finished-at="2017-09-12T19:10:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="beforeMethod" is-config="true" duration-ms="1898" started-at="2017-09-11T23:37:43Z" finished-at="2017-09-11T23:37:45Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="beforeMethod" is-config="true" duration-ms="2056" started-at="2017-09-12T19:10:01Z" finished-at="2017-09-12T19:10:03Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="testCreateCommunity" duration-ms="1358" started-at="2017-09-11T23:37:45Z" data-provider="comun_name_number" finished-at="2017-09-11T23:37:46Z">
+        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="testCreateCommunity" duration-ms="1539" started-at="2017-09-12T19:10:03Z" data-provider="comun_name_number" finished-at="2017-09-12T19:10:05Z">
           <params>
             <param index="0">
               <value>
@@ -31,22 +31,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateCommunity -->
-        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="deleteCommunity" is-config="true" duration-ms="1612" started-at="2017-09-11T23:37:46Z" finished-at="2017-09-11T23:37:48Z">
+        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="deleteCommunity" is-config="true" duration-ms="2201" started-at="2017-09-12T19:10:05Z" finished-at="2017-09-12T19:10:07Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756] output={null}]]]>
+                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteCommunity -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="beforeMethod" is-config="true" duration-ms="1771" started-at="2017-09-11T23:37:48Z" finished-at="2017-09-11T23:37:49Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="beforeMethod" is-config="true" duration-ms="1226" started-at="2017-09-12T19:10:07Z" finished-at="2017-09-12T19:10:08Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="testCreateCommunity" duration-ms="1383" started-at="2017-09-11T23:37:49Z" data-provider="comun_name_number" finished-at="2017-09-11T23:37:51Z">
+        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="testCreateCommunity" duration-ms="1478" started-at="2017-09-12T19:10:08Z" data-provider="comun_name_number" finished-at="2017-09-12T19:10:10Z">
           <params>
             <param index="0">
               <value>
@@ -62,22 +62,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateCommunity -->
-        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="deleteCommunity" is-config="true" duration-ms="1528" started-at="2017-09-11T23:37:51Z" finished-at="2017-09-11T23:37:52Z">
+        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="deleteCommunity" is-config="true" duration-ms="1668" started-at="2017-09-12T19:10:10Z" finished-at="2017-09-12T19:10:11Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756] output={null}]]]>
+                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteCommunity -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="beforeMethod" is-config="true" duration-ms="1117" started-at="2017-09-11T23:37:52Z" finished-at="2017-09-11T23:37:53Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="beforeMethod" is-config="true" duration-ms="1276" started-at="2017-09-12T19:10:11Z" finished-at="2017-09-12T19:10:12Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="testCreateCommunity" duration-ms="1415" started-at="2017-09-11T23:37:53Z" data-provider="comun_name_number" finished-at="2017-09-11T23:37:55Z">
+        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="testCreateCommunity" duration-ms="1801" started-at="2017-09-12T19:10:12Z" data-provider="comun_name_number" finished-at="2017-09-12T19:10:14Z">
           <params>
             <param index="0">
               <value>
@@ -93,22 +93,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateCommunity -->
-        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="deleteCommunity" is-config="true" duration-ms="1443" started-at="2017-09-11T23:37:55Z" finished-at="2017-09-11T23:37:56Z">
+        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="deleteCommunity" is-config="true" duration-ms="1653" started-at="2017-09-12T19:10:14Z" finished-at="2017-09-12T19:10:16Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756] output={null}]]]>
+                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteCommunity -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="beforeMethod" is-config="true" duration-ms="1066" started-at="2017-09-11T23:37:56Z" finished-at="2017-09-11T23:37:57Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="beforeMethod" is-config="true" duration-ms="1101" started-at="2017-09-12T19:10:16Z" finished-at="2017-09-12T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="testCreateCommunity" duration-ms="1502" started-at="2017-09-11T23:37:57Z" data-provider="comun_name_number" finished-at="2017-09-11T23:37:59Z">
+        <test-method status="PASS" signature="testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="testCreateCommunity" duration-ms="1750" started-at="2017-09-12T19:10:17Z" data-provider="comun_name_number" finished-at="2017-09-12T19:10:19Z">
           <params>
             <param index="0">
               <value>
@@ -124,22 +124,168 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateCommunity -->
-        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="deleteCommunity" is-config="true" duration-ms="1393" started-at="2017-09-11T23:37:59Z" finished-at="2017-09-11T23:38:00Z">
+        <test-method status="PASS" signature="deleteCommunity(org.testng.ITestResult)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="deleteCommunity" is-config="true" duration-ms="1793" started-at="2017-09-12T19:10:19Z" finished-at="2017-09-12T19:10:21Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@9629756] output={null}]]]>
+                <![CDATA[[TestResult name=testCreateCommunity status=SUCCESS method=ATQCQ158.testCreateCommunity(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ158@4520ebad] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteCommunity -->
-        <test-method status="PASS" signature="afterClass()[pri:0, instance:tests.selenium.ATQCQ158@9629756]" name="afterClass" is-config="true" duration-ms="2553" started-at="2017-09-11T23:38:00Z" finished-at="2017-09-11T23:38:03Z">
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:tests.selenium.ATQCQ158@4520ebad]" name="afterClass" is-config="true" duration-ms="6619" started-at="2017-09-12T19:10:21Z" finished-at="2017-09-12T19:10:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
       </class> <!-- tests.selenium.ATQCQ158 -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      <class name="tests.selenium.ATQCQ157">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:tests.selenium.ATQCQ157@5419f379]" name="beforeClass" is-config="true" duration-ms="12212" started-at="2017-09-12T19:10:27Z" finished-at="2017-09-12T19:10:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ157@5419f379]" name="beforeMethod" is-config="true" duration-ms="3733" started-at="2017-09-12T19:10:39Z" finished-at="2017-09-12T19:10:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testCreationWithSameName()[pri:0, instance:tests.selenium.ATQCQ157@5419f379]" name="testCreationWithSameName" duration-ms="4593" started-at="2017-09-12T19:10:43Z" finished-at="2017-09-12T19:10:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreationWithSameName -->
+        <test-method status="PASS" signature="deleteCommunity()[pri:0, instance:tests.selenium.ATQCQ157@5419f379]" name="deleteCommunity" is-config="true" duration-ms="1513" started-at="2017-09-12T19:10:48Z" finished-at="2017-09-12T19:10:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteCommunity -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:tests.selenium.ATQCQ157@5419f379]" name="afterClass" is-config="true" duration-ms="2647" started-at="2017-09-12T19:10:49Z" finished-at="2017-09-12T19:10:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- tests.selenium.ATQCQ157 -->
+      <class name="tests.selenium.ATQCQ122">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="beforeClass" is-config="true" duration-ms="11098" started-at="2017-09-12T19:10:52Z" finished-at="2017-09-12T19:11:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="beforeMethod" is-config="true" duration-ms="1980" started-at="2017-09-12T19:11:03Z" finished-at="2017-09-12T19:11:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="invalidRegistrationNumber(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="invalidRegistrationNumber" duration-ms="9391" started-at="2017-09-12T19:11:05Z" data-provider="bad_credentials" finished-at="2017-09-12T19:11:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ShortDots]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[00:00:00:00:00]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidRegistrationNumber -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="beforeMethod" is-config="true" duration-ms="1939" started-at="2017-09-12T19:11:14Z" finished-at="2017-09-12T19:11:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="invalidRegistrationNumber(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="invalidRegistrationNumber" duration-ms="9170" started-at="2017-09-12T19:11:16Z" data-provider="bad_credentials" finished-at="2017-09-12T19:11:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ShortNoDots]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[0000000000]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidRegistrationNumber -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="beforeMethod" is-config="true" duration-ms="1794" started-at="2017-09-12T19:11:25Z" finished-at="2017-09-12T19:11:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="invalidRegistrationNumber(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="invalidRegistrationNumber" duration-ms="8973" started-at="2017-09-12T19:11:27Z" data-provider="bad_credentials" finished-at="2017-09-12T19:11:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LongDots]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[000:000:000:000:00000]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidRegistrationNumber -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="beforeMethod" is-config="true" duration-ms="1739" started-at="2017-09-12T19:11:36Z" finished-at="2017-09-12T19:11:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="invalidRegistrationNumber(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="invalidRegistrationNumber" duration-ms="9307" started-at="2017-09-12T19:11:38Z" data-provider="bad_credentials" finished-at="2017-09-12T19:11:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LongNoDots]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[1111111111111111]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidRegistrationNumber -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="beforeMethod" is-config="true" duration-ms="2127" started-at="2017-09-12T19:11:47Z" finished-at="2017-09-12T19:11:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="invalidRegistrationNumber(java.lang.String, java.lang.String)[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="invalidRegistrationNumber" duration-ms="8845" started-at="2017-09-12T19:11:49Z" data-provider="bad_credentials" finished-at="2017-09-12T19:11:58Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Invalid]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[String]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidRegistrationNumber -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:tests.selenium.ATQCQ122@7dc7cbad]" name="tearDown" is-config="true" duration-ms="2541" started-at="2017-09-12T19:11:58Z" finished-at="2017-09-12T19:12:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.selenium.ATQCQ122 -->
+      <class name="tests.selenium.ATQCQ159">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:tests.selenium.ATQCQ159@58651fd0]" name="beforeClass" is-config="true" duration-ms="12749" started-at="2017-09-12T19:09:32Z" finished-at="2017-09-12T19:09:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="testClearButton()[pri:0, instance:tests.selenium.ATQCQ159@58651fd0]" name="testClearButton" duration-ms="2795" started-at="2017-09-12T19:09:45Z" finished-at="2017-09-12T19:09:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testClearButton -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:tests.selenium.ATQCQ159@58651fd0]" name="afterClass" is-config="true" duration-ms="0" started-at="2017-09-12T19:09:47Z" finished-at="2017-09-12T19:09:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- tests.selenium.ATQCQ159 -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite_Community -->
 </testng-results>

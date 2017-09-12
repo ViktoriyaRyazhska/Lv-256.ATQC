@@ -13,7 +13,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Task: Verify that Administrator can't add new community with too long\short Registration number.
+ * Task: Verify that Administrator can't add new community with Registration number in invalid format.
  */
 public class ATQCQ122 {
 	
@@ -28,7 +28,7 @@ public class ATQCQ122 {
 	  
 	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
 	  driver = new FirefoxDriver();
-	  driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+	  driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 	  driver.get("http://regres.herokuapp.com/");
 	  driver.findElement(By.id("login")).clear();
 	  driver.findElement(By.id("password")).clear();
