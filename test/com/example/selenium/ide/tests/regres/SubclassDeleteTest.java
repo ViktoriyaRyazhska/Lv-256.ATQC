@@ -1,161 +1,111 @@
 package com.example.selenium.ide.tests.regres;
 
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.*;
+import com.regres.SubclassesOfObjectsPage;
 import static org.testng.Assert.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.Select;
 
+/**
+ * This Test Class verify that Registrator can delete existing subclass of
+ * objects, can cancel deleting, and cannot delete subclass with exist resources.
+ * 
+ * @author Bohdan Zhyvko
+ *
+ */
 public class SubclassDeleteTest {
-	private WebDriver driver;
-	private WebDriverWait wait;
+	private SubclassesOfObjectsPage subclass;
 
 	@BeforeClass
+	// initial property
 	public void setUpClass() {
-		// initial property
-		System.setProperty("webdriver.gecko.driver", "resources//geckodriver.exe");// "D:\\1\\drivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 10);
-
-		// go to RegRes LogIn page
-		driver.get("http://regres.herokuapp.com/");
-		logIn();
+		subclass = new SubclassesOfObjectsPage();
+		subclass.initWebDriver();
+		subclass.precondition();
 	}
 
-	@BeforeMethod
-	public void setUpMethod() {
-
-		driver.findElement(By.partialLinkText("Subclasses of objects")).click();
-		addSubclass();
-
+	@BeforeGroups(groups = { "TestData" })
+	// create test data for group
+	public void setUpTestData() {
+		subclass.addSubclass();
 	}
 
-	// @Test
-	public void testConfirmMessageAppear() {
-		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
-
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Do you really want to delete this class?");
-	}
-
-	//@Test
-	public void testCancelDelettingByCloseButton() {
-		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Do you really want to delete this class?");
-		driver.findElement(By.cssSelector(".close")).click();
-		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Test']")));
-	}
-
-	@Test
-	public void testCancelDelettingByCancelButton() {
-		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Do you really want to delete this class?");
-
-		// 'Cancel' - button
-		driver.findElement(By.cssSelector(".btn.btn-default")).click();
-
-		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Test']")));
-	}
-
-	@Test
-	public void testDeleteByOkButton() {
-
-		driver.findElement(By.xpath("//td[text() = 'Test']/following::a")).click();
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Do you really want to delete this class?");
-		// 'OK' - button
-		driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")).click();
-
-		assertEquals(driver.findElement(By.xpath("//td[text() = 'Test']")).getText(), "Test");
-	}
-
-	//@Test // existing class is not deleted if resources already exist
-	public void testCancelDelettingBySystemConfirmByOKButton() {
-		driver.findElement(By.xpath("//td[text() = 'Water']/following::a")).click();
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Do you really want to delete this class?");
-		// 'OK' - button
-		driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bootbox-body")));
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"This subclass cannot be deleted because resources already exist");
-		// 'OK' - button
-		driver.findElement(By.xpath("//button[@data-bb-handler='ok']")).click();
-		assertNotNull(driver.findElement(By.xpath("//td[text()='Water']")));
-	}
-	
-	//@Test // existing class is not deleted if resources already exist
-	public void testCancelDelettingBySystemConfirmByCloseButton() {
-		driver.findElement(By.xpath("//td[text() = 'Water']/following::a")).click();
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Do you really want to delete this class?");
-		// 'OK' - button
-		driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bootbox-body")));
-		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"This subclass cannot be deleted because resources already exist");
-		// 'Close' - button
-		driver.findElement(By.cssSelector(".close")).click();
-		assertNotNull(driver.findElement(By.xpath("//td[text() = 'Water']")));
-	}
-
-	@AfterMethod
+	@AfterGroups(groups = { "TestData" }, alwaysRun = true)
+	// always delete test data for group
 	public void deleteTestData() {
-		System.out.println("---"+driver.findElement(By.xpath("//td[text() = 'Test']")).isDisplayed());
-		//driver.navigate().refresh();
-		driver.get(driver.getCurrentUrl());
-		System.out.println("---"+driver.findElement(By.xpath("//td[text() = 'Test']")).isEnabled());
-		if (driver.findElement(By.xpath("//td[text() = 'Test']")).isDisplayed()) {
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[text() = 'Test']/following::a"))).click();
-			// 'OK' - button
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@data-bb-handler='confirm']"))).click();
+		if (subclass.isSubclassPresent("Test")) {
+			subclass.deleteSubclass("Test");
 		}
 	}
 
 	@AfterClass(alwaysRun = true)
+	// always close web driver
 	public void tearDown() {
-		driver.quit();
+		subclass.quit();
+	}
+
+	/*----------------------------------Tests Delete Subclass----------------------------------*/
+	/*
+	 * Verify that existing class can close deletion and the class and all its’
+	 * parameter are not removed.
+	 */
+	@Test(groups = { "TestData" })
+	public void testCancelDelettingByCloseButton() {
+		subclass.clickOnDeleteSubclassButton("Test");
+		assertEquals(subclass.getConfirmMessageText(), "Do you really want to delete this class?");
+		// click on 'Close' - button on confirm message
+		subclass.clickOnCloseButton();
+		assertTrue(subclass.isSubclassPresent("Test"));
 	}
 
 	/*
-	 * Log In to RegRes
+	 * Verify that existing class can cancel deletion and the class and all its’
+	 * parameter are not removed.
 	 */
-	public void logIn() {
-		// choose English localization
-		new Select(driver.findElement(By.id("changeLanguage"))).selectByValue("en");
-		// clear login input field
-		driver.findElement(By.id("login")).clear();
-		// write login
-		driver.findElement(By.id("login")).sendKeys("registrator");
-		// clear password input field
-		driver.findElement(By.id("password")).clear();
-		// write password
-		driver.findElement(By.id("password")).sendKeys("registrator");
-		driver.findElement(By.id("password")).submit();
-		// click on 'Sign In'
+	@Test(groups = { "TestData" })
+	public void testCancelDelettingByCancelButton() {
+		subclass.clickOnDeleteSubclassButton("Test");
+		assertEquals(subclass.getConfirmMessageText(), "Do you really want to delete this class?");
+		// 'Cancel' - button
+		subclass.clickOnCancelButton();
+		assertTrue(subclass.isSubclassPresent("Test"));
 	}
 
 	/*
-	 * Add new Subclass
+	 * Verify that existing class is deleted after clicking 'OK' button on the
+	 * confirmation message.
 	 */
-	public void addSubclass() {
-		// add new subclass
-		driver.findElement(By.linkText("Add new subclass")).click();
-		driver.findElement(By.name("typeName")).clear();
-		driver.findElement(By.name("typeName")).sendKeys("Test");
-		driver.findElement(By.id("clickmeshow")).click();
-		driver.findElement(By.id("myparam0")).clear();
-		driver.findElement(By.id("myparam0")).sendKeys("123450");
-		driver.findElement(By.id("myparam1")).clear();
-		driver.findElement(By.id("myparam1")).sendKeys("123450");
-		new Select(driver.findElement(By.id("myparam2"))).selectByValue("linearParameters");
-		driver.findElement(By.id("valid")).click();
+	@Test(groups = { "TestData" })
+	public void testDeleteByOkButton() {
+		subclass.deleteSubclass("Test");
+		assertFalse(subclass.isSubclassPresent("Test"));
 	}
+
+	/*
+	 * Verify that existing subclass cannot be deleted if resources already exist by
+	 * clicking on 'OK' button on the 'Cannot delete subclass' confirmation message.
+	 */
+	@Test
+	public void testCancelDelettingBySystemConfirmByOKButton() {
+		subclass.deleteSubclass("Water");
+		assertEquals(subclass.getConfirmMessageText(),
+				"This subclass cannot be deleted because resources already exist");
+		// 'OK' - button
+		subclass.clickOnOkButton();
+		assertTrue(subclass.isSubclassPresent("Water"));
+	}
+
+	/*
+	 * Verify that existing subclass cannot be deleted if resources already exist by
+	 * clicking on 'Close' button on the 'Cannot delete subclass' confirmation
+	 * message.
+	 */
+	@Test
+	public void testCancelDelettingBySystemConfirmByCloseButton() {
+		subclass.deleteSubclass("Water");
+		assertEquals(subclass.getConfirmMessageText(),
+				"This subclass cannot be deleted because resources already exist");
+		// click on 'Close' - button on confirm message
+		subclass.clickOnCloseButton();
+		assertTrue(subclass.isSubclassPresent("Water"));
+	}
+
 }

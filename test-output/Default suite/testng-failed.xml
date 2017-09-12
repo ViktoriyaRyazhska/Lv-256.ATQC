@@ -7,10 +7,9 @@
         <methods>
           <include name="testDeleteByOkButton"/>
           <include name="setUpClass"/>
-          <include name="testCancelDelettingBySystemConfirmByOKButton"/>
-          <include name="deleteTestData"/>
           <include name="tearDown"/>
-          <include name="setUpMethod"/>
+          <include name="testCancelDelettingByCancelButton"/>
+          <include name="testCancelDelettingByCloseButton"/>
         </methods>
       </class> <!-- com.example.selenium.ide.tests.regres.SubclassDeleteTest -->
     </classes>
