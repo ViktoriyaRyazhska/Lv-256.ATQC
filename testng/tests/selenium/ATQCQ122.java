@@ -57,7 +57,8 @@ public class ATQCQ122 {
  	    	{"ShortDots" , "00:00:00:00:00"} ,
  	    	{"ShortNoDots" , "0000000000"} ,
  	    	{"LongDots" , "000:000:000:000:00000"} ,
- 	    	{"LongNoDots" , "1111111111111111"}
+ 	    	{"LongNoDots" , "1111111111111111"},
+ 	    	{"Invalid", "String"}
  	    };
  	  }
  	
