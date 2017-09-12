@@ -14,7 +14,7 @@ public class Test145 {
 
 	@Before
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("http://regres.herokuapp.com/");
@@ -30,8 +30,7 @@ public class Test145 {
 		driver.findElement(By.id("unlockUsers")).click();
 		assertEquals("Ви успішно розблокували всіх співвласників", driver.findElement(By.cssSelector("div.bootbox-body")).getText());
 		driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-primary")).click();
-		driver.quit();
-
+		
 		driver.quit();
 	}
 }

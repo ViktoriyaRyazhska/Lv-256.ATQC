@@ -18,7 +18,7 @@ public class Test144 {
 
 	@Before
 	public void Set() {
-		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("http://regres.herokuapp.com/");
@@ -30,9 +30,7 @@ public class Test144 {
 		driver.findElement(By.xpath(".//*[@id='login_fieldset']/div/span[2]/a")).click();
 		Assert.assertEquals(driver.getTitle(), "Register new user");
 		System.out.println("Page title is: " + driver.getTitle());
-
-		driver.quit();
-
+	
 		driver.quit();
 	}
 
@@ -41,8 +39,6 @@ public class Test144 {
 		driver.findElement(By.xpath(".//*[@id='login_fieldset']/div/span[1]/a")).click();
 		Assert.assertEquals(driver.getTitle(), "Login");
 		System.out.println("Page title is: " + driver.getTitle());
-
-		driver.quit();
 
 		driver.quit();
 	}
