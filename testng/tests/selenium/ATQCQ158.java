@@ -115,7 +115,7 @@ public class ATQCQ158 {
    * New community should be created and should appear in the 'Active Communities' table on the 'Communities' page.
    */
   @Test(dataProvider = "comun_name_number")
-  public void createCommunity(String comun_name, String comun_number){
+  public void testCreateCommunity(String comun_name, String comun_number){
 	  
 
 	  driver.findElement(By.name("name")).clear();

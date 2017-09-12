@@ -21,7 +21,7 @@ public class ATQCQ122 {
 	
 	
 	/**
-	 * Logging in before class
+	 * Logging in as admin.
 	 */
   @BeforeClass
   public void beforeClass() {

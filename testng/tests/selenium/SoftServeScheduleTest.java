@@ -42,6 +42,7 @@ public class SoftServeScheduleTest {
 		driver.findElement(By.id("lst-ib")).sendKeys("softserve.academy");
 		driver.findElement(By.id("lst-ib")).submit();
 		driver.findElement(By.linkText("SoftServe IT Academy. Learning Management System")).click();
+		
 		//switch to
 		String winHandleBefore = driver.getWindowHandle();
 		
