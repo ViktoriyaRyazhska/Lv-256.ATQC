@@ -18,10 +18,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Tasks: 1) find the site of Softserve Academy (softserve.academy), move to
  * page with schedule of courses and verify if there is entering of ATQC group
- * 2) find your schedule on the site softserve.academy and verify that you have
+ * Tasks: 2) find your schedule on the site softserve.academy and verify that you have
  * a class today
  */
-public class SeleniumIDE_2 {
+public class SeleniumHomeWork {
     private WebDriver driver;
 
     @BeforeClass(alwaysRun = true)

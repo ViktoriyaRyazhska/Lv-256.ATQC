@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -29,6 +30,7 @@ public class LogInHerokuAllRolesTest {
     @Test(description = "Tests a successful login", dataProvider = "userValidLoginPasswordProvider")
     public void logInHerokuWithValidData(String userLogin, String UserPassword) {
         driver.get("http://regres.herokuapp.com/login");
+        new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
         driver.findElement(By.id("login")).clear();
         driver.findElement(By.id("login")).sendKeys(userLogin);
         driver.findElement(By.id("password")).clear();
@@ -55,17 +57,19 @@ public class LogInHerokuAllRolesTest {
      * This test verifies that Unregistered user can't log in
      * and Error message 'Wrong username or password' shown.
      */
-    @Test(description = "Tests a unsuccessful login", dataProvider = "userInvalidLoginPasswordProvider")
+    @Test(description = "Tests unsuccessful login", dataProvider = "userInvalidLoginPasswordProvider")
     public void logInHerokuWithInvalidData(String userLogin, String UserPassword) {
         driver.get("http://regres.herokuapp.com/login");
+        new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
         driver.findElement(By.id("login")).clear();
         driver.findElement(By.id("login")).sendKeys(userLogin);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys(UserPassword);
         driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+        Assert.assertEquals(driver.getCurrentUrl().toString(),"http://regres.herokuapp.com/login?error");
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='loginForm']/div[1]")));
-        Assert.assertEquals(driver.findElement(By.xpath(".//*[@id='loginForm']/div[1]")).getText(), "Неправильний логін або пароль");
+        Assert.assertEquals(driver.findElement(By.xpath(".//*[@id='loginForm']/div[1]")).getText(), "Wrong login or password");
     }
 
     @DataProvider(name = "userInvalidLoginPasswordProvider")
@@ -87,6 +91,7 @@ public class LogInHerokuAllRolesTest {
     @Test(description = "Tests a blocking login if incorrect password", dataProvider = "userInvalidPasswordProvider", dependsOnMethods = {"logInHerokuWithValidData","logInHerokuWithInvalidData"})
     public void logInHerokuWithInvalidPassword(String userLogin, String UserPassword) {
         driver.get("http://regres.herokuapp.com/login");
+        new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
         //blocked after 3 log in with incorrect password
         for (int i = 1; i < 3; i++) {
             driver.findElement(By.id("login")).clear();
@@ -97,8 +102,8 @@ public class LogInHerokuAllRolesTest {
         }
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='loginForm']/div[1]")));
-        driver.findElement(By.xpath(".//*[@id='loginForm']/div[1]")).getText().contains("Акаунт недоступний,\n" +
-                "повторіть спробу через 5 хвилин");
+        driver.findElement(By.xpath(".//*[@id='loginForm']/div[1]")).getText().contains("Account is suspended,\n" +
+                "try again in 5 minutes");
     }
 
     @DataProvider(name = "userInvalidPasswordProvider")
