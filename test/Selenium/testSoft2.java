@@ -18,6 +18,7 @@ class testSoft2 {
 	@BeforeClass
 	public void setUp() {
 		System.setProperty("webdriver.gecko.driver", "D:\\QA\\ATQC\\selenium drivers\\geckodriver.exe");
+		// System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}

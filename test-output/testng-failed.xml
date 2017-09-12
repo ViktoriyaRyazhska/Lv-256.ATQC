@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Selenium.Atqcq191">
+      <class name="Selenium.CreateCoowner">
         <methods>
-          <include name="verifyCommisionerCommunity"/>
+          <include name="testClearRegistrationForm" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- Selenium.Atqcq191 -->
+      </class> <!-- Selenium.CreateCoowner -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

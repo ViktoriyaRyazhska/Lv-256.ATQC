@@ -26,7 +26,7 @@ public class Atqcq194 {
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {		
 		System.setProperty("webdriver.gecko.driver", "D:\\QA\\ATQC\\selenium drivers\\geckodriver.exe");
-//		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
+//		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		//Set the window size
 		driver.manage().window().setSize(new Dimension(1920,1080));
