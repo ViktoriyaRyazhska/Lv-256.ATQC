@@ -20,9 +20,9 @@ public class TestCases {
 
 	@BeforeClass
 	public void before() {
-		System.setProperty("webdriver.gecko.driver", "D:\\1\\geckodriver\\geckodriver.exe");
-		// System.setProperty("webdriver.gecko.driver",
-		// "E:\\webdriver\\geckodriver\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "D:\\1\\geckodriver\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "E:\\webdriver\\geckodriver\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		// driver = new FirefoxDriver();
 		// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 

@@ -13,16 +13,18 @@ public class ATQCQ135 {
 
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "D:\\1\\geckodriver\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "D:\\1\\geckodriver\\geckodriver.exe");
 		// System.setProperty("webdriver.gecko.driver",
 		// "E:\\webdriver\\geckodriver\\geckodriver.exe");
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\drivers\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		// Go to http://regres.herokuapp.com/
 		driver.get("http://regres.herokuapp.com/");
+
+		// choose English localization
+		new Select(driver.findElement(By.id("changeLanguage"))).selectByValue("en");
 
 		// login as Administrator
 		driver.findElement(By.id("login")).clear();
@@ -33,6 +35,7 @@ public class ATQCQ135 {
 
 		// Click on ‘Settings’ tab
 		driver.findElement(By.partialLinkText("Settings")).click();
+
 	}
 
 	@Test
@@ -54,7 +57,7 @@ public class ATQCQ135 {
 
 		// verify that register link is present
 		assertTrue(isElementPresent(By.partialLinkText("Register")));
-		//assertTrue(isElementPresent(By.xpath("//a[contains(@href,'/register')]")));
+		// assertTrue(isElementPresent(By.xpath("//a[contains(@href,'/register')]")));
 		// assertEquals(driver.findElement(By.xpath("//a[contains(@href,'/register')]")).getText(),"Çàðåºñòðóâàòèñÿ");
 
 	}
