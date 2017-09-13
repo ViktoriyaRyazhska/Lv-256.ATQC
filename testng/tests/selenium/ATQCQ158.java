@@ -33,8 +33,6 @@ public class ATQCQ158 {
 	
 	WebDriver driver;
 	
-	
-	
 	/**
 	 * Logging in as admin.
 	 */
@@ -61,8 +59,8 @@ public class ATQCQ158 {
 	public void beforeMethod() {
 
 		driver.findElement(
-				By.xpath("//*[@class='nav navbar-nav']//a[@href='/administrator/communities/show-all-communities']"))
-				.click();
+ 				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
+ 				.click();
 		driver.findElement(By.xpath("//p[@class='pull-left']/*[@class='btn btn-success']")).click();
 	}
 	
@@ -82,8 +80,8 @@ public class ATQCQ158 {
 		Object[] parameters = result.getParameters(); // get current parametrs
 
 		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='" + parameters[0].toString() 
-				+ "']/../../td[text()='" + parameters[1].toString() + "']/..//*[@id='deletecommunity']")).click(); //Locating recently created Community 
-																												   //and clicking on delete
+				+ "']/following::a[@id='deletecommunity']")).click(); //Locating recently created Community 
+																	  //and clicking on delete
 		driver.findElement(By.xpath("//*[@data-bb-handler='confirm']")).click(); // Confirmation
 																					// window
 
@@ -106,9 +104,7 @@ public class ATQCQ158 {
     	{"New community 4" , "999:99:99:999:99999"}
     };
   }
-
-  
-  
+   
   /**
    * This test verifies possibility of administrator
    * to add new Community (Communities tab/Add new community button)
@@ -128,14 +124,10 @@ public class ATQCQ158 {
 	  	/**
 	  	 * Verify if recently created community is present in the 'Communities' table
 	  	 */
-		Assert.assertTrue((driver
+		Assert.assertNotNull((driver
 				.findElement(By.xpath(
-						"//tr[@class='commun']//*[text()='" + comun_name + "']/../../td[text()='" + comun_number + "']"))!=null)); 
+						"//tr[@class='commun']//*[text()='" + comun_name + "']")))); 
 		
   }
   
-  
-  
-  
-
 }

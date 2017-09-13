@@ -54,7 +54,9 @@ public class ATQCQ159 {
   @Test
   public void testClearButton(){
 	  
-	  driver.findElement(By.xpath("//*[@class='nav navbar-nav']//a[@href='/administrator/communities/show-all-communities']")).click(); //href???
+	  driver.findElement(
+				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
+				.click(); 
 	  driver.findElement(By.xpath("//p[@class='pull-left']/*[@class='btn btn-success']")).click();
 	 
 	  driver.findElement(By.name("name")).clear();

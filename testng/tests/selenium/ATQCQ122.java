@@ -46,7 +46,7 @@ public class ATQCQ122 {
  	public void beforeMethod() {
 
  		driver.findElement(
- 				By.xpath("//*[@class='nav navbar-nav']//a[@href='/administrator/communities/show-all-communities']"))
+ 				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
  				.click();
  		driver.findElement(By.xpath("//p[@class='pull-left']/*[@class='btn btn-success']")).click();
  	}
@@ -78,13 +78,13 @@ public class ATQCQ122 {
  		  
  		  driver.findElement(By.xpath("//input[@type='submit']")).click(); //submit
  		  
- 		  Assert.assertTrue(driver.findElement(By.id("registrationNumber.errors"))!=null); //verify that error message has appeared
+ 		  Assert.assertNotNull(driver.findElement(By.id("registrationNumber.errors"))); //verify that error message has appeared
  		  
  		  driver.get("http://regres.herokuapp.com/administrator/communities/show-all-communities"); //get back to the 'all communities' tab
   
  		  
  		 Assert.assertTrue( driver.findElements(By.xpath("//tr[@class='commun']//*[text()='" + name  //verify that new community
- 				+ "']/../../td[text()='" + number + "']")).size()<1);								 // has not been created
+ 				+ "']")).size()<1);								                                    // has not been created
  	}
  	
  	

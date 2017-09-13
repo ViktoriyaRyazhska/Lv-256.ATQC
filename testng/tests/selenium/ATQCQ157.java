@@ -47,8 +47,8 @@ public class ATQCQ157 {
 	public void beforeMethod() {
 
 		driver.findElement(
-				By.xpath("//*[@class='nav navbar-nav']//a[@href='/administrator/communities/show-all-communities']"))
-				.click();
+ 				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
+ 				.click();
 		driver.findElement(By.xpath("//p[@class='pull-left']/*[@class='btn btn-success']")).click();
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("registrationNumber")).clear();
@@ -68,7 +68,7 @@ public class ATQCQ157 {
 				.click(); // open Communities tab
 
 		driver.findElement(By
-				.xpath("//tr[@class='commun']//*[text()='SameName']/../../td[text()='000:00:00:000:00001']/..//*[@id='deletecommunity']"))
+				.xpath("//tr[@class='commun']//*[text()='SameName']/following::a[@id='deletecommunity']"))
 				.click(); // Locating recently created Community
 							// and clicking on delete
 		driver.findElement(By.xpath("//*[@data-bb-handler='confirm']")).click(); // Confirmation
@@ -103,12 +103,12 @@ public class ATQCQ157 {
 		driver.findElement(By.name("registrationNumber")).sendKeys("000:00:00:000:00001");
 		driver.findElement(By.xpath("//input[@type='submit']")).click();
 		
-		Assert.assertTrue(driver.findElement(By.id("name.errors"))!=null); //verify that error message has appeared
+		Assert.assertNotNull(driver.findElement(By.id("name.errors"))); //verify that error message has appeared
 		
 		driver.get("http://regres.herokuapp.com/administrator/communities/show-all-communities"); //get back to the 'all communities' tab
 		Assert.assertTrue(driver
 				.findElements(
-						By.xpath("//tr[@class='commun']//*[text()='SameName']/../../td[text()='000:00:00:000:00001']")) //verify that new community
+						By.xpath("//tr[@class='commun']//*[text()='SameName']")) //verify that new community
 				.size() == 1);                                                                                          //is not created
 	}
 	
