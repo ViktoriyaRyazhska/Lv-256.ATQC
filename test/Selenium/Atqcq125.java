@@ -1,11 +1,7 @@
 package Selenium;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -20,27 +16,41 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import home.Dog;
+/**
+ * First test case verify that error messages are shown when creating new user
+ * with invalid data. Second test case verify that after click on ‘Clear form’
+ * button on 'Register new user' page makes all fields empty.
+ * 
+ * @author Kryvenko Yaroslava
+ *
+ */
 
-public class ErrorMessagesCreatingCoowner {
-
+public class Atqcq125 {
 	private WebDriver driver;
 
 	/**
-	 * In this method author sets up driver and logging in
+	 * This method sets up driver
 	 */
 	@BeforeClass()
 	public void setUp() throws Exception {
 		System.setProperty("webdriver.gecko.driver", "D:\\QA\\ATQC\\selenium drivers\\geckodriver.exe");
+//		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		// login:
+		logIn();
+	}
+
+	/**
+	 * This method login into system as Administrator
+	 */
+	public void logIn() {
+		// login as Administrator:
 		driver.get("http://regres.herokuapp.com/" + "/login?logout");
 		driver.findElement(By.id("login")).clear();
 		driver.findElement(By.id("login")).sendKeys("admin");
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("admin");
-		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();//Click on 'Sign in' button
 	}
 
 	@DataProvider
@@ -48,6 +58,9 @@ public class ErrorMessagesCreatingCoowner {
 		return new Object[][] { { UserRepo.getInvalidUser1() }, { UserRepo.getInvalidUser2() } };
 	}
 
+	/**
+	 * This method fills registration form
+	 */
 	public void fillRegistrationForm(User user) {
 		driver.findElement(By.partialLinkText("Зареєструвати співвласника")).click();
 		driver.findElement(By.id("firstName")).clear();
@@ -66,30 +79,48 @@ public class ErrorMessagesCreatingCoowner {
 				.selectByVisibleText(user.getTerritorialCommunity());
 	}
 
+	/**
+	 * This test verify that error messages are shown when trying create new user
+	 * with invalid data.
+	 */
 	@Test(dataProvider = "registrationInvalidData")
-	public void testAppiaringErrorMessages(User user) {
+	public void testAppearingErrorMessages(User user) {
 
 		fillRegistrationForm(user);
-		driver.findElement(By.id("submit")).click();
+		driver.findElement(By.id("submit")).click();//Click on 'Send' button
 
-		// verify that error messages are present on the page:
-		new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName.errors")));
-		System.out.println(user.getFirstNameErrors());
+		// check that error messages are present on the page:
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName.errors")));
 		assertEquals(driver.findElement(By.id("firstName.errors")).getText(), user.getFirstNameErrors());
 		assertEquals(driver.findElement(By.id("lastName.errors")).getText(), user.getLastNameErrors());
 		assertEquals(driver.findElement(By.id("email.errors")).getText(), user.getEmailErrors());
 		assertEquals(driver.findElement(By.id("login.errors")).getText(), user.getLoginErrors());
 		assertEquals(driver.findElement(By.id("password.errors")).getText(), user.getPasswordErrors());
 		assertEquals(driver.findElement(By.id("confirmPassword.errors")).getText(), user.getConfirmPasswordErrors());
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-		// verify that error messages have red color:
+		checkColorErrorMessages();
+		checkCoownerInTable(user);
+	}
+
+	/**
+	 * This method check that error messages have red color
+	 */
+	public void checkColorErrorMessages() {
 		assertEquals(driver.findElement(By.id("firstName.errors")).getCssValue("color"), "rgb(255, 0, 0)");
 		assertEquals(driver.findElement(By.id("lastName.errors")).getCssValue("color"), "rgb(255, 0, 0)");
 		assertEquals(driver.findElement(By.id("email.errors")).getCssValue("color"), "rgb(255, 0, 0)");
 		assertEquals(driver.findElement(By.id("login.errors")).getCssValue("color"), "rgb(255, 0, 0)");
 		assertEquals(driver.findElement(By.id("password.errors")).getCssValue("color"), "rgb(255, 0, 0)");
 		assertEquals(driver.findElement(By.id("confirmPassword.errors")).getCssValue("color"), "rgb(255, 0, 0)");
+	}
 
+	/**
+	 * This method check if a co-owner with invalid registration data is not
+	 * created.
+	 */
+	public void checkCoownerInTable(User user) {
 		// go to 'non-confirmed' page :
 		driver.findElement(By.xpath("//a[@href=\"#\" and @data-toggle=\"dropdown\"]")).click();// 'Community' item
 		driver.findElement(By.partialLinkText("Непідтверджені")).click();
@@ -100,17 +131,21 @@ public class ErrorMessagesCreatingCoowner {
 		driver.findElement(By.id("inputIndex3")).sendKeys(user.getLogin());
 		driver.findElement(By.id("bth-search")).click();// Search button
 
-		assertEquals(driver.findElement(By.cssSelector(".dataTables_empty")).getText(), "В таблиці немає даних"); 
 		// verify that text message is present in the tab
+		assertEquals(driver.findElement(By.cssSelector(".dataTables_empty")).getText(), "В таблиці немає даних");
 	}
 
+	/**
+	 * This test check that after click on ‘Clear form’ button registration form
+	 * makes empty.
+	 */
 	@Test(dataProvider = "registrationInvalidData")
 	public void testClearRegistrationForm(User user) {
-
 		fillRegistrationForm(user);
-		driver.findElement(By.cssSelector(".btn.btn-warning.reset")).click(); // click on Reset button
+		driver.findElement(By.cssSelector(".btn.btn-warning.reset")).click(); // click on 'Reset' button
 
-		// verify that manual registration page is still opened::
+		// check that manual registration page is still opened::
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		new WebDriverWait(driver, 10)
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".btn.btn-warning.reset")));
 
@@ -129,5 +164,4 @@ public class ErrorMessagesCreatingCoowner {
 		// close browser:
 		driver.quit();
 	}
-
 }

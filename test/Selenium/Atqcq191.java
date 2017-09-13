@@ -35,12 +35,13 @@ public class Atqcq191 {
 	 * Set up driver and logging in
 	 */
 	@BeforeClass()
-	public void setUp() throws Exception {
+	public void setUp() throws Exception{
 		// driver sets up
 		System.setProperty("webdriver.gecko.driver", "D:\\QA\\ATQC\\selenium drivers\\geckodriver.exe");
+//		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-				// login as commissioner:
+		// login as commissioner:
 		driver.get("http://regres.herokuapp.com/" + "/login?logout");
 		driver.findElement(By.id("login")).clear();
 		driver.findElement(By.id("login")).sendKeys("qwerty");
@@ -53,17 +54,16 @@ public class Atqcq191 {
 		driver.findElement(By.partialLinkText("Активні")).click();
 	}
 	/**
-	 * This method find Commissioner community
+	 * This test find Commissioners community and check 
 	 */
 	@Test(dataProvider = "commisionerLoggin")
-	public void verifyCommisionerCommunity(String login, String password) throws Exception {
+	public void verifyCommisionerCommunity(String login, String password) throws Exception{
 		
 		// Search commissioner in table
 		driver.findElement(By.id("inputIndex3")).click();
 		driver.findElement(By.id("inputIndex3")).clear();
 		driver.findElement(By.id("inputIndex3")).sendKeys(login);
 		driver.findElement(By.id("bth-search")).click();// Search button
-		// String commisionerCommnuityName = driver.findElement(By.className("territorialCommunity_name")).getText();
 		new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='example']/tbody/tr[1]/td[5]")));
 		String commissionerCommnuityName = driver.findElement(By.xpath(".//*[@id='example']//tbody/tr[1]/td[5]"))
 				.getText(); // Remember name of commissioner community
@@ -78,17 +78,17 @@ public class Atqcq191 {
 			// Verify every row with commissioner community name
 			new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("edit")));
 			List<WebElement> tableRows = driver.findElements(By.xpath("//tbody/tr"));
-			for (WebElement tableRow : tableRows) {
-				// assertTrue(true,tableRow.findElements(By.className("territorialCommunity_name")).contains(commisionerCommnuityName));
+			for (WebElement tableRow : tableRows) {				
 				assertEquals(tableRow.findElement(By.className("territorialCommunity_name")).getText(),
 						commissionerCommnuityName);// community name of all users should have the same name with
-													// community of commissioner
-			}
+													// community of commissioner			
+			}			
 		}
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void tearDown() throws Exception {
+		// close browser:
 		driver.quit();
 	}
 }

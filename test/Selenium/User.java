@@ -14,7 +14,6 @@ public class User {
 	private String loginErrors;
 	private String passwordErrors;
 	private String confirmPasswordErrors;
-
 	
 	public User(String first_Name, String last_Name, String email, String login,
 			String password, String confirm_Password, String territorialCommunity, String firstNameErrors,

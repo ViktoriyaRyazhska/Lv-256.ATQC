@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="23130" started-at="2017-09-13T10:20:46Z" finished-at="2017-09-13T10:21:09Z">
+  <suite name="Default suite" duration-ms="12163" started-at="2017-09-13T18:53:59Z" finished-at="2017-09-13T18:54:11Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="23130" started-at="2017-09-13T10:20:46Z" finished-at="2017-09-13T10:21:09Z">
-      <class name="Selenium.ErrorMessagesCreatingCoowner">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="setUp" is-config="true" duration-ms="11265" started-at="2017-09-13T13:20:46Z" finished-at="2017-09-13T13:20:57Z">
+    <test name="Default test" duration-ms="12163" started-at="2017-09-13T18:53:59Z" finished-at="2017-09-13T18:54:11Z">
+      <class name="Selenium.Atqcq191">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.Atqcq191@643b1d11]" name="setUp" is-config="true" duration-ms="10531" started-at="2017-09-13T21:53:59Z" finished-at="2017-09-13T21:54:10Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testAppiaringErrorMessages(Selenium.User)[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="testAppiaringErrorMessages" duration-ms="5940" started-at="2017-09-13T13:20:57Z" data-provider="registrationInvalidData" finished-at="2017-09-13T13:21:03Z">
+        <test-method status="PASS" signature="verifyCommisionerCommunity(java.lang.String, java.lang.String)[pri:0, instance:Selenium.Atqcq191@643b1d11]" name="verifyCommisionerCommunity" duration-ms="1003" started-at="2017-09-13T21:54:10Z" data-provider="commisionerLoggin" finished-at="2017-09-13T21:54:11Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Selenium.User@1c5920df]]>
+                <![CDATA[qwerty]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[qwerty]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testAppiaringErrorMessages -->
-        <test-method status="PASS" signature="testAppiaringErrorMessages(Selenium.User)[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="testAppiaringErrorMessages" duration-ms="5054" started-at="2017-09-13T13:21:03Z" data-provider="registrationInvalidData" finished-at="2017-09-13T13:21:08Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Selenium.User@57bc27f5]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testAppiaringErrorMessages -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="tearDown" is-config="true" duration-ms="837" started-at="2017-09-13T13:21:08Z" finished-at="2017-09-13T13:21:09Z">
+        </test-method> <!-- verifyCommisionerCommunity -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.Atqcq191@643b1d11]" name="tearDown" is-config="true" duration-ms="618" started-at="2017-09-13T21:54:11Z" finished-at="2017-09-13T21:54:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- Selenium.ErrorMessagesCreatingCoowner -->
+      </class> <!-- Selenium.Atqcq191 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
