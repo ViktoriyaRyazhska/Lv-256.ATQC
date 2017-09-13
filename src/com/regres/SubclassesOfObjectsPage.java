@@ -21,9 +21,11 @@ public class SubclassesOfObjectsPage {
 
 	public void initWebDriver() {
 		// initial property
-		System.setProperty("webdriver.gecko.driver", "resources//geckodriver.exe");// "D:\\1\\drivers\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", 
+				"resources//geckodriver.exe");// "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts()
+			.implicitlyWait(10, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 10);
 	}
 
@@ -32,7 +34,7 @@ public class SubclassesOfObjectsPage {
 	 */
 	public void precondition() {
 		// go to RegRes LogIn page
-		driver.get("http://regres.herokuapp.com/");
+		driver.get("http://regres.herokuapp.com/");//"http://java.training.local:8080/registrator/");
 		// Log in to RegRes
 		logIn();
 		// Click on 'Subclasses of objects' tab
@@ -44,7 +46,8 @@ public class SubclassesOfObjectsPage {
 	 */
 	public void logIn() {
 		// choose English localization
-		new Select(driver.findElement(By.id("changeLanguage"))).selectByValue("en");
+		new Select(driver.findElement(By.id("changeLanguage")))
+					.selectByValue("en");
 		// clear login input field
 		driver.findElement(By.id("login")).clear();
 		// write login
@@ -52,7 +55,8 @@ public class SubclassesOfObjectsPage {
 		// clear password input field
 		driver.findElement(By.id("password")).clear();
 		// write password
-		driver.findElement(By.id("password")).sendKeys("registrator");
+		driver.findElement(By.id("password"))
+			.sendKeys("registrator");
 		driver.findElement(By.id("password")).submit();
 		// click on 'Sign In'
 	}
@@ -67,13 +71,6 @@ public class SubclassesOfObjectsPage {
 		driver.findElement(By.linkText("Add new subclass")).click();
 		driver.findElement(By.name("typeName")).clear();
 		driver.findElement(By.name("typeName")).sendKeys("Test");
-		// driver.findElement(By.id("clickmeshow")).click();
-		// driver.findElement(By.id("myparam0")).clear();
-		// driver.findElement(By.id("myparam0")).sendKeys("123450");
-		// driver.findElement(By.id("myparam1")).clear();
-		// driver.findElement(By.id("myparam1")).sendKeys("123450");
-		// new
-		// Select(driver.findElement(By.id("myparam2"))).selectByValue("linearParameters");
 		driver.findElement(By.id("valid")).click();
 	}
 	
@@ -86,12 +83,14 @@ public class SubclassesOfObjectsPage {
 	 */
 
 	public String getConfirmMessageText() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bootbox-body")));
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.className("bootbox-body")));
 		return driver.findElement(By.className("bootbox-body")).getText();
 	}
 
 	/**
-	 * Get true - if subclass present on 'Subclasses' table, false - if subclass is
+	 * Get true - if subclass present on 'Subclasses' table,
+	 * false - if subclass is
 	 * not present on 'Subclasses' table
 	 * 
 	 * @param subclassName
@@ -101,9 +100,14 @@ public class SubclassesOfObjectsPage {
 	public boolean isSubclassPresent(String subclassName) {
 		// driver.get(driver.getCurrentUrl());
 		driver.navigate().refresh();
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
-		boolean exists = !(driver.findElements(By.xpath("//td[text() = '" + subclassName + "']")).isEmpty());
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts()
+			.implicitlyWait(0, TimeUnit.MILLISECONDS);
+		
+		boolean exists = !(driver.findElements(By
+				.xpath("//td[text() = '" + subclassName + "']"))
+			.isEmpty());
+		driver.manage().timeouts()
+			.implicitlyWait(10, TimeUnit.SECONDS);
 		return exists;
 	}
 
@@ -116,23 +120,31 @@ public class SubclassesOfObjectsPage {
 	public void deleteSubclass(String subclassName) {
 		clickOnDeleteSubclassButton(subclassName);
 		// Wait for delete confirm message
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bootbox-body")));
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By
+						.className("bootbox-body")));
 		// Clock 'OK' - button
 		clickOnOkButton();
 	}
 
 	/**
-	 * Click on subclass 'Delete' button by subclass name on confirm message
+	 * Click on subclass 'Delete' button by subclass
+	 *  name on confirm message
 	 */
 	public void clickOnDeleteSubclassButton(String subclassName) {
-		driver.findElement(By.xpath("//td[text() = '" + subclassName + "']/following::a")).click();
+		driver.findElement(By
+				.xpath("//td[text() = '" 
+						+ subclassName + "']/following::a"))
+		.click();
 	}
 
 	/**
 	 * Click on 'OK' button on confirm message
 	 */
 	public void clickOnOkButton() {
-		driver.findElement(By.xpath("//button[@class = 'btn btn-primary']")).click();
+		driver.findElement(By
+				.xpath("//button[@class = 'btn btn-primary']"))
+		.click();
 	}
 
 	/**
@@ -146,14 +158,17 @@ public class SubclassesOfObjectsPage {
 	 * Click on 'Cancel' button on confirm message
 	 */
 	public void clickOnCancelButton() {
-		driver.findElement(By.cssSelector(".btn.btn-default")).click();
+		driver.findElement(By.cssSelector(".btn.btn-default"))
+			.click();
 	}
 
 	/**
 	 * Click on 'Subclasses of objects' tab
 	 */
 	public void clickOnSubclassesTab() {
-		driver.findElement(By.partialLinkText("Subclasses of objects")).click();
+		driver.findElement(By
+				.partialLinkText("Subclasses of objects"))
+					.click();
 	}
 
 	/*----------------------------------Close driver----------------------------------*/

@@ -1,12 +1,14 @@
-package com.regres;
+package test.com.regres;
 
 import org.testng.annotations.*;
 import com.regres.SubclassesOfObjectsPage;
 import static org.testng.Assert.*;
 
 /**
- * This Test Class verify that Registrator can delete existing subclass of
- * objects, can cancel deleting, and cannot delete subclass with exist resources.
+ * This Test Class verify that Registrator 
+ * can delete existing subclass of
+ * objects, can cancel deleting, and cannot 
+ * delete subclass with exist resources.
  * 
  * @author Bohdan Zhyvko
  *
@@ -44,33 +46,38 @@ public class SubclassDeleteTest {
 
 	/*----------------------------------Tests Delete Subclass----------------------------------*/
 	/*
-	 * Verify that existing class can close deletion and the class and all its’
+	 * Verify that existing class can close deletion and 
+	 * the class and all its’
 	 * parameter are not removed.
 	 */
 	@Test(groups = { "TestData" })
 	public void testCancelDelettingByCloseButton() {
 		subclass.clickOnDeleteSubclassButton("Test");
-		assertEquals(subclass.getConfirmMessageText(), "Do you really want to delete this class?");
+		assertEquals(subclass.getConfirmMessageText(), 
+				"Do you really want to delete this class?");
 		// click on 'Close' - button on confirm message
 		subclass.clickOnCloseButton();
 		assertTrue(subclass.isSubclassPresent("Test"));
 	}
 
 	/*
-	 * Verify that existing class can cancel deletion and the class and all its’
+	 * Verify that existing class can cancel deletion and 
+	 * the class and all
 	 * parameter are not removed.
 	 */
 	@Test(groups = { "TestData" })
 	public void testCancelDelettingByCancelButton() {
 		subclass.clickOnDeleteSubclassButton("Test");
-		assertEquals(subclass.getConfirmMessageText(), "Do you really want to delete this class?");
+		assertEquals(subclass.getConfirmMessageText(),
+				"Do you really want to delete this class?");
 		// 'Cancel' - button
 		subclass.clickOnCancelButton();
 		assertTrue(subclass.isSubclassPresent("Test"));
 	}
 
 	/*
-	 * Verify that existing class is deleted after clicking 'OK' button on the
+	 * Verify that existing class is deleted 
+	 * after clicking 'OK' button on the
 	 * confirmation message.
 	 */
 	@Test(groups = { "TestData" }, priority = 1)
@@ -80,29 +87,34 @@ public class SubclassDeleteTest {
 	}
 
 	/*
-	 * Verify that existing subclass cannot be deleted if resources already exist by
-	 * clicking on 'OK' button on the 'Cannot delete subclass' confirmation message.
+	 * Verify that existing subclass cannot be deleted 
+	 * if resources already exist by
+	 * clicking on 'OK' button on the 'Cannot delete subclass' 
+	 * confirmation message.
 	 */
 	@Test
 	public void testCancelDelettingBySystemConfirmByOKButton() {
 		subclass.deleteSubclass("Water");
 		assertEquals(subclass.getConfirmMessageText(),
-				"This subclass cannot be deleted because resources already exist");
+				"This subclass cannot be deleted because "
+				+ "resources already exist");
 		// 'OK' - button
 		subclass.clickOnOkButton();
 		assertTrue(subclass.isSubclassPresent("Water"));
 	}
 
 	/*
-	 * Verify that existing subclass cannot be deleted if resources already exist by
-	 * clicking on 'Close' button on the 'Cannot delete subclass' confirmation
-	 * message.
+	 * Verify that existing subclass cannot be deleted 
+	 * if resources already exist by
+	 * clicking on 'Close' button on the 'Cannot delete subclass' 
+	 * confirmation message.
 	 */
 	@Test
 	public void testCancelDelettingBySystemConfirmByCloseButton() {
 		subclass.deleteSubclass("Water");
 		assertEquals(subclass.getConfirmMessageText(),
-				"This subclass cannot be deleted because resources already exist");
+				"This subclass cannot be deleted because "
+				+ "resources already exist");
 		// click on 'Close' - button on confirm message
 		subclass.clickOnCloseButton();
 		assertTrue(subclass.isSubclassPresent("Water"));
