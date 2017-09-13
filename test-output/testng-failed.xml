@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Selenium.CreateCoowner">
+      <class name="Selenium.ErrorMessagesCreatingCoowner">
         <methods>
-          <include name="testClearRegistrationForm" invocation-numbers="0"/>
           <include name="tearDown"/>
+          <include name="testCreateCownerWithInvalidData" invocation-numbers="0"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- Selenium.CreateCoowner -->
+      </class> <!-- Selenium.ErrorMessagesCreatingCoowner -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

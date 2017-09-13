@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Default_suite">
-              <span class="suite-name border-failed">Default suite</span>
+              <span class="suite-name border-passed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\XTreme.ws\AppData\Local\Temp\testng-eclipse-1636546147\testng-customsuite.xml</span>
+                    <span>C:\Users\XTreme.ws\AppData\Local\Temp\testng-eclipse-1700078323\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -91,21 +91,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content failed suite-Default_suite">
+                    <div class="method-list-content passed suite-Default_suite">
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="Selenium.CreateCoowner" hash-for-method="testClearRegistrationForm(yara, yara, 111@111.com, 33333333333333333333, 111111, 111111, Італія)">testClearRegistrationForm(yara, yara, 111@111.com, 33333333333333333333, 111111, 111111, Італія)</a> <!-- method navigator-link -->
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="Selenium.ErrorMessagesCreatingCoowner" hash-for-method="testCreateCownerWithInvalidData(1111, 1111, 1111, $%#@, 11, 11111, Ukraine, Некоректне введення, лише літери, Некоректне введення, л...)">testCreateCownerWithInvalidData(1111, 1111, 1111, $%#@, 11, 11111, Ukraine, Некоректне введення, лише літери, Некоректне введення, л...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Default_suite -->
+                    </div> <!-- method-list-content passed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,61 +117,26 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-failed">
+          <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">Selenium.CreateCoowner</span>
+              <img src="passed.png"/>
+              <span class="class-name">Selenium.ErrorMessagesCreatingCoowner</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testClearRegistrationForm(yara, yara, 111@111.com, 33333333333333333333, 111111, 111111, Італія)">
-                  </a> <!-- testClearRegistrationForm(yara, yara, 111@111.com, 33333333333333333333, 111111, 111111, Італія) -->
-                  <span class="method-name">testClearRegistrationForm</span>
-                  <span class="parameters">(yara, yara, 111@111.com, 33333333333333333333, 111111, 111111, Італія)</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [0] but found [70]
-	at org.testng.Assert.fail(Assert.java:93)
-	at org.testng.Assert.failNotEquals(Assert.java:512)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:134)
-	at org.testng.Assert.assertEquals(Assert.java:115)
-	at org.testng.Assert.assertEquals(Assert.java:388)
-	at org.testng.Assert.assertEquals(Assert.java:398)
-	at Selenium.CreateCoowner.testClearRegistrationForm(CreateCoowner.java:174)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-	at org.testng.TestRunner.privateRun(TestRunner.java:744)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
-	at org.testng.TestNG.runSuites(TestNG.java:1144)
-	at org.testng.TestNG.run(TestNG.java:1115)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-
-</div> <!-- stack-trace -->
+                  <a name="testCreateCownerWithInvalidData(1111, 1111, 1111, $%#@, 11, 11111, Ukraine, Некоректне введення, лише літери, Некоректне введення, л...)">
+                  </a> <!-- testCreateCownerWithInvalidData(1111, 1111, 1111, $%#@, 11, 11111, Ukraine, Некоректне введення, лише літери, Некоректне введення, л...) -->
+                  <span class="method-name">testCreateCownerWithInvalidData</span>
+                  <span class="parameters">(1111, 1111, 1111, $%#@, 11, 11111, Ukraine, Некоректне введення, лише літери, Некоректне введення, лише літери, Введіть коректну адресу, Логін повинен складатись лише з латинських літер і/або цифр, від 6 до 20 символів, Пароль повинен складатись з латинських літер і/або цифр, від 6 до 20 символів, Підтвердження паролю неправильне)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-failed -->
+          </div> <!-- suite-Default_suite-class-passed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\XTreme.ws\AppData\Local\Temp\testng-eclipse-1636546147\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\XTreme.ws\AppData\Local\Temp\testng-eclipse-1700078323\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -180,7 +145,7 @@
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Selenium.CreateCoowner&quot;/&gt;
+      &lt;class name=&quot;Selenium.ErrorMessagesCreatingCoowner&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -222,14 +187,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testClearRegistrationForm')
-data.setCell(0, 2, 'Selenium.CreateCoowner')
-data.setCell(0, 3, 4927);
+data.setCell(0, 1, 'testCreateCownerWithInvalidData')
+data.setCell(0, 2, 'Selenium.ErrorMessagesCreatingCoowner')
+data.setCell(0, 3, 5499);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 4 seconds</span>
+              <span class="suite-total-time">Total running time: 5 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -255,20 +220,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Selenium.CreateCoowner</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Selenium.ErrorMessagesCreatingCoowner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">testClearRegistrationForm(yara, yara, 111@111.com, 33333333333333333333, 111111, 111111, Італія)</span>
-                <span class="method-start">15280 ms</span>
+                <span class="method-name">testCreateCownerWithInvalidData(1111, 1111, 1111, $%#@, 11, 11111, Ukraine, Некоректне введення, лише літери, Некоректне введення, л...)</span>
+                <span class="method-start">9361 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">20213 ms</span>
+                <span class="method-start">14861 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
