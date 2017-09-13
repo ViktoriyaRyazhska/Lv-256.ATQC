@@ -1,88 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="15460" started-at="2017-09-13T06:50:15Z" finished-at="2017-09-13T06:50:30Z">
+  <suite name="Default suite" duration-ms="23130" started-at="2017-09-13T10:20:46Z" finished-at="2017-09-13T10:21:09Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="15460" started-at="2017-09-13T06:50:15Z" finished-at="2017-09-13T06:50:30Z">
+    <test name="Default test" duration-ms="23130" started-at="2017-09-13T10:20:46Z" finished-at="2017-09-13T10:21:09Z">
       <class name="Selenium.ErrorMessagesCreatingCoowner">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="setUp" is-config="true" duration-ms="9337" started-at="2017-09-13T09:50:15Z" finished-at="2017-09-13T09:50:24Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="setUp" is-config="true" duration-ms="11265" started-at="2017-09-13T13:20:46Z" finished-at="2017-09-13T13:20:57Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testCreateCownerWithInvalidData(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="testCreateCownerWithInvalidData" duration-ms="5499" started-at="2017-09-13T09:50:24Z" data-provider="registrationInvalidData" finished-at="2017-09-13T09:50:30Z">
+        <test-method status="PASS" signature="testAppiaringErrorMessages(Selenium.User)[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="testAppiaringErrorMessages" duration-ms="5940" started-at="2017-09-13T13:20:57Z" data-provider="registrationInvalidData" finished-at="2017-09-13T13:21:03Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[1111]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[1111]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[1111]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[$%#@]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[11]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[11111]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[Ukraine]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[Некоректне введення, лише літери]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[Некоректне введення, лише літери]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[Введіть коректну адресу]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Логін повинен складатись лише з латинських літер і/або цифр, від 6 до 20 символів]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Пароль повинен складатись з латинських літер і/або цифр, від 6 до 20 символів]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Підтвердження паролю неправильне]]>
+                <![CDATA[Selenium.User@1c5920df]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreateCownerWithInvalidData -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="tearDown" is-config="true" duration-ms="583" started-at="2017-09-13T09:50:30Z" finished-at="2017-09-13T09:50:30Z">
+        </test-method> <!-- testAppiaringErrorMessages -->
+        <test-method status="PASS" signature="testAppiaringErrorMessages(Selenium.User)[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="testAppiaringErrorMessages" duration-ms="5054" started-at="2017-09-13T13:21:03Z" data-provider="registrationInvalidData" finished-at="2017-09-13T13:21:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Selenium.User@57bc27f5]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAppiaringErrorMessages -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.ErrorMessagesCreatingCoowner@643b1d11]" name="tearDown" is-config="true" duration-ms="837" started-at="2017-09-13T13:21:08Z" finished-at="2017-09-13T13:21:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

@@ -6,7 +6,7 @@
       <class name="Selenium.ErrorMessagesCreatingCoowner">
         <methods>
           <include name="tearDown"/>
-          <include name="testCreateCownerWithInvalidData" invocation-numbers="0"/>
+          <include name="testAppiaringErrorMessages" invocation-numbers="0 1"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- Selenium.ErrorMessagesCreatingCoowner -->
