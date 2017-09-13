@@ -24,7 +24,7 @@ public class ATQCQ122 {
 	 * Logging in as admin.
 	 */
   @BeforeClass
-  public void beforeClass() {
+  public void logInAsAdmin() {
 	  
 	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
 	  driver = new FirefoxDriver();
@@ -43,7 +43,7 @@ public class ATQCQ122 {
    * 'Add new community' page
    */
  	@BeforeMethod
- 	public void beforeMethod() {
+ 	public void openAddNewCommunity() {
 
  		driver.findElement(
  				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
@@ -58,7 +58,8 @@ public class ATQCQ122 {
  	    	{"ShortNoDots" , "0000000000"} ,
  	    	{"LongDots" , "000:000:000:000:00000"} ,
  	    	{"LongNoDots" , "1111111111111111"},
- 	    	{"Invalid", "String"}
+ 	    	{"Invalid", "String"},
+ 	    	{"SpecialChars", "$%/'8@"}
  	    };
  	  }
  	
@@ -80,14 +81,17 @@ public class ATQCQ122 {
  		  
  		  Assert.assertNotNull(driver.findElement(By.id("registrationNumber.errors"))); //verify that error message has appeared
  		  
- 		  driver.get("http://regres.herokuapp.com/administrator/communities/show-all-communities"); //get back to the 'all communities' tab
-  
- 		  
+ 		 driver.findElement(
+  				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
+  				.click(); //get back to the 'all communities' tab
+ 		 
  		 Assert.assertTrue( driver.findElements(By.xpath("//tr[@class='commun']//*[text()='" + name  //verify that new community
  				+ "']")).size()<1);								                                    // has not been created
  	}
  	
- 	
+ 	/**
+	 * Quiting the driver
+	 */
  	@AfterClass
  	public void tearDown() {
  		driver.quit();

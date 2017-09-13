@@ -37,7 +37,7 @@ public class ATQCQ158 {
 	 * Logging in as admin.
 	 */
   @BeforeClass
-  public void beforeClass() {
+  public void logInAsAdmin() {
 	  
 	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
 	  driver = new FirefoxDriver();
@@ -56,7 +56,7 @@ public class ATQCQ158 {
   * 'Add new community' page
   */
 	@BeforeMethod
-	public void beforeMethod() {
+	public void openAddNewCommunity() {
 
 		driver.findElement(
  				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
@@ -86,8 +86,10 @@ public class ATQCQ158 {
 																					// window
 
 	}
-
-
+	
+ /**
+  * Quiting the driver
+  */	
   @AfterClass
   public void afterClass() {
 	  driver.quit();

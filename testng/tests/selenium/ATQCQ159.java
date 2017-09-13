@@ -27,7 +27,7 @@ public class ATQCQ159 {
 	 * Logging in as admin.
 	 */
   @BeforeClass
-  public void beforeClass() {
+  public void logInAsAdmin() {
 	  
 	  System.setProperty("webdriver.gecko.driver","D:\\stuff_for_testng_firefox\\geckodriver.exe");   
 	  driver = new FirefoxDriver();
@@ -40,6 +40,9 @@ public class ATQCQ159 {
 	  driver.findElement(By.xpath("//*[@type='submit']")).click();
   }
 
+  /**
+   * Quiting the driver
+   */
   @AfterClass
   public void afterClass() {
 	  driver.quit();

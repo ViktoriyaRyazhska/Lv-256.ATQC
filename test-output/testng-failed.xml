@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite_Community]">
+  <test name="Test(failed)">
     <classes>
-      <class name="tests.selenium.ATQCQ122">
+      <class name="tests.selenium.ATQCQ158">
         <methods>
+          <include name="afterClass"/>
           <include name="beforeMethod"/>
+          <include name="testCreateCommunity"/>
           <include name="beforeClass"/>
-          <include name="invalidRegistrationNumber"/>
-          <include name="tearDown"/>
+          <include name="deleteCommunity"/>
         </methods>
-      </class> <!-- tests.selenium.ATQCQ122 -->
+      </class> <!-- tests.selenium.ATQCQ158 -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite_Community] -->

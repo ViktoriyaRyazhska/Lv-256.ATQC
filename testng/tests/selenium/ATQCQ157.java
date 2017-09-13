@@ -24,7 +24,7 @@ public class ATQCQ157 {
 	 * Logging in as admin.
 	 */
 	@BeforeClass
-	public void beforeClass() {
+	public void logInAsAdmin() {
 
 		System.setProperty("webdriver.gecko.driver", "D:\\stuff_for_testng_firefox\\geckodriver.exe");
 		driver = new FirefoxDriver();
@@ -44,7 +44,7 @@ public class ATQCQ157 {
 	 * 
 	 */
 	@BeforeMethod
-	public void beforeMethod() {
+	public void createTestCommunity() {
 
 		driver.findElement(
  				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
@@ -105,11 +105,14 @@ public class ATQCQ157 {
 		
 		Assert.assertNotNull(driver.findElement(By.id("name.errors"))); //verify that error message has appeared
 		
-		driver.get("http://regres.herokuapp.com/administrator/communities/show-all-communities"); //get back to the 'all communities' tab
-		Assert.assertTrue(driver
-				.findElements(
+		driver.findElement(
+ 				By.xpath("//*[@class='nav navbar-nav']//a[contains(@href,'show-all-communities')]"))
+ 				.click();   //get back to the 'all communities' tab
+		
+		Assert.assertNotNull(driver
+				.findElement(
 						By.xpath("//tr[@class='commun']//*[text()='SameName']")) //verify that new community
-				.size() == 1);                                                                                          //is not created
+				);                                                              //is not created
 	}
 	
 }
