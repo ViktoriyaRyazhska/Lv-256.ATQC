@@ -1,4 +1,4 @@
-package com.example.selenium.ide.tests.regres;
+package com.regres;
 
 import org.testng.annotations.*;
 import com.regres.SubclassesOfObjectsPage;
