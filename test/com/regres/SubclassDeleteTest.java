@@ -73,7 +73,7 @@ public class SubclassDeleteTest {
 	 * Verify that existing class is deleted after clicking 'OK' button on the
 	 * confirmation message.
 	 */
-	@Test(groups = { "TestData" })
+	@Test(groups = { "TestData" }, priority = 1)
 	public void testDeleteByOkButton() {
 		subclass.deleteSubclass("Test");
 		assertFalse(subclass.isSubclassPresent("Test"));
