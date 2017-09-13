@@ -26,7 +26,7 @@ public class SubclassesOfObjectsPage {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts()
 			.implicitlyWait(10, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 10);
+		wait = new WebDriverWait(driver, 5);
 	}
 
 	/**
@@ -89,25 +89,37 @@ public class SubclassesOfObjectsPage {
 	}
 
 	/**
-	 * Get true - if subclass present on 'Subclasses' table,
+	 * Get true - if subclass not present on 'Subclasses' table,
 	 * false - if subclass is
-	 * not present on 'Subclasses' table
+	 * present on 'Subclasses' table
+	 * 
+	 * @param subclassName
+	 *            - check the subclass name is present on 'Subclasses' table
+	 * @return true/false
+	 */
+	public boolean isSubclassNotPresent(String subclassName) {
+
+		boolean exists = wait.until(ExpectedConditions
+				.invisibilityOfElementLocated(By
+						.xpath("//td[text() = '" + subclassName + "']")));
+		return exists;
+	}
+	
+	/**
+	 * Get true - if subclass present on 'Subclasses' table,
+	 * false - if subclass is not
+	 * present on 'Subclasses' table
 	 * 
 	 * @param subclassName
 	 *            - check the subclass name is present on 'Subclasses' table
 	 * @return true/false
 	 */
 	public boolean isSubclassPresent(String subclassName) {
-		// driver.get(driver.getCurrentUrl());
-		driver.navigate().refresh();
-		driver.manage().timeouts()
-			.implicitlyWait(0, TimeUnit.MILLISECONDS);
-		
-		boolean exists = !(driver.findElements(By
-				.xpath("//td[text() = '" + subclassName + "']"))
-			.isEmpty());
-		driver.manage().timeouts()
-			.implicitlyWait(10, TimeUnit.SECONDS);
+
+		boolean exists = wait.until(ExpectedConditions
+				.not(ExpectedConditions
+						.invisibilityOfElementLocated(By
+								.xpath("//td[text() = '" + subclassName + "']"))));
 		return exists;
 	}
 
@@ -135,7 +147,7 @@ public class SubclassesOfObjectsPage {
 		driver.findElement(By
 				.xpath("//td[text() = '" 
 						+ subclassName + "']/following::a"))
-		.click();
+							.click();
 	}
 
 	/**
@@ -144,7 +156,7 @@ public class SubclassesOfObjectsPage {
 	public void clickOnOkButton() {
 		driver.findElement(By
 				.xpath("//button[@class = 'btn btn-primary']"))
-		.click();
+					.click();
 	}
 
 	/**

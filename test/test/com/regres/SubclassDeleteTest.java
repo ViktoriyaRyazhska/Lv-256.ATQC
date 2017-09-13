@@ -33,7 +33,7 @@ public class SubclassDeleteTest {
 	@AfterGroups(groups = { "TestData" }, alwaysRun = true)
 	// always delete test data for group
 	public void deleteTestData() {
-		if (subclass.isSubclassPresent("Test")) {
+		if (!subclass.isSubclassNotPresent("Test")) {
 			subclass.deleteSubclass("Test");
 		}
 	}
@@ -80,10 +80,10 @@ public class SubclassDeleteTest {
 	 * after clicking 'OK' button on the
 	 * confirmation message.
 	 */
-	@Test(groups = { "TestData" }, priority = 1)
+	@Test(groups = { "TestData" }, dependsOnMethods = { "testCancelDelettingByCancelButton", "testCancelDelettingByCloseButton" })
 	public void testDeleteByOkButton() {
 		subclass.deleteSubclass("Test");
-		assertFalse(subclass.isSubclassPresent("Test"));
+		assertTrue(subclass.isSubclassNotPresent("Test"));
 	}
 
 	/*
