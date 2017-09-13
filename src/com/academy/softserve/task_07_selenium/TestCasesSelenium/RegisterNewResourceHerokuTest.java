@@ -6,10 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -17,13 +15,14 @@ import java.util.concurrent.TimeUnit;
 public class RegisterNewResourceHerokuTest {
     private WebDriver driver;
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass
     public void setUp() {
         System.setProperty("webdriver.gecko.driver", "E:\\Sofserve\\Selenium drivers\\geckodriver-v0.18.0-win64\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("http://regres.herokuapp.com/login");
         new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
+        //login as registrator
         driver.findElement(By.id("login")).clear();
         driver.findElement(By.id("login")).sendKeys("registrator");
         driver.findElement(By.id("password")).clear();
@@ -37,20 +36,27 @@ public class RegisterNewResourceHerokuTest {
     @Test(description = "Tests a new resource registration")
     public void addNewResourseHeroku() {
         driver.findElement(By.linkText("Add new resource")).click();
+        //select co-owner
         driver.findElement(By.id("owner_search")).clear();
         driver.findElement(By.id("owner_search")).sendKeys("qwerty");
         driver.findElement(By.cssSelector("strong")).click();
+        //set new resource name
         driver.findElement(By.id("w-input-search")).clear();
         driver.findElement(By.id("w-input-search")).sendKeys("зірка");// add new resource name
+        //select type of resource
         new Select(driver.findElement(By.id("resourcesTypeSelect"))).selectByVisibleText("земельний");
+        //set Reason for inclusion as passport
         driver.findElement(By.id("pass")).click();
+        //drawing the territory on the map with the established 3 points
         addPointsToMap();
         driver.findElement(By.id("submitForm")).click();
+        //search for the created resource
         driver.findElement(By.linkText("Resources search")).click();
         driver.findElement(By.id("searchByParameterButton")).click();
         driver.findElement(By.id("search")).click();
         driver.findElement(By.cssSelector("input[type=\"search\"]")).clear();
         driver.findElement(By.cssSelector("input[type=\"search\"]")).sendKeys("зірка");
+        //delete the created resource
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.linkText("More")));
         driver.findElement(By.linkText("More")).click();
@@ -60,6 +66,9 @@ public class RegisterNewResourceHerokuTest {
         driver.findElement(By.linkText("Sign out")).click();
     }
 
+    /**
+     * This method add point to the map
+     */
     public void addPointsToMap(){
         driver.findElement(By.linkText("Points")).click();
         driver.findElement(By.id("myparam1")).clear();

@@ -7,41 +7,47 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class LogInHerokuAllRolesTest {
     private WebDriver driver;
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass
     public void setUp() {
         System.setProperty("webdriver.gecko.driver", "E:\\Sofserve\\Selenium drivers\\geckodriver-v0.18.0-win64\\geckodriver.exe");
         driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);//
+    }
+
+    @BeforeMethod
+    public void beforeTest() {
+        //connect to site and change language
+        driver.get("http://regres.herokuapp.com/login");
+        new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
     }
 
     /**
-     * This test verifies that registered user(any role) can log in
+     * This test verifies that registered user(any role) can log in and log out
      */
     @Test(description = "Tests a successful login", dataProvider = "userValidLoginPasswordProvider")
     public void logInHerokuWithValidData(String userLogin, String UserPassword) {
-        driver.get("http://regres.herokuapp.com/login");
-        new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
+        // login:
         driver.findElement(By.id("login")).clear();
         driver.findElement(By.id("login")).sendKeys(userLogin);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys(UserPassword);
         driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+        Assert.assertEquals(driver.getCurrentUrl().toString(), "http://regres.herokuapp.com/");
+        //wait while appear dropdown button adn click
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle")));
         driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle")).click();
+        //wait while appear Sign out option and click
         new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(@href,'logout')]")));
-        driver.findElement(By.xpath("//a[contains(@href,'logout')]")).click();
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(),'Sign out')]")));
+        driver.findElement(By.xpath("//a[contains(text(),'Sign out')]")).click();
     }
 
     @DataProvider(name = "userValidLoginPasswordProvider")
@@ -58,16 +64,18 @@ public class LogInHerokuAllRolesTest {
      * This test verifies that Unregistered user can't log in
      * and Error message 'Wrong username or password' shown.
      */
+
     @Test(description = "Tests unsuccessful login", dataProvider = "userInvalidLoginPasswordProvider")
     public void logInHerokuWithInvalidData(String userLogin, String UserPassword) {
-        driver.get("http://regres.herokuapp.com/login");
-        new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
+        // login:
         driver.findElement(By.id("login")).clear();
         driver.findElement(By.id("login")).sendKeys(userLogin);
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys(UserPassword);
         driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
-        Assert.assertEquals(driver.getCurrentUrl().toString(),"http://regres.herokuapp.com/login?error");
+        //verify that user not log in
+        Assert.assertEquals(driver.getCurrentUrl().toString(), "http://regres.herokuapp.com/login?error");
+        //verify that error message shown
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='loginForm']/div[1]")));
         Assert.assertEquals(driver.findElement(By.xpath(".//*[@id='loginForm']/div[1]")).getText(), "Wrong login or password");
@@ -87,20 +95,19 @@ public class LogInHerokuAllRolesTest {
 
     /**
      * This test verifies that user blocked if log in with correct login but incorrect password three times
-     * and Error message 'Wrong username or password' shown
+     * and Error message shown
      */
-    @Test(description = "Tests a blocking login if incorrect password", dataProvider = "userInvalidPasswordProvider", dependsOnMethods = {"logInHerokuWithValidData","logInHerokuWithInvalidData"})
+    @Test(description = "Tests a blocking login if incorrect password", dataProvider = "userInvalidPasswordProvider", dependsOnMethods = {"logInHerokuWithValidData", "logInHerokuWithInvalidData"})
     public void logInHerokuWithInvalidPassword(String userLogin, String UserPassword) {
-        driver.get("http://regres.herokuapp.com/login");
-        //blocked after 3 log in with incorrect password
-        for (int i = 1; i < 3; i++) {
-            new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
+        //log in 3 times (blocked after 3 log in with incorrect password)
+        for (int i = 0; i < 3; i++) {
             driver.findElement(By.id("login")).clear();
             driver.findElement(By.id("login")).sendKeys(userLogin);
             driver.findElement(By.id("password")).clear();
             driver.findElement(By.id("password")).sendKeys(UserPassword);
             driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
         }
+        //verify that error message shown
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='loginForm']/div[1]")));
         driver.findElement(By.xpath(".//*[@id='loginForm']/div[1]")).getText().contains("Account is suspended,\n" +
