@@ -51,6 +51,8 @@ public class RegisterNewResourceHerokuTest {
         driver.findElement(By.id("search")).click();
         driver.findElement(By.cssSelector("input[type=\"search\"]")).clear();
         driver.findElement(By.cssSelector("input[type=\"search\"]")).sendKeys("зірка");
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.linkText("More")));
         driver.findElement(By.linkText("More")).click();
         driver.findElement(By.id("deleteResource")).click();
         driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-primary")).click();

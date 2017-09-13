@@ -36,7 +36,8 @@ public class LogInHerokuAllRolesTest {
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys(UserPassword);
         driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
-        //LogOut
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle")));
         driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle")).click();
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(@href,'logout')]")));
@@ -48,8 +49,8 @@ public class LogInHerokuAllRolesTest {
         return new Object[][]{
                 {"registrator", "registrator"},
                 {"admin", "admin"},
-                {"qwerty", "qwerty"},
-                {"andriy97", "andriy97"}
+                {"qwerty", "qwerty"}
+                //{"andriy97", "andriy97"}
         };
     }
 
@@ -91,9 +92,9 @@ public class LogInHerokuAllRolesTest {
     @Test(description = "Tests a blocking login if incorrect password", dataProvider = "userInvalidPasswordProvider", dependsOnMethods = {"logInHerokuWithValidData","logInHerokuWithInvalidData"})
     public void logInHerokuWithInvalidPassword(String userLogin, String UserPassword) {
         driver.get("http://regres.herokuapp.com/login");
-        new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
         //blocked after 3 log in with incorrect password
         for (int i = 1; i < 3; i++) {
+            new Select(driver.findElement(By.id("changeLanguage"))).selectByVisibleText("english");
             driver.findElement(By.id("login")).clear();
             driver.findElement(By.id("login")).sendKeys(userLogin);
             driver.findElement(By.id("password")).clear();
