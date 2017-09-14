@@ -21,7 +21,7 @@ public class CheckForgotButton {
 
 	@BeforeMethod
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		// Adding wait
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -42,9 +42,9 @@ public class CheckForgotButton {
 		driver.findElement(By.id("email")).sendKeys("khrystynaterletska@gmail.com");
 		driver.findElement(By.cssSelector("button.btn-primary.btn-block")).click();
 
-		// Verify that massage "РџРѕРІС–РґРѕРјР»РµРЅРЅСЏ РІС–РґСЂР°РІР»РµРЅРЅРµ РЅР° РІР°С€Сѓ Р°РґСЂРµСЃСѓ" is appeared
+		// Verify that massage "Повідомлення відравленне на вашу адресу" is appeared
 		// after clicking "Reset password"
-		Assert.assertEquals("РџРѕРІС–РґРѕРјР»РµРЅРЅСЏ РІС–РґСЂР°РІР»РµРЅРЅРµ РЅР° РІР°С€Сѓ Р°РґСЂРµСЃСѓ",
+		Assert.assertEquals("Повідомлення відравленне на вашу адресу",
 				driver.findElement(By.cssSelector("strong")).getText());
 		driver.quit();
 
@@ -65,9 +65,9 @@ public class CheckForgotButton {
 		// The field value is retrieved by the getAttribute("value") and assigned to the
 		// String object
 		String message = driver.findElement(By.id("email")).getAttribute("validationMessage");
-		// Verify that message "Р—Р°РїРѕРІРЅС–С‚СЊ Р±СѓРґСЊ Р»Р°СЃРєР° С†Рµ РїРѕР»Рµ" is printed when email
+		// Verify that message "Заповніть будь ласка це поле" is printed when email
 		// address field is empty
-		Assert.assertEquals(message, "Р—Р°РїРѕРІРЅС–С‚СЊ Р±СѓРґСЊ Р»Р°СЃРєР° С†Рµ РїРѕР»Рµ.");
+		Assert.assertEquals(message, "Please fill out this field.");
 		driver.quit();
 
 	}
