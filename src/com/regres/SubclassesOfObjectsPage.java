@@ -53,8 +53,10 @@ public class SubclassesOfObjectsPage {
 		driver.findElement(By.id("password")).clear();
 		// write password
 		driver.findElement(By.id("password")).sendKeys("registrator");
-		driver.findElement(By.id("password")).submit();
 		// click on 'Sign In'
+		 		driver.findElement(By
+		 				.cssSelector("button.btn.btn-primary")).click();
+
 	}
 	
 	/*----------------------------------Add Subclass----------------------------------*/
@@ -67,13 +69,6 @@ public class SubclassesOfObjectsPage {
 		driver.findElement(By.linkText("Add new subclass")).click();
 		driver.findElement(By.name("typeName")).clear();
 		driver.findElement(By.name("typeName")).sendKeys("Test");
-		// driver.findElement(By.id("clickmeshow")).click();
-		// driver.findElement(By.id("myparam0")).clear();
-		// driver.findElement(By.id("myparam0")).sendKeys("123450");
-		// driver.findElement(By.id("myparam1")).clear();
-		// driver.findElement(By.id("myparam1")).sendKeys("123450");
-		// new
-		// Select(driver.findElement(By.id("myparam2"))).selectByValue("linearParameters");
 		driver.findElement(By.id("valid")).click();
 	}
 	
