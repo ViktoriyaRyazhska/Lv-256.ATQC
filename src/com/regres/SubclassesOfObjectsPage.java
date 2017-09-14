@@ -70,7 +70,7 @@ public class SubclassesOfObjectsPage {
 		// add new subclass
 		driver.findElement(By.linkText("Add new subclass")).click();
 		driver.findElement(By.name("typeName")).clear();
-		driver.findElement(By.name("typeName")).sendKeys("Test");
+		driver.findElement(By.name("typeName")).sendKeys("Test1");
 		driver.findElement(By.id("valid")).click();
 	}
 	
@@ -81,7 +81,6 @@ public class SubclassesOfObjectsPage {
 	 * 
 	 * @return String of confirm message text.
 	 */
-
 	public String getConfirmMessageText() {
 		wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.className("bootbox-body")));
@@ -132,10 +131,8 @@ public class SubclassesOfObjectsPage {
 	public void deleteSubclass(String subclassName) {
 		clickOnDeleteSubclassButton(subclassName);
 		// Wait for delete confirm message
-		wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By
-						.className("bootbox-body")));
-		// Clock 'OK' - button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bootbox-body")));
+		// Click 'OK' - button
 		clickOnOkButton();
 	}
 
@@ -144,9 +141,9 @@ public class SubclassesOfObjectsPage {
 	 *  name on confirm message
 	 */
 	public void clickOnDeleteSubclassButton(String subclassName) {
-		driver.findElement(By
+		wait.until(ExpectedConditions.elementToBeClickable(By
 				.xpath("//td[text() = '" 
-						+ subclassName + "']/following::a"))
+						+ subclassName + "']/following::a")))
 							.click();
 	}
 
@@ -154,24 +151,28 @@ public class SubclassesOfObjectsPage {
 	 * Click on 'OK' button on confirm message
 	 */
 	public void clickOnOkButton() {
+		wait.until(ExpectedConditions.elementToBeClickable(By
+				.xpath("//button[@class = 'btn btn-primary']")));
 		driver.findElement(By
-				.xpath("//button[@class = 'btn btn-primary']"))
-					.click();
+				.xpath("//button[@class = 'btn btn-primary']")).click();
+					
 	}
 
 	/**
 	 * Click on 'Close' button on confirm message
 	 */
 	public void clickOnCloseButton() {
-		driver.findElement(By.className("close")).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By
+				.className("close"))).click();
 	}
 
 	/**
 	 * Click on 'Cancel' button on confirm message
 	 */
 	public void clickOnCancelButton() {
-		driver.findElement(By.cssSelector(".btn.btn-default"))
-			.click();
+		wait.until(ExpectedConditions.elementToBeClickable(By
+				.cssSelector(".btn.btn-default")))
+				.click();
 	}
 
 	/**

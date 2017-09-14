@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
 public class SubclassDeleteTest {
 	private SubclassesOfObjectsPage subclass;
 
-	@BeforeClass
+	@BeforeClass(groups = { "TestData", "CancelDelettingBySystem" })
 	// initial property
 	public void setUpClass() {
 		subclass = new SubclassesOfObjectsPage();
@@ -33,8 +33,8 @@ public class SubclassDeleteTest {
 	@AfterGroups(groups = { "TestData" }, alwaysRun = true)
 	// always delete test data for group
 	public void deleteTestData() {
-		if (!subclass.isSubclassNotPresent("Test")) {
-			subclass.deleteSubclass("Test");
+		if (!subclass.isSubclassNotPresent("Test1")) {
+			subclass.deleteSubclass("Test1");
 		}
 	}
 
@@ -52,12 +52,12 @@ public class SubclassDeleteTest {
 	 */
 	@Test(groups = { "TestData" })
 	public void testCancelDelettingByCloseButton() {
-		subclass.clickOnDeleteSubclassButton("Test");
+		subclass.clickOnDeleteSubclassButton("Test1");
 		assertEquals(subclass.getConfirmMessageText(), 
 				"Do you really want to delete this class?");
 		// click on 'Close' - button on confirm message
 		subclass.clickOnCloseButton();
-		assertTrue(subclass.isSubclassPresent("Test"));
+		assertTrue(subclass.isSubclassPresent("Test1"));
 	}
 
 	/*
@@ -67,12 +67,12 @@ public class SubclassDeleteTest {
 	 */
 	@Test(groups = { "TestData" })
 	public void testCancelDelettingByCancelButton() {
-		subclass.clickOnDeleteSubclassButton("Test");
+		subclass.clickOnDeleteSubclassButton("Test1");
 		assertEquals(subclass.getConfirmMessageText(),
 				"Do you really want to delete this class?");
 		// 'Cancel' - button
 		subclass.clickOnCancelButton();
-		assertTrue(subclass.isSubclassPresent("Test"));
+		assertTrue(subclass.isSubclassPresent("Test1"));
 	}
 
 	/*
@@ -82,8 +82,8 @@ public class SubclassDeleteTest {
 	 */
 	@Test(groups = { "TestData" }, dependsOnMethods = { "testCancelDelettingByCancelButton", "testCancelDelettingByCloseButton" })
 	public void testDeleteByOkButton() {
-		subclass.deleteSubclass("Test");
-		assertTrue(subclass.isSubclassNotPresent("Test"));
+		subclass.deleteSubclass("Test1");
+		assertTrue(subclass.isSubclassNotPresent("Test1"));
 	}
 
 	/*
@@ -92,7 +92,7 @@ public class SubclassDeleteTest {
 	 * clicking on 'OK' button on the 'Cannot delete subclass' 
 	 * confirmation message.
 	 */
-	@Test
+	@Test(groups = { "CancelDelettingBySystem" })
 	public void testCancelDelettingBySystemConfirmByOKButton() {
 		subclass.deleteSubclass("Water");
 		assertEquals(subclass.getConfirmMessageText(),
@@ -109,13 +109,13 @@ public class SubclassDeleteTest {
 	 * clicking on 'Close' button on the 'Cannot delete subclass' 
 	 * confirmation message.
 	 */
-	@Test
+	@Test(groups = { "CancelDelettingBySystem" })
 	public void testCancelDelettingBySystemConfirmByCloseButton() {
 		subclass.deleteSubclass("Water");
 		assertEquals(subclass.getConfirmMessageText(),
 				"This subclass cannot be deleted because "
 				+ "resources already exist");
-		// click on 'Close' - button on confirm message
+		// 'OK' - button
 		subclass.clickOnCloseButton();
 		assertTrue(subclass.isSubclassPresent("Water"));
 	}
