@@ -2,7 +2,6 @@ package selenium;
 
 import static org.testng.Assert.assertNotNull;
 
-
 import java.util.concurrent.TimeUnit;
 
 import org.testng.Reporter;
