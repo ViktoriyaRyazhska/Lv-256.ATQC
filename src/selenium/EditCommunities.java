@@ -1,13 +1,13 @@
 package selenium;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 
 import java.util.concurrent.TimeUnit;
 
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.*;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,7 +26,7 @@ public class EditCommunities {
 
 	@DataProvider
 	public Object[][] EditData() {
-		return new Object[][] { { "Crotia", "112:12:11:111:16547" } };
+		return new Object[][] { { "Croti", "112:12:11:111:16549" } };
 	}
 
 	@DataProvider
@@ -37,8 +37,8 @@ public class EditCommunities {
 	/**
 	 * This method checks the driver settings and logging in
 	 */
-	@BeforeClass(alwaysRun = true)
-	public void setUp() throws Exception {
+	@BeforeClass
+	public void setUp() {
 		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
 		// Create a new instance of the Firefox driver
 		driver = new FirefoxDriver();
@@ -59,25 +59,27 @@ public class EditCommunities {
 	 * This method edit correct information in territorial community and
 	 * registration number fields.
 	 */
+
 	@Test(dataProvider = "EditData")
 	public void testEditCommunities(String Name_community, String Registration_number) {
 		Reporter.log("Running testEditCommunities"); // create report
 		driver.findElement(By.linkText("Громади")).click(); // find button "Communities" on main navigation tab
-		driver.findElement(By.xpath(
-				"//tr[@class='commun']//*[text()='Croa']/../../td[text()='112:12:11:111:16548']/..//*[@id='editcommunity']"))
+		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Crotia']/following::a[@id='editcommunity']"))
 				.click(); // driver.findElement(By.name("name")).clear();
+		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys(Name_community);
 		driver.findElement(By.name("registrationNumber")).clear();
 		driver.findElement(By.name("registrationNumber")).sendKeys(Registration_number);
 		driver.findElement(By.cssSelector("input.btn.btn-success")).click();
 
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated((By.cssSelector("h4"))));
+		(new WebDriverWait(driver, 10)).until(
+				ExpectedConditions.presenceOfElementLocated((By.xpath("//tr[@class='commun']//*[text()='Croti']"))));
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 		// Verify that changes have been saved in the table "Communities"
 
-		assertEquals(driver.findElement(By.className("communName")).getText(), "Croa");
+		assertNotNull(driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Croti']")));
 
 	}
 
@@ -89,8 +91,7 @@ public class EditCommunities {
 	public void testInvalidEditCommunities(String Name_community, String Registration_number) {
 		Reporter.log("Running testInvalidEditCommunities"); // create report
 		driver.findElement(By.linkText("Громади")).click();
-		driver.findElement(By.xpath(
-				"//tr[@class='commun']//*[text()='Sri Lanka']/../../td[text()='111:11:11:111:11111']/..//*[@id='editcommunity']"))
+		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Sri Lanka']/following::a[@id='editcommunity']"))
 				.click(); //
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys(Name_community);
@@ -105,8 +106,8 @@ public class EditCommunities {
 
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void tearDown() throws Exception {
+	@AfterClass
+	public void tearDown() {
 		// close browser:
 		driver.quit();
 	}
