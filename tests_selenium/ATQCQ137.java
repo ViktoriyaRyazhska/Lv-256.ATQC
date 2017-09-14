@@ -91,13 +91,4 @@ public class ATQCQ137 {
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
 	}
 
-	// private boolean isElementPresent(By by) {
-	// try {
-	// driver.findElement(by);
-	// return true;
-	// } catch (NoSuchElementException e) {
-	// return false;
-	// }
-	// }
-
 }

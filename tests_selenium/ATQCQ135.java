@@ -77,13 +77,4 @@ public class ATQCQ135 {
 		driver.findElement(By.partialLinkText("Sign out")).click();
 	}
 
-	// public boolean isElementPresent(By by) {
-	// try {
-	// driver.findElement(by);
-	// return true;
-	// } catch (NoSuchElementException e) {
-	// return false;
-	// }
-	// }
-
 }

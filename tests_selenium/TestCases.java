@@ -62,7 +62,7 @@ public class TestCases {
 
 		// confirm changes and sign out
 		confirmationAndSignOut(driver);
-
+		// verify that register link is present
 		assertTrue(new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register"))) != null);
 
 	}
