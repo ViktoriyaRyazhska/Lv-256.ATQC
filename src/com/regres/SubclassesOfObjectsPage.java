@@ -37,6 +37,9 @@ public class SubclassesOfObjectsPage {
 		driver.get("http://regres.herokuapp.com/");//"http://java.training.local:8080/registrator/");
 		// Log in to RegRes
 		logIn();
+		// choose English localization
+		new Select(driver.findElement(By.id("changeLanguage")))
+							.selectByValue("en");
 		// Click on 'Subclasses of objects' tab
 		clickOnSubclassesTab();
 	}
@@ -45,9 +48,6 @@ public class SubclassesOfObjectsPage {
 	 * Log In to RegRes as "Registrator"
 	 */
 	public void logIn() {
-		// choose English localization
-		new Select(driver.findElement(By.id("changeLanguage")))
-					.selectByValue("en");
 		// clear login input field
 		driver.findElement(By.id("login")).clear();
 		// write login
@@ -55,10 +55,10 @@ public class SubclassesOfObjectsPage {
 		// clear password input field
 		driver.findElement(By.id("password")).clear();
 		// write password
-		driver.findElement(By.id("password"))
-			.sendKeys("registrator");
-		driver.findElement(By.id("password")).submit();
+		driver.findElement(By.id("password")).sendKeys("registrator");
 		// click on 'Sign In'
+		driver.findElement(By
+				.cssSelector("button.btn.btn-primary")).click();
 	}
 	
 	/*----------------------------------Add Subclass----------------------------------*/
