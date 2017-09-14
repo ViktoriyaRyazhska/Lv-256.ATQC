@@ -18,9 +18,7 @@ public class ATQCQ137 {
 	public void setUp() throws Exception {
 		// System.setProperty("webdriver.gecko.driver",
 		// "D:\\1\\geckodriver\\geckodriver.exe");
-		System.setProperty("webdriver.gecko.driver", "E:\\webdriver\\geckodriver\\geckodriver.exe");
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\drivers\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		wait = new WebDriverWait(driver, 20);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -51,6 +49,7 @@ public class ATQCQ137 {
 		// radiobutton in ‘Method of registering new users’ block
 		driver.findElement(By.xpath("(//input[@value='MIXED'])")).click();
 
+		// confirm changes and sign out
 		confirmationAndSignOut(driver);
 
 		// verify that register link is present
@@ -61,7 +60,8 @@ public class ATQCQ137 {
 		loginAsComissioner(driver);
 
 		// verify that 'register new co-owner’ link appears
-		// assertTrue(isElementPresent(By.partialLinkText("Register new user")));
+		// assertTrue(isElementPresent(By.partialLinkText("Register new
+		// user")));
 		assertTrue(wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register new user"))) != null);
 	}
@@ -91,13 +91,13 @@ public class ATQCQ137 {
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
 	}
 
-//	private boolean isElementPresent(By by) {
-//		try {
-//			driver.findElement(by);
-//			return true;
-//		} catch (NoSuchElementException e) {
-//			return false;
-//		}
-//	}
+	// private boolean isElementPresent(By by) {
+	// try {
+	// driver.findElement(by);
+	// return true;
+	// } catch (NoSuchElementException e) {
+	// return false;
+	// }
+	// }
 
 }

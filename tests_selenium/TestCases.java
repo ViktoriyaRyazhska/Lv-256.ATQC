@@ -25,15 +25,8 @@ public class TestCases {
 
 	@BeforeClass
 	public void before() {
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\geckodriver\\geckodriver.exe");
-		System.setProperty("webdriver.gecko.driver", "E:\\webdriver\\geckodriver\\geckodriver.exe");
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\drivers\\geckodriver.exe");
-		// driver = new FirefoxDriver();
-		// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		// wait = new WebDriverWait(driver, 20);
-
+		//System.setProperty("webdriver.gecko.driver", "D:\\1\\geckodriver\\geckodriver.exe");
+		 System.setProperty("webdriver.gecko.driver","D:\\1\\drivers\\geckodriver.exe");
 	}
 
 	@BeforeMethod(alwaysRun = true)
@@ -67,15 +60,10 @@ public class TestCases {
 		// users’ block
 		driver.findElement(By.xpath("(//input[@value='PERSONAL'])")).click();
 
+		// confirm changes and sign out
 		confirmationAndSignOut(driver);
-		// driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		// verify that register link is present
-		// assertTrue(isElementPresent(By.partialLinkText("Register")));
-		// assertTrue(new WebDriverWait
-		// wait.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Çàðåºñòðóâàòèñÿ")))
-		// != null);
-		assertTrue(new WebDriverWait(driver, 10)
-				.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register"))) != null);
+
+		assertTrue(new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register"))) != null);
 
 	}
 
@@ -86,19 +74,16 @@ public class TestCases {
 		// of registering new users’ block
 		driver.findElement(By.xpath("(//input[@value='MANUAL'])")).click();
 
+		// confirm changes and sign out
 		confirmationAndSignOut(driver);
 
 		// verify that register link is absent
-		// assertFalse(isElementPresent(By.partialLinkText("Register")));
-		// assertTrue(wait.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register")))
-		// != null);
-		assertFalse(driver.findElements(By.partialLinkText("Register")).size()> 1);
+		assertEquals(driver.findElements(By.partialLinkText("Register")).size(), 0);
 
 		// login as comissioner
 		loginAsComissioner(driver);
 
 		// verify that 'register new user’ link appears
-		// assertTrue(isElementPresent(By.partialLinkText("Register new user")));
 		assertTrue(new WebDriverWait(driver, 10)
 				.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register new user"))) != null);
 	}
@@ -109,6 +94,7 @@ public class TestCases {
 		// radiobutton in ‘Method of registering new users’ block
 		driver.findElement(By.xpath("(//input[@value='MIXED'])")).click();
 
+		// confirm changes and sign out
 		confirmationAndSignOut(driver);
 
 		// verify that register link is present
@@ -123,7 +109,7 @@ public class TestCases {
 				.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register new user"))) != null);
 	}
 
-	@AfterClass(alwaysRun = true)
+	@AfterMethod(alwaysRun = true)
 	public void tearDown() throws Exception {
 		// close browser
 		driver.quit();
@@ -142,7 +128,6 @@ public class TestCases {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText("Sign out")));
 		driver.findElement(By.partialLinkText("Sign out")).click();
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		// driver.findElement(By.partialLinkText("Sign out")).click();
 	}
 
 	public void loginAsComissioner(WebDriver driver) {
@@ -153,20 +138,4 @@ public class TestCases {
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
 	}
 
-	// @DataProvider
-	// public Object[][] methodsOfRegistrations() {
-	// return new Object[][] {
-	// { driver.findElement(By.xpath("(//input[@value='PERSONAL'])")) },
-	// { driver.findElement(By.xpath("(//input[@value='MANUAL'])")) },
-	// { driver.findElement(By.xpath("(//input[@value='MIXED'])")) } };
-	// }
-
-	// private boolean isElementPresent(By by) {
-	// try {
-	// driver.findElement(by);
-	// return true;
-	// } catch (NoSuchElementException e) {
-	// return false;
-	// }
-	// }
 }

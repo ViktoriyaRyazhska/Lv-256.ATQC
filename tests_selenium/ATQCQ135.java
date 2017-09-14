@@ -16,11 +16,8 @@ public class ATQCQ135 {
 
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\geckodriver\\geckodriver.exe");
-		System.setProperty("webdriver.gecko.driver", "E:\\webdriver\\geckodriver\\geckodriver.exe");
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\drivers\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "D:\\1\\geckodriver\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		wait = new WebDriverWait(driver, 20);
 
@@ -52,7 +49,8 @@ public class ATQCQ135 {
 		// Choose ‘Personal registration’ radiobutton in ‘Method of registering
 		// new users’ block
 		driver.findElement(By.xpath("(//input[@value='PERSONAL'])")).click();
-
+		
+		// confirm changes and sign out
 		confirmationAndSignOut(driver);
 
 		// verify that register link is present
@@ -73,7 +71,6 @@ public class ATQCQ135 {
 		driver.findElement(By.id("confirmRegistrationMethod")).click();
 
 		// Click on ‘Admin’ dropdown list
-		
 		driver.findElement(By.cssSelector("button.btn.btn-primary.btn-sm.dropdown-toggle")).click();
 
 		// Click ‘Sign out’

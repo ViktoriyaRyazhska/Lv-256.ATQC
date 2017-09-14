@@ -16,11 +16,8 @@ public class ATQCQ136 {
 
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\geckodriver\\geckodriver.exe");
-		System.setProperty("webdriver.gecko.driver", "E:\\webdriver\\geckodriver\\geckodriver.exe");
-		// System.setProperty("webdriver.gecko.driver",
-		// "D:\\1\\drivers\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver", "D:\\1\\geckodriver\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		wait = new WebDriverWait(driver, 20);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -53,18 +50,22 @@ public class ATQCQ136 {
 		// of registering new users’ block
 		driver.findElement(By.xpath("(//input[@value='MANUAL'])")).click();
 
+		// confirm changes and sign out
 		confirmationAndSignOut(driver);
 
 		// verify that register link is absent
 		// assertFalse(isElementPresent(By.partialLinkText("Register")));
-		assertTrue(wait.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register"))) == null);
-		// assertEquals(driver.findElements(By.partialLinkText("Register")).size(),0);
+		//assertTrue(wait.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register"))) == null);
+		//assertNull(driver.findElements(By.partialLinkText("Register")));
+		assertTrue(driver.findElements(By.partialLinkText("Register")).size()==0);
+		
 
 		// login as comissioner
 		loginAsComissioner(driver);
 
 		// verify that 'register new user’ link appears
-		// assertTrue(isElementPresent(By.partialLinkText("Register new user")));
+		// assertTrue(isElementPresent(By.partialLinkText("Register new
+		// user")));
 		assertTrue(wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText("Register new user"))) != null);
 	}
