@@ -22,4 +22,6 @@
 hs_err_pid*
 
 .*
-/bin/
+bin/*
+target/*
+test-output/*
