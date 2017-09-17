@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
  * @author Bohdan Zhyvko
  *
  */
-public class AdminHomePage extends CommisionerHomePage {
+public class AdminHomePage extends CommissionerHomePage {
 	
 	public WebDriver driver;
 	public WebElement settingsTab;

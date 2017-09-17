@@ -3,8 +3,13 @@ package main.java.framework.pages.admin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-public class CommisionerHomePage {
+/**
+ * Class representation of a Commissioner home page.
+ * 
+ * @author Kryvenko Yaroslava
+ *
+ */
+public class CommissionerHomePage extends DropdownHomePage{
 		public WebDriver driver;
 		public WebElement coowners;
 		public WebElement registration;
@@ -12,7 +17,7 @@ public class CommisionerHomePage {
 		public WebElement inactive;
 		public WebElement nonConfirmfd;
 		public WebElement blocked;
-		public CommisionerHomePage (WebDriver driver) {
+		public CommissionerHomePage (WebDriver driver) {
 			this.driver=driver;
 			coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));
 			active=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
