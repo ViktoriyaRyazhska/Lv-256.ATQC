@@ -1,37 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
+    <line>
+      <![CDATA[Running Testing testAppearingErrorMessages]]>
+    </line>
+    <line>
+      <![CDATA[Running Testing testAppearingErrorMessages]]>
+    </line>
+    <line>
+      <![CDATA[Running Testing testClearRegistrationForm]]>
+    </line>
+    <line>
+      <![CDATA[Running Testing testClearRegistrationForm]]>
+    </line>
   </reporter-output>
-  <suite name="Default suite" duration-ms="12163" started-at="2017-09-13T18:53:59Z" finished-at="2017-09-13T18:54:11Z">
+  <suite name="Default suite" duration-ms="59469" started-at="2017-09-17T10:51:50Z" finished-at="2017-09-17T10:52:50Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="12163" started-at="2017-09-13T18:53:59Z" finished-at="2017-09-13T18:54:11Z">
-      <class name="Selenium.Atqcq191">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.Atqcq191@643b1d11]" name="setUp" is-config="true" duration-ms="10531" started-at="2017-09-13T21:53:59Z" finished-at="2017-09-13T21:54:10Z">
+    <test name="Default test" duration-ms="59469" started-at="2017-09-17T10:51:50Z" finished-at="2017-09-17T10:52:50Z">
+      <class name="Selenium.Atqcq125">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:Selenium.Atqcq125@643b1d11]" name="setUp" is-config="true" duration-ms="44003" started-at="2017-09-17T13:51:50Z" finished-at="2017-09-17T13:52:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="verifyCommisionerCommunity(java.lang.String, java.lang.String)[pri:0, instance:Selenium.Atqcq191@643b1d11]" name="verifyCommisionerCommunity" duration-ms="1003" started-at="2017-09-13T21:54:10Z" data-provider="commisionerLoggin" finished-at="2017-09-13T21:54:11Z">
+        <test-method status="PASS" signature="testAppearingErrorMessages(Selenium.User)[pri:0, instance:Selenium.Atqcq125@643b1d11]" name="testAppearingErrorMessages" duration-ms="6107" started-at="2017-09-17T13:52:34Z" data-provider="registrationInvalidData" finished-at="2017-09-17T13:52:40Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[qwerty]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[qwerty]]>
+                <![CDATA[Selenium.User@17f9d882]]>
               </value>
             </param>
           </params>
           <reporter-output>
+            <line>
+              <![CDATA[Running Testing testAppearingErrorMessages]]>
+            </line>
           </reporter-output>
-        </test-method> <!-- verifyCommisionerCommunity -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.Atqcq191@643b1d11]" name="tearDown" is-config="true" duration-ms="618" started-at="2017-09-13T21:54:11Z" finished-at="2017-09-13T21:54:11Z">
+        </test-method> <!-- testAppearingErrorMessages -->
+        <test-method status="PASS" signature="testAppearingErrorMessages(Selenium.User)[pri:0, instance:Selenium.Atqcq125@643b1d11]" name="testAppearingErrorMessages" duration-ms="4522" started-at="2017-09-17T13:52:40Z" data-provider="registrationInvalidData" finished-at="2017-09-17T13:52:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Selenium.User@5e7cd6cc]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Running Testing testAppearingErrorMessages]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testAppearingErrorMessages -->
+        <test-method status="PASS" signature="testClearRegistrationForm(Selenium.User)[pri:0, instance:Selenium.Atqcq125@643b1d11]" name="testClearRegistrationForm" duration-ms="1801" started-at="2017-09-17T13:52:45Z" data-provider="registrationInvalidData" finished-at="2017-09-17T13:52:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Selenium.User@6cd24612]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Running Testing testClearRegistrationForm]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testClearRegistrationForm -->
+        <test-method status="PASS" signature="testClearRegistrationForm(Selenium.User)[pri:0, instance:Selenium.Atqcq125@643b1d11]" name="testClearRegistrationForm" duration-ms="1934" started-at="2017-09-17T13:52:47Z" data-provider="registrationInvalidData" finished-at="2017-09-17T13:52:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Selenium.User@7098b907]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Running Testing testClearRegistrationForm]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testClearRegistrationForm -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:Selenium.Atqcq125@643b1d11]" name="tearDown" is-config="true" duration-ms="1087" started-at="2017-09-17T13:52:49Z" finished-at="2017-09-17T13:52:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- Selenium.Atqcq191 -->
+      </class> <!-- Selenium.Atqcq125 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

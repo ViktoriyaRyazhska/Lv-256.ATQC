@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -85,6 +86,7 @@ public class Atqcq125 {
 	 */
 	@Test(dataProvider = "registrationInvalidData")
 	public void testAppearingErrorMessages(User user) {
+		Reporter.log("Running Testing testAppearingErrorMessages");
 
 		fillRegistrationForm(user);
 		driver.findElement(By.id("submit")).click();//Click on 'Send' button
@@ -141,6 +143,7 @@ public class Atqcq125 {
 	 */
 	@Test(dataProvider = "registrationInvalidData")
 	public void testClearRegistrationForm(User user) {
+		Reporter.log("Running Testing testClearRegistrationForm");
 		fillRegistrationForm(user);
 		driver.findElement(By.cssSelector(".btn.btn-warning.reset")).click(); // click on 'Reset' button
 

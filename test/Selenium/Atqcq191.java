@@ -73,8 +73,13 @@ public class Atqcq191 {
 		driver.findElement(By.id("bth-search")).click();
 		
 		// Check every page of table
+		driver.findElement(By.xpath("//a[@href=\"#\" and @data-toggle=\"dropdown\"]")).click();//'Community' item
+		driver.findElement(By.partialLinkText("Непідтверджені")).click();
+		Thread.sleep(2000);
 		List<WebElement> tablePages = driver.findElements(By.cssSelector(".paginate_button"));// for every page of table
 		for (WebElement tablePage : tablePages) {
+//		for (int tablePage = 0; tablePage<tablePages.size()-2;tablePage++) {
+			commissionerCommnuityName="Ukraine";
 			// Verify every row with commissioner community name
 			new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("edit")));
 			List<WebElement> tableRows = driver.findElements(By.xpath("//tbody/tr"));
@@ -82,7 +87,7 @@ public class Atqcq191 {
 				assertEquals(tableRow.findElement(By.className("territorialCommunity_name")).getText(),
 						commissionerCommnuityName);// community name of all users should have the same name with
 													// community of commissioner			
-			}			
+			}		tablePage.click();	
 		}
 	}
 
