@@ -4,6 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Class representation of drop-down list and home button .
+ * 
+ * @author Kryvenko Yaroslava
+ *
+ */
+
 public class DropdownHomePage extends TitleLocPage{
 	public WebDriver driver;
 	public WebElement homeButton;

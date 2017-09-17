@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
  *
  */
 public class CommissionerHomePage extends DropdownHomePage{
-		public WebDriver driver;
 		public WebElement coowners;
 		public WebElement registration;
 		public WebElement active;
@@ -18,6 +17,7 @@ public class CommissionerHomePage extends DropdownHomePage{
 		public WebElement nonConfirmfd;
 		public WebElement blocked;
 		public CommissionerHomePage (WebDriver driver) {
+			super(driver);
 			this.driver=driver;
 			coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));
 			active=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
