@@ -1,9 +1,8 @@
 package framework.pages;
-//testchange
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public abstract class TitleLocalFooter {
 
@@ -13,8 +12,7 @@ public abstract class TitleLocalFooter {
 	private WebElement localization_dropdown;
 	private WebElement footer;
 	
-	public TitleLocalFooter(WebDriver driver) {
-		
+	public TitleLocalFooter(WebDriver driver) {		
 		this.driver=driver;
 		titleFirstPart = driver.findElement(By.xpath("//div[@class='col-md-7 col-xs-12']/h3[1]"));
 		titleSecondPart = driver.findElement(By.xpath("//div[@class='col-md-7 col-xs-12']/h3[2]"));
