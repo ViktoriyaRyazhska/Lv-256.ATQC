@@ -16,19 +16,19 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 	public WebElement userName;
 	public WebElement changePassword;
 	public WebElement resetPassword;
-	public WebElement downButton;
+	public WebElement menuDownButton;
 	public WebElement logout;
 
 	public DropdownHomePage (WebDriver driver) {
 		super(driver);
 		homeButton=driver.findElement(By.xpath("//*[@id=\"navigationbar\"]//following::a"));
 		userName = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm"));
-		downButton = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle"));
+		menuDownButton = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle"));
 		
 	}
-	public void clickDownButton (WebDriver driver){	
+	public void clickMenuDownButton (WebDriver driver){	
 		getUserName().click();
-		getDownButton().click();
+		getMenuDownButton().click();
 		changePassword = driver.findElement(By.cssSelector(".change-password"));
 		resetPassword = driver.findElement(By.cssSelector(".reset-my-password"));
 		logout = driver.findElement(By.cssSelector("[href=\"/logout\"]"));
@@ -66,12 +66,12 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 		this.resetPassword = resetPassword;
 	}
 
-	public WebElement getDownButton() {
-		return downButton;
+	public WebElement getMenuDownButton() {
+		return menuDownButton;
 	}
 
-	public void setDownButton(WebElement downButton) {
-		this.downButton = downButton;
+	public void setMenuDownButton(WebElement downButton) {
+		this.menuDownButton = downButton;
 	}
 
 	public WebElement getLogout() {
