@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[Running VerifyCancelButton]]>
+    </line>
+    <line>
+      <![CDATA[Running VerifyCloseButton]]>
+    </line>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="53519" started-at="2017-09-14T07:29:44Z" finished-at="2017-09-14T07:30:37Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="53519" started-at="2017-09-14T07:29:44Z" finished-at="2017-09-14T07:30:37Z">
+      <class name="selenium.CheckActiveButton">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:selenium.CheckActiveButton@51efea79]" name="setUp" is-config="true" duration-ms="16743" started-at="2017-09-14T10:29:44Z" finished-at="2017-09-14T10:30:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="set()[pri:0, instance:selenium.CheckActiveButton@51efea79]" name="set" is-config="true" duration-ms="1560" started-at="2017-09-14T10:30:00Z" finished-at="2017-09-14T10:30:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- set -->
+        <test-method status="PASS" signature="verifyCancelButton()[pri:0, instance:selenium.CheckActiveButton@51efea79]" name="verifyCancelButton" duration-ms="11226" started-at="2017-09-14T10:30:02Z" finished-at="2017-09-14T10:30:13Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Running VerifyCancelButton]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- verifyCancelButton -->
+        <test-method status="PASS" signature="set()[pri:0, instance:selenium.CheckActiveButton@51efea79]" name="set" is-config="true" duration-ms="1637" started-at="2017-09-14T10:30:13Z" finished-at="2017-09-14T10:30:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- set -->
+        <test-method status="FAIL" signature="verifyCloseButton()[pri:0, instance:selenium.CheckActiveButton@51efea79]" name="verifyCloseButton" duration-ms="11191" started-at="2017-09-14T10:30:15Z" finished-at="2017-09-14T10:30:26Z">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for element to no longer be visible: By.xpath: //*[text()='Siberia'] (tried for 10 second(s) with 500 MILLISECONDS interval)
+Build info: version: 'unknown', revision: 'unknown', time: 'unknown'
+System info: host: 'COMPUTER', ip: '10.4.50.148', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\User\AppData\Local\Temp\rust_mozprofile.U2BBh0XCvtiq, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=54.0.1, platformVersion=6.1, moz:processID=7160, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: 4ce725dd-2481-4161-9723-6c539e39f20d]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //*[text()='Siberia'] (tried for 10 second(s) with 500 MILLISECONDS interval)
+Build info: version: 'unknown', revision: 'unknown', time: 'unknown'
+System info: host: 'COMPUTER', ip: '10.4.50.148', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\User\AppData\Local\Temp\rust_mozprofile.U2BBh0XCvtiq, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=54.0.1, platformVersion=6.1, moz:processID=7160, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: 4ce725dd-2481-4161-9723-6c539e39f20d
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:232)
+	at selenium.CheckActiveButton.verifyCloseButton(CheckActiveButton.java:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+            <line>
+              <![CDATA[Running VerifyCloseButton]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- verifyCloseButton -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:selenium.CheckActiveButton@51efea79]" name="tearDown" is-config="true" duration-ms="11041" started-at="2017-09-14T10:30:26Z" finished-at="2017-09-14T10:30:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- selenium.CheckActiveButton -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
