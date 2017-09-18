@@ -21,7 +21,7 @@ public class DropdownHomePage extends TitleLocalFooter{
 	public WebElement logout;
 
 	public DropdownHomePage (WebDriver driver) {
-		this.driver=driver;
+		super(driver);
 		homeButton=driver.findElement(By.xpath("//*[@id=\"navigationbar\"]//following::a"));
 		userName = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm"));
 		downButton = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle"));
