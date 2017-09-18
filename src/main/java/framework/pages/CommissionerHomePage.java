@@ -18,7 +18,6 @@ public class CommissionerHomePage extends DropdownHomePage{
 		public WebElement blocked;
 		public CommissionerHomePage (WebDriver driver) {
 			super(driver);
-			this.driver=driver;
 			coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));
 			active=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
 			inactive=driver.findElement(By.cssSelector(".dropdown-menu [href$='inactive']"));

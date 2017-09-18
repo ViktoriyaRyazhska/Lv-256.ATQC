@@ -12,7 +12,6 @@ import org.openqa.selenium.WebElement;
  */
 
 public class DropdownHomePage extends TitleLocalFooter{
-	public WebDriver driver;
 	public WebElement homeButton;
 	public WebElement userName;
 	public WebElement changePassword;
