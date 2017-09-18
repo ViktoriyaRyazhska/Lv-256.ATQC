@@ -1,4 +1,4 @@
-package framework.pages;
+package main.java.framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,40 +9,28 @@ import org.openqa.selenium.WebElement;
  * @author Kryvenko Yaroslava
  *
  */
-public class CommissionerHomePage extends DropdownHomePage{
-		public WebElement coowners;
-		public WebElement registration;
+public abstract class CommissionerHomePage extends DropdownHomePage{
+		public WebElement coowners;		
 		public WebElement active;
 		public WebElement inactive;
-		public WebElement nonConfirmfd;
+		public WebElement nonConfirmed;
 		public WebElement blocked;
 		public CommissionerHomePage (WebDriver driver) {
 			super(driver);
 			coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));
 			active=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
 			inactive=driver.findElement(By.cssSelector(".dropdown-menu [href$='inactive']"));
-			nonConfirmfd=driver.findElement(By.xpath("//a[contains(@href,\"notcomfirmed\")]"));
-			blocked=driver.findElement(By.xpath("//a[contains(@href,\"block\")]"));
-			registration=driver.findElement(By.partialLinkText("������������ �����������"));
+			nonConfirmed=driver.findElement(By.xpath("//a[contains(@href,\"notcomfirmed\")]"));
+			blocked=driver.findElement(By.xpath("//a[contains(@href,\"block\")]"));			
 		}
-		public WebDriver getDriver() {
-			return driver;
-		}
-		public void setDriver(WebDriver driver) {
-			this.driver = driver;
-		}
+
 		public WebElement getCoowners() {
 			return coowners;
 		}
 		public void setCoowners(WebElement coowners) {
 			this.coowners = coowners;
 		}
-		public WebElement getRegistration() {
-			return registration;
-		}
-		public void setRegistration(WebElement registration) {
-			this.registration = registration;
-		}
+
 		public WebElement getActive() {
 			return active;
 		}
@@ -56,10 +44,10 @@ public class CommissionerHomePage extends DropdownHomePage{
 			this.inactive = inactive;
 		}
 		public WebElement getNonConfirmfd() {
-			return nonConfirmfd;
+			return nonConfirmed;
 		}
 		public void setNonConfirmfd(WebElement nonConfirmfd) {
-			this.nonConfirmfd = nonConfirmfd;
+			this.nonConfirmed = nonConfirmfd;
 		}
 		public WebElement getBlocked() {
 			return blocked;
@@ -68,5 +56,3 @@ public class CommissionerHomePage extends DropdownHomePage{
 			this.blocked = blocked;
 		}
 	}
-
-}
