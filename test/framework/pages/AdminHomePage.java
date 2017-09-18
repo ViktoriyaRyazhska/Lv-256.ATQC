@@ -10,73 +10,61 @@ import org.openqa.selenium.WebElement;
  * @author Bohdan Zhyvko
  *
  */
-public abstract class AdminHomePage extends CommissionerHomePage {
+public abstract class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	
-	public WebDriver driver;
-	public WebElement settingsTab;
-	public WebElement communitiesTab;
-	public WebElement unblockAllCoownersButton;
+	public WebElement settings;
+	public WebElement communities;
+	public WebElement unblockAllCoowners;
 	
 	/**
 	 * Constructor initialize the WebDriver and navigation bar
-	 * but should be English localization on the Administrator home page
+	 * on the Administrator home page
 	 *  
 	 * @param driver
 	 */
 	public AdminHomePage(WebDriver driver) {
 		super(driver);
-		this.driver = driver;
-		this.settingsTab = driver.findElement(By.partialLinkText("Settings"));
-		this.communitiesTab = driver.findElement(By.partialLinkText("Communities"));
-		this.unblockAllCoownersButton = driver.findElement(By.partialLinkText("Unblock all coowners"));
+		this.settings = driver.findElement(By.cssSelector("[href $= 'show-all-communities']");
+		this.communities = driver.findElement(By.cssSelector("[href $= 'settings']"));
+		this.unblockAllCoowners = driver.findElement(By.id("unlockUsers"));
+	}
+	//
+	/**
+	 * @param settings the settings to set
+	 */
+	public void setSettings(WebElement settings) {
+		this.settings = settings;
 	}
 	/**
-	 * @param driver the WebDriver to set
+	 * @param communities the communities to set
 	 */
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
+	public void setCommunities(WebElement communities) {
+		this.communities = communitiesTab;
 	}
 	/**
-	 * @param settingsTab the settingsTab to set
+	 * @param unblockAllCoowners the unblockAllCoowners to set
 	 */
-	public void setSettingsTab(WebElement settingsTab) {
-		this.settingsTab = settingsTab;
-	}
-	/**
-	 * @param communitiesTab the communitiesTab to set
-	 */
-	public void setCommunitiesTab(WebElement communitiesTab) {
-		this.communitiesTab = communitiesTab;
-	}
-	/**
-	 * @param unblockAllCoownersButton the unblockAllCoownersButton to set
-	 */
-	public void setUnblockAllCoownersButton(WebElement unblockAllCoownersButton) {
-		this.unblockAllCoownersButton = unblockAllCoownersButton;
+	public void setUnblockAllCoowners(WebElement unblockAllCoowners) {
+		this.unblockAllCoowners = unblockAllCoowners;
 	}
 	
+
 	/**
-	 * @return the driver
+	 * @return the settings
 	 */
-	public WebDriver getDriver() {
-		return driver;
+	public WebElement getsettings() {
+		return settings;
 	}
 	/**
-	 * @return the settingsTab
+	 * @return the communities
 	 */
-	public WebElement getSettingsTab() {
-		return settingsTab;
+	public WebElement getCommunities() {
+		return communities;
 	}
 	/**
-	 * @return the communitiesTab
+	 * @return the unblockAllCoowners
 	 */
-	public WebElement getCommunitiesTab() {
-		return communitiesTab;
-	}
-	/**
-	 * @return the unblockAllCoownersButton
-	 */
-	public WebElement getUnblockAllCoownersButton() {
-		return unblockAllCoownersButton;
+	public WebElement getUnblockAllCoowners() {
+		return unblockAllCoowners;
 	}	
 }
