@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 /**
- * This TC verifies that after clicking on вЂCommunitiesвЂ™ button on main menu of
+ * This TC verifies that after clicking on ‘Communities’ button on main menu of
  * Administrators session User able to activate the community.
  * 
  * @author Khrystyna Terletska
@@ -24,7 +24,7 @@ public class CheckActiveButton {
 
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		// Create a new instance of the Firefox driver
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -39,7 +39,7 @@ public class CheckActiveButton {
 
 	@BeforeMethod
 	public void set() {
-		driver.findElement(By.linkText("Р“СЂРѕРјР°РґРё")).click();
+		driver.findElement(By.linkText("Громади")).click();
 		// display inactive users
 		List<WebElement> checkbox = driver.findElements(By.xpath(".//*[@id='inactiveCheckbox']"));
 
@@ -55,7 +55,7 @@ public class CheckActiveButton {
 				.click();
 		// Verify that message is appeared after clicking "Active" button
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Р’Рё РІРїРµРІРЅРµРЅС–, С‰Рѕ С…РѕС‡РµС‚Рµ Р°РєС‚РёРІСѓРІР°С‚Рё С†СЋ РіСЂРѕРјР°РґСѓ?");
+				"Ви впевнені, що хочете активувати цю громаду?");
 
 		driver.findElement(By.className("close")).click();
 		// Verify that communities display in "Inactive communities" table
@@ -83,7 +83,7 @@ public class CheckActiveButton {
 				.click();
 		// Verify that message is appeared after clicking "Active" button
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Р’Рё РІРїРµРІРЅРµРЅС–, С‰Рѕ С…РѕС‡РµС‚Рµ Р°РєС‚РёРІСѓРІР°С‚Рё С†СЋ РіСЂРѕРјР°РґСѓ?");
+				"Ви впевнені, що хочете активувати цю громаду?");
 
 		driver.findElement(By.xpath("//button[@data-bb-handler='cancel']")).click();
 
@@ -111,7 +111,7 @@ public class CheckActiveButton {
 				.click();
 		// Verify that message is appeared after clicking "Active" button
 		assertEquals(driver.findElement(By.className("bootbox-body")).getText(),
-				"Р’Рё РІРїРµРІРЅРµРЅС–, С‰Рѕ С…РѕС‡РµС‚Рµ Р°РєС‚РёРІСѓРІР°С‚Рё С†СЋ РіСЂРѕРјР°РґСѓ?");
+				"Ви впевнені, що хочете активувати цю громаду?");
 
 		driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")).click();
 		// Verify that message is appeared after clicking "Active" button

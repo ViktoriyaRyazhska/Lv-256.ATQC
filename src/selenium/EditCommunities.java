@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * This TC verifies that after clicking on ‘Communities’ button on main menu of
+ * This TC verifies that after clicking on �Communities� button on main menu of
  * Administrators session User able to edit territorial community and
  * registration number after clicking "Edit" on Communities page .
  * 
@@ -25,7 +25,7 @@ public class EditCommunities {
 
 	@DataProvider
 	public Object[][] EditData() {
-		return new Object[][] { { "Croti", "112:12:11:111:16549" } };
+		return new Object[][] { { "Crotia", "112:12:11:111:16548" } };
 	}
 
 	@DataProvider
@@ -38,7 +38,7 @@ public class EditCommunities {
 	 */
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "D:\\Downloads\\111\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		// Create a new instance of the Firefox driver
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -62,8 +62,8 @@ public class EditCommunities {
 	@Test(dataProvider = "EditData")
 	public void testEditCommunities(String Name_community, String Registration_number) {
 		Reporter.log("Running testEditCommunities"); // create report
-		driver.findElement(By.linkText("Громади")).click(); // find button "Communities" on main navigation tab
-		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Crotia']/following::a[@id='editcommunity']"))
+		driver.findElement(By.linkText("")).click(); // find button "Communities" on main navigation tab
+		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Croti']/following::a[@id='editcommunity']"))
 				.click(); // driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys(Name_community);
@@ -73,12 +73,12 @@ public class EditCommunities {
 
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		(new WebDriverWait(driver, 10)).until(
-				ExpectedConditions.presenceOfElementLocated((By.xpath("//tr[@class='commun']//*[text()='Croti']"))));
+				ExpectedConditions.presenceOfElementLocated((By.xpath("//tr[@class='commun']//*[text()='Crotia']"))));
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 		// Verify that changes have been saved in the table "Communities"
 
-		assertNotNull(driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Croti']")));
+		assertNotNull(driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Crotia']")));
 
 	}
 
@@ -89,7 +89,7 @@ public class EditCommunities {
 	@Test(dataProvider = "InvalidEditData")
 	public void testInvalidEditCommunities(String Name_community, String Registration_number) {
 		Reporter.log("Running testInvalidEditCommunities"); // create report
-		driver.findElement(By.linkText("Громади")).click();
+		driver.findElement(By.linkText("")).click();
 		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Sri Lanka']/following::a[@id='editcommunity']"))
 				.click(); //
 		driver.findElement(By.name("name")).clear();
@@ -99,9 +99,15 @@ public class EditCommunities {
 		driver.findElement(By.cssSelector("input.btn.btn-success")).click();
 
 		// Verify that error massages appears when enter existing community name and
+
 		// invalid format registration number Please fill out this field.
 		Assert.assertEquals(driver.findElement(By.id("name.errors")).getText(), "Підклас з вказаним іменем вже існує");
 		Assert.assertEquals(driver.findElement(By.id("registrationNumber.errors")).getText(), "Невірний формат");
+
+		// invalid format registration number
+		Assert.assertEquals(driver.findElement(By.id("name.errors")).getText(), "");
+		Assert.assertEquals(driver.findElement(By.id("registrationNumber.errors")).getText(), "");
+
 
 	}
 
