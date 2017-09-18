@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public abstract class TitleLocalFooter {
 
-	private WebDriver driver;
+	protected WebDriver driver;
 	private WebElement titleFirstPart;
 	private WebElement titleSecondPart;
 	private WebElement localization_dropdown;

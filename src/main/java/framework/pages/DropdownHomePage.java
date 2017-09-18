@@ -1,4 +1,4 @@
-package framework.pages;
+package main.java.framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +11,7 @@ import org.openqa.selenium.WebElement;
  *
  */
 
-public class DropdownHomePage extends TitleLocalFooter{
-	public WebDriver driver;
+public abstract class DropdownHomePage extends TitleLocalFooter{
 	public WebElement homeButton;
 	public WebElement userName;
 	public WebElement changePassword;
@@ -28,18 +27,6 @@ public class DropdownHomePage extends TitleLocalFooter{
 		changePassword = driver.findElement(By.cssSelector(".change-password"));
 		resetPassword = driver.findElement(By.cssSelector(".reset-my-password"));
 		logout = driver.findElement(By.cssSelector("[href=\"/logout\"]"));
-	}
-
-	public <T extends TitleLocalFooter> T setLanguage(int index) {
-		return null;
-	}
-
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
 	}
 
 	public WebElement getHomeButton() {
