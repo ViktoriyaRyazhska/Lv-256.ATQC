@@ -1,4 +1,4 @@
-package main.java.framework.pages;
+package framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

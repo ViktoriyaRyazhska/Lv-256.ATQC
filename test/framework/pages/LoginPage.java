@@ -62,13 +62,13 @@ public class LoginPage extends TitleLocalFooter {
 		signInButton.click();
 	}
 	
-	public AdminHomePage successfullLogin(User validuser){
-		
-		signIn(validuser);
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
-		return new AdminHomePage(driver);
-	}
-	
+//	public AdminHomePage successfullLogin(User validuser){
+//		
+//		signIn(validuser);
+//		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
+//		return new AdminHomePage(driver);
+//	}
+//	
 	public LoginPage unSuccessfullLogin(User invaliduser) {
 		
 		signIn(invaliduser);

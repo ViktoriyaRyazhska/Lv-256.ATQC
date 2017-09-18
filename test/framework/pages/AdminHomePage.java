@@ -1,4 +1,4 @@
-package main.java.framework.pages;
+package framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
  * @author Bohdan Zhyvko
  *
  */
-public class AdminHomePage extends CommissionerHomePage {
+public abstract class AdminHomePage extends CommissionerHomePage {
 	
 	public WebDriver driver;
 	public WebElement settingsTab;
