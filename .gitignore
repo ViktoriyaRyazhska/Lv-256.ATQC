@@ -26,3 +26,6 @@ bin/*
 target/*
 test-output/*
 /target/
+out/production/main/
+src/main/pom.xml
+src/main/target/generated-sources/

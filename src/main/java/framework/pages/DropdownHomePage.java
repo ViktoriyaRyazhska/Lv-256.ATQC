@@ -30,6 +30,10 @@ public class DropdownHomePage extends TitleLocalFooter{
 		logout = driver.findElement(By.cssSelector("[href=\"/logout\"]"));
 	}
 
+	public <T extends TitleLocalFooter> T setLanguage(int index) {
+		return null;
+	}
+
 	public WebDriver getDriver() {
 		return driver;
 	}

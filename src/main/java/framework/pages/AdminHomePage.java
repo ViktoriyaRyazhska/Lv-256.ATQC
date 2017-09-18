@@ -24,7 +24,7 @@ public class AdminHomePage extends CommissionerHomePage {
 	 * @param driver
 	 */
 	public AdminHomePage(WebDriver driver) {
-		super();
+		super(driver);
 		this.driver = driver;
 		this.settingsTab = driver.findElement(By.partialLinkText("Settings"));
 		this.communitiesTab = driver.findElement(By.partialLinkText("Communities"));
