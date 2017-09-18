@@ -29,7 +29,7 @@ public abstract class AdminHomePage extends CommissionerWithRegistrationHomePage
 	public AdminHomePage(WebDriver driver) {
 		//initialize these elements
 		super(driver);
-		this.settings = driver.findElement(By.cssSelector("[$href $= 'show-all-communities']");
+		this.settings = driver.findElement(By.cssSelector("[$href $= 'show-all-communities']"));
 		this.communities = driver.findElement(By.cssSelector("[href $= 'settings']"));
 		this.unblockAllCoowners = driver.findElement(By.id("unlockUsers"));
 	}

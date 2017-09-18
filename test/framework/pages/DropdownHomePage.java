@@ -23,63 +23,50 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 		super(driver);
 		homeButton=driver.findElement(By.xpath("//*[@id=\"navigationbar\"]//following::a"));
 		userName = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm"));
-		menuDownButton = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle"));
-		
+		menuDownButton = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle"));		
 	}
+	
 	public void clickMenuDownButton (WebDriver driver){	
-		getUserName().click();
-		getMenuDownButton().click();
+		clickUserName();
+		clickMenuDownButton();
 		changePassword = driver.findElement(By.cssSelector(".change-password"));
 		resetPassword = driver.findElement(By.cssSelector(".reset-my-password"));
 		logout = driver.findElement(By.cssSelector("[href=\"/logout\"]"));
 	}
 	
-	public WebElement getHomeButton() {
-		return homeButton;
-	}
-
-	public void setHomeButton(WebElement homeButton) {
-		this.homeButton = homeButton;
-	}
-
-	public WebElement getUserName() {
-		return userName;
-	}
-
-	public void setUserName(WebElement userName) {
-		this.userName = userName;
-	}
-
-	public WebElement getChangePassword() {
-		return changePassword;
-	}
-
-	public void setChangePassword(WebElement changePassword) {
-		this.changePassword = changePassword;
-	}
-
-	public WebElement getResetPassword() {
-		return resetPassword;
-	}
-
-	public void setResetPassword(WebElement resetPassword) {
-		this.resetPassword = resetPassword;
-	}
-
-	public WebElement getMenuDownButton() {
-		return menuDownButton;
-	}
-
-	public void setMenuDownButton(WebElement downButton) {
-		this.menuDownButton = downButton;
-	}
-
-	public WebElement getLogout() {
-		return logout;
-	}
-
-	public void setLogout(WebElement logout) {
-		this.logout = logout;
+	public WebElement getHomeButton() {return homeButton;}
+	public void setHomeButton(WebElement homeButton) {this.homeButton = homeButton;}
+	public WebElement getUserName() { return userName;}
+	public void setUserName(WebElement userName) {this.userName = userName;}
+	public WebElement getChangePassword() {return changePassword;}
+	public void setChangePassword(WebElement changePassword) {this.changePassword = changePassword;}
+	public WebElement getResetPassword() {return resetPassword;}
+	public void setResetPassword(WebElement resetPassword) {this.resetPassword = resetPassword;}
+	public WebElement getMenuDownButton() {return menuDownButton;}
+	public void setMenuDownButton(WebElement downButton) {this.menuDownButton = downButton;}
+	public WebElement getLogout() {return logout;}
+	public void setLogout(WebElement logout) {this.logout = logout;}
+	
+	public void getHomeButtonText() {getHomeButton().getText().trim();}
+	public void getUserNameText() { getUserName().getText().trim();}
+	public void getChangePasswordText() {getChangePassword().getText().trim();}
+	public void getResetPasswordText() {getResetPassword().getText().trim();}
+	public void getMenuDownButtonText() {getMenuDownButton().getText().trim();}
+	public void getLogoutText() {getLogout().getText().trim();}
+	
+	public void clickHomeButton() {getHomeButton().click();}
+	public void clickUserName() { getUserName().click();}
+//	public void getChangePassword() {getChangePassword().click();}
+//	public void getResetPassword() {getResetPassword().click();}
+	public void clickMenuDownButton() {getMenuDownButton().click();}
+	public void clickLogout() {getLogout().click();}
+	
+	public LoginPage successLogout() {
+		clickMenuDownButton(driver);	
+		clickLogout();
+		return new LoginPage(driver);
 	}
 }
+
+
 
