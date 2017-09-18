@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
  *
  */
 
-public class DropdownHomePage extends TitleLocPage{
+public class DropdownHomePage extends TitleLocalFooter{
 	public WebDriver driver;
 	public WebElement homeButton;
 	public WebElement userName;
