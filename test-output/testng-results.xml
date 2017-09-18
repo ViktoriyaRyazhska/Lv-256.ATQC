@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="7" passed="7">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="106" started-at="2017-09-05T19:50:02Z" finished-at="2017-09-05T19:50:02Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="106" started-at="2017-09-05T19:50:02Z" finished-at="2017-09-05T19:50:02Z">
+      <class name="edu.com.task.book.Task559Test">
+        <test-method status="PASS" signature="testIsPrime(java.lang.Integer, boolean, java.lang.Integer, boolean)[pri:0, instance:edu.com.task.book.Task559Test@7ac7a4e4]" name="testIsPrime" duration-ms="27" started-at="2017-09-05T22:50:02Z" data-provider="PrimeProvider" finished-at="2017-09-05T22:50:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[false]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsPrime -->
+        <test-method status="PASS" signature="testIsPrime(java.lang.Integer, boolean, java.lang.Integer, boolean)[pri:0, instance:edu.com.task.book.Task559Test@7ac7a4e4]" name="testIsPrime" duration-ms="4" started-at="2017-09-05T22:50:02Z" data-provider="PrimeProvider" finished-at="2017-09-05T22:50:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[5]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[6]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[false]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsPrime -->
+        <test-method status="PASS" signature="testIsPrime(java.lang.Integer, boolean, java.lang.Integer, boolean)[pri:0, instance:edu.com.task.book.Task559Test@7ac7a4e4]" name="testIsPrime" duration-ms="1" started-at="2017-09-05T22:50:02Z" data-provider="PrimeProvider" finished-at="2017-09-05T22:50:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[7]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[8]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[false]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsPrime -->
+        <test-method status="PASS" signature="testIsPrime(java.lang.Integer, boolean, java.lang.Integer, boolean)[pri:0, instance:edu.com.task.book.Task559Test@7ac7a4e4]" name="testIsPrime" duration-ms="2" started-at="2017-09-05T22:50:02Z" data-provider="PrimeProvider" finished-at="2017-09-05T22:50:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[11]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[true]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[15]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[false]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsPrime -->
+        <test-method status="PASS" signature="testMersennePrimes(java.lang.Integer, [Ljava.lang.Integer;)[pri:0, instance:edu.com.task.book.Task559Test@7ac7a4e4]" name="testMersennePrimes" duration-ms="4" started-at="2017-09-05T22:50:02Z" data-provider="MersennePrimesProvider" finished-at="2017-09-05T22:50:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[35]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Integer;@5383967b]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMersennePrimes -->
+        <test-method status="PASS" signature="testMersennePrimes(java.lang.Integer, [Ljava.lang.Integer;)[pri:0, instance:edu.com.task.book.Task559Test@7ac7a4e4]" name="testMersennePrimes" duration-ms="12" started-at="2017-09-05T22:50:02Z" data-provider="MersennePrimesProvider" finished-at="2017-09-05T22:50:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[130]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Integer;@2ac273d3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMersennePrimes -->
+        <test-method status="PASS" signature="testMersennePrimes(java.lang.Integer, [Ljava.lang.Integer;)[pri:0, instance:edu.com.task.book.Task559Test@7ac7a4e4]" name="testMersennePrimes" duration-ms="2" started-at="2017-09-05T22:50:02Z" data-provider="MersennePrimesProvider" finished-at="2017-09-05T22:50:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Integer;@71423665]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMersennePrimes -->
+      </class> <!-- edu.com.task.book.Task559Test -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
