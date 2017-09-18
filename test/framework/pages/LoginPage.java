@@ -42,46 +42,6 @@ public class LoginPage extends TitleLocalFooter {
 		
 	}
 	
-	
-	
-
-	@Override
-	public LoginPage setLanguage(int index) {
-		
-		Select lang = new Select(getLocalizationDropdown()); 
-		lang.selectByIndex(index); 
-		return new LoginPage(driver);
-	}
-	
-	
-	public void signIn(User user) {
-		loginField.clear();
-		loginField.sendKeys(user.getLogin());
-		passwordField.clear();
-		passwordField.sendKeys(user.getPassword());
-		signInButton.click();
-	}
-	
-//	public AdminHomePage successfullLogin(User validuser){
-//		
-//		signIn(validuser);
-//		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
-//		return new AdminHomePage(driver);
-//	}
-//	
-	public LoginPage unSuccessfullLogin(User invaliduser) {
-		
-		signIn(invaliduser);
-		return new LoginPage(driver);
-	}
-	
-	public WebElement getErrorMessage() {
-		
-		errormessage = driver.findElement(By.xpath("//form[@id='loginForm']/div[contains(@style,'color: red;')]"));
-		return errormessage;
-		
-	}
-	
 	public WebElement getLoginLabel() {
 
 		return loginLabel;
@@ -111,9 +71,6 @@ public class LoginPage extends TitleLocalFooter {
 		return signInButton;
 	}
 
-	public WebElement getRegisterButton() {
-		return registerButton;
-	}
 
 	public WebElement getForgotPasswordLink() {
 		return forgotPasswordLink;
@@ -126,6 +83,71 @@ public class LoginPage extends TitleLocalFooter {
 	public WebElement getFeedbackLink() {
 		return feedbackLink;
 	}
+	
+
+	public WebElement getErrorMessage() {
+		
+		errormessage = driver.findElement(By.xpath("//form[@id='loginForm']/div[contains(@style,'color: red;')]"));
+		return errormessage;	
+	}
+	
+	public WebElement getRegisterButton() {
+		
+		registerButton = driver.findElement(By.xpath("//*[contains(@href,'register')]"));
+		return registerButton;
+	}
+	
+	
+	@Override
+	public LoginPage setLanguage(ChangeLanguageFields language) {
+		
+		Select lang = new Select(getLocalizationDropdown()); 
+		lang.selectByVisibleText(language.toString()); 
+		return new LoginPage(driver);
+	}
+	
+	public void inputLogin(String login) {
+		loginField.sendKeys(login);
+	}
+	
+	public void inputPassword(String password) {
+		passwordField.sendKeys(password);
+	}
+	
+	public void inputLoginClear(String login) {
+		
+		loginField.clear();
+		inputLogin(login);
+	}
+	
+	public void inputPasswordClear(String password) {
+		
+		passwordField.clear();
+		inputPassword(password);
+	}
+	public void signIn(User user) {
+		
+		inputLoginClear(user.getLogin());
+		inputPasswordClear(user.getPassword());
+		signInButton.click();
+	}
+	
+//	public AdminHomePage successfullLogin(User validuser){
+//		
+//		signIn(validuser);
+//		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
+//		return new AdminHomePage(driver);
+//	}
+//	
+	public LoginPage unSuccessfullLogin(User invaliduser) {
+		
+		signIn(invaliduser);
+		return new LoginPage(driver);
+	}
+	
+	
+	
+	
 	
 	
 }

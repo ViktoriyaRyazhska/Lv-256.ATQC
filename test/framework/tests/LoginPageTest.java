@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import framework.pages.LoginPage;
+import framework.pages.TitleLocalFooter.ChangeLanguageFields;
 import framework.testdata.UserContainer;
 
 import java.util.concurrent.TimeUnit;
@@ -22,7 +23,7 @@ public class LoginPageTest {
 
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "D:\\stuff_for_testng_firefox\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		baseURL = "http://regres.herokuapp.com";
@@ -38,7 +39,7 @@ public class LoginPageTest {
 		
 		driver.get(baseURL);
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage = loginpage.setLanguage(2);
+		loginpage = loginpage.setLanguage(ChangeLanguageFields.ENGLISH);
 		loginpage = loginpage.unSuccessfullLogin(UserContainer.getInvalidData());
 		Assert.assertTrue(loginpage.getErrorMessage().getText().contains("Wrong"));
 	

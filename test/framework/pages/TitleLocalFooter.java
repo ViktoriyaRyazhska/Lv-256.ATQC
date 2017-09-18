@@ -3,8 +3,22 @@ package framework.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public abstract class TitleLocalFooter {
+	
+	
+	public static enum ChangeLanguageFields {
+		  UKRAINIAN("українська"), RUSSIAN("русский"), ENGLISH("english");
+
+		private String field;
+
+		private ChangeLanguageFields(String field) {
+		    this.field = field;
+		}
+
+		public String toString() { return this.field; }
+		}
 
 	protected WebDriver driver;
 	private WebElement titleFirstPart;
@@ -27,12 +41,12 @@ public abstract class TitleLocalFooter {
 	
 	/**
 	 * 
-	 * Select lang = new Select(getLocalizationDropdown());
-	 *	lang.selectByIndex(index);
-	 *	return new **class name**(driver);
+	 * Select lang = new Select(getLocalizationDropdown()); 
+		lang.selectByVisibleText(language.toString()); 
+		return new 'Current page'(driver);
 	 * 
 	 */
-	public abstract < T extends TitleLocalFooter> T setLanguage(int index);
+	public abstract < T extends TitleLocalFooter> T setLanguage(ChangeLanguageFields language);
 	
 	public WebElement getFooter() {
 		
