@@ -64,6 +64,7 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 	public LoginPage successLogout() {
 		clickMenuDownButton(driver);	
 		clickLogout();
+		// Return a new page object representing the destination.
 		return new LoginPage(driver);
 	}
 }

@@ -133,11 +133,4 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		// Return a new page object representing the destination.
 		return new AdminHomePage(driver);
 	}
-	
-	public LoginPage logout() { 
-		this.logout.click();
-	   // Return a new page object representing the destination.
-	   return new LoginPage(driver);
-	}  
-
 }
