@@ -24,6 +24,11 @@ public abstract class RegistratorPage extends DropdownHomePage {
         addNewResource = driver.findElement(By.linkText("Add new resource"));
     }
 
+//    public void clickProcuration(WebDriver driver) {
+//      procurationEnteringData = driver.findElement(By.xpath(".//*[@id='menuForUser']"));
+//      procurationExtractFromRegister = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/ul/li[2]/a"));
+//    }
+
     public WebElement getResourcesSearch() {
         return resourcesSearch;
     }
@@ -45,8 +50,9 @@ public abstract class RegistratorPage extends DropdownHomePage {
         return getSubclassesOfObjects().getText();
     }
 
-    public void clickSubclassesOfObjects() {
+    public SubclassesOfObjects clickSubclassesOfObjects() {
         getSubclassesOfObjects().click();
+        return new SubclassesOfObjects(driver);
     }
 
     public WebElement getProcuration() {
@@ -69,7 +75,8 @@ public abstract class RegistratorPage extends DropdownHomePage {
         return getAddNewResource().getText();
     }
 
-    public void clickAddNewResource() {
+    public SubclassesOfObjects clickAddNewResource() {
         getAddNewResource().click();
+        return new SubclassesOfObjects(driver);
     }
 }
