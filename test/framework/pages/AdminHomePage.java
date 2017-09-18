@@ -15,7 +15,11 @@ public abstract class AdminHomePage extends CommissionerWithRegistrationHomePage
 	public WebElement settings;
 	public WebElement communities;
 	public WebElement unblockAllCoowners;
-	
+	//
+	public WebElement confirmMessageUnblockAllCoowners;
+	public WebElement closeButtonUnblockAllCoowners;
+	public WebElement okButtonUnblockAllCoowners;
+		
 	/**
 	 * Constructor initialize the WebDriver and navigation bar
 	 * on the Administrator home page
@@ -51,25 +55,37 @@ public abstract class AdminHomePage extends CommissionerWithRegistrationHomePage
 	}
 	
 	// Functional
-	public String get
+	/**
+	 * @return the settings tab text
+	 */
+	public String getSettingsText(){
+		return settings.getText().trim();
+	}
+	/**
+	 * @return the communities tab text
+	 */
+	public String getCommunitiesText(){
+		return communities.getText().trim();
+	}
+	/**
+	 * @return the Unblock all coowners button text
+	 */
+	public String getUnblockAllCoownersText(){
+		return unblockAllCoowners.getText().trim();
+	}
+	
+	//click on Settings tab
+	public void clickSettings(){
+		settings.click();
+	}
+	//click on Communities tab
+	public void clickCommunities(){
+		communities.click();
+	}
+	//click on Unblock all coowners tab
+	public void clickUnblockAllCoowners(){
+		unblockAllCoowners.click();
+	}
 	
 	
-	/**
-	 * @param settings the settings to set
-	 */
-	public void setSettings(WebElement settings) {
-		this.settings = settings;
-	}
-	/**
-	 * @param communities the communities to set
-	 */
-	public void setCommunities(WebElement communities) {
-		this.communities = communitiesTab;
-	}
-	/**
-	 * @param unblockAllCoowners the unblockAllCoowners to set
-	 */
-	public void setUnblockAllCoowners(WebElement unblockAllCoowners) {
-		this.unblockAllCoowners = unblockAllCoowners;
-	}
 }
