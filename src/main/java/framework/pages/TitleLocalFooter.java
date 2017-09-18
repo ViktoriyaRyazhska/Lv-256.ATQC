@@ -1,4 +1,4 @@
-package framework.pages;
+package main.java.framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,11 +21,7 @@ public abstract class TitleLocalFooter {
 		localization_dropdown= driver.findElement(By.id("changeLanguage"));
 		footer= driver.findElement(By.xpath("//div[@id='footer']//span"));
 	}
-	
-	
-
-
-
+		
 	public String getTitleText(){
 		
 		return titleFirstPart.getText().trim()+titleSecondPart.getText().trim();
