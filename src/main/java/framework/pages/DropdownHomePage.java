@@ -27,7 +27,7 @@ public class DropdownHomePage extends TitleLocalFooter{
 		downButton = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle"));
 		changePassword = driver.findElement(By.cssSelector(".change-password"));
 		resetPassword = driver.findElement(By.cssSelector(".reset-my-password"));
-		logout = driver.findElement(By.xpath("//a[contains(@href,'logout')]"));
+		logout = driver.findElement(By.cssSelector("[href=\"/logout\"]"));
 	}
 
 	public WebDriver getDriver() {
