@@ -33,6 +33,16 @@ public abstract class TitleLocalFooter {
 		localization_dropdown= driver.findElement(By.id("changeLanguage"));
 		footer= driver.findElement(By.xpath("//div[@id='footer']//span"));
 	}
+	
+	public WebElement getFooter() {
+		
+		return footer;
+	}
+	
+	public WebElement getLocalizationDropdown(){
+		
+		return localization_dropdown;
+	}
 		
 	public String getTitleText(){
 		
@@ -48,15 +58,7 @@ public abstract class TitleLocalFooter {
 	 */
 	public abstract < T extends TitleLocalFooter> T setLanguage(ChangeLanguageFields language);
 	
-	public WebElement getFooter() {
-		
-		return footer;
-	}
 	
-	public WebElement getLocalizationDropdown(){
-		
-		return localization_dropdown;
-	}
 	
 	
 	

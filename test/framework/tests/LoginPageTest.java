@@ -9,6 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import framework.pages.AdminHomePage;
 import framework.pages.LoginPage;
 import framework.pages.TitleLocalFooter.ChangeLanguageFields;
 import framework.testdata.UserContainer;
@@ -34,6 +35,15 @@ public class LoginPageTest {
 		driver.close();
 	}
 
+	@Test
+	public void checkValidLogin() {
+		driver.get(baseURL);
+		LoginPage loginpage = new LoginPage(driver);
+		AdminHomePage adminhomepage = loginpage.successfullLogin(UserContainer.getAdmin());
+		Assert.assertEquals(adminhomepage.getUserName().getText().trim(), UserContainer.getAdmin().getLogin());
+		adminhomepage.clickLogout();
+	}
+	
 	@Test
 	public void checkInvalidLogin() {
 		
