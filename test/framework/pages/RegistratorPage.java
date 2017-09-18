@@ -27,55 +27,27 @@ public class RegistratorPage {
         return driver;
     }
 
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public WebElement getResourcesSearch() {
         return resourcesSearch;
-    }
-
-    public void setResourcesSearch(WebElement resourcesSearch) {
-        this.resourcesSearch = resourcesSearch;
     }
 
     public WebElement getSubclassesOfObjects() {
         return subclassesOfObjects;
     }
 
-    public void setSubclassesOfObjects(WebElement subclassesOfObjects) {
-        this.subclassesOfObjects = subclassesOfObjects;
-    }
-
     public WebElement getProcuration() {
         return procuration;
-    }
-
-    public void setProcuration(WebElement procuration) {
-        this.procuration = procuration;
     }
 
     public WebElement getProcurationEnteringData() {
         return procurationEnteringData;
     }
 
-    public void setProcurationEnteringData(WebElement procurationEnteringData) {
-        this.procurationEnteringData = procurationEnteringData;
-    }
-
     public WebElement getProcurationExtractFromRegister() {
         return procurationExtractFromRegister;
     }
 
-    public void setProcurationExtractFromRegister(WebElement procurationExtractFromRegister) {
-        this.procurationExtractFromRegister = procurationExtractFromRegister;
-    }
-
     public WebElement getAddNewResource() {
         return addNewResource;
-    }
-
-    public void setAddNewResource(WebElement addNewResource) {
-        this.addNewResource = addNewResource;
     }
 }

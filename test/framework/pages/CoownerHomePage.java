@@ -23,39 +23,19 @@ public class CoownerHomePage {
 		return driver;
 	}
 
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
-	}
-
 	public WebElement getResourcesSearch() {
 		return resourcesSearch;
-	}
-
-	public void setResourcesSearch(WebElement resourseSearch) {
-		this.resourcesSearch = resourseSearch;
 	}
 
 	public WebElement getProcuration() {
 		return procuration;
 	}
 
-	public void setProcuration(WebElement procuration) {
-		this.procuration = procuration;
-	}
-
 	public WebElement getProcurationEnteringData() {
 		return procurationEnteringData;
 	}
 
-	public void setProcurationEnteringData(WebElement procurationEnteringData) {
-		this.procurationEnteringData = procurationEnteringData;
-	}
-
 	public WebElement getProcurationExtractFromRegister() {
 		return procurationExtractFromRegister;
-	}
-
-	public void setProcurationExtractFromRegister(WebElement procurationExtractFromRegister) {
-		this.procurationExtractFromRegister = procurationExtractFromRegister;
 	}
 }

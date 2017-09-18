@@ -17,13 +17,16 @@ public abstract class CommissionerHomePage extends DropdownHomePage{
     public WebElement blocked;
     public CommissionerHomePage (WebDriver driver) {
         super(driver);
-        coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));
-        active=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
+        coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));        
+    }
+    public void clickCoowners(WebDriver driver) {
+    	getUserName().click();
+    	getCoowners().click();
+    	active=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
         inactive=driver.findElement(By.cssSelector(".dropdown-menu [href$='inactive']"));
         nonConfirmed=driver.findElement(By.xpath("//a[contains(@href,\"notcomfirmed\")]"));
         blocked=driver.findElement(By.xpath("//a[contains(@href,\"block\")]"));
     }
-
     public WebElement getCoowners() {
         return coowners;
     }
