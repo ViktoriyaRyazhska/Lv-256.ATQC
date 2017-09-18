@@ -99,7 +99,7 @@ public class EditCommunities {
 		driver.findElement(By.cssSelector("input.btn.btn-success")).click();
 
 		// Verify that error massages appears when enter existing community name and
-		// invalid format registration number
+		// invalid format registration number Please fill out this field.
 		Assert.assertEquals(driver.findElement(By.id("name.errors")).getText(), "Підклас з вказаним іменем вже існує");
 		Assert.assertEquals(driver.findElement(By.id("registrationNumber.errors")).getText(), "Невірний формат");
 

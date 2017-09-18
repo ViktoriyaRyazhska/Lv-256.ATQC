@@ -104,7 +104,7 @@ public class CheckActiveButton {
 
 	}
 
-	@Test
+	//@Test
 	public void verifyOKButton() {
 		Reporter.log("Running VerifyOkButton"); // create report
 		driver.findElement(By.xpath("//tr[@class='commun']//*[text()='Siberia']/following::a[@id='activecommunity']"))
