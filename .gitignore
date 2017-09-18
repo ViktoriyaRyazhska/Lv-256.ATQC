@@ -6,6 +6,8 @@
 
 # BlueJ files
 *.ctxt
+Lv256.ATQC.iml
+.idea
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -29,3 +31,4 @@ test-output/*
 out/production/main/
 src/main/pom.xml
 src/main/target/generated-sources/
+Lv-256.ATQC.iml
