@@ -3,13 +3,15 @@ package framework.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import framework.testdata.User;
 
 public class LoginPage extends TitleLocalFooter {
 
-	private WebDriver driver;
+	
 	private WebElement loginLabel;
 	private WebElement loginField;
 	private WebElement passwordLabel;
@@ -26,7 +28,6 @@ public class LoginPage extends TitleLocalFooter {
 	public LoginPage(WebDriver driver) {
 		
 		super(driver);
-		this.driver=driver;
 		loginLabel = driver.findElement(By.xpath("//label[@for='inputEmail']"));
 		loginField = driver.findElement(By.name("login"));
 		passwordLabel = driver.findElement(By.xpath("//label[@for='inputPassword']"));
@@ -69,7 +70,6 @@ public class LoginPage extends TitleLocalFooter {
 		return signInButton;
 	}
 
-
 	public WebElement getForgotPasswordLink() {
 		return forgotPasswordLink;
 	}
@@ -82,7 +82,6 @@ public class LoginPage extends TitleLocalFooter {
 		return feedbackLink;
 	}
 	
-
 	public WebElement getErrorMessage() {
 		
 		errormessage = driver.findElement(By.xpath("//form[@id='loginForm']/div[contains(@style,'color: red;')]"));
@@ -94,7 +93,6 @@ public class LoginPage extends TitleLocalFooter {
 		registerButton = driver.findElement(By.xpath("//*[contains(@href,'register')]"));
 		return registerButton;
 	}
-	
 	
 	@Override
 	public LoginPage setLanguage(ChangeLanguageFields language) {
@@ -123,6 +121,7 @@ public class LoginPage extends TitleLocalFooter {
 		passwordField.clear();
 		inputPassword(password);
 	}
+	
 	public void signIn(User user) {
 		
 		inputLoginClear(user.getLogin());
@@ -130,13 +129,13 @@ public class LoginPage extends TitleLocalFooter {
 		signInButton.click();
 	}
 	
-//	public AdminHomePage successfullLogin(User validuser){
-//		
-//		signIn(validuser);
-//		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
-//		return new AdminHomePage(driver);
-//	}
-//	
+	public AdminHomePage successfullLogin(User validuser){
+		
+		signIn(validuser);
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
+		return new AdminHomePage(driver);
+	}
+	
 	public LoginPage unSuccessfullLogin(User invaliduser) {
 		
 		signIn(invaliduser);

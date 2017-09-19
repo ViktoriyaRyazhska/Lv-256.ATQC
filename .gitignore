@@ -8,6 +8,7 @@
 *.ctxt
 Lv256.ATQC.iml
 .idea
+target
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
