@@ -19,5 +19,12 @@ public abstract class CommissionerWithRegistrationHomePage extends CommissionerH
 	public void setRegistration(WebElement registration) {
 		this.registration = registration;
 	}
-
+	public void clickRegistration() {getRegistration().click();}
+	
+//	public LoginPage successLogout() {
+//		clickMenuDownButton(driver);	
+//		clickRegistration();
+//		// Return a new page object representing the destination.
+//		return new RegistrationTablePage(driver);
+//	}
 }

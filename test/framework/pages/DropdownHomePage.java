@@ -47,12 +47,12 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 	public WebElement getLogout() {return logout;}
 	public void setLogout(WebElement logout) {this.logout = logout;}
 	
-	public void getHomeButtonText() {getHomeButton().getText().trim();}
-	public void getUserNameText() { getUserName().getText().trim();}
-	public void getChangePasswordText() {getChangePassword().getText().trim();}
-	public void getResetPasswordText() {getResetPassword().getText().trim();}
-	public void getMenuDownButtonText() {getMenuDownButton().getText().trim();}
-	public void getLogoutText() {getLogout().getText().trim();}
+	public String getHomeButtonText() {return getHomeButton().getText().trim();}
+	public String getUserNameText() {return getUserName().getText().trim();}
+	public String getChangePasswordText() {return getChangePassword().getText().trim();}
+	public String getResetPasswordText() {return getResetPassword().getText().trim();}
+	public String getMenuDownButtonText() {return getMenuDownButton().getText().trim();}
+	public String getLogoutText() {return getLogout().getText().trim();}
 	
 	public void clickHomeButton() {getHomeButton().click();}
 	public void clickUserName() { getUserName().click();}
