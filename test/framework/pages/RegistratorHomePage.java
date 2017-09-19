@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class RegistratorPage extends DropdownHomePage {
+public abstract class RegistratorHomePage extends DropdownHomePage {
     // Fields
     WebElement resourcesSearch;//винести окремою сторінкою
     WebElement subclassesOfObjects;
@@ -14,7 +14,7 @@ public abstract class RegistratorPage extends DropdownHomePage {
     WebElement procurationEnteringData;
     WebElement procurationExtractFromRegister;
 
-    public RegistratorPage(WebDriver driver) {
+    public RegistratorHomePage(WebDriver driver) {
         super(driver);
         resourcesSearch = driver.findElement(By.cssSelector(".dropdown>a"));
         subclassesOfObjects = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/a"));
