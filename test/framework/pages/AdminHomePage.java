@@ -30,8 +30,8 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	public AdminHomePage(WebDriver driver) {
 		//initialize these elements
 		super(driver);
-		this.settings = driver.findElement(By.cssSelector("[href $= 'show-all-communities']"));
-		this.communities = driver.findElement(By.cssSelector("[href $= 'settings']"));
+		this.communities = driver.findElement(By.cssSelector("[href $= 'show-all-communities']"));
+		this.settings = driver.findElement(By.cssSelector("[href $= 'settings']"));
 		this.unblockAllCoowners = driver.findElement(By.id("unlockUsers"));
 	}
 	// PageObject
@@ -101,8 +101,9 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	}
 	
 	//click on 'Settings' tab
-	public void clickSettings() {
+	public AdminSettingsPage clickSettings() {
 		this.settings.click();
+		return new AdminSettingsPage(driver);
 	}
 	//click on 'Communities' tab
 	public void clickCommunities() {

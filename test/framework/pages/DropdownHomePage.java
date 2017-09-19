@@ -30,7 +30,7 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 		getMenuDownButton().click();
 		changePassword = driver.findElement(By.cssSelector(".change-password"));
 		resetPassword = driver.findElement(By.cssSelector(".reset-my-password"));
-		logout = driver.findElement(By.cssSelector("[href=\"/logout\"]"));
+		logout = driver.findElement(By.cssSelector("[href='/logout']"));
 	}
 	
 	public WebElement getHomeButton() {return homeButton;}

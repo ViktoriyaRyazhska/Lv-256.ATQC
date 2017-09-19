@@ -94,6 +94,20 @@ public class LoginPage extends TitleLocalFooter {
 		return registerButton;
 	}
 	
+	public void checkRememberMeCheckBox() {
+		
+		if(!rememberMeCheckBox.isSelected()) {
+			rememberMeCheckBox.click();
+		}
+	}
+	
+	public void unCheckRememberMeCheckBox() {
+		
+		if(rememberMeCheckBox.isSelected()) {
+			rememberMeCheckBox.click();
+		}
+	}
+	
 	@Override
 	public LoginPage setLanguage(ChangeLanguageFields language) {
 		
@@ -129,18 +143,21 @@ public class LoginPage extends TitleLocalFooter {
 		signInButton.click();
 	}
 	
-	public AdminHomePage successfullLogin(User validuser){
+	public AdminHomePage successfullLoginAdmin(User validuser){
 		
 		signIn(validuser);
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
 		return new AdminHomePage(driver);
 	}
 	
+	
 	public LoginPage unSuccessfullLogin(User invaliduser) {
 		
 		signIn(invaliduser);
 		return new LoginPage(driver);
 	}
+	
+	
 	
 	
 	
