@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import framework.pages.CoownersTable;
-
 /**
  * Class representation of 'Actions' dropdown on 'Inactive coowners' page for Administrator home page or Commisioner Home Page
  * 

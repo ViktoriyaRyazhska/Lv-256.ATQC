@@ -1,8 +1,10 @@
-package framework.pages;
+package framework.pages.coowners.actions;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import framework.pages.AdminHomePage;
 
 public class CoownersTable extends AdminHomePage {
 	WebElement actions;
