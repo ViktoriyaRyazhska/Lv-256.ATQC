@@ -58,7 +58,7 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 //	public void getChangePassword() {getChangePassword().click();}
 //	public void getResetPassword() {getResetPassword().click();}
 	
-	public LoginPage successLogout() {
+	public LoginPage clickLogout() {
 		clickMenuDownButton();	
 		getLogout().click();
 		// Return a new page object representing the destination.
