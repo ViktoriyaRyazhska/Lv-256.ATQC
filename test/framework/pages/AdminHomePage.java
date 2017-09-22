@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import framework.pages.coowners.actions.CoownersTable;
+
 /**
  * Class representation of a Administrator home page with navigation bar.
  * 
@@ -128,10 +130,18 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	}
 	
 	// Business Logic
+	@Override
 	public AdminHomePage setLanguage(ChangeLanguageFields language) {
 		Select lang = new Select(getLocalizationDropdown()); 
 		lang.selectByVisibleText(language.toString()); 
 		// Return a new page object representing the destination.
 		return new AdminHomePage(driver);
+	}
+	
+	public CoownersTable goToInactiveCoowners() {
+		this.clickCoowners();
+		this.clickInactiveCoowners();
+		// Return a new page object representing the destination.
+		return new CoownersTable(driver);
 	}
 }
