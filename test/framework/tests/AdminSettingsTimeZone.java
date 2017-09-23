@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import framework.application.Application;
+import framework.application.ApplicationSourcesRepo;
 import framework.pages.AdminHomePage;
 import framework.pages.AdminSettingsPage;
 import framework.pages.LoginPage;
@@ -23,27 +25,23 @@ public class AdminSettingsTimeZone {
 	private LoginPage loginpage;
 	private AdminHomePage adminpage;
 	private AdminSettingsPage settings;
-	
+	private Application app;
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		baseURL = "http://regres.herokuapp.com";
 		
-		driver.get(baseURL);
-		loginpage = new LoginPage(driver);
+	    app= Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
+		loginpage = app.load();
 		adminpage=loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		adminpage.clickSettings();
+		settings=adminpage.clickSettings();
 	}
 	
 	
 
 	@AfterClass
 	public void tearDown() {
-		settings = new AdminSettingsPage(driver);
+		
 		settings.clickLogout();
-		driver.close();
+		app.quit();
 	}
 	
 	
@@ -60,10 +58,10 @@ public class AdminSettingsTimeZone {
 	@Test( dataProvider="value_timezone")
 	public void checktime(String value, String timezone){
 		
-		settings = new AdminSettingsPage(driver); 
+		
 		settings = settings.setTimeZone(value);
 		Assert.assertTrue(settings.getTimeZoneFieldText().contains(timezone));
-		settings.clickSettings();
+		settings=settings.clickSettings();
 
 	}
 
