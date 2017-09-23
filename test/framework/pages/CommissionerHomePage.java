@@ -19,11 +19,11 @@ public abstract class CommissionerHomePage extends DropdownHomePage{
         super(driver);
         coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));        
     }
-    public void clickCoowners(WebDriver driver) {
+    public void clickCoowners() {
     	clickUserName();
-    	clickCoowners();
-    	activeCoowners=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
-        inactiveCoowners=driver.findElement(By.cssSelector(".dropdown-menu [href$='inactive']"));
+    	coowners.click();
+    	activeCoowners=driver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
+        inactiveCoowners=driver.findElement(By.xpath("//a[@data-toggle='dropdown']/following::a[contains(@href, 'inactive')]"));
         nonConfirmedCoowners=driver.findElement(By.xpath("//a[contains(@href,\"notcomfirmed\")]"));
         blockedCoowners=driver.findElement(By.xpath("//a[contains(@href,\"block\")]"));
     }
@@ -72,9 +72,6 @@ public abstract class CommissionerHomePage extends DropdownHomePage{
 	}
 	public String getBlockedCoownersText() {
 		return getBlockedCoowners().getText().trim();
-	}
-	public void clickCoowners() {
-		getCoowners().click();
 	}
 	public void clickActiveCoowners() {
 		getActiveCoowners().click();
