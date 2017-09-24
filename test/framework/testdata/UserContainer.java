@@ -1,35 +1,72 @@
 package framework.testdata;
 
+/**
+ * This class was designed to easily return users with particular role. By using
+ * this class you can return the instance of class User. Available roles:
+ * -Administrator -Commissioner -Registrator -Co-Owner
+ * 
+ * @author PETYAggg
+ *
+ */
 public class UserContainer {
 
-	private static User user= new User();
-	
-	
-	
-	
+	/**
+	 * 
+	 * @return Instance of class User with Admin's credentials
+	 */
 	public static User getAdmin() {
-		
-		return user.setLogin("admin").setPassword("admin");
+
+		return new User().setLogin("admin").setPassword("admin");
 	}
-	
+
+	/**
+	 * 
+	 * @return Instance of class User with Registrator's credentials
+	 */
 	public static User getRegistrator() {
-		
-		return user.setLogin("registrator").setPassword("registrator");
+
+		return new User().setLogin("registrator").setPassword("registrator");
 	}
-	
-	public static User getCommisioner() {
-		
-		return user.setLogin("qwerty").setPassword("qwerty");
+
+	/**
+	 * 
+	 * @return Instance of class User with Co-owner's credentials
+	 */
+	public static User getCoowner() {
+
+		return new User().setLogin("qwerty").setPassword("qwerty");
 	}
-	
+
+	/**
+	 * 
+	 * @return Instance of class User with Commissioner credentials
+	 */
+	public static User getCommissioner() {
+
+		return new User().setLogin("andriy97").setPassword("andriy97");
+	}
+
+	/**
+	 * 
+	 * @return Instance of class User with invalid credentials.
+	 */
 	public static User getInvalidData() {
-		
-		return user.setLogin("%^/?!").setPassword("%^/?!");
+
+		return new User().setLogin("%^/?!").setPassword("%^/?!");
 	}
-	
+
+	/**
+	 * Creates User by given parameters.
+	 * 
+	 * @param login
+	 *            Login name of desired User
+	 * @param password
+	 *            Password of desired User
+	 * @return Instance of class User with credentials given in parameters.
+	 */
 	public User setUser(String login, String password) {
-		
-		return user.setLogin(login).setPassword(password);
+
+		return new User().setLogin(login).setPassword(password);
 	}
 
 }
