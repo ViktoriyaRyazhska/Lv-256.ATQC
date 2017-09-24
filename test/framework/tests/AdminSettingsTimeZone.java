@@ -7,8 +7,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import framework.application.Application;
+import framework.application.ApplicationSourcesRepo;
 import framework.pages.AdminHomePage;
 import framework.pages.AdminSettingsPage;
 import framework.pages.LoginPage;
@@ -18,32 +22,48 @@ public class AdminSettingsTimeZone {
 
 	private WebDriver driver;
 	private String baseURL;
-	
+	private LoginPage loginpage;
+	private AdminHomePage adminpage;
+	private AdminSettingsPage settings;
+	private Application app;
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		baseURL = "http://regres.herokuapp.com";
+		
+	    app= Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
+		loginpage = app.load();
+		adminpage=loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+		settings=adminpage.clickSettings();
 	}
+	
+	
 
 	@AfterClass
 	public void tearDown() {
-		driver.close();
+		
+		settings.clickLogout();
+		app.quit();
 	}
 	
-	@Test
-	public void checktime(){
-		driver.get(baseURL);
-		LoginPage loginpage = new LoginPage(driver);
-		AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		AdminSettingsPage settings = adminhomepage.clickSettings();
+	
+	@DataProvider
+	  public Object[][] value_timezone() {
+	    return new Object[][] {
+	    	{"London" , "Europe/London"} ,
+	    	{"+2" , "Etc/GMT+2"} ,
+	    	{"Kiev" , "Europe/Kiev"} ,
+	    	{"+3" , "Etc/GMT+3"}
+	    };
+	  }
+	
+	@Test( dataProvider="value_timezone")
+	public void checktime(String value, String timezone){
 		
-		settings = settings.setTimeZone("London");
-		Assert.assertTrue(settings.getTimeZoneFieldText().contains("London"));
 		
-		settings.clickMenuDownButton();
-		settings.clickLogout();
+		settings = settings.setTimeZone(value);
+		Assert.assertTrue(settings.getTimeZoneFieldText().contains(timezone));
+		settings=settings.clickSettings();
+
 	}
+
 
 }

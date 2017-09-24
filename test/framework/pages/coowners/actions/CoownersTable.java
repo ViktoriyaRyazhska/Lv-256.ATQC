@@ -15,11 +15,11 @@ public class CoownersTable extends AdminHomePage {
 	WebElement paginateCurrentButton;
 	public CoownersTable(WebDriver driver) {
 		super(driver);
-		actions = driver.findElement(By.cssSelector("#dLabel"));
+		actions = driver.findElement(By.id("dLabel"));
 		countElements = driver.findElement(By.cssSelector("label>select"));
-		searchButton = driver.findElement(By.cssSelector("#bth-search"));
-		prevButtton = driver.findElement(By.cssSelector("#example_previous"));
-		nextButtton = driver.findElement(By.cssSelector("#example_next"));
+		searchButton = driver.findElement(By.id("bth-search"));
+		prevButtton = driver.findElement(By.id("example_previous"));
+		nextButtton = driver.findElement(By.id("example_next"));
 		paginateCurrentButton = driver.findElement(By.cssSelector(".paginate_button.current"));
 	}
 	public WebElement getActions() {
@@ -57,6 +57,13 @@ public class CoownersTable extends AdminHomePage {
 	}
 	public void setPaginateCurrentButton(WebElement paginateCurrentButton) {
 		this.paginateCurrentButton = paginateCurrentButton;
+	}
+	
+	// Business Logic
+	
+	public InactiveCoownersActionsDropdown goToInactiveCoowners() {
+		// Return a new page object representing the destination.
+		return new InactiveCoownersActionsDropdown(driver);
 	}
 
 }
