@@ -108,8 +108,9 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		return new AdminSettingsPage(driver);
 	}
 	//click on 'Communities' tab
-	public void clickCommunities() {
+	public AdminCommunitiesPage clickCommunities() {
 		this.communities.click();
+		return new AdminCommunitiesPage(driver);
 	}
 	//click on 'Unblock all coowners' button
 	public void clickUnblockAllCoowners() {
