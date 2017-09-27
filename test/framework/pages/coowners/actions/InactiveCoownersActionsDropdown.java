@@ -18,7 +18,7 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 	private WebElement unblock;
 	private WebElement block;
 	private WebElement setCommunity;
-	public ConfirmMessage confirm;
+	private ConfirmMessage confirmMessage;
 	/**
 	 * Constructor initialize the WebDriver on 'Inactive coowners' page for
 	 * 'Actions' dropdown
@@ -27,8 +27,6 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 	 */
 	public InactiveCoownersActionsDropdown(WebDriver driver) {
 		super(driver);
-		new CoownersTable(driver);
-		clickActionsDropdown();
 	}
 
 	// PageObject
@@ -38,6 +36,12 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 	 */
 	public WebElement getUnblock() {
 		return unblock;
+	}
+	/**
+	 * @return the unblock
+	 */
+	public ConfirmMessage getConfirmMessage() {
+		return confirmMessage;
 	}
 
 	/**
@@ -94,20 +98,20 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 	 * the rows in the table
 	 */
 	public void clickSetCommunity() {
-		confirm = new ConfirmMessage(driver);
+		confirmMessage = new ConfirmMessage(driver);
 		this.setCommunity.click();
 		// initialize these elements on 'Set community' confirm message
-		confirm.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
-		confirm.setCloseButton(driver.findElement(By.className("close")));
-		confirm.setCancelButton(driver.findElement(By.cssSelector(".btn.btn-info")));
-		confirm.setTitleMessage(driver.findElement(By.className("modal-title")));
-		confirm.setLabel(driver.findElement(By.className("control-label")));
-		confirm.setInput(driver.findElement(By.id("tc_search")));
+		confirmMessage.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
+		confirmMessage.setCloseButton(driver.findElement(By.cssSelector("div.modal-body button.close")));
+		confirmMessage.setCancelButton(driver.findElement(By.cssSelector(".btn.btn-info")));
+		confirmMessage.setTitleMessage(driver.findElement(By.className("modal-title")));
+		confirmMessage.setLabel(driver.findElement(By.className("control-label")));
+		confirmMessage.setInput(driver.findElement(By.id("tc_search")));
 	}
 
 	// click on 'Confirm' on "Set community"
 	public void clickConfirmOnSetCommunityMessage() {
-		confirm.clickOkButton();
+		confirmMessage.clickOkButton();
 		// initialize these elements on 'Confirm' confirm message after 'Set community'
 		// confirm message
 		simpleConfirmMessage();
@@ -120,15 +124,15 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 	 * - close button
 	 */
 	public void simpleConfirmMessage() {
-		confirm = new ConfirmMessage(driver);
+		confirmMessage = new ConfirmMessage(driver);
 		//wait for confirm message appears
 		(new WebDriverWait(driver, 10)).until(
 				ExpectedConditions.visibilityOf(driver.findElement(By.className("bootbox-body"))));
 		// initialize these elements for all confirm message
 		// but only without 'Set community' confirm message
 		// when choose coowners on the table
-		confirm.setConfirmMessage(driver.findElement(By.className("bootbox-body")));
-		confirm.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
-		confirm.setCloseButton(driver.findElement(By.className("close")));
+		confirmMessage.setConfirmMessage(driver.findElement(By.className("bootbox-body")));
+		confirmMessage.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
+		confirmMessage.setCloseButton(driver.findElement(By.cssSelector("div.modal-body button.close")));
 	}
 }

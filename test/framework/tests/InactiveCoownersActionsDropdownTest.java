@@ -1,14 +1,12 @@
 package framework.tests;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import framework.application.Application;
+import framework.application.ApplicationSourcesRepo;
 import framework.pages.AdminHomePage;
 import framework.pages.LoginPage;
 import framework.pages.coowners.actions.CoownersTable;
@@ -16,33 +14,61 @@ import framework.pages.coowners.actions.InactiveCoownersActionsDropdown;
 import framework.testdata.UserContainer;
 
 public class InactiveCoownersActionsDropdownTest {
-	private WebDriver driver;
-	private String baseURL;
+	private Application app;
+	private LoginPage loginpage;
+	private AdminHomePage adminhomepage;
+	private CoownersTable coownerstable;
+	private InactiveCoownersActionsDropdown inactivecoowners;
 
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		baseURL = "http://regres.herokuapp.com";
+		app = app.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+		loginpage = app.load();
+		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+		coownerstable = adminhomepage.goToInactiveCoowners();
+		inactivecoowners = coownerstable.goToInactiveCoowners();
+
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void tearDown() {
-		driver.close();
+		app.quit();
 	}
 
 	@Test
-	// this test verify that confirm message appears when not chosen coowner
-	public void verifyThatErrorMessageAppearsWhenNotChosenCoowner() {
-		driver.get(baseURL);
-		LoginPage loginpage = new LoginPage(driver);
-		AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		CoownersTable coowners = adminhomepage.goToInactiveCoowners();
-		InactiveCoownersActionsDropdown inactiveActions = coowners.goToInactiveCoowners();
-		
-		inactiveActions.clickActionsDropdown();
-		inactiveActions.clickUnblock();
-		Assert.assertEquals(inactiveActions.confirm.getConfirmMessageText(), "Для виконання даної операції спочатку потрібно вибрати співвласників, натиснувши на відповідні стрічки в таблиці");
+	// this test verify that when in action dropdown by clicking on 'Set as Active'
+	// link confirm message appears when not chosen co owner
+	public void verifyThatErrorMessageAppearsWhenNotChosenCoownerByClickingOnSetActive() {
+		inactivecoowners.clickActionsDropdown();
+		inactivecoowners.clickUnblock();
+		assertEquals(inactivecoowners.getConfirmMessage().getConfirmMessageText(),
+				"Для виконання даної операції спочатку потрібно вибрати співвласників, "
+				+ "натиснувши на відповідні стрічки в таблиці");
+		inactivecoowners.getConfirmMessage().clickCloseButton();
 	}
+
+	@Test
+	// this test verify that when in action dropdown by clicking on 'Block' link
+	// confirm message appears when not chosen co-owner
+	public void verifyThatErrorMessageAppearsWhenNotChosenCoownerByClickingOnBlock() {
+		inactivecoowners.clickActionsDropdown();
+		inactivecoowners.clickBlock();
+		assertEquals(inactivecoowners.getConfirmMessage().getConfirmMessageText(),
+				"Для виконання даної операції спочатку потрібно вибрати співвласників, "
+				+ "натиснувши на відповідні стрічки в таблиці");
+		inactivecoowners.getConfirmMessage().clickCloseButton();
+	}
+
+	@Test
+	// this test verify that when in action dropdown by clicking on 'Set community'
+	// link confirm message appears when not chosen co-owner
+	public void verifyThatErrorMessageAppearsWhenNotChosenCoownerByClickingOnSetCommunity() {
+		inactivecoowners.clickActionsDropdown();
+		inactivecoowners.clickSetCommunityButNotSelectedCoowners();
+		assertEquals(inactivecoowners.getConfirmMessage().getConfirmMessageText(),
+				"Для виконання даної операції спочатку потрібно вибрати співвласників, "
+				+ "натиснувши на відповідні стрічки в таблиці");
+		inactivecoowners.getConfirmMessage().clickCloseButton();
+	}
+
 }
