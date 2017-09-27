@@ -9,7 +9,7 @@ public abstract class CommissionerWithRegistrationHomePage extends CommissionerH
 
 	public CommissionerWithRegistrationHomePage(WebDriver driver) {
 		super(driver);
-		registration=driver.findElement(By.cssSelector("[href=\"/manualregistration\"]"));
+		registration=driver.findElement(By.cssSelector("[href*='manualregistration']"));
 	}
 
 	public WebElement getRegistration() {

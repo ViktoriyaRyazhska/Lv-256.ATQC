@@ -30,7 +30,7 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 		getMenuDownButton().click();
 		changePassword = driver.findElement(By.cssSelector(".change-password"));
 		resetPassword = driver.findElement(By.cssSelector(".reset-my-password"));
-		logout = driver.findElement(By.cssSelector("[href='/logout']"));
+		logout = driver.findElement(By.cssSelector("[href*='logout']"));
 	}
 	
 	public WebElement getHomeButton() {return homeButton;}
@@ -63,6 +63,16 @@ public abstract class DropdownHomePage extends TitleLocalFooter{
 		getLogout().click();
 		// Return a new page object representing the destination.
 		return new LoginPage(driver);
+	}
+	public ChangePasswordPage  clickChangePassword() {
+		clickMenuDownButton();
+		getChangePassword().click();
+		return new ChangePasswordPage(driver);
+		
+	}
+	public ChangePasswordPage changePassword() {
+		getChangePassword().click();
+		return new ChangePasswordPage(driver);
 	}
 }
 
