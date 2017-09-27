@@ -57,7 +57,7 @@ public class AdminSettingsTimeZone {
 	  }
 	
 	@Test( dataProvider="value_timezone")
-	public void checktime(String value, String timezone){
+	public void TestTimeZoneSet(String value, String timezone){
 		
 		
 		settings = settings.setTimeZone(value);

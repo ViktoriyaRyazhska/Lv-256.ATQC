@@ -28,7 +28,6 @@ public abstract class TitleLocalFooter {
 	
 	public TitleLocalFooter(WebDriver driver) {		
 		this.driver=driver;
-		System.out.println(driver);
 		titleFirstPart = driver.findElement(By.xpath("//div[@class='col-md-7 col-xs-12']/h3[1]"));
 		titleSecondPart = driver.findElement(By.xpath("//div[@class='col-md-7 col-xs-12']/h3[2]"));
 		localization_dropdown= driver.findElement(By.id("changeLanguage"));
@@ -48,6 +47,10 @@ public abstract class TitleLocalFooter {
 	public String getTitleText(){
 		
 		return titleFirstPart.getText().trim()+titleSecondPart.getText().trim();
+	}
+	
+	public String getFooterText() {
+		return footer.getText().trim();
 	}
 	
 	/**

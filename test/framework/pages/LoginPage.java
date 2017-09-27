@@ -1,5 +1,7 @@
 package framework.pages;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,6 +82,26 @@ public class LoginPage extends TitleLocalFooter {
 		return feedbackLink;
 	}
 
+	public String getLoginLabelText() {
+		return loginLabel.getText().trim();
+	}
+	
+	public String getPasswordLabelText() {
+		return passwordLabel.getText().trim();
+	}
+	
+	public String getSignInButtonText() {
+		return signInButton.getText().trim();
+	}
+	
+	public String getRememberMeLabelText() {
+		return rememberMeLabel.getText().trim();
+	}
+	
+	public String getForgotPasswordLinkText() {
+		return forgotPasswordLink.getText().trim();
+	}
+	
 	public WebElement getErrorMessage() {
 
 		errormessage = driver.findElement(By.xpath("//form[@id='loginForm']/div[contains(@style,'color: red;')]"));
@@ -167,5 +189,32 @@ public class LoginPage extends TitleLocalFooter {
 		signIn(invaliduser);
 		return new LoginPage(driver);
 	}
+	
+	public static enum LoginPageL10n {
+		LOGIN_LABEL("Логін", "Логин", "Login"), 
+		PASSWORD_LABEL("Пароль", "Пароль", "Password"), 
+		SUBMIT_BUTTON("Увійти", "Войти", "Sign in"),
+		REMEMBER_ME_LABEL("Запам'ятати мене","Запомнить меня","Remember me"),
+		FORGOT_PASSWORD_LINK("Забули пароль?","Забыли пароль?","Forgot the password?"),
+		TITLE_LABEL("Децентралізований майновий реєстрприродних ресурсів України",
+				"Децентрализированный имущественный реестрприродных ресурсов Украины",
+				"Decentralized registry ofUkrainian natural resources"),
+		FOOTER_LABEL("©2017 ІТ Академія Софтсерв","©2017 ИТ Академия Софтсерв","©2017 Softserve IT Academy");
+	//
+		private HashMap<ChangeLanguageFields, String> field;
 
+		private LoginPageL10n(String... localization) {
+			this.field = new HashMap<ChangeLanguageFields, String>();
+			int i = 0;
+			for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+				this.field.put(language, localization[i]);
+				i++;
+			}
+		}
+
+		public String getLocalization(ChangeLanguageFields language) {
+			return this.field.get(language).trim();
+		}
+	}
+	
 }
