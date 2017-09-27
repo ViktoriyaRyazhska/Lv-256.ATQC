@@ -20,16 +20,16 @@ public class AdminCommunitiesPage extends AdminHomePage {
 	public AdminCommunitiesPage(WebDriver driver) {
 		super(driver);
 		addNewCommunityButton = driver.findElement(By.cssSelector("a.btn.btn-success"));
-		communitiesLabel = driver.findElement(By.xpath("//h4[contains(text(),'Communities')]"));
+		communitiesLabel = driver.findElement(By.xpath("//h4"));
 		inactiveCheckbox = driver.findElement(By.id("inactiveCheckbox"));
-		inactiveCheckboxLabel = driver.findElement(By.xpath("//div[2]/label[contains(text(),'Show inactive')]"));
+		inactiveCheckboxLabel = driver.findElement(By.xpath("//div[2]/label"));
 		tableWithCommunities = driver
 				.findElement(By.cssSelector("table.table.table-striped.table-bordered.table-hover"));
 		territorialCommunityHeader = driver
-				.findElement(By.xpath("//thead/tr/th[1][contains(text(),'Territorial community')]"));
+				.findElement(By.xpath("//thead//th[1]"));
 		registrationNumberHeader = driver
-				.findElement(By.xpath("//thead/tr/th[2][contains(text(),'Registration number')]"));
-		actionsHeader = driver.findElement(By.xpath("//thead/tr/th[3][contains(text(),'Actions')]"));
+				.findElement(By.xpath("//thead//th[2]"));
+		actionsHeader = driver.findElement(By.xpath("//thead//th[3]"));
 		editCommunityButton = driver.findElement(By.id("editcommunity"));
 		deleteCommunityButton = driver.findElement(By.id("deletecommunity"));
 		activeCommunityButton = driver.findElement(By.id("activecommunity"));

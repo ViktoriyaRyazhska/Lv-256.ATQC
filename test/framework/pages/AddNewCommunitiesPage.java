@@ -22,9 +22,9 @@ public class AddNewCommunitiesPage extends AdminCommunitiesPage{
 		communitiesRegistrationNumber = driver.findElement(By.name("registrationNumber"));
 		submitButton = driver.findElement(By.xpath("//input[@type='submit']"));
 		clearFormButton = driver.findElement(By.xpath("//button[@type='reset']"));
-		communitiesNameLabel = driver.findElement(By.xpath("//label[contains(text(),'Community name:')]"));
-		communitiesRegistrationNumberLabel = driver.findElement(By.xpath("//label[contains(text(),'Registration number:')]"));
-		addNewCommunitiesPageLabel = driver.findElement(By.xpath("//h2[contains(text(),'   Add new territorial community ')]"));
+		communitiesNameLabel = driver.findElement(By.xpath("//div[1]/label"));
+		communitiesRegistrationNumberLabel = driver.findElement(By.xpath("//div[2]/label"));
+		addNewCommunitiesPageLabel = driver.findElement(By.xpath("//h2"));
 	}
 	
 	public WebElement getCommunitiesName() {

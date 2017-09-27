@@ -9,7 +9,7 @@ public class EditCommunityPage extends AddNewCommunitiesPage{
 		
 	public EditCommunityPage(WebDriver driver) {
 		super(driver);
-		EditNewCommunitiesPageLabel = driver.findElement(By.xpath("//h2[contains(text(),'   Edit territorial community ')]"));
+		EditNewCommunitiesPageLabel = driver.findElement(By.xpath("//h2"));
 		}
 
 	public WebElement getEditNewCommunitiesPageLabel() {
