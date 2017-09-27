@@ -1,12 +1,10 @@
 package framework.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
-import org.openqa.selenium.WebDriver;
 import framework.application.Application;
 import framework.application.ApplicationSourcesRepo;
 import framework.pages.LoginPage;
@@ -18,34 +16,24 @@ import framework.testdata.UserContainer;
 
 public class AddSubclassbclassTest {
 
-	private WebDriver driver;
 	private LoginPage loginpage;
 	private RegistratorHomePage registratorpage;
 	private SubclassesOfObjects subclassesOfObjects;
 	private AddNewSubclassPage addNewSublassPage;
 	private Application app;
 
-	@BeforeClass
+	@BeforeMethod
 	public void setUp() {
 		app = Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		loginpage = app.load();
-	}
-
-	@BeforeMethod
-	public void SignInRegistr() {
 		registratorpage = loginpage.successfullLoginRegistrator(UserContainer.getRegistrator());
 		subclassesOfObjects = registratorpage.clickSubclassesOfObjects();
 		addNewSublassPage = subclassesOfObjects.clickAddNewSubclass();
 	}
 
-	@AfterClass
+	@AfterMethod
 	public void closeApp() {
 		app.quit();
-	}
-
-	@AfterMethod
-	public void logOut() {
-		subclassesOfObjects.clickLogout();
 	}
 
 	@Test
@@ -96,7 +84,7 @@ public class AddSubclassbclassTest {
 		Assert.assertEquals(resultParameterDes, true);
 	}
 
-	// @Test
+	@Test
 	public void checkAddSubclassField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValData());

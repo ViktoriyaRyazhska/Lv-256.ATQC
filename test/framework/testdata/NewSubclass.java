@@ -37,7 +37,6 @@ public class NewSubclass {
 		this.parameterDescription = parameterDescription;
 		return this;
 	}
-
 	public String getParameterDescription1() {
 		return parameterDescription1;
 	}
@@ -55,4 +54,5 @@ public class NewSubclass {
 		this.unitOfMeasurement1 = unitOfMeasurement1;
 		return this;
 	}
+
 }
