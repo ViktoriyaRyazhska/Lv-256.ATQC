@@ -115,6 +115,15 @@ public class AdminSettingsPage extends AdminHomePage {
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(timeZoneBlockTitle));
 		return new AdminSettingsPage(driver);
 	}
+	
+	public OhErrorPage setInvalidTimeZone(String invalidTimeZone) {
+		
+		timeZoneField.clear();
+		timeZoneField.sendKeys(invalidTimeZone);
+		this.confirmChangesButton.click();
+		
+		return new OhErrorPage(driver);
+	}
 
 	public AdminSettingsPage personalRegistration() {
 
