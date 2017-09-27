@@ -112,38 +112,41 @@ public class AdminSettingsPage extends AdminHomePage {
 		searchResult = driver.findElement(By.xpath("//*[@data-index='0']"));
 		searchResult.click();
 		confirmChangesButton.click();
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(timeZoneBlockTitle));
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(timeZoneBlockTitle));
 		return new AdminSettingsPage(driver);
 	}
 
-	public LoginPage personalRegistration() {
+	public AdminSettingsPage personalRegistration() {
 
 		if (!optionPersonal.isSelected()) {
 			clickOptionPersonal();
-			confirmChangesButton.click();
 		}
-		clickLogout();
-		return new LoginPage(driver);
+		confirmChangesButton.click();
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(methodRegisteringTitle));
+		// clickLogout();
+		return new AdminSettingsPage(driver);
 	}
 
-	public LoginPage manualRegistration() {
+	public AdminSettingsPage manualRegistration() {
 
 		if (!optionManual.isSelected()) {
 			clickOptionManual();
-			confirmChangesButton.click();
 		}
-		clickLogout();
-		return new LoginPage(driver);
+		confirmChangesButton.click();
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(methodRegisteringTitle));
+		// clickLogout();
+		return new AdminSettingsPage(driver);
 	}
 
-	public LoginPage mixedlRegistration() {
+	public AdminSettingsPage mixedlRegistration() {
 
 		if (!optionMixed.isSelected()) {
 			clickOptionMixed();
-			confirmChangesButton.click();
 		}
-		clickLogout();
-		return new LoginPage(driver);
+		confirmChangesButton.click();
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(methodRegisteringTitle));
+		// clickLogout();
+		return new AdminSettingsPage(driver);
 	}
 
 }
