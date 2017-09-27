@@ -43,7 +43,6 @@ public class AddNewSubclassPage {
 		dropdownButton = driver.findElement(By.xpath("//*[@id='myparam2']"));
 		optionLinearParameter = driver.findElement(By.xpath("//*[@id='myparam2']/option[2]"));
 		optionDiscreteParameters = driver.findElement(By.xpath("//*[@id='myparam2']/option[3]"));
-		// errorMessage=driver.findElement(By.xpath("//*[@id='typeName.errors']"));
 
 	}
 
@@ -125,6 +124,7 @@ public class AddNewSubclassPage {
 	public WebElement getButtonAddParameters() {
 		return buttonAddParameters;
 	}
+
 	public AddNewSubclassPage clickButtonAddParameters() {
 		buttonAddParameters.click();
 		return new AddNewSubclassPage(driver);
