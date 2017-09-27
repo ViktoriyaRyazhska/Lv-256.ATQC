@@ -3,8 +3,11 @@ package framework.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
-public abstract class RegistratorHomePage extends DropdownHomePage {
+import framework.pages.TitleLocalFooter.ChangeLanguageFields;
+
+public  class RegistratorHomePage extends DropdownHomePage {
     // Fields
     WebElement resourcesSearch;//винести окремою сторінкою
     WebElement subclassesOfObjects;
@@ -21,7 +24,7 @@ public abstract class RegistratorHomePage extends DropdownHomePage {
         procuration = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/a"));
         //procurationEnteringData = driver.findElement(By.xpath(".//*[@id='menuForUser']"));
         //procurationExtractFromRegister = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/ul/li[2]/a"));
-        addNewResource = driver.findElement(By.linkText("Add new resource"));
+        addNewResource = driver.findElement(By.cssSelector("[href*='registrator/resource/new']"));
     }
 
 //    public void clickProcuration(WebDriver driver) {
@@ -79,4 +82,11 @@ public abstract class RegistratorHomePage extends DropdownHomePage {
         getAddNewResource().click();
         return new SubclassesOfObjects(driver);
     }
+    @Override
+	public RegistratorHomePage  setLanguage(ChangeLanguageFields language) {
+    	Select lang = new Select(getLocalizationDropdown()); 
+		lang.selectByVisibleText(language.toString()); 
+		// Return a new page object representing the destination.
+		return new RegistratorHomePage(driver);
+	}
 }

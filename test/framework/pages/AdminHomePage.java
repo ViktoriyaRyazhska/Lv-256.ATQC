@@ -125,8 +125,9 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		this.closeButtonUnblockAllCoowners.click();
 	}
 	//click on 'OK' button on confirm Unblock all coowners
-	public void clickOkButtonOnConfirmUnblockAllCoowners() {
+	public AdminHomePage clickOkButtonOnConfirmUnblockAllCoowners() {
 		this.okButtonUnblockAllCoowners.click();
+		return new AdminHomePage(driver);
 	}
 	
 	// Business Logic

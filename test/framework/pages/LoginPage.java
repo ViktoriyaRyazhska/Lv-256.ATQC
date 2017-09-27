@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import framework.pages.TitleLocalFooter.ChangeLanguageFields;
 import framework.testdata.User;
 
 public class LoginPage extends TitleLocalFooter {
@@ -170,6 +171,13 @@ public class LoginPage extends TitleLocalFooter {
 		signIn(validuser);
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
 		return new AdminHomePage(driver);
+	}
+	public RegistratorHomePage successfullLoginRegistrator(User validuser) {
+		signIn(validuser);
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
+		return new RegistratorHomePage(driver);
+		
+	
 	}
 	
 	
