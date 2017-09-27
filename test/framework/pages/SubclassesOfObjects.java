@@ -22,7 +22,6 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 		addNewSubclass = driver.findElement(By.xpath("//a[contains(@href,\'addrestype\')]"));
 		listOfAllSubclassesTitle = driver.findElement(By.xpath("//*[@id='body']/div/h4"));
 	}
-
 	public WebElement getNameSubclas() {
 		nameSubclass = driver.findElement(By.xpath("//*[@id='datatable']//td[contains(., 'Sidney')]"));
 		return nameSubclass;

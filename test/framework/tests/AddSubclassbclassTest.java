@@ -15,7 +15,6 @@ import framework.testdata.NewSubclassContainer;
 import framework.testdata.UserContainer;
 
 public class AddSubclassbclassTest {
-
 	private LoginPage loginpage;
 	private RegistratorHomePage registratorpage;
 	private SubclassesOfObjects subclassesOfObjects;

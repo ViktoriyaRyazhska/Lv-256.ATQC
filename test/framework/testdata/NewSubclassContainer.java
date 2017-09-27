@@ -11,7 +11,6 @@ public class NewSubclassContainer {
 
 		return new NewSubclass().setnameClasses("Italy").setParameterDescription("").setUnitOfMeasurement("");
 	}
-
 	public static NewSubclass getValidData() {
 
 		return new NewSubclass().setnameClasses("Sidney").setParameterDescription("Vik").setUnitOfMeasurement("m4");

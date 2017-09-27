@@ -9,7 +9,7 @@ import framework.pages.SubclassesOfObjects;
 import framework.testdata.NewSubclass;
 
 public class AddNewSubclassPage {
-	// Fields
+	
 	public WebDriver driver;
 	public WebElement titleAddNewSubclass;
 	public WebElement enterNameField;

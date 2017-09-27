@@ -10,7 +10,6 @@ public class NewSubclass {
 
 	public NewSubclass() {
 	}
-
 	public String getnameClasses() {
 		return nameClasses;
 	}
