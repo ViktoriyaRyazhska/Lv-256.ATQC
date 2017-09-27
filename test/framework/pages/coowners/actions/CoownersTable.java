@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import framework.pages.AdminHomePage;
+import org.openqa.selenium.support.ui.Select;
 
 public class CoownersTable extends AdminHomePage {
 	WebElement actions;
@@ -13,6 +14,7 @@ public class CoownersTable extends AdminHomePage {
 	WebElement prevButtton;
 	WebElement nextButtton;
 	WebElement paginateCurrentButton;
+	WebElement numbeOfItemsInTable;
 	public CoownersTable(WebDriver driver) {
 		super(driver);
 		actions = driver.findElement(By.id("dLabel"));
@@ -21,6 +23,7 @@ public class CoownersTable extends AdminHomePage {
 		prevButtton = driver.findElement(By.id("example_previous"));
 		nextButtton = driver.findElement(By.id("example_next"));
 		paginateCurrentButton = driver.findElement(By.cssSelector(".paginate_button.current"));
+		numbeOfItemsInTable = driver.findElement(By.name("example_length"));
 	}
 	public WebElement getActions() {
 		return actions;
@@ -58,7 +61,12 @@ public class CoownersTable extends AdminHomePage {
 	public void setPaginateCurrentButton(WebElement paginateCurrentButton) {
 		this.paginateCurrentButton = paginateCurrentButton;
 	}
-	
+
+	//переписати
+	public void setNumbeOfItemsInTable() {
+		new Select(driver.findElement(By.name("example_length"))).selectByVisibleText("100");
+	}
+
 	// Business Logic
 	
 	public InactiveCoownersActionsDropdown goToInactiveCoowners() {
