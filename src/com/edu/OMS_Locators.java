@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -13,13 +14,13 @@ public class OMS_Locators {
 
 	@Test
 	public void checkLogin() {
-		System.setProperty("webdriver.gecko.driver", "D:\\ATQC_new\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "D:\\1\\drivers\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-		driver.get("http://localhost:8081/OMS");
+		driver.get("http://ssu-oms.training.local:8280/oms5/login.htm");
 
-		driver.findElement(By.name("j_username")).clear();
+		driver.findElement(By.name("j_username"));
 		driver.findElement(By.name("j_username")).sendKeys("iva");
 		driver.findElement(By.name("j_password")).clear();
 		driver.findElement(By.name("j_password")).sendKeys("qwerty");

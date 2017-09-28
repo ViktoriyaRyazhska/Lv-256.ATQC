@@ -1,21 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="28369" started-at="2017-09-10T20:25:21Z" finished-at="2017-09-10T20:25:50Z">
+  <suite name="Default suite" duration-ms="14019" started-at="2017-09-15T07:38:02Z" finished-at="2017-09-15T07:38:16Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="28369" started-at="2017-09-10T20:25:21Z" finished-at="2017-09-10T20:25:50Z">
-      <class name="com.edu.OMS_Locators">
-        <test-method status="PASS" signature="checkLogin()[pri:0, instance:com.edu.OMS_Locators@1efbd816]" name="checkLogin" duration-ms="7883" started-at="2017-09-10T23:25:21Z" finished-at="2017-09-10T23:25:29Z">
+    <test name="Default test" duration-ms="14019" started-at="2017-09-15T07:38:02Z" finished-at="2017-09-15T07:38:16Z">
+      <class name="test.LoginAdminTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:test.LoginAdminTest@9629756]" name="setUp" is-config="true" duration-ms="6403" started-at="2017-09-15T10:38:02Z" finished-at="2017-09-15T10:38:09Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkLogin -->
-        <test-method status="PASS" signature="createUser()[pri:0, instance:com.edu.OMS_Locators@1efbd816]" name="createUser" duration-ms="20449" started-at="2017-09-10T23:25:29Z" finished-at="2017-09-10T23:25:50Z">
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="checkInvalidLogin()[pri:0, instance:test.LoginAdminTest@9629756]" name="checkInvalidLogin" duration-ms="1503" started-at="2017-09-15T10:38:09Z" finished-at="2017-09-15T10:38:10Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createUser -->
-      </class> <!-- com.edu.OMS_Locators -->
+        </test-method> <!-- checkInvalidLogin -->
+        <test-method status="FAIL" signature="checkValidLogin()[pri:0, instance:test.LoginAdminTest@9629756]" name="checkValidLogin" duration-ms="5858" started-at="2017-09-15T10:38:10Z" finished-at="2017-09-15T10:38:16Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[Unable to locate element: //tbody/tr/td[text( )='First name']/following-sibling::td
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: 'unknown', time: 'unknown'
+System info: host: 'CLASS88', ip: '192.168.96.62', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\vryaztc\AppData\Local\Temp\rust_mozprofile.4UuXadhw46d2, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=55.0.3, platformVersion=6.1, moz:processID=1860, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: 28423c71-c807-4f1e-bcee-7f7c717b5e17
+*** Element info: {Using=xpath, value=//tbody/tr/td[text( )='First name']/following-sibling::td}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Unable to locate element: //tbody/tr/td[text( )='First name']/following-sibling::td
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: 'unknown', time: 'unknown'
+System info: host: 'CLASS88', ip: '192.168.96.62', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\vryaztc\AppData\Local\Temp\rust_mozprofile.4UuXadhw46d2, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=55.0.3, platformVersion=6.1, moz:processID=1860, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: 28423c71-c807-4f1e-bcee-7f7c717b5e17
+*** Element info: {Using=xpath, value=//tbody/tr/td[text( )='First name']/following-sibling::td}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:646)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:416)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:518)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:408)
+	at pages.AdminHomePage.<init>(AdminHomePage.java:18)
+	at pages.LoginPage.successAdminLogin(LoginPage.java:43)
+	at test.LoginAdminTest.checkValidLogin(LoginAdminTest.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkValidLogin -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:test.LoginAdminTest@9629756]" name="tearDown" is-config="true" duration-ms="215" started-at="2017-09-15T10:38:16Z" finished-at="2017-09-15T10:38:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- test.LoginAdminTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

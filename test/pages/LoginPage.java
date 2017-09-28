@@ -1,8 +1,12 @@
+package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import data.User;
 
 public class LoginPage {
 	private WebDriver driver;
@@ -21,11 +25,11 @@ public class LoginPage {
 		submit = driver.findElement(By.name("submit"));
 	}
 
-	private void setLoginData(String login, String password) {
+	private void setLoginData(User user) {
 		this.loginName.clear();
-		this.loginName.sendKeys(login);
+		this.loginName.sendKeys(user.getLoginName());
 		this.password.clear();
-		this.password.sendKeys(password);
+		this.password.sendKeys(user.getPassword());
 		this.submit.click();
 	}
 
@@ -33,14 +37,14 @@ public class LoginPage {
 		return loginName;
 	}
 
-	public AdminHomePage successAdminLogin(String validLogin, String password) {
-		setLoginData(validLogin, password);
+	public AdminHomePage successAdminLogin(User validUser) {
+		setLoginData(validUser);
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginName));
 		return new AdminHomePage(driver);
 	}
 
-	public LoginPage unsuccesfulLogin(String invalidLogin, String password) {
-		setLoginData(invalidLogin, password);
+	public LoginPage unsuccesfulLogin(User user) {
+		setLoginData(user);
 		return new LoginPage(driver); // return this;
 	}
 }
