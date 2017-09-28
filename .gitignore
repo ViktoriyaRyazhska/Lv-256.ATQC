@@ -1,1 +1,32 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+Lv256.ATQC.iml
+.idea
+target
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+.*
+bin/*
+target/*
+test-output/*
+/bin/
 /target/
+out/production/main/
+src/main/pom.xml
+src/main/target/generated-sources/
