@@ -6,19 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class CommissionerWithRegistrationHomePage extends CommissionerHomePage {
-	public WebElement registration;
+	String REGISTRATION_CSSSELECTOR="[href=\"/manualregistration\"]";
 
 	public CommissionerWithRegistrationHomePage(WebDriver driver) {
 		super(driver);
-		registration = driver.findElement(By.cssSelector("[href=\"/manualregistration\"]"));
 	}
 
 	public WebElement getRegistration() {
-		return registration;
-	}
-
-	public void setRegistration(WebElement registration) {
-		this.registration = registration;
+		return driver.findElement(By.cssSelector(REGISTRATION_CSSSELECTOR));
 	}
 
 	public void clickRegistration() {

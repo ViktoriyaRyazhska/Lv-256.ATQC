@@ -65,4 +65,10 @@ public class Application {
 		return driver;
 	}
 
+	public void createDBConnection() {
+		createDBConnection();
+	}
+	public void closeConnectionDB() {
+		closeConnectionDB();
+	}
 }
