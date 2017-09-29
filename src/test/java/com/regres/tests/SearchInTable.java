@@ -31,7 +31,7 @@ public class SearchInTable {
         AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
         CoownersTable coownersTable = adminhomepage.goToNonConfirmedCoowners();
         coownersTable.getNonConfirmedCoowners();
-        coownersTable.setNumbeOfItemsInTable();
+        //coownersTable.setNumbeOfItemsInTable();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
     }
@@ -58,7 +58,6 @@ public class SearchInTable {
         List<User> userList = new ArrayList<User>();
         List<WebElement> td_collection = driver.findElements(By.xpath("//*[@id='example']/tbody/tr/td"));
         System.out.println("td_collection size "+td_collection.size());
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         List<String> list= new ArrayList<String>();
         int count=0;
         for (WebElement td : td_collection) {
