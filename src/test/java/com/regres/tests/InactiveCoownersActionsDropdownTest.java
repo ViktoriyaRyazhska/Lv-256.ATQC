@@ -3,9 +3,8 @@ package com.regres.tests;
 import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
 import com.regres.application.Application;
@@ -24,16 +23,14 @@ public class InactiveCoownersActionsDropdownTest {
 	private AdminHomePage adminhomepage;
 	private CoownersTable coownerstable;
 	private InactiveCoownersActionsDropdown inactivecoowners;
-	private ChangeLanguageFields language;
 
-	@BeforeTest
+	@BeforeClass
 	public void setUp() {
 		app = app.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
 		loginpage = app.load();
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
 		coownerstable = adminhomepage.goToInactiveCoowners();
 		inactivecoowners = coownerstable.goToInactiveCoowners();
-
 	}
 
 	@AfterClass(alwaysRun = true)
@@ -41,23 +38,11 @@ public class InactiveCoownersActionsDropdownTest {
 		app.quit();
 	}
 	
-	@Factory(dataProvider = "L10N")
-	public InactiveCoownersActionsDropdownTest(ChangeLanguageFields language) {
-		this.language = language;
-		
-		app = app.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
-		loginpage = app.load();
-		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		coownerstable = adminhomepage.goToInactiveCoowners();
-		inactivecoowners = coownerstable.goToInactiveCoowners();
-		inactivecoowners = inactivecoowners.setLanguage(language);
-	}
-	
-
-	@Test
+	@Test(dataProvider = "L10N")
 	// this test verify that when in action dropdown by clicking on 'Set as Active'
 	// link confirm message appears when not chosen co owner
-	public void checkClickOnSetActiveMessageAppearsWhenNotChosenCoowner() {
+	public void checkClickOnSetActiveMessageAppearsWhenNotChosenCoowner(ChangeLanguageFields language) {
+		inactivecoowners = inactivecoowners.setLanguage(language);
 		inactivecoowners.clickActionsDropdown();
 		inactivecoowners.clickUnblock();
 		assertEquals(inactivecoowners.getConfirmMessage().getConfirmMessageText(),
@@ -65,10 +50,11 @@ public class InactiveCoownersActionsDropdownTest {
 		inactivecoowners.getConfirmMessage().clickCloseButton();
 	}
 
-	@Test
+	@Test(dataProvider = "L10N")
 	// this test verify that when in action dropdown by clicking on 'Block' link
 	// confirm message appears when not chosen co-owner
-	public void checkClickOnBlockMessageAppearsWhenNotChosenCoowner() {
+	public void checkClickOnBlockMessageAppearsWhenNotChosenCoowner(ChangeLanguageFields language) {
+		inactivecoowners = inactivecoowners.setLanguage(language);
 		inactivecoowners.clickActionsDropdown();
 		inactivecoowners.clickBlock();
 		assertEquals(inactivecoowners.getConfirmMessage().getConfirmMessageText(),
@@ -76,10 +62,11 @@ public class InactiveCoownersActionsDropdownTest {
 		inactivecoowners.getConfirmMessage().clickCloseButton();
 	}
 
-	@Test
+	@Test(dataProvider = "L10N")
 	// this test verify that when in action dropdown by clicking on 'Set community'
 	// link confirm message appears when not chosen co-owner
-	public void checkClickOnSetCommunityMessageAppearsWhenNotChosenCoowner() {
+	public void checkClickOnSetCommunityMessageAppearsWhenNotChosenCoowner(ChangeLanguageFields language) {
+		inactivecoowners = inactivecoowners.setLanguage(language);
 		inactivecoowners.clickActionsDropdown();
 		inactivecoowners.clickSetCommunityButNotSelectedCoowners();
 		assertEquals(inactivecoowners.getConfirmMessage().getConfirmMessageText(),
