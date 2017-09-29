@@ -32,6 +32,7 @@ public class SearchInTable {
         CoownersTable coownersTable = adminhomepage.goToNonConfirmedCoowners();
         coownersTable.getNonConfirmedCoowners();
         coownersTable.setNumbeOfItemsInTable();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 
@@ -56,27 +57,33 @@ public class SearchInTable {
     public void usersFromTable(WebDriver driver) {
         List<User> userList = new ArrayList<User>();
         List<WebElement> td_collection = driver.findElements(By.xpath("//*[@id='example']/tbody/tr/td"));
+        System.out.println("td_collection size "+td_collection.size());
         List<String> list= new ArrayList<String>();
         int count=0;
         for (WebElement td : td_collection) {
             list.add(td.getText());
             count++;
         }
-        for (int j=0;j<=count-8;j=j+8){
-            for (int i=0; i<=7; i++) {
-                td_collection.get(j+i).getText();
-            }
-            userList.add(new User(
-                    td_collection.get(0).getText(),
-                    td_collection.get(1).getText(),
-                    td_collection.get(2).getText(),
-                    td_collection.get(3).getText(),
-                    td_collection.get(4).getText(),
-                    td_collection.get(5).getText(),
-                    td_collection.get(6).getText(),
-                    td_collection.get(7).getText()
+        System.out.println(list);
+        for (int j=0;j<=count-8;j=j+8) {
+//            for (int i = 0; i <= 7; i++) {
+////                td_collection.get(j+i).getText();
+//
+
+            userList.add(ser
+
+                    new User(
+                    td_collection.get(j+0).getText(),
+                    td_collection.get(j+1).getText(),
+                    td_collection.get(j+2).getText(),
+                    td_collection.get(j+3).getText(),
+                    td_collection.get(j+4).getText(),
+                    td_collection.get(j+5).getText(),
+                    td_collection.get(j+6).getText(),
+                    td_collection.get(j+7).getText()
             ));
         }
+
         System.out.println(userList);
 //            for (WebElement tdElement : td_collection) {
 //                userList.add(new User(
