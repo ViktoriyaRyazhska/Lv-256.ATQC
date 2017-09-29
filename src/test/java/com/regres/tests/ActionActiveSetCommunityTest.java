@@ -20,29 +20,29 @@ public class ActionActiveSetCommunityTest {
 	private AdminHomePage adminhomepage;
 
 	
-	@BeforeTest
-	public void setUp() {
-		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-		loginpage = app.load();
-		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+//	@BeforeTest
+//	public void setUp() {
+//		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
+//		loginpage = app.load();
+//		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
 //		adminhomepage.clickCoowners();
 //		adminhomepage.getCommunities().click();
 //		System.out.println(adminhomepage.getCommunities());
-		app.createDBConnection();
+//		app.createDBConnection();
 //		app.createCommunityinDB();
 		
-	}
-
-
-	@AfterClass
-	public void tearDown() {
-		app.quit();
-	}
+//	}
+//
+//
+//	@AfterClass
+//	public void tearDown() {
+//		app.quit();
+//	}
 	
-//	  @Test(dataProvider = "dp")
-	  public void checkCommunity() {
-		  
-	  }
+////	  @Test(dataProvider = "dp")
+//	  public void checkCommunity() {
+//		  
+//	  }
 //
 //	  @DataProvider
 //	  public Object[][] dp() {
