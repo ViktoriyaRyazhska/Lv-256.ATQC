@@ -13,7 +13,7 @@ import com.regres.pages.AdminSettingsPage;
 import com.regres.pages.LoginPage;
 import com.regres.testdata.UserContainer;
 
-public class AdminSettingsTimeZone {
+public class AdminSettingsTimeZoneTest {
 
 	private LoginPage loginpage;
 	private AdminHomePage adminpage;

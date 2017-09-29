@@ -13,7 +13,7 @@ import com.regres.pages.LoginPage;
 import com.regres.pages.OhErrorPage;
 import com.regres.testdata.UserContainer;
 
-public class AdminSettingsTimeZoneInvalidData {
+public class AdminSettingsTimeZoneInvalidDataTest {
 
 	private LoginPage loginpage;
 	private AdminHomePage adminpage;
