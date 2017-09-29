@@ -19,7 +19,7 @@ public class CommissionerHomePage extends DropdownHomePage{
     public WebElement nonConfirmedCoowners;
     public WebElement blockedCoowners;
     
-    String COOWNERS_XPATH="//a[@data-toggle=\\\"dropdown\\\"]";
+    String COOWNERS_XPATH="//a[@data-toggle=\"dropdown\"]";
     String ACTIVE_COOWNERS_XPATH = "//a[contains(@href,\"get-all-users\")]";
     String INACTIVE_COOWNERS_CSSSELECTOR = ".dropdown-menu [href$='inactive']";
     String NON_CONFIRMED_COOWNERS_XPATH = "//a[contains(@href,\"notcomfirmed\")]";
