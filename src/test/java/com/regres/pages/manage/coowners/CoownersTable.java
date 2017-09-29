@@ -5,15 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.regres.pages.AdminHomePage;
+import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 
 public class CoownersTable extends AdminHomePage {
+	public ConfirmMessagePage confirm;
 	WebElement actions;
 	WebElement countElements;
 	WebElement searchButton;
 	WebElement prevButtton;
 	WebElement nextButtton;
 	WebElement paginateCurrentButton;
+	
+	//table columns first row
+	By firstNameColumn = By.xpath(".//tbody/tr[1]/td[2]"); 
+	By lastNameColumn = By.xpath(".//tbody/tr[1]/td[3]"); 
+	By loginColumn = By.xpath(".//tbody/tr[1]/td[4]"); 
+	By communityColumn = By.xpath(".//tbody/tr[1]/td[5]"); 
+	By emailColumn = By.xpath(".//tbody/tr[1]/td[6]"); 
+	By roleColumn = By.xpath(".//tbody/tr[1]/td[7]"); 
+	
+	
+	
 	public CoownersTable(WebDriver driver) {
 		super(driver);
 		actions = driver.findElement(By.id("dLabel"));
@@ -23,6 +36,7 @@ public class CoownersTable extends AdminHomePage {
 		nextButtton = driver.findElement(By.id("example_next"));
 		paginateCurrentButton = driver.findElement(By.cssSelector(".paginate_button.current"));
 	}
+
 	public WebElement getActions() {
 		return actions;
 	}
@@ -67,4 +81,44 @@ public class CoownersTable extends AdminHomePage {
 		return new InactiveCoownersActionsDropdown(driver);
 	}
 
+	public WebElement getFirstNameColumn() {
+		return driver.findElement(firstNameColumn);
+	}
+	public WebElement getLastNameColumn() {
+		return driver.findElement(lastNameColumn);
+	}
+	public WebElement getLoginColumn() {
+		return driver.findElement(loginColumn);
+	}
+	public WebElement getCommunityColumn() {
+		return driver.findElement(communityColumn);
+	}
+	public WebElement getEmailColumn() {
+		return driver.findElement(emailColumn);
+	}
+	public WebElement getRoleColumn() {
+		return driver.findElement(roleColumn);
+	}
+	
+
+	public String getFirstNameColumnText() {
+		return getFirstNameColumn().getText().trim();
+	}
+	public String getLastNameColumnText() {
+		return getLastNameColumn().getText().trim();
+	}
+	public String getLoginColumnText() {
+		return getLoginColumn().getText().trim();
+	}
+	public String getCommunityColumnText() {
+		return getCommunityColumn().getText().trim();
+	}
+	public String getEmailColumnText() {
+		return getEmailColumn().getText().trim();
+	}
+	public String getRoleColumnText() {
+		return getRoleColumn().getText().trim();
+	}
+
+	
 }

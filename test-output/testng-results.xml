@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="9284" started-at="2017-09-28T21:32:10Z" finished-at="2017-09-28T21:32:19Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="9284" started-at="2017-09-28T21:32:10Z" finished-at="2017-09-28T21:32:19Z">
+      <class name="com.regres.tests.ActionActiveSetCommunityTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.regres.tests.ActionActiveSetCommunityTest@6a4f787b]" name="setUp" is-config="true" duration-ms="8406" started-at="2017-09-29T00:32:10Z" finished-at="2017-09-29T00:32:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="createDB()[pri:0, instance:com.regres.tests.ActionActiveSetCommunityTest@6a4f787b]" name="createDB" duration-ms="204" started-at="2017-09-29T00:32:18Z" finished-at="2017-09-29T00:32:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createDB -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.regres.tests.ActionActiveSetCommunityTest@6a4f787b]" name="tearDown" is-config="true" duration-ms="661" started-at="2017-09-29T00:32:18Z" finished-at="2017-09-29T00:32:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.regres.tests.ActionActiveSetCommunityTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

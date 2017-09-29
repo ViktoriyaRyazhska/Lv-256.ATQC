@@ -2,7 +2,6 @@ package com.regres.tests;
 
 import org.junit.AfterClass;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,6 +22,8 @@ public class ActionActiveCoownersTest {
 	public void setUp() {
 		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
 		loginpage = app.load();
+		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+		adminhomepage.clickCoowners();
 	}
 
 	@AfterClass
@@ -35,59 +36,30 @@ public class ActionActiveCoownersTest {
 		return new Object[][] { { "a", "a", "a123", "Ukraine", "Commissioner" } };
 	}
 
-	@Test
+	/**
+	 * Check appearing of message when no one row is selected
+	 */
+	// @Test
 	public void checkConfirmMessageSetCommunity() {
-		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		adminhomepage.clickCoowners();
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
-
 		actions.clickActionsDropdown();
 		actions.clickSetCommunityNotSelected();
 		Assert.assertEquals(actions.confirm.getConfirmMessageText(),
 				"Для виконання даної операції спочатку потрібно вибрати співвласників, натиснувши на відповідні стрічки в таблиці");
-		 actions.confirm.clickCloseButton();
-		// adminhomepage.clickLogout();
+		actions.confirm.clickCloseButton();
 	}
-
+	
 	/**
-	 * Check the presents of confirm message when no user is selected
+	 * Check that role changes
 	 */
-	// @Test
-	public void checkConfirmMessageResetPassword() {
-		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		adminhomepage.clickCoowners();
-		AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		adminhomepage.clickCoowners();
-		ActiveCoownersActionsDropdown activeActions = adminhomepage.clickActiveCoowners();
-		activeActions.clickActionsDropdown();
-
-		activeActions.clickResetPassword();
-		Assert.assertEquals(activeActions.confirm.getConfirmMessageText(),
-				"Для виконання даної операції спочатку потрібно вибрати співвласників, натиснувши на відповідні стрічки в таблиці");
-		activeActions.confirm.clickOkButton();
-		activeActions.clickLogout();
+//	@Test
+	public void checkSetRole() {
+		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
+		actions.getFirstNameColumn();
+		actions.clickActionsDropdown();
+		actions.clickSetRole();
+		actions.clickCoownerRole();
+		actions.confirm.clickOkButton();
+		Assert.assertEquals(actions.getRoleColumnText(), "Співвласник");
 	}
-
-	@DataProvider
-	public Object[][] userForChange() {
-		return new Object[][] { { "registrator1", "Ukraine", "Co-owner" } };
-	}
-
-	// @Test(dataProvider = "userForChange")
-	public void checkUserChangeCommunity() {
-		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		adminhomepage.clickCoowners();
-		AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		adminhomepage.clickCoowners();
-
-		ActiveCoownersActionsDropdown activeActions = adminhomepage.clickActiveCoowners();
-		activeActions.clickActionsDropdown();
-
-		activeActions.clickSetCommunity();
-		Assert.assertEquals(activeActions.confirm.getConfirmMessageText(),
-				"Для виконання даної операції спочатку потрібно вибрати співвласників, натиснувши на відповідні стрічки в таблиці");
-		activeActions.confirm.clickOkButton();
-		activeActions.clickLogout();
-	}
-
 }

@@ -3,6 +3,9 @@ package com.regres.pages.manage.coowners.actions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.manage.coowners.CoownersTable;
@@ -17,11 +20,21 @@ public class ActiveCoownersActionsDropdown extends CoownersTable{
 	By coownerRole=By.xpath("//a[@val=\"USER\"]");
 	By commissionerRole = By.xpath("//a[@val=\"COMMISSIONER\"]");
 	
-	public ConfirmMessagePage confirm;
+	By communitiesName = By.className(".communName");//taras
 	
 	public ActiveCoownersActionsDropdown(WebDriver driver) {
 		super(driver);				
 	}
+//	public  String getCommunitiesName() {//taras
+//		
+//	List<WebElement> drop = driver.findElements(communitiesName);
+//	java.util.Iterator<WebElement> i = drop.iterator();
+//	while(i.hasNext()) {
+//	    WebElement row = i.next();
+//	    return row.getText();
+//	  }
+//	return null;
+//	}
 	
 	public void clickActionsDropdown() {
 		getActions().click();
@@ -30,13 +43,22 @@ public class ActiveCoownersActionsDropdown extends CoownersTable{
 		getResetPassword();
 	}
 	public void clickSetRole() {
-		getSetRole().click();
+		//Initiate mouse action using Actions class
+		Actions builder = new Actions(driver); 
+		// move the mouse to the earlier identified menu option		
+		builder.moveToElement(getSetRole()).build().perform();
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.
+				presenceOfElementLocated(commissionerRole));  // until this submenu is found
 		getAdministratorRole();
 		getRegistratorRole();
 		getCoownerRole();
 		getCommissionerRole();
 	}
-	
+	public void initConfMessage() {
+		InactiveCoownersActionsDropdown windowMes = new InactiveCoownersActionsDropdown(driver);
+		windowMes.simpleConfirmMessage();
+		confirm = windowMes.getConfirmMessage();
+	}
 	public WebElement getSetRole() {
 		return driver.findElement(setRole);
 	}
@@ -73,26 +95,28 @@ public class ActiveCoownersActionsDropdown extends CoownersTable{
 	}
 	public void clickSetCommunityNotSelected() {			
 		getSetCommunity().click();	
-		InactiveCoownersActionsDropdown windowMes = new InactiveCoownersActionsDropdown(driver);
-		windowMes.simpleConfirmMessage();
-		confirm = windowMes.getConfirmMessage();
+		initConfMessage();
 	}
 	
 	public void clickResetPassword() {
-		confirm = new ConfirmMessagePage(driver);
 		getResetPassword().click();
+		initConfMessage();
 	}
 	public void clickAdministratorRole() {
 		getAdministratorRole().click();
+		initConfMessage();
 	}
 	public void clickRegistratorRole() {
 		getRegistratorRole().click();
+		initConfMessage();
 	}
-	public void clickCoownerRole() {
+	public void clickCoownerRole(){
 		getCoownerRole().click();
+		initConfMessage();
 	}
 	public void clickCommissionerRole() {
 		getCommissionerRole().click();
+		initConfMessage();
 	}
 
 	public String getSetRoleText() {
@@ -117,4 +141,5 @@ public class ActiveCoownersActionsDropdown extends CoownersTable{
 	public String getCommissionerRoleText() {
 		return getCommissionerRole().getText().trim();
 	}	
+	
 }
