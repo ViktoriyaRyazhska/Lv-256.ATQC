@@ -12,55 +12,49 @@ import com.regres.pages.manage.coowners.actions.ActiveCoownersActionsDropdown;
  * Class representation of a Commissioner home page.
  */
 public class CommissionerHomePage extends DropdownHomePage{
+	
     public WebElement coowners;
     public WebElement activeCoowners;
     public WebElement inactiveCoowners;
     public WebElement nonConfirmedCoowners;
     public WebElement blockedCoowners;
     
+    String COOWNERS_XPATH="//a[@data-toggle=\\\"dropdown\\\"]";
+    String ACTIVE_COOWNERS_XPATH = "//a[contains(@href,\"get-all-users\")]";
+    String INACTIVE_COOWNERS_CSSSELECTOR = ".dropdown-menu [href$='inactive']";
+    String NON_CONFIRMED_COOWNERS_XPATH = "//a[contains(@href,\"notcomfirmed\")]";
+    String BLOCKED_COOWNERS_XPATH = "//a[contains(@href,\"block\")]";
+    
     public CommissionerHomePage (WebDriver driver) {
         super(driver);
-        coowners=driver.findElement(By.xpath("//a[@data-toggle=\"dropdown\"]"));        
     }
     public void clickCoowners() {
     	clickUserName();
-    	coowners.click(); 
-    	activeCoowners=driver.findElement(By.xpath("//a[contains(@href,\"get-all-users\")]"));
-        inactiveCoowners=driver.findElement(By.cssSelector(".dropdown-menu [href$='inactive']"));    	     
-        nonConfirmedCoowners=driver.findElement(By.xpath("//a[contains(@href,\"notcomfirmed\")]"));
-        blockedCoowners=driver.findElement(By.xpath("//a[contains(@href,\"block\")]"));        
+    	getCoowners().click(); 	     
+    	getActiveCoowners();
+    	getInactiveCoowners();
+    	getNonConfirmedCoowners();
+    	getBlockedCoowners();
     }
 
 	public WebElement getCoowners() {
-		return coowners;
+		return driver.findElement(By.xpath(COOWNERS_XPATH));
 	}
-	public void setCoowners(WebElement coowners) {
-		this.coowners = coowners;
-	}
+
 	public WebElement getActiveCoowners() {
-		return activeCoowners;
-	}
-	public void setActiveCoowners(WebElement activeCoowners) {
-		this.activeCoowners = activeCoowners;
+		return driver.findElement(By.xpath(ACTIVE_COOWNERS_XPATH));
 	}
 	public WebElement getInactiveCoowners() {
-		return inactiveCoowners;
-	}
-	public void setInactiveCoowners(WebElement inactiveCoowners) {
-		this.inactiveCoowners = inactiveCoowners;
+		return driver.findElement(By.cssSelector(INACTIVE_COOWNERS_CSSSELECTOR));
 	}
 	public WebElement getNonConfirmedCoowners() {
-		return nonConfirmedCoowners;
-	}
-	public void setNonConfirmedCoowners(WebElement nonConfirmedCoowners) {
-		this.nonConfirmedCoowners = nonConfirmedCoowners;
+		return driver.findElement(By.xpath(NON_CONFIRMED_COOWNERS_XPATH));
 	}
 	public WebElement getBlockedCoowners() {
-		return blockedCoowners;
+		return driver.findElement(By.xpath(BLOCKED_COOWNERS_XPATH));
 	}
-	public void setBlockedCoowners(WebElement blockedCoowners) {
-		this.blockedCoowners = blockedCoowners;
-	}
+	
+	
 	public String getCoownersText() {
 		return getCoowners().getText().trim();
 	}

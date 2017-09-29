@@ -1,7 +1,7 @@
 package com.regres.tests;
 
-import org.junit.AfterClass;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,6 +12,7 @@ import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.manage.coowners.actions.ActiveCoownersActionsDropdown;
 import com.regres.testdata.UserContainer;
+
 
 public class ActionActiveCoownersTest {
 	private Application app;
@@ -39,7 +40,7 @@ public class ActionActiveCoownersTest {
 	/**
 	 * Check appearing of message when no one row is selected
 	 */
-	// @Test
+	 @Test
 	public void checkConfirmMessageSetCommunity() {
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
 		actions.clickActionsDropdown();
@@ -52,7 +53,7 @@ public class ActionActiveCoownersTest {
 	/**
 	 * Check that role changes
 	 */
-//	@Test
+	@Test
 	public void checkSetRole() {
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
 		actions.getFirstNameColumn();

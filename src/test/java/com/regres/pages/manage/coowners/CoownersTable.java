@@ -11,75 +11,59 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CoownersTable extends AdminHomePage {
 	public ConfirmMessagePage confirm;
-	WebElement actions;
-	WebElement countElements;
-	WebElement searchButton;
-	WebElement prevButtton;
-	WebElement nextButtton;
-	WebElement paginateCurrentButton;
+	String ACTIONS_ID="dLabel";
+	String COUNT_ELEMENTS_CSSSELECTOR = "label>select";
+	String SEARCH_BUTTON_ID = "bth-search";
+	String PREV_BUTTON_ID = "example_previous";
+	String NEXT_BUTTON_ID= "example_next";
+	String PAGINATE_CURRENT_BUTTON_CSSSELECTOR =".paginate_button.current";
 	
 	//table columns first row
-	By firstNameColumn = By.xpath(".//tbody/tr[1]/td[2]"); 
-	By lastNameColumn = By.xpath(".//tbody/tr[1]/td[3]"); 
-	By loginColumn = By.xpath(".//tbody/tr[1]/td[4]"); 
-	By communityColumn = By.xpath(".//tbody/tr[1]/td[5]"); 
-	By emailColumn = By.xpath(".//tbody/tr[1]/td[6]"); 
-	By roleColumn = By.xpath(".//tbody/tr[1]/td[7]");
+	String FIRST_NAME_COLUMN = ".//tbody/tr[1]/td[2]";
+	String LAST_NAME_COLUMN = ".//tbody/tr[1]/td[3]";
+	String LOGIN_COLUMN = ".//tbody/tr[1]/td[4]";
+	String COMMUNITY_COLUMN = ".//tbody/tr[1]/td[5]";
+	String EMAIL_COLUMN = ".//tbody/tr[1]/td[6]";
+	String ROLE_COLUMN = ".//tbody/tr[1]/td[7]";
 	
-	
-
 	public CoownersTable(WebDriver driver) {
 		super(driver);
-		actions = driver.findElement(By.id("dLabel"));
-		countElements = driver.findElement(By.cssSelector("label>select"));
-		searchButton = driver.findElement(By.id("bth-search"));
-		prevButtton = driver.findElement(By.id("example_previous"));
-		nextButtton = driver.findElement(By.id("example_next"));
-		paginateCurrentButton = driver.findElement(By.cssSelector(".paginate_button.current"));
+		getActions();
+		getCountElements();
+		getSearchButton();
+		getPrevButtton();
+		getNextButtton();
+		getPaginateCurrentButton();
 	}
 
 	public WebElement getActions() {
-		return actions;
-	}
-	public void setActions(WebElement actions) {
-		this.actions = actions;
+		return driver.findElement(By.id(ACTIONS_ID));
 	}
 	public WebElement getCountElements() {
-		return countElements;
+		return driver.findElement(By.cssSelector(COUNT_ELEMENTS_CSSSELECTOR));
 	}
-	public void setCountElements(WebElement countElements) {
-		this.countElements = countElements;
-	}
+
 	public WebElement getSearchButton() {
-		return searchButton;
+		return driver.findElement(By.id(ACTIONS_ID));
 	}
-	public void setSearchButton(WebElement searchButton) {
-		this.searchButton = searchButton;
-	}
+
 	public WebElement getPrevButtton() {
-		return prevButtton;
+		return driver.findElement(By.id(PREV_BUTTON_ID));
 	}
-	public void setPrevButtton(WebElement prevButtton) {
-		this.prevButtton = prevButtton;
-	}
+
 	public WebElement getNextButtton() {
-		return nextButtton;
+		return driver.findElement(By.id(NEXT_BUTTON_ID));
 	}
-	public void setNextButtton(WebElement nextButtton) {
-		this.nextButtton = nextButtton;
-	}
+
 	public WebElement getPaginateCurrentButton() {
-		return paginateCurrentButton;
-	}
-	public void setPaginateCurrentButton(WebElement paginateCurrentButton) {
-		this.paginateCurrentButton = paginateCurrentButton;
+		return driver.findElement(By.cssSelector(PAGINATE_CURRENT_BUTTON_CSSSELECTOR));
 	}
 
 	//переписати
 	public void setNumbeOfItemsInTable() {
 		new Select(driver.findElement(By.name("example_length"))).selectByVisibleText("100");
 	}
-	
+
 	// Business Logic
 	
 	public InactiveCoownersActionsDropdown goToInactiveCoowners() {
@@ -88,24 +72,24 @@ public class CoownersTable extends AdminHomePage {
 	}
 
 	public WebElement getFirstNameColumn() {
-		return driver.findElement(firstNameColumn);
+		return driver.findElement(By.xpath(FIRST_NAME_COLUMN));
 	}
 	public WebElement getLastNameColumn() {
-		return driver.findElement(lastNameColumn);
+		return driver.findElement(By.xpath(LAST_NAME_COLUMN));
 	}
 	public WebElement getLoginColumn() {
-		return driver.findElement(loginColumn);
+		return driver.findElement(By.xpath(LOGIN_COLUMN));
 	}
 	public WebElement getCommunityColumn() {
-		return driver.findElement(communityColumn);
+		return driver.findElement(By.xpath(COMMUNITY_COLUMN));
 	}
 	public WebElement getEmailColumn() {
-		return driver.findElement(emailColumn);
+		return driver.findElement(By.xpath(EMAIL_COLUMN));
 	}
 	public WebElement getRoleColumn() {
-		return driver.findElement(roleColumn);
+		return driver.findElement(By.xpath(ROLE_COLUMN));
 	}
-
+	
 
 	public String getFirstNameColumnText() {
 		return getFirstNameColumn().getText().trim();

@@ -107,6 +107,7 @@ public class LoginPage extends TitleLocalFooter {
 	public WebElement getErrorMessage() {
 		
 		errormessage = driver.findElement(By.xpath("//form[@id='loginForm']/div[contains(@style,'color: red;')]"));
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOf(errormessage));
 		return errormessage;	
 	}
 	

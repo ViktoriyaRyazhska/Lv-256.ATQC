@@ -22,12 +22,15 @@ public class ActionActiveSetCommunityTest {
 	
 	@BeforeTest
 	public void setUp() {
-		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
 		loginpage = app.load();
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
 //		adminhomepage.clickCoowners();
 //		adminhomepage.getCommunities().click();
 //		System.out.println(adminhomepage.getCommunities());
+		app.createDBConnection();
+//		app.createCommunityinDB();
+		
 	}
 
 
@@ -37,16 +40,14 @@ public class ActionActiveSetCommunityTest {
 	}
 	
 //	  @Test(dataProvider = "dp")
-	  public void checkCommunity(Boolean n, String s) {
+	  public void checkCommunity() {
 		  
 	  }
-
-	  @DataProvider
-	  public Object[][] dp() {
-	    return new Object[][] {
-	      new Object[] { 1, "a" },
-	      new Object[] { 2, "b" },
-	    };
-	  }
+//
+//	  @DataProvider
+//	  public Object[][] dp() {
+//	    return new Object[][] { {Sql.createCommunityinDB(conn, nameCommunity) },
+//	    };
+//	  }
 
 }
