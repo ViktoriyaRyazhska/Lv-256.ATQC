@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SearchInTableTest {
-    WebDriver driver;
     private Application app;
     private LoginPage loginpage;
     private AdminHomePage adminhomepage;
@@ -41,31 +40,31 @@ public class SearchInTableTest {
     public void searchInTable() {
         CoownersTable coownersTable = adminhomepage.goToNonConfirmedCoowners();
         coownersTable.getNonConfirmedCoowners();
-        usersFromTable(driver);
+//        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+//        List<WebElement> tr_collection = driver.findElements(By.xpath("//table/tbody/tr"));
+        //System.out.println(tr_collection.toString());
+//        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+//        WebElement element=driver.findElement(By.xpath(".//*[@id='example']/tbody"));
+//        List<WebElement> rowCollection=element.findElements(By.xpath("//*[@id='example']/tbody/tr"));
+//        System.out.println("Numer of rows in this table: "+rowCollection.size());
+        //usersFromTable(driver);
 
     }
 
     public void usersFromTable(WebDriver driver) {
-        List<User> userList=new ArrayList<User>();
+        List<User> userList = new ArrayList<User>();
+
         WebElement table_element = driver.findElement(By.id("example"));
-        List<WebElement> tr_collection=driver.findElements(By.xpath("//id('example')/tbody/tr"));
-        System.out.println("NUMBER OF ROWS IN THIS TABLE = "+tr_collection.size());
-        int row_num;
-        int col_num;
-        row_num=1;
-        for(WebElement trElement : tr_collection)
-        {
-            List<WebElement> td_collection=trElement.findElements(By.xpath("td"));
-            System.out.println("NUMBER OF COLUMNS="+td_collection.size());
-            col_num=1;
-            for(WebElement tdElement : td_collection)
-            {
-                System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
-                col_num++;
+        List<WebElement> tr_collection = driver.findElements(By.xpath("//@id('example')/tbody/tr"));
+        for (WebElement trElement : tr_collection) {
+            List<WebElement> td_collection = trElement.findElements(By.xpath("td"));
+            for (WebElement tdElement : td_collection) {
+//               add user
             }
-            row_num++;
+
         }
     }
+
     class User {
         String firstName;
         String lastName;
