@@ -32,7 +32,7 @@ public class SearchInTable {
         CoownersTable coownersTable = adminhomepage.goToNonConfirmedCoowners();
         coownersTable.getNonConfirmedCoowners();
         coownersTable.setNumbeOfItemsInTable();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
     }
 
@@ -58,6 +58,7 @@ public class SearchInTable {
         List<User> userList = new ArrayList<User>();
         List<WebElement> td_collection = driver.findElements(By.xpath("//*[@id='example']/tbody/tr/td"));
         System.out.println("td_collection size "+td_collection.size());
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         List<String> list= new ArrayList<String>();
         int count=0;
         for (WebElement td : td_collection) {
@@ -70,9 +71,7 @@ public class SearchInTable {
 ////                td_collection.get(j+i).getText();
 //
 
-            userList.add(ser
-
-                    new User(
+            userList.add(new User(
                     td_collection.get(j+0).getText(),
                     td_collection.get(j+1).getText(),
                     td_collection.get(j+2).getText(),
@@ -83,8 +82,9 @@ public class SearchInTable {
                     td_collection.get(j+7).getText()
             ));
         }
-
         System.out.println(userList);
+        }
+
 //            for (WebElement tdElement : td_collection) {
 //                userList.add(new User(
 //                        tdElement.findElement(By.cssSelector(".status")).getText(),
@@ -96,7 +96,7 @@ public class SearchInTable {
 //                        tdElement.findElement(By.cssSelector(".role_type")).getText())
 //                );
 //            }
-    }
+
     class User {
         String status;
         String firstName;

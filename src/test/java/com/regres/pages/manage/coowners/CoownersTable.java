@@ -24,10 +24,10 @@ public class CoownersTable extends AdminHomePage {
 	By loginColumn = By.xpath(".//tbody/tr[1]/td[4]"); 
 	By communityColumn = By.xpath(".//tbody/tr[1]/td[5]"); 
 	By emailColumn = By.xpath(".//tbody/tr[1]/td[6]"); 
-	By roleColumn = By.xpath(".//tbody/tr[1]/td[7]"); 
+	By roleColumn = By.xpath(".//tbody/tr[1]/td[7]");
 	
 	
-	
+
 	public CoownersTable(WebDriver driver) {
 		super(driver);
 		actions = driver.findElement(By.id("dLabel"));
@@ -105,7 +105,7 @@ public class CoownersTable extends AdminHomePage {
 	public WebElement getRoleColumn() {
 		return driver.findElement(roleColumn);
 	}
-	
+
 
 	public String getFirstNameColumnText() {
 		return getFirstNameColumn().getText().trim();
