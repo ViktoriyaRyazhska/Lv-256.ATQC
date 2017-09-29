@@ -15,8 +15,8 @@ public class UserContainer {
 	 * @return Instance of class User with Admin's credentials
 	 */
 	public static User getAdmin() {
-
-		return new User().setLogin("admin").setPassword("admin");
+		
+		return  User.get().setLogin("admin").setPassword("admin").build();
 	}
 
 	/**
@@ -25,7 +25,7 @@ public class UserContainer {
 	 */
 	public static User getRegistrator() {
 
-		return new User().setLogin("registrator").setPassword("registrator");
+		return User.get().setLogin("registrator").setPassword("registrator").build();
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class UserContainer {
 	 */
 	public static User getCoowner() {
 
-		return new User().setLogin("qwerty").setPassword("qwerty");
+		return User.get().setLogin("qwerty").setPassword("qwerty").build();
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class UserContainer {
 	 */
 	public static User getCommissioner() {
 
-		return new User().setLogin("andriy97").setPassword("andriy97");
+		return User.get().setLogin("andriy97").setPassword("andriy97").build();
 	}
 
 	/**
@@ -52,21 +52,9 @@ public class UserContainer {
 	 */
 	public static User getInvalidData() {
 
-		return new User().setLogin("%^/?!").setPassword("%^/?!");
+		return User.get().setLogin("%^/?!").setPassword("%^/?!").build();
 	}
 
-	/**
-	 * Creates User by given parameters.
-	 * 
-	 * @param login
-	 *            Login name of desired User
-	 * @param password
-	 *            Password of desired User
-	 * @return Instance of class User with credentials given in parameters.
-	 */
-	public User setUser(String login, String password) {
-
-		return new User().setLogin(login).setPassword(password);
-	}
+	
 
 }
