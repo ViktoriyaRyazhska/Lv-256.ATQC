@@ -30,8 +30,8 @@ public class SearchInTable {
         LoginPage loginpage = new LoginPage(driver);
         AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
         CoownersTable coownersTable = adminhomepage.goToNonConfirmedCoowners();
-        coownersTable.getNonConfirmedCoowners();
-        //coownersTable.setNumbeOfItemsInTable();
+        coownersTable.getNonConfirmedCoowners();//вивести непідтверджених юзерів
+        //coownersTable.setNumbeOfItemsInTable(); //вивести 100 позицій в таблиці, поставити вейтер
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
     }
@@ -57,32 +57,34 @@ public class SearchInTable {
     public void usersFromTable(WebDriver driver) {
         List<User> userList = new ArrayList<User>();
         List<WebElement> td_collection = driver.findElements(By.xpath("//*[@id='example']/tbody/tr/td"));
-        System.out.println("td_collection size "+td_collection.size());
-        List<String> list= new ArrayList<String>();
-        int count=0;
+        System.out.println("td_collection size " + td_collection.size());
+        List<String> list = new ArrayList<String>();
+        int count = 0;
         for (WebElement td : td_collection) {
             list.add(td.getText());
             count++;
         }
         System.out.println(list);
-        for (int j=0;j<=count-8;j=j+8) {
+        for (int j = 0; j <= count - 8; j = j + 8) {
 //            for (int i = 0; i <= 7; i++) {
 ////                td_collection.get(j+i).getText();
 //
 
             userList.add(new User(
-                    td_collection.get(j+0).getText(),
-                    td_collection.get(j+1).getText(),
-                    td_collection.get(j+2).getText(),
-                    td_collection.get(j+3).getText(),
-                    td_collection.get(j+4).getText(),
-                    td_collection.get(j+5).getText(),
-                    td_collection.get(j+6).getText(),
-                    td_collection.get(j+7).getText()
+                    td_collection.get(j + 0).getText(),
+                    td_collection.get(j + 1).getText(),
+                    td_collection.get(j + 2).getText(),
+                    td_collection.get(j + 3).getText(),
+                    td_collection.get(j + 4).getText(),
+                    td_collection.get(j + 5).getText(),
+                    td_collection.get(j + 6).getText(),
+                    td_collection.get(j + 7).getText()
             ));
         }
-        System.out.println(userList);
+        for (User u : userList) {
+            System.out.println(u);
         }
+    }
 
 //            for (WebElement tdElement : td_collection) {
 //                userList.add(new User(
@@ -105,6 +107,7 @@ public class SearchInTable {
         String email;
         String role_type;
         String button;
+
 
         @Override
         public String toString() {
@@ -194,6 +197,7 @@ public class SearchInTable {
         public void setButton(String button) {
             this.button = button;
         }
+
     }
 
 }
