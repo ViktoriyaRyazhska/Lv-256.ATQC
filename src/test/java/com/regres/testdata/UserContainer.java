@@ -36,14 +36,13 @@ public class UserContainer {
 
 		return User.get().setLogin("qwerty").setPassword("qwerty").build();
 	}
-
 	/**
 	 * 
 	 * @return Instance of class User with Commissioner credentials
 	 */
 	public static User getCommissioner() {
 
-		return User.get().setLogin("andriy97").setPassword("andriy97").build();
+		return User.get().setLogin("a123").setPassword("qwerty").build();
 	}
 
 	/**
