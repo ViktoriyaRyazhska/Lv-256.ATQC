@@ -14,9 +14,9 @@ public class AdminSettingsPage extends AdminHomePage {
 	private WebElement searchResult;
 	private WebElement methodRegisteringTitle;
 	private WebElement methodRegisteringLabel;
-	private WebElement optionPersonal;
-	private WebElement optionManual;
-	private WebElement optionMixed;
+	private WebElement optionPersonalRadioButton;
+	private WebElement optionManualRadioButton;
+	private WebElement optionMixedRadioButton;
 	private WebElement confirmButton;
 	private WebElement registerButton;
 
@@ -24,8 +24,10 @@ public class AdminSettingsPage extends AdminHomePage {
 	String TIME_ZONE_LABEL_XPATH = "//form[@id='сhangeReg']/div[2]//p";
 	String TIME_ZONE_FIELD_XPATH = "//form[@id='сhangeReg']/div[2]//input";
 	String CONFIRM_CHANGES_BUTTON_ID = "confirmRegistrationMethod";
-	
-	
+	String OPTION_PERSONAL_RADIO_BUTTON_XPATH = "//input[@value='PERSONAL']";
+	String OPTION_MANUAL_RADIO_BUTTON_XPATH = "//input[@value='MANUAL']";
+	String OPTION_MIXED_RADIO_BUTTON_XPATH = "//input[@value='MIXED']";
+
 	public AdminSettingsPage(WebDriver driver) {
 		super(driver);
 		timeZoneBlockTitle = driver.findElement(By.xpath(TIME_ZONE_BLOCK_TITLE_XPATH));
@@ -35,9 +37,9 @@ public class AdminSettingsPage extends AdminHomePage {
 				.findElement(By.xpath("//form[@id='сhangeReg']/div[1]//h3[@class='panel-title']"));
 		timeZoneField = driver.findElement(By.xpath(TIME_ZONE_FIELD_XPATH));
 		confirmChangesButton = driver.findElement(By.id(CONFIRM_CHANGES_BUTTON_ID));
-		optionPersonal = driver.findElement(By.xpath("(//input[@value='PERSONAL'])"));
-		optionManual = driver.findElement(By.xpath("(//input[@value='MANUAL'])"));
-		optionMixed = driver.findElement(By.xpath("(//input[@value='MIXED'])"));
+		optionPersonalRadioButton = driver.findElement(By.xpath(OPTION_PERSONAL_RADIO_BUTTON_XPATH));
+		optionManualRadioButton = driver.findElement(By.xpath(OPTION_MANUAL_RADIO_BUTTON_XPATH));
+		optionMixedRadioButton = driver.findElement(By.xpath(OPTION_MIXED_RADIO_BUTTON_XPATH));
 
 	}
 
@@ -80,7 +82,7 @@ public class AdminSettingsPage extends AdminHomePage {
 	public String getTimeZoneLabelText() {
 		return timeZoneLabel.getText().trim();
 	}
-	
+
 	/**
 	 * @return Text of time zone field(current time zone)
 	 */
@@ -90,15 +92,15 @@ public class AdminSettingsPage extends AdminHomePage {
 	}
 
 	public WebElement getOptionPersonal() {
-		return optionPersonal;
+		return optionPersonalRadioButton;
 	}
 
 	public WebElement getOptionManual() {
-		return optionManual;
+		return optionManualRadioButton;
 	}
 
 	public WebElement getOptionMixed() {
-		return optionMixed;
+		return optionMixedRadioButton;
 	}
 
 	public void clickOptionPersonal() {
@@ -115,69 +117,92 @@ public class AdminSettingsPage extends AdminHomePage {
 
 	/**
 	 * Sets time zone for the app,
-	 * @param timezone - desired timezone.
+	 * 
+	 * @param timezone
+	 *            - desired timezone.
 	 * @return AdminSettingsPage after clicking 'Confirm' button.
 	 */
 	public AdminSettingsPage setTimeZone(String timezone) {
 		timeZoneField.clear();
 		timeZoneField.sendKeys(timezone);
-		
+
 		// wait until app finds desired timezone in database.
 		(new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.className("autocomplete-suggestion"))); //classname of result set 
-		
-		searchResult = driver.findElement(By.xpath("//*[@data-index='0']")); 
-		searchResult.click(); //click on the first match
-		
+				.until(ExpectedConditions.visibilityOfElementLocated(By.className("autocomplete-suggestion"))); // classname
+		searchResult = driver.findElement(By.xpath("//*[@data-index='0']"));
+		searchResult.click(); // click on the first match
+
 		confirmChangesButton.click(); // confirm changes
-		
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(timeZoneBlockTitle)); 
+
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(timeZoneBlockTitle));
 		return new AdminSettingsPage(driver);
 	}
-	
+
 	/**
-	 * Sets invalid value for the timezone field
-	 * Returns error page.
-	 * @param invalidTimeZone - invalid credentials for the timezone field.
+	 * Sets invalid value for the timezone field Returns error page.
+	 * 
+	 * @param invalidTimeZone
+	 *            - invalid credentials for the timezone field.
 	 * @return error page.
 	 */
 	public OhErrorPage setInvalidTimeZone(String invalidTimeZone) {
-		
+
 		timeZoneField.clear();
 		timeZoneField.sendKeys(invalidTimeZone);
 		this.confirmChangesButton.click();
-		
+
 		return new OhErrorPage(driver);
 	}
 
-	public LoginPage personalRegistration() {
-
-		if (!optionPersonal.isSelected()) {
+	/**
+	 * Select Personal Registration option
+	 * 
+	 * @return new AdminSettingsPage.
+	 */
+	public AdminSettingsPage personalRegistration() {
+		/**
+		 * Checks 'Manual option' radio button. If it is already checked, does nothing.
+		 */
+		if (!optionManualRadioButton.isSelected()) {
 			clickOptionPersonal();
-			confirmChangesButton.click();
 		}
-		clickLogout();
-		return new LoginPage(driver);
+		confirmChangesButton.click(); // confirm changes
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(methodRegisteringTitle));
+		return new AdminSettingsPage(driver);
 	}
 
-	public LoginPage manualRegistration() {
-
-		if (!optionManual.isSelected()) {
+	/**
+	 * Select Only commissioner can register new co-owner option
+	 * 
+	 * @return new AdminSettingsPage.
+	 */
+	public AdminSettingsPage manualRegistration() {
+		/**
+		 * Checks 'Personal option' radio button. If it is already checked, does
+		 * nothing.
+		 */
+		if (!optionPersonalRadioButton.isSelected()) {
 			clickOptionManual();
-			confirmChangesButton.click();
 		}
-		clickLogout();
-		return new LoginPage(driver);
+		confirmChangesButton.click(); // confirm changes
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(methodRegisteringTitle));
+		return new AdminSettingsPage(driver);
 	}
 
-	public LoginPage mixedlRegistration() {
-
-		if (!optionMixed.isSelected()) {
+	/**
+	 * Select Both registration method are available option
+	 * 
+	 * @return new AdminSettingsPage.
+	 */
+	public AdminSettingsPage mixedlRegistration() {
+		/**
+		 * Checks 'Mixed option' radio button. If it is already checked, does nothing.
+		 */
+		if (!optionMixedRadioButton.isSelected()) {
 			clickOptionMixed();
-			confirmChangesButton.click();
 		}
-		clickLogout();
-		return new LoginPage(driver);
+		confirmChangesButton.click(); // confirm changes
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(methodRegisteringTitle));
+		return new AdminSettingsPage(driver);
 	}
-
 }
