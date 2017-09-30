@@ -1,9 +1,10 @@
 package com.regres.tests;
 
-import org.junit.Test;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.regres.application.Application;
 import com.regres.application.ApplicationSourcesRepo;
@@ -15,7 +16,6 @@ import com.regres.testdata.NewSubclassContainer;
 import com.regres.testdata.UserContainer;
 
 public class AddNewSubclassTest {
-	    public class AddSubclassbclassTest {
 		private LoginPage loginpage;
 		private RegistratorHomePage registratorpage;
 		private SubclassesOfObjects subclassesOfObjects;
@@ -84,7 +84,7 @@ public class AddNewSubclassTest {
 			Assert.assertEquals(resultParameterDes, true);
 		}
 
-		//@Test
+		// @Test
 		public void checkAddSubclassField() {
 			addNewSublassPage.clickButtonShowParameters();
 			addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValData());
@@ -99,4 +99,4 @@ public class AddNewSubclassTest {
 		}
 	}
 
-}
+

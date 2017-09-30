@@ -34,8 +34,8 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 
 	public AddNewSubclassPage clickAddNewSubclass() {
 		addNewSubclass.click();
-		//new WebDriverWait(driver,
-		//20).until(ExpectedConditions.stalenessOf(By.xpath(LIST_OF_ALL_SUBCLASS_XPATH)));
+		new WebDriverWait(driver,
+		20).until(ExpectedConditions.stalenessOf(By.xpath(LIST_OF_ALL_SUBCLASS_XPATH)));
 		return new AddNewSubclassPage(driver);
 	}
 
