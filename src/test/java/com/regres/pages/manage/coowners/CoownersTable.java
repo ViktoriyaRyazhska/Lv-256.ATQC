@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
+import org.openqa.selenium.support.ui.Select;
 
 public class CoownersTable extends AdminHomePage {
 	public ConfirmMessagePage confirm;
@@ -57,8 +58,14 @@ public class CoownersTable extends AdminHomePage {
 	public WebElement getPaginateCurrentButton() {
 		return driver.findElement(By.cssSelector(PAGINATE_CURRENT_BUTTON_CSSSELECTOR));
 	}
+
+	//переписати
+	public void setNumbeOfItemsInTable() {
+		new Select(driver.findElement(By.name("example_length"))).selectByVisibleText("100");
+	}
+
+	// Business Logic
 	
-	// Business Logic	
 	public InactiveCoownersActionsDropdown goToInactiveCoowners() {
 		// Return a new page object representing the destination.
 		return new InactiveCoownersActionsDropdown(driver);
