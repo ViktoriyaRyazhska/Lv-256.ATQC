@@ -92,7 +92,7 @@ public class ApplicationSources {
 		return conn;
 	}
 	public static void closeConnectionDB(Connection conn) throws ClassNotFoundException, SQLException {
-		conn = createDBConnection();
+//		conn = createDBConnection();
 		if (conn != null)
 			conn.close();
 	}
@@ -110,16 +110,17 @@ public class ApplicationSources {
 			this.password=password;
 			}
 	
-//	public static void createCommunityinDB(Connection conn, String nameCommunity) throws SQLException, ClassNotFoundException {
-//		// the mysql insert statement
-//		conn = createDBConnection();
-//		String createCommunity = "Insert into registrator_db.territorial_community(name) values (?);";
-//		PreparedStatement st = (PreparedStatement) conn.prepareStatement(createCommunity);
-//
-//		// Statement allows you to send inquiries database
-//		st.setString(1, nameCommunity);
-//		st.executeUpdate();	
-//	}	
+	public static void createCommunityinDB(Connection conn, String nameCommunity) throws SQLException, ClassNotFoundException {
+		// the mysql insert statement
+		conn = createDBConnection();
+		String createCommunity = "Insert into registrator_db.territorial_community(name) values (?);";
+		PreparedStatement st = (PreparedStatement) conn.prepareStatement(createCommunity);
+
+		// Statement allows you to send inquiries database
+		st.setString(1, nameCommunity);
+		st.executeUpdate();	
+	}	
+	
 }
 
 
