@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Manege Coowners" parallel="false">
+  <test name="Actions Coowner">
+    <classes>
+      <class name="com.regres.tests.InactiveCoownersActionsDropdownTest"/>
+      <class name="com.regres.tests.ActionActiveCoownersTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+<!--  suite run: 
+				mvn clean test -DsuiteXmlFile=mytestng.xml
+	  suires run:
+				mvn clean test -DsuiteXmlFile=mytestng.xml,mytestng2.xml -->
