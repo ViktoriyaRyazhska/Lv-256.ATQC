@@ -59,7 +59,8 @@ public class AddNewSubclassTest {
 		Assert.assertEquals(subclassesOfObjects.getNameSubclass().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSubclass().getText().contains("Sidney"));
 		
-		confirmMessage=subclassesOfObjects.clickDeleteSubclassSidney();
+		//confirmMessage=subclassesOfObjects.clickDeleteSubclassSidney();
+		//confirmMessage.clickOkButton();
 		
 	}
 

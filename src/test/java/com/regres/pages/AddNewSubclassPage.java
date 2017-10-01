@@ -3,6 +3,8 @@ package com.regres.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.regres.testdata.NewSubclass;
 
@@ -36,7 +38,7 @@ public class AddNewSubclassPage {
 	String PARAMETER_DESCRIPTION_FIELD1_NAME = "parameters[1].description";
 	String UNIT_OF_MEASUREMENT_FIELD1_NAME = "parameters[1].unitName";
 	String UNIT_OF_MEASUREMENT_FIELD_ID = "myparam1";
-	String SAVE_BUTTON_ID = "valid";
+	String SAVE_BUTTON_XPATH = "//*[@type='submit']";
 	String CLEAR_BUTTON_XPATH = "//*[@type='reset']";
 	String DROPDOWN_BUTTON_XPATH = "//*[@id='myparam2']";
 	String OPTION_BY_DEFAULT_XPATH = "";
@@ -54,11 +56,10 @@ public class AddNewSubclassPage {
 		buttonDelParameters = driver.findElement(By.id(BUTTON_DEL_PARAMETERS_ID));
 		parameterDescriptionField = driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD_NAME));
 		unitOfMeasurementField = driver.findElement(By.id(UNIT_OF_MEASUREMENT_FIELD_ID));
-		saveButton = driver.findElement(By.id(SAVE_BUTTON_ID));
-		clearButton = driver.findElement(By.xpath(CLEAR_BUTTON_XPATH));
 		dropdownButton = driver.findElement(By.xpath(DROPDOWN_BUTTON_XPATH));
 		optionLinearParameter = driver.findElement(By.xpath(OPTION_LINEAR_PARAMETER_XPATH));
 		optionDiscreteParameters = driver.findElement(By.xpath(OPTION_DISCRETE_PARAMETERS_XPATH));
+		saveButton = driver.findElement(By.xpath(SAVE_BUTTON_XPATH));
 	}
 
 	// getData
@@ -90,7 +91,7 @@ public class AddNewSubclassPage {
 	public WebElement getButtonDelParameters() {
 		return buttonDelParameters;
 	}
-	
+
 	public AddNewSubclassPage clickButtonDelParameters() {
 		getButtonDelParameters().click();
 		return new AddNewSubclassPage(driver);
@@ -125,6 +126,7 @@ public class AddNewSubclassPage {
 	}
 
 	public WebElement getClearButton() {
+		clearButton = driver.findElement(By.xpath(CLEAR_BUTTON_XPATH));
 		return clearButton;
 	}
 
