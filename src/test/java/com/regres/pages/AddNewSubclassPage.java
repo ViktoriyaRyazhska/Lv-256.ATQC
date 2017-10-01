@@ -9,71 +9,105 @@ import com.regres.testdata.NewSubclass;
 public class AddNewSubclassPage {
 
 	public WebDriver driver;
-	// Fields
+	public WebElement titleAddNewSubclass;
+	public WebElement enterNameField;
+	public WebElement buttonShowParameters;
+	public WebElement buttonHideParameters;
+	public WebElement buttonAddParameters;
+	public WebElement buttonDelParameters;
+	public WebElement parameterDescriptionField;
+	public WebElement parameterDescriptionField1;
+	public WebElement unitOfMeasurementField;
+	public WebElement unitOfMeasurementField1;
+	public WebElement saveButton;
+	public WebElement clearButton;
+	public WebElement dropdownButton;
+	public WebElement optionLinearParameter;
+	public WebElement optionDiscreteParameters;
+	private WebElement errorMessage;
+
 	String TITLE_ADD_NEW_SUBCLASS_XPATH = "//*[@id='body']/h2";
 	String ENTER_NAME_FIELD_NAME = "typeName";
-	String BUTTON_SHOW_PARAMETERS_ID = "clickmeshow";
+	String BUTTON_SHOW_PARAMETERS_ID= "clickmeshow";
 	String BUTTON_HIDE_PARAMETERS_ID = "clickmeshow";
 	String BUTTON_ADD_PARAMETERS_ID = "btnAdd";
 	String BUTTON_DEL_PARAMETERS_ID = "btnDel";
 	String PARAMETER_DESCRIPTION_FIELD_NAME = "parameters[0].description";
+	String PARAMETER_DESCRIPTION_FIELD1_NAME = "parameters[1].description";
+	String UNIT_OF_MEASUREMENT_FIELD1_NAME = "parameters[1].unitName";
 	String UNIT_OF_MEASUREMENT_FIELD_ID = "myparam1";
 	String SAVE_BUTTON_ID = "valid";
 	String CLEAR_BUTTON_CSSSELECTOR = "button.btn.btn-default";
 	String DROPDOWN_BUTTON_XPATH = "//*[@id='myparam2']";
 	String OPTION_LINEAR_PARAMETER_XPATH = "//*[@id='myparam2']/option[2]";
 	String OPTION_DISCRETE_PARAMETERS_XPATH = "//*[@id='myparam2']/option[3]";
+	String ERROR_MESSAGE_XPATH = "//*[@id='typeName.errors']";
+	
 
 	public AddNewSubclassPage(WebDriver driver) {
 		this.driver = driver;
+		titleAddNewSubclass=driver.findElement(By.xpath(TITLE_ADD_NEW_SUBCLASS_XPATH));
+		enterNameField=driver.findElement(By.name(ENTER_NAME_FIELD_NAME));
+		buttonShowParameters=driver.findElement(By.id(BUTTON_SHOW_PARAMETERS_ID));
+		buttonHideParameters=driver.findElement(By.id(BUTTON_HIDE_PARAMETERS_ID));
+		buttonAddParameters=driver.findElement(By.id(BUTTON_ADD_PARAMETERS_ID));
+		buttonDelParameters=driver.findElement(By.id(BUTTON_DEL_PARAMETERS_ID));
+		parameterDescriptionField=driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD_NAME));
+		unitOfMeasurementField=driver.findElement(By.id(UNIT_OF_MEASUREMENT_FIELD_ID));
+		saveButton=driver.findElement(By.id(SAVE_BUTTON_ID));
+		clearButton=driver.findElement(By.id(CLEAR_BUTTON_CSSSELECTOR));
+		dropdownButton=driver.findElement(By.xpath(DROPDOWN_BUTTON_XPATH));
+		optionLinearParameter=driver.findElement(By.xpath(OPTION_LINEAR_PARAMETER_XPATH));
+		optionDiscreteParameters=driver.findElement(By.xpath(OPTION_DISCRETE_PARAMETERS_XPATH));
 	}
-    // getData
+
+	// getData
 	public WebElement gettitleAddNewSubclass() {
-		return driver.findElement(By.xpath(TITLE_ADD_NEW_SUBCLASS_XPATH));
+		return titleAddNewSubclass;
 	}
 
 	public String getTitleAddNewSubclass() {
-		return driver.findElement(By.xpath(TITLE_ADD_NEW_SUBCLASS_XPATH)).getText().trim();
+		return gettitleAddNewSubclass().getText().trim();
 	}
 
 	public WebElement getEnterNameField() {
-		return driver.findElement(By.name(ENTER_NAME_FIELD_NAME));
+		return enterNameField;
 	}
 
 	public WebElement getButtonShowParameters() {
-		return driver.findElement(By.id(BUTTON_SHOW_PARAMETERS_ID));
+		return buttonShowParameters;
 	}
 
 	public WebElement getButtonHideParameters() {
-		return driver.findElement(By.id(BUTTON_HIDE_PARAMETERS_ID));
+		return buttonHideParameters;
 	}
 
 	public WebElement getButtonDelParameters() {
-		return driver.findElement(By.id(BUTTON_DEL_PARAMETERS_ID));
+		return buttonDelParameters;
 	}
 
 	public WebElement getParameterDescriptionField() {
-		return driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD_NAME));
+		return parameterDescriptionField;
 	}
 
 	public WebElement getParameterDescriptionField1() {
-		String PARAMETER_DESCRIPTION_FIELD1_NAME = "parameters[1].description";
-		return driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD1_NAME));
+		parameterDescriptionField1=driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD1_NAME));
+		return parameterDescriptionField1;
 	}
 
 	public WebElement getUnitOfMeasurementField() {
-		return driver.findElement(By.id(UNIT_OF_MEASUREMENT_FIELD_ID));
+		return unitOfMeasurementField;
 	}
 
 	public WebElement getUnitOfMeasurementField1() {
-		String UNIT_OF_MEASUREMENT_FIELD1_NAME = "parameters[1].unitName";
-		return driver.findElement(By.name(UNIT_OF_MEASUREMENT_FIELD1_NAME));
+		unitOfMeasurementField1=driver.findElement(By.name(UNIT_OF_MEASUREMENT_FIELD1_NAME));
+		return unitOfMeasurementField1;
 	}
 
 	public WebElement getSaveButton() {
-		return driver.findElement(By.id(SAVE_BUTTON_ID));
+		return saveButton;
 	}
-    
+
 	public SubclassesOfObjects clickSaveButton() {
 		getSaveButton().click();
 		// Return a new page object representing the destination
@@ -81,15 +115,15 @@ public class AddNewSubclassPage {
 	}
 
 	public WebElement getClearButton() {
-		return driver.findElement(By.cssSelector(CLEAR_BUTTON_CSSSELECTOR));
+		return clearButton;
 	}
 
 	public WebElement getOptionLinearParameter() {
-		return driver.findElement(By.xpath(OPTION_LINEAR_PARAMETER_XPATH));
+		return optionLinearParameter;
 	}
 
 	public WebElement getOptionDiscreteParameters() {
-		return driver.findElement(By.xpath(OPTION_DISCRETE_PARAMETERS_XPATH));
+		return optionDiscreteParameters;
 	}
 
 	public void clickOptionDiscreteParameters() {
@@ -101,7 +135,7 @@ public class AddNewSubclassPage {
 	}
 
 	public WebElement getButtonAddParameters() {
-		return driver.findElement(By.id(BUTTON_ADD_PARAMETERS_ID));
+		return buttonAddParameters;
 	}
 
 	public AddNewSubclassPage clickButtonAddParameters() {
@@ -120,7 +154,7 @@ public class AddNewSubclassPage {
 	}
 
 	public WebElement getDropdownButton() {
-		return driver.findElement(By.xpath(DROPDOWN_BUTTON_XPATH));
+		return dropdownButton;
 	}
 
 	public void clickDropdownButton() {
@@ -152,8 +186,8 @@ public class AddNewSubclassPage {
 	}
 
 	public WebElement getErrorMessage() {
-		String ERROR_MESSAGE_XPATH = "//*[@id='typeName.errors']";
-		return driver.findElement(By.xpath(ERROR_MESSAGE_XPATH));
+		errorMessage=driver.findElement(By.xpath(ERROR_MESSAGE_XPATH));
+		return errorMessage;
 	}
 
 	public void inputNameClassClear(String nameClass) {

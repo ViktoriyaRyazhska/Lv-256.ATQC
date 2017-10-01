@@ -10,26 +10,28 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	public WebElement addNewSubclass;
 	public WebElement listOfAllSubclassesTitle;
 	public WebElement nameSubclass;
-	// Webelement delete;
 	String ADD_NEW_SUBCLASS_XPATH = "//a[contains(@href,\\'addrestype\\')]";
 	String LIST_OF_ALL_SUBCLASS_XPATH = "//*[@id='body']/div/h4";
 	// String DELETE_BUTTON_XPATH="//td[contains(., 'Sidney')]/following::a";
+	String NAME_SUBCLASS_XPATH = "//td[contains(., 'Sidney')]";
 
 	public SubclassesOfObjects(WebDriver driver) {
 		super(driver);
+		addNewSubclass=driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
+		listOfAllSubclassesTitle=driver.findElement(By.xpath(LIST_OF_ALL_SUBCLASS_XPATH));
 	}
 
 	public WebElement getNameSubclas() {
-		String NAME_SUBCLASS_XPATH = "//td[contains(., 'Sidney')]";
-		return driver.findElement(By.xpath(NAME_SUBCLASS_XPATH));
+		nameSubclass=driver.findElement(By.xpath(NAME_SUBCLASS_XPATH));
+		return nameSubclass;
 	}
 
 	public WebElement getlistOfAllSubclassesTitle() {
-		return driver.findElement(By.xpath(LIST_OF_ALL_SUBCLASS_XPATH));
+		return listOfAllSubclassesTitle;
 	}
 
 	public WebElement getAddNewSubclass() {
-		return driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
+		return addNewSubclass;
 	}
 
 	public AddNewSubclassPage clickAddNewSubclass() {
