@@ -4,6 +4,7 @@ public class UserDB {
 	
 	private String date_of_accession;
 	private String email;	
+	private String enabled;
 	private String first_Name;
 	private String last_Name;
 	private String login;
@@ -12,11 +13,12 @@ public class UserDB {
 	private String role_id;
 	private String territorialCommunity_id;
 
-	public UserDB(String date_of_accession, String email, String first_Name, String last_Name, String login,
+	public UserDB(String date_of_accession, String email, String enabled, String first_Name, String last_Name, String login,
 			String password, String status, String role_id, String territorialCommunity_id) {
 		super();
 		this.date_of_accession = date_of_accession;
 		this.email = email;
+		this.enabled = enabled;
 		this.first_Name = first_Name;
 		this.last_Name = last_Name;
 		this.login = login;
@@ -36,6 +38,9 @@ public class UserDB {
 
 	public String getEmail() {
 		return email;
+	}
+	public String getEnabled() {
+		return enabled;
 	}
 
 	public String getFirst_Name() {
@@ -65,7 +70,10 @@ public class UserDB {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+	
 	public void setDate_of_accession(String date_of_accession) {
 		this.date_of_accession = date_of_accession;
 	}

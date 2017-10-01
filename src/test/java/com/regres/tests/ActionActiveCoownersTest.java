@@ -30,7 +30,7 @@ public class ActionActiveCoownersTest {
 	@BeforeClass
 	public void setUp() throws ClassNotFoundException, SQLException {
 		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-//		ApplicationSources.createDBConnection();
+		ApplicationSources.createDBConnection();
 		loginpage = app.load();
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
 		adminhomepage.clickCoowners();
@@ -73,21 +73,7 @@ public class ActionActiveCoownersTest {
 	public void checkUserCreating(Connection conn,UserDB userDB) throws ClassNotFoundException, SQLException {
 		//call method for creating new user
 		createUserInDB(conn, userDB);
-		Statement st = (Statement) conn.createStatement ();
-		String showUser = "Select * From registrator_db.users;";
-		ResultSet rs = st.executeQuery(showUser);
-		int x = rs.getMetaData().getColumnCount();
-		while (rs.next ()) {
-		       for (int i = 1; i <= x; i++) {
-		         System.out.print (rs.getString (i) + "\t");
-		       }
-		       System.out.println ();
-		     }
-		     System.out.println ();
-		     if (rs != null) rs.close ();
-		     if (st != null) st.close ();
-
-		     if (conn != null) conn.close ();
+		
 	}
 	
 	/**
