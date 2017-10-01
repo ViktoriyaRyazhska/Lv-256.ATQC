@@ -11,34 +11,48 @@ public class ApplicationSources {
 	// Browser Data
 	private String browserName;
 	private String driverPath;
-	//private String browserPath;
-	//private String defaulProfile;
+	// private String browserPath;
+	// private String defaulProfile;
 	// Implicit and Explicit Waits
 	private long implicitTimeOut;
-	//private long explicitTimeOut;
+	// private long explicitTimeOut;
 	// Localization Strategy
-	//private String language;
-	//private String searchStrategy;
-	//private String loggerStrategy;
+	// private String language;
+	// private String searchStrategy;
+	// private String loggerStrategy;
 	// URLs
 	private String loginUrl;
 	private String logoutUrl;
-	
-	//Connection DB URL
+
+	// Connection DB URL
 	private static String DBmyUrl;
-	//Database Username		
+	// Database Username
 	private static String username;
-	//Database Password
+	// Database Password
 	private static String password;
 
-	public ApplicationSources(String browserName, String driverPath, 
-			String loginUrl, String logoutUrl, long implicitTimeOut) {
-			this.browserName = browserName;
-			this.driverPath = driverPath;
-			this.loginUrl = loginUrl;
-			this.logoutUrl = logoutUrl;
-			this.implicitTimeOut = implicitTimeOut;
-			}
+	private Connection dbConnection;
+
+	public ApplicationSources(String browserName, String driverPath, String loginUrl, String logoutUrl,
+			long implicitTimeOut) {
+		this.browserName = browserName;
+		this.driverPath = driverPath;
+		this.loginUrl = loginUrl;
+		this.logoutUrl = logoutUrl;
+		this.implicitTimeOut = implicitTimeOut;
+	}
+
+	public ApplicationSources(String browserName, String driverPath, String loginUrl, String logoutUrl,
+			long implicitTimeOut, String DBmyUrl, String username, String password) {
+		this.browserName = browserName;
+		this.driverPath = driverPath;
+		this.loginUrl = loginUrl;
+		this.logoutUrl = logoutUrl;
+		this.implicitTimeOut = implicitTimeOut;
+		this.DBmyUrl = DBmyUrl;
+		this.username = username;
+		this.password = password;
+	}
 
 	public String getBrowserName() {
 		return browserName;
@@ -59,68 +73,53 @@ public class ApplicationSources {
 	public String getLogoutUrl() {
 		return logoutUrl;
 	}
-	
+
 	public void setBrowserName(String browserName) {
-		  this.browserName = browserName;
-		}
+		this.browserName = browserName;
+	}
 
 	public void setDriverPath(String driverPath) {
-		  this.driverPath = driverPath;
-		}
+		this.driverPath = driverPath;
+	}
 
 	public void setImplicitTimeOut(long implicitTimeOut) {
-		  this.implicitTimeOut = implicitTimeOut;
-		}
+		this.implicitTimeOut = implicitTimeOut;
+	}
 
 	public void setLoginUrl(String loginUrl) {
-		  this.loginUrl = loginUrl;
-		}
+		this.loginUrl = loginUrl;
+	}
 
 	public void setLogoutUrl(String logoutUrl) {
-		  this.logoutUrl = logoutUrl;
-		}
+		this.logoutUrl = logoutUrl;
+	}
 
-	public static Connection createDBConnection() throws ClassNotFoundException, SQLException {
-		// create a mysql Database connection
-		Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-//		String myUrl = "jdbc:mysql://localhost:3306/registrator_db";
+	public Connection createDBConnection() throws ClassNotFoundException, SQLException {
+		// String myUrl = "jdbc:mysql://localhost:3306/registrator_db";
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(DBmyUrl, username, password);
-		if (conn == null) {
+		dbConnection = DriverManager.getConnection(DBmyUrl, username, password);
+		if (dbConnection == null) {
 			throw new SQLException("SQLException");
 		}
-		return conn;
+		return dbConnection;
 	}
-	public static void closeConnectionDB(Connection conn) throws ClassNotFoundException, SQLException {
-		conn = createDBConnection();
-		if (conn != null)
-			conn.close();
+
+	public void closeConnectionDB() throws ClassNotFoundException, SQLException {
+		if (dbConnection != null)
+			dbConnection.close();
 	}
-	
-	public ApplicationSources(String browserName, String driverPath, 
-			String loginUrl, String logoutUrl, long implicitTimeOut,String DBmyUrl,
-			String username, String password) {
-			this.browserName = browserName;
-			this.driverPath = driverPath;
-			this.loginUrl = loginUrl;
-			this.logoutUrl = logoutUrl;
-			this.implicitTimeOut = implicitTimeOut;
-			this.DBmyUrl=DBmyUrl;
-			this.username=username;
-			this.password=password;
-			}
-	
-//	public static void createCommunityinDB(Connection conn, String nameCommunity) throws SQLException, ClassNotFoundException {
-//		// the mysql insert statement
-//		conn = createDBConnection();
-//		String createCommunity = "Insert into registrator_db.territorial_community(name) values (?);";
-//		PreparedStatement st = (PreparedStatement) conn.prepareStatement(createCommunity);
-//
-//		// Statement allows you to send inquiries database
-//		st.setString(1, nameCommunity);
-//		st.executeUpdate();	
-//	}	
+
+	// public static void createCommunityinDB(Connection conn, String nameCommunity)
+	// throws SQLException, ClassNotFoundException {
+	// // the mysql insert statement
+	// conn = createDBConnection();
+	// String createCommunity = "Insert into
+	// registrator_db.territorial_community(name) values (?);";
+	// PreparedStatement st = (PreparedStatement)
+	// conn.prepareStatement(createCommunity);
+	//
+	// // Statement allows you to send inquiries database
+	// st.setString(1, nameCommunity);
+	// st.executeUpdate();
+	// }
 }
-
-
-

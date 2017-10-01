@@ -1,5 +1,7 @@
 package com.regres.application;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -9,11 +11,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.regres.pages.LoginPage;
 
 public class Application {
-	
+
 	private WebDriver driver;
 	private ApplicationSources applicationSources;
-	
-	
+
 	private Application(ApplicationSources applicationSources) {
 		this.applicationSources = applicationSources;
 	}
@@ -22,7 +23,7 @@ public class Application {
 		Application instance = new Application(applicationSources);
 		instance.driver = instance.getWebDriver();
 		instance.driver.manage().timeouts().implicitlyWait(applicationSources.getImplicitTimeOut(), TimeUnit.SECONDS);
-		
+
 		return instance;
 	}
 
@@ -65,10 +66,11 @@ public class Application {
 		return driver;
 	}
 
-	public void createDBConnection() {
-		createDBConnection();
+	public Connection createDBConnection() throws ClassNotFoundException, SQLException {
+		return applicationSources.createDBConnection();
 	}
-	public void closeConnectionDB() {
-		closeConnectionDB();
+
+	public void closeConnectionDB() throws ClassNotFoundException, SQLException {
+		applicationSources.closeConnectionDB();
 	}
 }
