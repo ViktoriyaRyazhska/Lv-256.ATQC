@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.regres.application.Application;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AddNewSubclassPage;
+import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegistratorHomePage;
 import com.regres.pages.SubclassesOfObjects;
@@ -20,6 +21,7 @@ public class AddNewSubclassTest {
 	private SubclassesOfObjects subclassesOfObjects;
 	private AddNewSubclassPage addNewSublassPage;
 	private Application app;
+	private ConfirmMessagePage confirmMessage;
 
 	@BeforeMethod
 	public void setUp() {
@@ -44,7 +46,7 @@ public class AddNewSubclassTest {
 		addNewSublassPage = addNewSublassPage.clickSaveButt();
 		String resultValidation = addNewSublassPage.getEnterNameField().getAttribute("validationMessage");
 		Assert.assertEquals(resultValidation, "Заполните это поле."); // "Please fill out this field."
-
+		
 	}
 
 	@Test
@@ -54,8 +56,11 @@ public class AddNewSubclassTest {
 		addNewSublassPage.selectOptionLinearParameter();
 		addNewSublassPage = addNewSublassPage.clickButtonHideParameters();
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
-		Assert.assertEquals(subclassesOfObjects.getNameSubclas().isEnabled(), true);
-		Assert.assertTrue(subclassesOfObjects.getNameSubclas().getText().contains("Sidney"));
+		Assert.assertEquals(subclassesOfObjects.getNameSubclass().isEnabled(), true);
+		Assert.assertTrue(subclassesOfObjects.getNameSubclass().getText().contains("Sidney"));
+		
+		confirmMessage=subclassesOfObjects.clickDeleteSubclassSidney();
+		
 	}
 
 	// @Test
