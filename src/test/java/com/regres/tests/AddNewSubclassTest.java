@@ -45,7 +45,7 @@ public class AddNewSubclassTest {
 		app.quit();
 	}
 
-	// @Test
+	//@Test
 	public void checkEmptyEnterNameField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getInvalidEmptyData());
@@ -57,7 +57,7 @@ public class AddNewSubclassTest {
 
 	}
 
-	// @Test
+	@Test
 	public void checkSuccessfulAddedSubclass() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValidData());
@@ -71,7 +71,7 @@ public class AddNewSubclassTest {
 
 	}
 
-	// @Test
+	//@Test
 	public void checkAddedSubclassWithExistName() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getSameClassName());
@@ -83,7 +83,7 @@ public class AddNewSubclassTest {
 
 	}
 
-	// @Test
+	//@Test
 	public void checkSuccessfulAddedSubclassClear() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValidDataClear());
@@ -98,7 +98,7 @@ public class AddNewSubclassTest {
 		Assert.assertTrue(addNewSublassPage.getDropdownButtonText().contains("Виберіть тип параметру"));
 	}
 
-	// @Test
+	//@Test
 	public void checkAddSubclassField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValData());
