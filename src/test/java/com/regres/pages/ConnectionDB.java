@@ -9,21 +9,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConnectionDB {
-	private static Connection con = null;
-	private static String username = "root";
-	private static String password = "1234567890";
-	private static String URL = "jdbc:mysql://localhost:3306/registrator_db";
+import com.regres.application.Application;
+import com.regres.application.ApplicationSourcesRepo;
 
-	public static void main(String[] args) throws SQLException {
-		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+public class ConnectionDB {
+	
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+		
+		// create a mysql Database connection
+		Application application = Application.get(ApplicationSourcesRepo.getChromeLocalApplicationDb());
+				
+		// DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		// Load the driver
-		con = DriverManager.getConnection(URL, username, password);
-		// connect
-		if (con != null)
-			System.out.println("Connection Successful! \n");
-		if (con == null)
-			System.exit(0);
+		Connection con = application.createDBConnection();
 		Statement st = con.createStatement();
 		// Statement allows you to send inquiries database
 		ResultSet rs = st.executeQuery("select resource_type_id, type_name from resource_types where type_name='Sidney'");
@@ -47,8 +45,8 @@ public class ConnectionDB {
 			rs.close();
 		if (st != null)
 			st.close();
-		if (con != null)
-			con.close();
+		
+		application.closeConnectionDB();
 
 		System.out.println(list);
 	}
