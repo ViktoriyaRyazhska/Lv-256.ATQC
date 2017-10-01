@@ -23,7 +23,13 @@ public final class ApplicationSourcesRepo {
 			"http://regres.herokuapp.com/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db","root","root");
 		}
 	
-	
+	public static ApplicationSources getChromeLocalApplicationDb() {
+		  return new ApplicationSources("Chrome",
+			"resources\\chromedriver.exe",
+			"http://localhost:8080/resources/login",
+			"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db","root","1234567890");
+		}
+
 }
 
 
