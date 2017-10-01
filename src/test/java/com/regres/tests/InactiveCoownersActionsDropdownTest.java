@@ -39,9 +39,9 @@ public class InactiveCoownersActionsDropdownTest {
 	}
 	
 	@Test(dataProvider = "L10N")
-	// this test verify that when in action dropdown by clicking on 'Set as Active'
+	// this test verify that when in actions dropdown by clicking on 'Set as Active'
 	// link confirm message appears when not chosen co owner
-	public void checkClickOnSetActiveMessageAppearsWhenNotChosenCoowner(ChangeLanguageFields language) {
+	public void checkClickUnblockWhenNotChosenCoowner(ChangeLanguageFields language) {
 		inactivecoowners = inactivecoowners.setLanguage(language);
 		inactivecoowners.clickActionsDropdown();
 		inactivecoowners.clickUnblock();
@@ -53,7 +53,7 @@ public class InactiveCoownersActionsDropdownTest {
 	@Test(dataProvider = "L10N")
 	// this test verify that when in action dropdown by clicking on 'Block' link
 	// confirm message appears when not chosen co-owner
-	public void checkClickOnBlockMessageAppearsWhenNotChosenCoowner(ChangeLanguageFields language) {
+	public void checkClickBlockWhenNotChosenCoowner(ChangeLanguageFields language) {
 		inactivecoowners = inactivecoowners.setLanguage(language);
 		inactivecoowners.clickActionsDropdown();
 		inactivecoowners.clickBlock();
@@ -65,7 +65,7 @@ public class InactiveCoownersActionsDropdownTest {
 	@Test(dataProvider = "L10N")
 	// this test verify that when in action dropdown by clicking on 'Set community'
 	// link confirm message appears when not chosen co-owner
-	public void checkClickOnSetCommunityMessageAppearsWhenNotChosenCoowner(ChangeLanguageFields language) {
+	public void checkClickSetCommunityWhenNotChosenCoowner(ChangeLanguageFields language) {
 		inactivecoowners = inactivecoowners.setLanguage(language);
 		inactivecoowners.clickActionsDropdown();
 		inactivecoowners.clickSetCommunityButNotSelectedCoowners();
