@@ -30,5 +30,9 @@ public class NewSubclassContainer {
 		return new NewSubclass().setnameClasses("Ivano-Frankivsk").setParameterDescription("Galych")
 				.setUnitOfMeasurement("m3");
 	}
+	public static NewSubclass getDataDB() {
+
+		return new NewSubclass().setnameClasses("Lviv").setParameterDescription("Zovkva").setUnitOfMeasurement("m1");
+	}
 
 }

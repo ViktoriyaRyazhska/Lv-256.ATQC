@@ -26,8 +26,8 @@ public final class ApplicationSourcesRepo {
 	public static ApplicationSources getChromeLocalApplicationDb() {
 		  return new ApplicationSources("Chrome",
 			"resources\\chromedriver.exe",
-			"http://localhost/login",
-			"http://localhost/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db","root","1234567890");
+			"http://localhost:8080/resources/login",
+			"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db","root","1234567890");
 		}
 
 }

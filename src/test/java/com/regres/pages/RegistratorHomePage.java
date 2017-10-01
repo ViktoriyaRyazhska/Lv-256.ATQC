@@ -21,12 +21,12 @@ public class RegistratorHomePage extends DropdownHomePage {
 		super(driver);
 		resourcesSearch = driver.findElement(By.cssSelector(".dropdown>a"));
 		subclassesOfObjects = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/a"));
-		procuration = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/a"));
+		// procuration = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/a"));
 		// procurationEnteringData =
 		// driver.findElement(By.xpath(".//*[@id='menuForUser']"));
 		// procurationExtractFromRegister =
 		// driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/ul/li[2]/a"));
-		addNewResource = driver.findElement(By.linkText("Add new resource"));
+		// addNewResource = driver.findElement(By.linkText("Add new resource"));
 	}
 
 	// public void clickProcuration(WebDriver driver) {
