@@ -1,5 +1,7 @@
 package com.regres.tests;
 
+import com.regres.application.Application;
+import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.manage.coowners.CoownersTable;
@@ -17,93 +19,109 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SearchInTable {
-    private WebDriver driver;
-    private String baseURL;
+    private Application app;
+    private LoginPage loginpage;
+    private AdminHomePage adminhomepage;
+    private CoownersTable coownerstable;
 
     @BeforeClass
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        baseURL = "http://regres.herokuapp.com";
-        driver.get(baseURL);
-        LoginPage loginpage = new LoginPage(driver);
-        AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-        CoownersTable coownersTable = adminhomepage.goToNonConfirmedCoowners();
-        coownersTable.getNonConfirmedCoowners();//вивести непідтверджених юзерів
+        app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+        loginpage = app.load();
+        adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+        coownerstable = adminhomepage.goToNonConfirmedCoowners();
+        coownerstable.getNonConfirmedCoowners();//вивести непідтверджених юзерів
         //coownersTable.setNumbeOfItemsInTable(); //вивести 100 позицій в таблиці, поставити вейтер
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
+        //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        app.getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @AfterClass
     public void tearDown() {
-        driver.close();
+        app.getDriver().close();
     }
 
     @Test
     public void searchInTable() {
-//        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-//        List<WebElement> tr_collection = driver.findElements(By.xpath("//table/tbody/tr"));
-//        System.out.println(tr_collection.toString());
-//        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-//        WebElement element = driver.findElement(By.xpath(".//*[@id='example']/tbody"));
-//        List<WebElement> rowCollection = element.findElements(By.xpath("//*[@id='example']/tbody/tr"));
-//        System.out.println("Numer of rows in this table: " + rowCollection.size());
-        usersFromTable(driver);
+        System.out.println(getListOfUsersFromTable(app.getDriver()));
+        System.out.println(searchByFirstName("coo"));
+        System.out.println(searchByFirstName("coo").size());
+        System.out.println(searchByLastName("yarayar"));
+        System.out.println(searchByLastName("yarayar").size());
+        System.out.println(searchByLogin("12345"));
+        System.out.println(searchByLogin("12345").size());
+        System.out.println(searchByTerritorialCommunityName("Ukr"));
+        System.out.println(searchByTerritorialCommunityName("Ukr").size());
+        System.out.println(searchByFirstName(""));
+        System.out.println(searchByFirstName("").size());
 
     }
 
-    public void usersFromTable(WebDriver driver) {
+    public List<User> searchByFirstName(String firstName) {
         List<User> userList = new ArrayList<User>();
-        List<WebElement> td_collection = driver.findElements(By.xpath("//*[@id='example']/tbody/tr/td"));
-        System.out.println("td_collection size " + td_collection.size());
-        List<String> list = new ArrayList<String>();
-        int count = 0;
-        for (WebElement td : td_collection) {
-            list.add(td.getText());
-            count++;
+        for (User u : getListOfUsersFromTable(app.getDriver())) {
+            if (u.getFirstName().contains(firstName)) {
+                userList.add(u);
+            }
         }
-        System.out.println(list);
-        for (int j = 0; j <= count - 8; j = j + 8) {
-//            for (int i = 0; i <= 7; i++) {
-////                td_collection.get(j+i).getText();
-//
+        return userList;
+    }
 
+    public List<User> searchByLastName(String lastName) {
+        List<User> userList = new ArrayList<User>();
+        for (User u : getListOfUsersFromTable(app.getDriver())) {
+            if (u.getLastName().contains(lastName)) {
+                userList.add(u);
+            }
+        }
+        return userList;
+    }
+
+    public List<User> searchByLogin(String login) {
+        List<User> userList = new ArrayList<User>();
+        for (User u : getListOfUsersFromTable(app.getDriver())) {
+            if (u.getLogin().contains(login)) {
+                userList.add(u);
+            }
+        }
+        return userList;
+    }
+
+    public List<User> searchByTerritorialCommunityName(String TerritorialCommunityName) {
+        List<User> userList = new ArrayList<User>();
+        for (User u : getListOfUsersFromTable(app.getDriver())) {
+            if (u.getTerritorialCommunityName().contains(TerritorialCommunityName)) {
+                userList.add(u);
+            }
+        }
+        return userList;
+    }
+
+    public List<User> getListOfUsersFromTable(WebDriver driver) {
+        List<User> userList = new ArrayList<User>();
+        List<WebElement> celllist = coownerstable.getALL_TABLE_BODY_CELL();//вибираємо всі комірки тіля таблиці
+        int count = coownerstable.getTABLE_BODY_CELL_COUNT();//вирараховуємо кількість комірок
+        for (int j = 0; j <= count - 8; j = j + 8) {//оскільки в рядку по 8 комірок втчитуємо коженя рядок
             userList.add(new User(
-                    td_collection.get(j + 0).getText(),
-                    td_collection.get(j + 1).getText(),
-                    td_collection.get(j + 2).getText(),
-                    td_collection.get(j + 3).getText(),
-                    td_collection.get(j + 4).getText(),
-                    td_collection.get(j + 5).getText(),
-                    td_collection.get(j + 6).getText(),
-                    td_collection.get(j + 7).getText()
+                    celllist.get(j + 0).getText(),
+                    celllist.get(j + 1).getText(),
+                    celllist.get(j + 2).getText(),
+                    celllist.get(j + 3).getText(),
+                    celllist.get(j + 4).getText(),
+                    celllist.get(j + 5).getText(),
+                    celllist.get(j + 6).getText(),
+                    celllist.get(j + 7).getText()
             ));
         }
-        for (User u : userList) {
-            System.out.println(u);
-        }
+        return userList;
     }
-
-//            for (WebElement tdElement : td_collection) {
-//                userList.add(new User(
-//                        tdElement.findElement(By.cssSelector(".status")).getText(),
-//                        tdElement.findElement(By.cssSelector(".firstName")).getText(),
-//                        tdElement.findElement(By.cssSelector(".lastName")).getText(),
-//                        tdElement.findElement(By.cssSelector(".login.sorting_1")).getText(),
-//                        tdElement.findElement(By.cssSelector(".territorialCommunity_name")).getText(),
-//                        tdElement.findElement(By.cssSelector(".email")).getText(),
-//                        tdElement.findElement(By.cssSelector(".role_type")).getText())
-//                );
-//            }
 
     class User {
         String status;
         String firstName;
         String lastName;
         String login;
-        String territorialCommunity_name;
+        String territorialCommunityName;
         String email;
         String role_type;
         String button;
@@ -116,19 +134,19 @@ public class SearchInTable {
                     ", firstName='" + firstName + '\'' +
                     ", lastName='" + lastName + '\'' +
                     ", login='" + login + '\'' +
-                    ", territorialCommunity_name='" + territorialCommunity_name + '\'' +
+                    ", territorialCommunity_name='" + territorialCommunityName + '\'' +
                     ", email='" + email + '\'' +
                     ", role_type='" + role_type + '\'' +
                     ", button='" + button + '\'' +
                     '}';
         }
 
-        public User(String status, String firstName, String lastName, String login, String territorialCommunity_name, String email, String role_type, String button) {
+        public User(String status, String firstName, String lastName, String login, String territorialCommunityName, String email, String role_type, String button) {
             this.status = status;
             this.firstName = firstName;
             this.lastName = lastName;
             this.login = login;
-            this.territorialCommunity_name = territorialCommunity_name;
+            this.territorialCommunityName = territorialCommunityName;
             this.email = email;
             this.role_type = role_type;
             this.button = button;
@@ -166,12 +184,12 @@ public class SearchInTable {
             this.login = login;
         }
 
-        public String getTerritorialCommunity_name() {
-            return territorialCommunity_name;
+        public String getTerritorialCommunityName() {
+            return territorialCommunityName;
         }
 
         public void setTerritorialCommunity_name(String territorialCommunity_name) {
-            this.territorialCommunity_name = territorialCommunity_name;
+            this.territorialCommunityName = territorialCommunity_name;
         }
 
         public String getEmail() {
@@ -199,5 +217,5 @@ public class SearchInTable {
         }
 
     }
-
 }
+
