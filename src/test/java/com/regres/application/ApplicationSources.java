@@ -31,7 +31,7 @@ public class ApplicationSources {
 	// Database Password
 	private static String password;
 
-	private Connection dbConnection;
+	private static Connection dbConnection;
 
 	public ApplicationSources(String browserName, String driverPath, String loginUrl, String logoutUrl,
 			long implicitTimeOut) {
@@ -94,7 +94,7 @@ public class ApplicationSources {
 		this.logoutUrl = logoutUrl;
 	}
 
-	public Connection createDBConnection() throws ClassNotFoundException, SQLException {
+	public static Connection createDBConnection() throws ClassNotFoundException, SQLException {
 		// String myUrl = "jdbc:mysql://localhost:3306/registrator_db";
 		Class.forName("com.mysql.jdbc.Driver");
 		dbConnection = DriverManager.getConnection(DBmyUrl, username, password);
@@ -104,7 +104,7 @@ public class ApplicationSources {
 		return dbConnection;
 	}
 
-	public void closeConnectionDB() throws ClassNotFoundException, SQLException {
+	public static void closeConnectionDB() throws ClassNotFoundException, SQLException {
 		if (dbConnection != null)
 			dbConnection.close();
 	}
