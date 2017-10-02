@@ -38,7 +38,7 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 		Actions builder = new Actions(driver);
 		// move the mouse to the earlier identified menu option
 		builder.moveToElement(getSetRole()).build().perform();
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(COMMISSIONER_ROLE_XPATH))); 
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(COMMISSIONER_ROLE_XPATH))); 
 		
 		getAdministratorRole();
 		getRegistratorRole();
@@ -69,15 +69,15 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	}
 
 	public WebElement getRegistratorRole() {
-	return driver.findElement(By.cssSelector(REGISTRATOR_ROLE_XPATH));
+	return driver.findElement(By.xpath(REGISTRATOR_ROLE_XPATH));
 	}
 
 	public WebElement getCoownerRole() {
-		return driver.findElement(By.cssSelector(COOWNER_ROLE_XPATH));
+		return driver.findElement(By.xpath(COOWNER_ROLE_XPATH));
 	}
 
 	public WebElement getCommissionerRole() {
-		return driver.findElement(By.cssSelector(COMMISSIONER_ROLE_XPATH));
+		return driver.findElement(By.xpath(COMMISSIONER_ROLE_XPATH));
 	}
 
 	public void clickSetCommunity() {
