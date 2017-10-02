@@ -25,7 +25,7 @@ public class CoownersTable extends AdminHomePage {
     String NEXT_BUTTON_ID = "example_next";
     String PAGINATE_CURRENT_BUTTON_CSSSELECTOR = ".paginate_button.current";
 
-    //table columns first row
+    //table columns search row
     String FIRST_NAME_COLUMN = ".//*[@id='inputIndex1']";
     String LAST_NAME_COLUMN = ".//*[@id='inputIndex2']";
     String LOGIN_COLUMN = ".//*[@id='inputIndex3']";
@@ -179,11 +179,17 @@ public class CoownersTable extends AdminHomePage {
         return getALL_TABLE_BODY_CELL().size();
     }
 
-    public void waitWhileTableAppear(){
+    public void waitWhileTableAppear() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TABLE_BODY_CELL)));
     }
 
+    /**
+     * search in table users whose "firstName" contains "text"
+     *
+     * @param firstName - "text" to search in firstName
+     * @return list of searched users
+     */
     public List<UserForSerchTableTest> searchByFirstName(String firstName) {
         List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
         for (UserForSerchTableTest u : getListOfUsersFromTable()) {
@@ -194,6 +200,12 @@ public class CoownersTable extends AdminHomePage {
         return userList;
     }
 
+    /**
+     * search in table users whose "lastName" contains "text"
+     *
+     * @param lastName - "text" to search in firstName
+     * @return list of searched users
+     */
     public List<UserForSerchTableTest> searchByLastName(String lastName) {
         List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
         for (UserForSerchTableTest u : getListOfUsersFromTable()) {
@@ -204,6 +216,12 @@ public class CoownersTable extends AdminHomePage {
         return userList;
     }
 
+    /**
+     * search in table users whose "login" contains "text"
+     *
+     * @param login - "text" to search in firstName
+     * @return list of searched users
+     */
     public List<UserForSerchTableTest> searchByLogin(String login) {
         List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
         for (UserForSerchTableTest u : getListOfUsersFromTable()) {
@@ -214,6 +232,12 @@ public class CoownersTable extends AdminHomePage {
         return userList;
     }
 
+    /**
+     * search in table users whose "TerritorialCommunityName" contains "text"
+     *
+     * @param TerritorialCommunityName - "text" to search in firstName
+     * @return list of searched users
+     */
     public List<UserForSerchTableTest> searchByTerritorialCommunityName(String TerritorialCommunityName) {
         List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
         for (UserForSerchTableTest u : getListOfUsersFromTable()) {
@@ -224,12 +248,17 @@ public class CoownersTable extends AdminHomePage {
         return userList;
     }
 
+    /**
+     * read all table and write users to list, one row - one user
+     *
+     * @return list of users from table
+     */
     public List<UserForSerchTableTest> getListOfUsersFromTable() {
         waitWhileTableAppear();
         List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
-        List<WebElement> celllist = getALL_TABLE_BODY_CELL();//вибираємо всі комірки тіля таблиці
+        List<WebElement> celllist = getALL_TABLE_BODY_CELL();//choose all cells in table
         int count = getTABLE_BODY_CELL_COUNT();//вирараховуємо кількість комірок
-        for (int j = 0; j <= count - 8; j = j + 8) {//оскільки в рядку по 8 комірок втчитуємо коженя рядок
+        for (int j = 0; j <= count - 8; j = j + 8) {//в рядку по 8 комірок, вичитуємо коженя рядок
             userList.add(new UserForSerchTableTest(
                     celllist.get(j + 0).getText(),
                     celllist.get(j + 1).getText(),
