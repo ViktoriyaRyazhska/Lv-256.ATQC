@@ -2,6 +2,7 @@ package com.regres.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -23,13 +24,24 @@ public class AddNewSubclassTest {
 	private AddNewSubclassPage addNewSublassPage;
 	private Application app;
 
-	@BeforeMethod
+	@AfterGroups(groups = { "TestData" }, alwaysRun = true)
+	public void deleteTestData() {
+		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton().clickOkButton();
+		subclassesOfObjects = subclassesOfObjects.clickDeleteSubclassButton().clickOkButton();
+
+	}
+
+	@BeforeClass
 	public void setUp() {
 		app = Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		loginpage = app.load();
 		registratorpage = loginpage.successfullLoginRegistrator(UserContainer.getRegistrator());
 		subclassesOfObjects = registratorpage.clickSubclassesOfObjects();
 		addNewSublassPage = subclassesOfObjects.clickAddNewSubclass();
+	}
+
+	@BeforeMethod
+	public void set() {
 		addNewSublassPage = subclassesOfObjects.clickAddNewSubclass();
 	}
 
@@ -50,7 +62,7 @@ public class AddNewSubclassTest {
 
 	}
 
-	@Test
+	@Test(groups = { "TestData" })
 	public void checkSuccessfulAddedSubclass() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValidData());
@@ -59,7 +71,8 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		Assert.assertEquals(subclassesOfObjects.getNameSubclass().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSubclass().getText().contains("Sidney"));
-		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton().clickOkButton();
+		// subclassesOfObjects =
+		// subclassesOfObjects.clickOnDeleteSubclassButton().clickOkButton();
 
 	}
 
@@ -90,7 +103,7 @@ public class AddNewSubclassTest {
 		Assert.assertTrue(addNewSublassPage.getDropdownButtonText().contains("Виберіть тип параметру"));
 	}
 
-	@Test
+	@Test(groups = { "TestData" })
 	public void checkAddSubclassField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValData());
@@ -103,6 +116,7 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		Assert.assertEquals(subclassesOfObjects.getNameSub().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSub().getText().contains("Ivano-Frankivsk"));
-		subclassesOfObjects = subclassesOfObjects.clickDeleteSubclassButton().clickOkButton();
+		// subclassesOfObjects =
+		// subclassesOfObjects.clickDeleteSubclassButton().clickOkButton();
 	}
 }
