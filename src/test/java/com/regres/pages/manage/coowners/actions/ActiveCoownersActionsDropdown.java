@@ -38,8 +38,8 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 		Actions builder = new Actions(driver);
 		// move the mouse to the earlier identified menu option
 		builder.moveToElement(getSetRole()).build().perform();
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(COMMISSIONER_ROLE_XPATH))); 
-		
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(COMMISSIONER_ROLE_XPATH)));
+
 		getAdministratorRole();
 		getRegistratorRole();
 		getCoownerRole();

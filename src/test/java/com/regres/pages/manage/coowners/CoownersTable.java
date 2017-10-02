@@ -33,6 +33,14 @@ public class CoownersTable extends AdminHomePage {
     String EMAIL_COLUMN = ".//*[@id='inputIndex5']";
     String ROLE_COLUMN = ".//*[@id='inputIndex6']";
 
+    // table columns second row search
+    String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
+    String LAST_NAME_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[3]";
+    String LOGIN_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[4]";
+    String COMMUNITY_SEARCHN_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
+    String EMAIL_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[6]";
+    String ROLE_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[7]";
+
     //table body
     String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
     String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";//"//*[@id='example']/tbody/tr/td";
@@ -69,6 +77,30 @@ public class CoownersTable extends AdminHomePage {
 
     public WebElement getPaginateCurrentButton() {
         return driver.findElement(By.cssSelector(PAGINATE_CURRENT_BUTTON_CSSSELECTOR));
+    }
+
+    public WebElement getFirstNameFirstRow() {
+        return driver.findElement(By.xpath(FIRST_NAME_FIRST_XPATH));
+    }
+
+    public WebElement getLastNameFirstRow() {
+        return driver.findElement(By.xpath(LAST_NAME_SEARCH_FIRST_XPATH));
+    }
+
+    public WebElement getLoginFirstRow() {
+        return driver.findElement(By.xpath(LOGIN_SEARCH_FIRST_XPATH));
+    }
+
+    public WebElement getCommunityNameFirstRow() {
+        return driver.findElement(By.xpath(COMMUNITY_SEARCHN_FIRST_XPATH));
+    }
+
+    public WebElement getEmailFirstRow() {
+        return driver.findElement(By.xpath(EMAIL_SEARCH_FIRST_XPATH));
+    }
+
+    public WebElement getRoleFirstRow() {
+        return driver.findElement(By.xpath(ROLE_SEARCH_FIRST_XPATH));
     }
 
     //sets the number of visible rows in table 100
