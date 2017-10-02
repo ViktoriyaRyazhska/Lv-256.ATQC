@@ -11,11 +11,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.regres.pages.LoginPage;
 
 public class Application {
-	
+
 	private WebDriver driver;
 	private ApplicationSources applicationSources;
-	
-	
+
 	private Application(ApplicationSources applicationSources) {
 		this.applicationSources = applicationSources;
 	}
@@ -24,7 +23,7 @@ public class Application {
 		Application instance = new Application(applicationSources);
 		instance.driver = instance.getWebDriver();
 		instance.driver.manage().timeouts().implicitlyWait(applicationSources.getImplicitTimeOut(), TimeUnit.SECONDS);
-		
+
 		return instance;
 	}
 
@@ -42,6 +41,9 @@ public class Application {
 		if (driver != null) {
 			driver.quit();
 		}
+	}
+	public WebDriver getDriver(){
+		return driver;
 	}
 
 	private WebDriver getWebDriver() {
@@ -70,6 +72,7 @@ public class Application {
 	public Connection createDBConnection() throws ClassNotFoundException, SQLException {
 		return applicationSources.createDBConnection();
 	}
+
 	public void closeConnectionDB() throws ClassNotFoundException, SQLException {
 		applicationSources.closeConnectionDB();
 	}

@@ -17,12 +17,16 @@ public class OhErrorPage {
 	private WebElement errorDescription;
 	private WebElement goToHomePageButton;
 	
+	String ERROR_TITLE_XPATH = "//div[@class='alert alert-danger']/h3";
+	String ERROR_DESCRIPTION_XPATH = "//div[@class='alert alert-danger']/p";
+	String GO_TO_HOMEPAGE_BUTTON_CLASSNAME = "btn";
+	
 	public OhErrorPage(WebDriver driver) {
 		
 		this.driver= driver;
-		this.errorTitle = driver.findElement(By.xpath("//div[@class='alert alert-danger']/h3"));
-		this.errorDescription = driver.findElement(By.xpath("//div[@class='alert alert-danger']/p"));
-		this.goToHomePageButton = driver.findElement(By.className("btn"));
+		this.errorTitle = driver.findElement(By.xpath(ERROR_TITLE_XPATH));
+		this.errorDescription = driver.findElement(By.xpath(ERROR_DESCRIPTION_XPATH));
+		this.goToHomePageButton = driver.findElement(By.className(GO_TO_HOMEPAGE_BUTTON_CLASSNAME));
 	}
 
 	public WebElement getErrorTitle() {

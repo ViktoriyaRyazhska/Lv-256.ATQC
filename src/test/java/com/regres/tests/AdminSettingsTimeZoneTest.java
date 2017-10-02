@@ -13,6 +13,12 @@ import com.regres.pages.AdminSettingsPage;
 import com.regres.pages.LoginPage;
 import com.regres.testdata.UserContainer;
 
+/**
+ * This test verifies that Admin can set time zone for the app.
+ * 
+ * @author PETYAggg
+ *
+ */
 public class AdminSettingsTimeZoneTest {
 
 	private LoginPage loginpage;
@@ -20,6 +26,9 @@ public class AdminSettingsTimeZoneTest {
 	private AdminSettingsPage settings;
 	private Application app;
 
+	/**
+	 * Sign in as admin. Go to settings.
+	 */
 	@BeforeClass
 	public void setUp() {
 
@@ -29,6 +38,9 @@ public class AdminSettingsTimeZoneTest {
 		settings = adminpage.clickSettings();
 	}
 
+	/**
+	 * Sign out. Close the app.
+	 */
 	@AfterClass
 	public void tearDown() {
 
@@ -36,12 +48,24 @@ public class AdminSettingsTimeZoneTest {
 		app.quit();
 	}
 
+	/**
+	 * Data provider that has two fields: Search value - appropriate timezone
+	 * 
+	 */
 	@DataProvider
 	public Object[][] value_timezone() {
 		return new Object[][] { { "London", "Europe/London" }, { "+2", "Etc/GMT+2" }, { "Kiev", "Europe/Kiev" },
 				{ "+3", "Etc/GMT+3" } };
 	}
 
+	/**
+	 * Verifies that admin can set time zone.
+	 * 
+	 * @param value
+	 *            - search value
+	 * @param timezone
+	 *            - appropriate time zone that concerns our search value
+	 */
 	@Test(dataProvider = "value_timezone")
 	public void TestTimeZoneSet(String value, String timezone) {
 

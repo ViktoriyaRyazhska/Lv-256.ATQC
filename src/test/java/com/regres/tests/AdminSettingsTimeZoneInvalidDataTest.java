@@ -13,6 +13,12 @@ import com.regres.pages.LoginPage;
 import com.regres.pages.OhErrorPage;
 import com.regres.testdata.UserContainer;
 
+/**
+ * Checks if user gets redirected to the error page when invalid timezone is set.
+ * Time zone should not be changed.
+ * @author PETYAggg
+ *
+ */
 public class AdminSettingsTimeZoneInvalidDataTest {
 
 	private LoginPage loginpage;
@@ -21,6 +27,9 @@ public class AdminSettingsTimeZoneInvalidDataTest {
 
 	private Application app;
 
+	/**
+	 * Sign in as admin. Go to settings.
+	 */
 	@BeforeClass
 	public void setUp() {
 
@@ -30,6 +39,10 @@ public class AdminSettingsTimeZoneInvalidDataTest {
 		settings = adminpage.clickSettings();
 	}
 
+	/**
+	 * Sign out.
+	 * Close the app.
+	 */
 	@AfterClass
 	public void tearDown() {
 
@@ -37,6 +50,10 @@ public class AdminSettingsTimeZoneInvalidDataTest {
 		app.quit();
 	}
 
+	/**
+	 * Checks if user gets redirected to the error page when invalid timezone is set.
+  	 *	Time zone should not be changed.
+	 */
 	@Test
 	public void checkInvalidTimeZoneSet() {
 

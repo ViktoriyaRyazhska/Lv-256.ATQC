@@ -20,15 +20,23 @@ public class AdminSettingsPage extends AdminHomePage {
 	private WebElement confirmButton;
 	private WebElement registerButton;
 
+	String TIME_ZONE_BLOCK_TITLE_XPATH = "//form[@id='сhangeReg']/div[2]//h3[@class='panel-title']";
+	String TIME_ZONE_LABEL_XPATH = "//form[@id='сhangeReg']/div[2]//p";
+	String TIME_ZONE_FIELD_XPATH = "//form[@id='сhangeReg']/div[2]//input";
+	String CONFIRM_CHANGES_BUTTON_ID = "confirmRegistrationMethod";
+	String FIRST_MATCH_TIMEZONE_XPATH = "//*[@data-index='0']";
+	String RESULT_SET_TIMEZONE_CLASSNAME = "autocomplete-suggestion";
+	
+	
 	public AdminSettingsPage(WebDriver driver) {
 		super(driver);
-		timeZoneBlockTitle = driver.findElement(By.xpath("//form[@id='сhangeReg']/div[2]//h3[@class='panel-title']"));
-		timeZoneLabel = driver.findElement(By.xpath("//form[@id='сhangeReg']/div[2]//p"));
+		timeZoneBlockTitle = driver.findElement(By.xpath(TIME_ZONE_BLOCK_TITLE_XPATH));
+		timeZoneLabel = driver.findElement(By.xpath(TIME_ZONE_LABEL_XPATH));
 		methodRegisteringLabel = driver.findElement(By.xpath("//form[@id='сhangeReg']/div[1]//p"));
 		methodRegisteringTitle = driver
 				.findElement(By.xpath("//form[@id='сhangeReg']/div[1]//h3[@class='panel-title']"));
-		timeZoneField = driver.findElement(By.xpath("//form[@id='сhangeReg']/div[2]//input"));
-		confirmChangesButton = driver.findElement(By.id("confirmRegistrationMethod"));
+		timeZoneField = driver.findElement(By.xpath(TIME_ZONE_FIELD_XPATH));
+		confirmChangesButton = driver.findElement(By.id(CONFIRM_CHANGES_BUTTON_ID));
 		optionPersonal = driver.findElement(By.xpath("(//input[@value='PERSONAL'])"));
 		optionManual = driver.findElement(By.xpath("(//input[@value='MANUAL'])"));
 		optionMixed = driver.findElement(By.xpath("(//input[@value='MIXED'])"));
@@ -74,7 +82,10 @@ public class AdminSettingsPage extends AdminHomePage {
 	public String getTimeZoneLabelText() {
 		return timeZoneLabel.getText().trim();
 	}
-
+	
+	/**
+	 * @return Text of time zone field(current time zone)
+	 */
 	public String getTimeZoneFieldText() {
 
 		return timeZoneField.getAttribute("value");
@@ -104,18 +115,34 @@ public class AdminSettingsPage extends AdminHomePage {
 		getOptionMixed().click();
 	}
 
+	/**
+	 * Sets time zone for the app,
+	 * @param timezone - desired timezone.
+	 * @return AdminSettingsPage after clicking 'Confirm' button.
+	 */
 	public AdminSettingsPage setTimeZone(String timezone) {
 		timeZoneField.clear();
 		timeZoneField.sendKeys(timezone);
+		
+		// wait until app finds desired timezone in database.
 		(new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.className("autocomplete-suggestion")));
-		searchResult = driver.findElement(By.xpath("//*[@data-index='0']"));
-		searchResult.click();
-		confirmChangesButton.click();
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(timeZoneBlockTitle));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.className(RESULT_SET_TIMEZONE_CLASSNAME))); //waith until results are shown 
+		
+		searchResult = driver.findElement(By.xpath(FIRST_MATCH_TIMEZONE_XPATH)); 
+		searchResult.click(); //click on the first match
+		
+		confirmChangesButton.click(); // confirm changes
+		
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(timeZoneBlockTitle)); 
 		return new AdminSettingsPage(driver);
 	}
 	
+	/**
+	 * Sets invalid value for the timezone field
+	 * Returns error page.
+	 * @param invalidTimeZone - invalid credentials for the timezone field.
+	 * @return error page.
+	 */
 	public OhErrorPage setInvalidTimeZone(String invalidTimeZone) {
 		
 		timeZoneField.clear();

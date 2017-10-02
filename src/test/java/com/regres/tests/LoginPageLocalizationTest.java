@@ -13,29 +13,50 @@ import com.regres.pages.LoginPage;
 import com.regres.pages.LoginPage.LoginPageL10n;
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 
+/**
+ * Tests localization of the login page.
+ * 
+ * @author PETYAggg
+ *
+ */
 public class LoginPageLocalizationTest {
 
 	private Application app;
 	private LoginPage loginpage;
 
+	/**
+	 * Open browser. Open login page.
+	 */
 	@BeforeClass
 	public void setUp() {
-		// System.setProperty("file.encoding","UTF-8");
 		app = app.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		loginpage = app.load();
 	}
 
+	/**
+	 * Close the browser.
+	 */
 	@AfterClass
 	public void tearDown() {
 		app.quit();
 	}
 
+	/**
+	 * Languages to be tested.
+	 */
 	@DataProvider
 	public Object[][] localization() {
 		return new Object[][] { { ChangeLanguageFields.RUSSIAN }, { ChangeLanguageFields.UKRAINIAN },
 				{ ChangeLanguageFields.ENGLISH } };
 	}
 
+	/**
+	 * Verifies that labels labels on our page have appropriate spelling. Al the
+	 * values are compared to the enum, specified in the LoginPage class.
+	 * 
+	 * @param language
+	 *            - current language.
+	 */
 	@Test(dataProvider = "localization")
 	public void checkLoginPageLocalization(ChangeLanguageFields language) {
 
