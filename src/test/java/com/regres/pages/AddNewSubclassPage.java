@@ -9,9 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.regres.testdata.NewSubclass;
 
-public class AddNewSubclassPage {
+public class AddNewSubclassPage extends RegistratorHomePage{
 
-	public WebDriver driver;
+	//public WebDriver driver;
 	public WebElement titleAddNewSubclass;
 	public WebElement enterNameField;
 	public WebElement buttonShowParameters;
@@ -48,7 +48,7 @@ public class AddNewSubclassPage {
 	String ERROR_MESSAGE_XPATH = "//*[@id='typeName.errors']";
 
 	public AddNewSubclassPage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 		titleAddNewSubclass = driver.findElement(By.xpath(TITLE_ADD_NEW_SUBCLASS_XPATH));
 		enterNameField = driver.findElement(By.name(ENTER_NAME_FIELD_NAME));
 		buttonShowParameters = driver.findElement(By.id(BUTTON_SHOW_PARAMETERS_ID));

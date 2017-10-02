@@ -1,6 +1,7 @@
 package com.regres.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -61,26 +62,31 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	}
 
 	public WebElement getAddNewSubclass() {
-		//addNewSubclass = driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
+	//	addNewSubclass = driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
 		return addNewSubclass;
 	}
 
 	public AddNewSubclassPage clickAddNewSubclass() {
+		new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(listOfAllSubclassesTitle));
 		getAddNewSubclass().click();
 		new WebDriverWait(driver, 20).until(ExpectedConditions.stalenessOf(listOfAllSubclassesTitle));
 		return new AddNewSubclassPage(driver);
 	}
 
-	public SubclassesOfObjects clickOnDeleteSubclassButton() {
+	public void clickOnDeleteSubclassButton() {
 		getDeleteSubclassSidney().click();
-		return new SubclassesOfObjects(driver);
+		
 	}
-	public SubclassesOfObjects clickDeleteSubclassButton() {
+	public void clickDeleteSubclassButton() {
+		
+		
 		getdeleteSubclassIvano_Frankivsk().click();
-		return new SubclassesOfObjects(driver);
+		
 	}
 	public SubclassesOfObjects clickOkButton() {
-		getOkButton().click();
+		new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(getOkButton()));
+		okButton.click();
+		new WebDriverWait(driver, 5);
 		return new SubclassesOfObjects(driver);
 	}
 	

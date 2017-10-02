@@ -14,6 +14,7 @@ import com.regres.pages.AddNewSubclassPage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegistratorHomePage;
 import com.regres.pages.SubclassesOfObjects;
+import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 import com.regres.testdata.NewSubclassContainer;
 import com.regres.testdata.UserContainer;
 
@@ -26,18 +27,20 @@ public class AddNewSubclassTest {
 
 	@AfterGroups(groups = { "TestData" }, alwaysRun = true)
 	public void deleteTestData() {
-		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton().clickOkButton();
-		subclassesOfObjects = subclassesOfObjects.clickDeleteSubclassButton().clickOkButton();
+		
+		 
 
 	}
 
 	@BeforeClass
 	public void setUp() {
-		app = Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
+		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
 		loginpage = app.load();
+		loginpage = loginpage.setLanguage(ChangeLanguageFields.UKRAINIAN);
 		registratorpage = loginpage.successfullLoginRegistrator(UserContainer.getRegistrator());
 		subclassesOfObjects = registratorpage.clickSubclassesOfObjects();
-		addNewSublassPage = subclassesOfObjects.clickAddNewSubclass();
+		
+		//addNewSublassPage = subclassesOfObjects.clickAddNewSubclass();
 	}
 
 	@BeforeMethod
@@ -50,7 +53,7 @@ public class AddNewSubclassTest {
 		app.quit();
 	}
 
-	@Test
+	//@Test
 	public void checkEmptyEnterNameField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getInvalidEmptyData());
@@ -59,6 +62,7 @@ public class AddNewSubclassTest {
 		addNewSublassPage = addNewSublassPage.clickSaveButt();
 		String resultValidation = addNewSublassPage.getEnterNameField().getAttribute("validationMessage");
 		Assert.assertEquals(resultValidation, "Заполните это поле."); // "Please fill out this field."
+		subclassesOfObjects = addNewSublassPage.clickSubclassesOfObjects();
 
 	}
 
@@ -71,9 +75,10 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		Assert.assertEquals(subclassesOfObjects.getNameSubclass().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSubclass().getText().contains("Sidney"));
-		// subclassesOfObjects =
-		// subclassesOfObjects.clickOnDeleteSubclassButton().clickOkButton();
-
+		subclassesOfObjects.clickOnDeleteSubclassButton();
+		subclassesOfObjects = subclassesOfObjects.clickOkButton();
+	
+		
 	}
 
 	@Test
@@ -82,10 +87,10 @@ public class AddNewSubclassTest {
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getSameClassName());
 		addNewSublassPage.selectOptionLinearParameter();
 		addNewSublassPage = addNewSublassPage.clickButtonHideParameters();
-		addNewSublassPage.clickSaveButt();
+		addNewSublassPage=addNewSublassPage.clickSaveButt();
 		Assert.assertTrue(
 				addNewSublassPage.getErrorMessage().getText().contains("Підклас з вказаним іменем вже існує"));
-
+		subclassesOfObjects = addNewSublassPage.clickSubclassesOfObjects();
 	}
 
 	@Test
@@ -101,6 +106,7 @@ public class AddNewSubclassTest {
 		Assert.assertEquals(addNewSublassPage.getUnitOfMeasurementField().getText().isEmpty(), true);
 		Assert.assertEquals(addNewSublassPage.getUnitOfMeasurementField().getText().isEmpty(), true);
 		Assert.assertTrue(addNewSublassPage.getDropdownButtonText().contains("Виберіть тип параметру"));
+		subclassesOfObjects = addNewSublassPage.clickSubclassesOfObjects();
 	}
 
 	@Test(groups = { "TestData" })
@@ -116,7 +122,8 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		Assert.assertEquals(subclassesOfObjects.getNameSub().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSub().getText().contains("Ivano-Frankivsk"));
-		// subclassesOfObjects =
-		// subclassesOfObjects.clickDeleteSubclassButton().clickOkButton();
+		subclassesOfObjects.clickDeleteSubclassButton();
+		subclassesOfObjects = subclassesOfObjects.clickOkButton();
+
 	}
 }
