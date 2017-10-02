@@ -1,5 +1,7 @@
 package com.regres.pages;
 
+import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -10,6 +12,7 @@ import org.openqa.selenium.WebElement;
 
 public class ConfirmMessagePage {
 	// confirm message
+	public WebDriver driver;
 	private WebElement confirmMessage;
 	private WebElement closeButton;
 	private WebElement okButton;
@@ -19,9 +22,12 @@ public class ConfirmMessagePage {
 	private WebElement titleMessage;
 	private WebElement label;
 	private WebElement input;
+	
+	String OK_BUTTON_XPATH = "//button[@data-bb-handler='confirm']";
 
 	// init WebDriver
 	public ConfirmMessagePage(WebDriver driver) {
+		this.driver = driver;
 	}
 
 	// Functional
@@ -168,6 +174,7 @@ public class ConfirmMessagePage {
 
 	// click on 'OK' button on confirm message
 	public void clickOkButton() {
+		okButton=driver.findElement(By.xpath(OK_BUTTON_XPATH));
 		this.okButton.click();
 	}
 

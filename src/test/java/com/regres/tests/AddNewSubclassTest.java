@@ -37,7 +37,7 @@ public class AddNewSubclassTest {
 		app.quit();
 	}
 
-	//@Test
+	// @Test
 	public void checkEmptyEnterNameField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getInvalidEmptyData());
@@ -46,7 +46,7 @@ public class AddNewSubclassTest {
 		addNewSublassPage = addNewSublassPage.clickSaveButt();
 		String resultValidation = addNewSublassPage.getEnterNameField().getAttribute("validationMessage");
 		Assert.assertEquals(resultValidation, "Заполните это поле."); // "Please fill out this field."
-		
+
 	}
 
 	@Test
@@ -58,9 +58,9 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		Assert.assertEquals(subclassesOfObjects.getNameSubclass().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSubclass().getText().contains("Sidney"));
+		subclassesOfObjects=subclassesOfObjects.clickOnDeleteSubclassButton();
+		subclassesOfObjects.getConfirmMessage().clickOkButton();
 		
-		//confirmMessage=subclassesOfObjects.clickDeleteSubclassSidney();
-		//confirmMessage.clickOkButton();
 		
 	}
 
@@ -91,7 +91,7 @@ public class AddNewSubclassTest {
 		Assert.assertTrue(addNewSublassPage.getDropdownButtonText().contains("Виберіть тип параметру"));
 	}
 
-	//@Test
+	// @Test
 	public void checkAddSubclassField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValData());
