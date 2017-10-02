@@ -1,5 +1,7 @@
 package com.regres.application;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -65,10 +67,10 @@ public class Application {
 		return driver;
 	}
 
-	public void createDBConnection() {
-		createDBConnection();
+	public Connection createDBConnection() throws ClassNotFoundException, SQLException {
+		return applicationSources.createDBConnection();
 	}
-	public void closeConnectionDB() {
-		closeConnectionDB();
+	public void closeConnectionDB() throws ClassNotFoundException, SQLException {
+		applicationSources.closeConnectionDB();
 	}
 }

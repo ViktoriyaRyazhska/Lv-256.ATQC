@@ -30,7 +30,8 @@ public class ApplicationSources {
 	private static String username;
 	//Database Password
 	private static String password;
-
+	private static Connection conn;
+	
 	public ApplicationSources(String browserName, String driverPath, 
 			String loginUrl, String logoutUrl, long implicitTimeOut) {
 			this.browserName = browserName;
@@ -82,17 +83,14 @@ public class ApplicationSources {
 
 	public static Connection createDBConnection() throws ClassNotFoundException, SQLException {
 		// create a mysql Database connection
-		Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-//		String myUrl = "jdbc:mysql://localhost:3306/registrator_db";
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(DBmyUrl, username, password);
+		conn = DriverManager.getConnection(DBmyUrl, username, password);
 		if (conn == null) {
 			throw new SQLException("SQLException");
 		}
 		return conn;
 	}
-	public static void closeConnectionDB(Connection conn) throws ClassNotFoundException, SQLException {
-//		conn = createDBConnection();
+	public static void closeConnectionDB() throws ClassNotFoundException, SQLException {
 		if (conn != null)
 			conn.close();
 	}
