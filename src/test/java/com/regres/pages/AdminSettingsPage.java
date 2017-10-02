@@ -24,6 +24,8 @@ public class AdminSettingsPage extends AdminHomePage {
 	String TIME_ZONE_LABEL_XPATH = "//form[@id='сhangeReg']/div[2]//p";
 	String TIME_ZONE_FIELD_XPATH = "//form[@id='сhangeReg']/div[2]//input";
 	String CONFIRM_CHANGES_BUTTON_ID = "confirmRegistrationMethod";
+	String FIRST_MATCH_TIMEZONE_XPATH = "//*[@data-index='0']";
+	String RESULT_SET_TIMEZONE_CLASSNAME = "autocomplete-suggestion";
 	
 	
 	public AdminSettingsPage(WebDriver driver) {
@@ -124,9 +126,9 @@ public class AdminSettingsPage extends AdminHomePage {
 		
 		// wait until app finds desired timezone in database.
 		(new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.className("autocomplete-suggestion"))); //classname of result set 
+				.until(ExpectedConditions.visibilityOfElementLocated(By.className(RESULT_SET_TIMEZONE_CLASSNAME))); //waith until results are shown 
 		
-		searchResult = driver.findElement(By.xpath("//*[@data-index='0']")); 
+		searchResult = driver.findElement(By.xpath(FIRST_MATCH_TIMEZONE_XPATH)); 
 		searchResult.click(); //click on the first match
 		
 		confirmChangesButton.click(); // confirm changes

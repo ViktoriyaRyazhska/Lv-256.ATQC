@@ -24,7 +24,6 @@ import com.regres.testdata.UserContainer;
 
 
 public class ChangePasswordTest {
-	private WebDriver driver ;
 	private String baseURL;
 	AdminHomePage adminhomepage;
 	ChangePasswordPage changePasswordPage;
@@ -53,7 +52,7 @@ public class ChangePasswordTest {
 	@AfterClass
 	public void tearDown() {
 		changePasswordPage.clickLogout();
-		driver.close();
+		app.quit();
 	}
 
 	@Test(dataProvider = "WrongPassword")
@@ -61,7 +60,7 @@ public class ChangePasswordTest {
 		changePasswordPage = changePasswordPage.setLanguage(language);
 		changePasswordPage.getWrongPasswordMessage(UserContainer.getRegistrator().getPassword());
 		Assert.assertEquals(changePasswordPage.getMessageText(), message);
-		changePasswordPage = new ChangePasswordPage(driver);
+		changePasswordPage = new ChangePasswordPage(app.getDriver());
 
 	}
 	@Test(dataProvider = "WrongNewPassword")
@@ -69,7 +68,7 @@ public class ChangePasswordTest {
 		changePasswordPage = changePasswordPage.setLanguage(language);
 		changePasswordPage.getWrongNewPasswordMessage(UserContainer.getRegistrator().getPassword());
 		Assert.assertEquals(changePasswordPage.getMessageText(), message);
-		changePasswordPage = new ChangePasswordPage(driver);
+		changePasswordPage = new ChangePasswordPage(app.getDriver());
 
 	}
 	@Test(dataProvider = "WrongConfirmPassword")
@@ -77,7 +76,7 @@ public class ChangePasswordTest {
 		changePasswordPage = changePasswordPage.setLanguage(language);
 		changePasswordPage.getWrongConfirmMessage(UserContainer.getRegistrator().getPassword());
 		Assert.assertEquals(changePasswordPage.getMessageText(), message);
-		changePasswordPage = new ChangePasswordPage(driver);
+		changePasswordPage = new ChangePasswordPage(app.getDriver());
 
 	}
 	
@@ -103,7 +102,7 @@ public class ChangePasswordTest {
 	public void checkEmptyFieldsMessage() {
 		changePasswordPage.getEmptyFieldsMessage();
 		Assert.assertEquals(changePasswordPage.getEmptyFieldMessageText(),"Заполните это поле.");
-		changePasswordPage = new ChangePasswordPage(driver);
+		changePasswordPage = new ChangePasswordPage(app.getDriver());
 	}
 	
 	

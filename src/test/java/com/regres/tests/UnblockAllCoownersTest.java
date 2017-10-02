@@ -21,7 +21,6 @@ import com.regres.testdata.UserContainer;
 
 
 public class UnblockAllCoownersTest {
-	private WebDriver driver;
 	private String baseURL;
 	AdminHomePage adminhomepage;
 	Application app;
@@ -45,13 +44,12 @@ public class UnblockAllCoownersTest {
 	public void tearDown() {
 		
 		adminhomepage.clickLogout();
-		driver.close();
+		app.quit();
 	}
 
 	@Test(dataProvider="langProvider")
 	public void checkUnblockAllCoowners(ChangeLanguageFields language,String message) {
 		adminhomepage=adminhomepage.setLanguage(language);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		adminhomepage.clickUnblockAllCoowners();
 		Assert.assertTrue(adminhomepage.getConfirmMessageUnblockAllCoownersText().equals(message));
 		adminhomepage = adminhomepage.clickOkButtonOnConfirmUnblockAllCoowners();
