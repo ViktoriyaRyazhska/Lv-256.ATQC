@@ -29,7 +29,6 @@ public class CommissionerHomePage extends DropdownHomePage{
         super(driver);
     }
     public void clickCoowners() {
-    	clickUserName();
     	getCoowners().click(); 	     
     	getActiveCoowners();
     	getInactiveCoowners();

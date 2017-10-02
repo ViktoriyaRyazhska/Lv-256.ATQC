@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,19 +24,28 @@ import com.regres.testdata.UserDB;
 import com.regres.testdata.UserDBRepo;
 
 public class ActionActiveCoownersTest {
+	
 	private Application app;
 	private LoginPage loginpage;
 	private AdminHomePage adminhomepage;
 	private Connection conn;
-//	private CommissionerWithRegistrationHomePage create ;
-
-	@BeforeClass
-	public void setUp() throws ClassNotFoundException, SQLException {
+//	private UserDB DB;
+	
+	@BeforeMethod
+	public Connection beforeTest() throws ClassNotFoundException, SQLException {
 		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-		ApplicationSources.createDBConnection();
+		conn = ApplicationSources.createDBConnection();
 		loginpage = app.load();
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+
 		adminhomepage.clickCoowners();
+		return conn;
+	}
+	
+	@AfterMethod
+	public void afterTest() throws ClassNotFoundException, SQLException {		
+		ApplicationSources.closeConnectionDB();
+		app.quit();
 	}
 	
 	@DataProvider
@@ -42,17 +53,31 @@ public class ActionActiveCoownersTest {
 		return new Object[][] { { UserDBRepo.getUser1() } };
 	}
 	
-	@AfterClass
-	public void tearDown() {
-		app.quit();
+	/**
+	 * Check that user role changes
+	 */
+	@Test(dataProvider="userChange")
+	public void checkUserRoleChange(UserDB userDB) throws ClassNotFoundException, SQLException {
+		// call method for creating new user
+//		DB.createUserInDB(userDB);
+		createUserInDB(userDB);
+		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
+		actions.getFirstNameFirstRow().click();
+		actions.clickActionsDropdown();
+		actions.clickSetRole();
+		actions.clickCoownerRole();
+		actions.confirm.clickOkButton();
+		Assert.assertEquals(actions.getRoleFirstRow().getText(), "Співвласник");
+				
+		//delete user
+//		DB.deleteUserInDB(userDB);
+		deleteUserInDB(userDB);
 	}
-		
-	
 	
 	/**
 	 * Check appearing of message when no one row is selected
 	 */
-//	@Test
+	@Test
 	public void checkConfirmMessageSetCommunity() {
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
 		actions.clickActionsDropdown();
@@ -60,40 +85,19 @@ public class ActionActiveCoownersTest {
 		Assert.assertEquals(actions.confirm.getConfirmMessageText(),
 				"Для виконання даної операції спочатку потрібно вибрати співвласників, натиснувши на відповідні стрічки в таблиці");
 		actions.confirm.clickCloseButton();
-	}
-
-	/**
-	 * Check that role changes
-	 */
-	@Test
-	public void checkSetRole() {
+	}	
+	
+//	@Test
+	public void checkUserCommunityChange() {
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
-		actions.getFirstNameColumn();
+		actions.getFirstNameFirstRow().click();
 		actions.clickActionsDropdown();
-		actions.clickSetRole();
-		actions.clickCoownerRole();
-		actions.confirm.clickOkButton();
-		Assert.assertEquals(actions.getRoleFirstRow().getText(), "Співвласник");
+		actions.clickSetCommunity();
+		actions.confirm.getInput().sendKeys("Ukr");
 	}
-//	@Test(dataProvider="userChange")
-	public void checkUserCreating(UserDB userDB) throws ClassNotFoundException, SQLException {
-		// call method for creating new user
-		createUserInDB(userDB);
-		
-		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
-		actions.getFirstNameColumn();
-		actions.clickActionsDropdown();
-		actions.clickSetRole();
-		actions.clickCoownerRole();
-		actions.confirm.clickOkButton();
-		Assert.assertEquals(actions.getRoleColumnText(), "Співвласник");
-		
-//		//delete user
-		deleteUserInDB(userDB);
-	}
-	// Method for creating new Use in DD
+	
 	public void createUserInDB(UserDB userDB) throws SQLException, ClassNotFoundException {
-
+	
 		String createUser = "Insert into registrator_db.users (account_non_expired,account_non_locked,attempts,credentials_non_expired,date_of_accession,email,enabled,first_name,last_modified,last_name,locked_till,login,middle_name,password,phonenumber,status,role_id,territorialCommunity_id)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		PreparedStatement st = (PreparedStatement) conn.prepareStatement(createUser);
 
@@ -116,13 +120,14 @@ public class ActionActiveCoownersTest {
 		st.setString(16, userDB.getStatus());
 		st.setString(17, userDB.getRole_id());
 		st.setString(18, userDB.getTerritorialCommunity_id());
-		st.executeUpdate();
+		st.executeUpdate();		
 	}
 
-	public void deleteUserInDB(UserDB userDB) throws SQLException, ClassNotFoundException {
+	public void deleteUserInDB(UserDB userDB) throws SQLException, ClassNotFoundException {		
 		String deleteUser = "Delete from registrator_db.users where login=(?)";
 		PreparedStatement st = (PreparedStatement) conn.prepareStatement(deleteUser);
 		st.setString(1, userDB.getLogin());
-		st.executeUpdate();
+		st.executeUpdate();			
 	}
+
 }

@@ -95,7 +95,6 @@ public class ApplicationSources {
 	}
 
 	public static Connection createDBConnection() throws ClassNotFoundException, SQLException {
-		// String myUrl = "jdbc:mysql://localhost:3306/registrator_db";
 		Class.forName("com.mysql.jdbc.Driver");
 		dbConnection = DriverManager.getConnection(DBmyUrl, username, password);
 		if (dbConnection == null) {

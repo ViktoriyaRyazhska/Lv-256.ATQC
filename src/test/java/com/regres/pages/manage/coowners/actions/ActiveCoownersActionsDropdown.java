@@ -22,6 +22,14 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 
 	By communitiesName = By.className(".communName");
 
+	//Locators for Confirm message window
+	String OK_BUTTON_XPATH = "//button[@data-bb-handler='ok']";
+	String CLOSE_BUTTON_CLASS_NAME = "close";
+	String CANSEL_BUTTON_CSSSELECTOR = ".btn.btn-info";
+	String TITLE_MESSAGE_CLASS_NAME = "modal-title";
+	String LABEL_CLASS_NAME = "control-label";
+	
+	
 	public ActiveCoownersActionsDropdown(WebDriver driver) {
 		super(driver);
 	}
