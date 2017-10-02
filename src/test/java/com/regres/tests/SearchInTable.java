@@ -38,8 +38,8 @@ public class SearchInTable {
      */
     @BeforeMethod
     public void beforeTest() {
-        coownerstable = adminhomepage.goToNonConfirmedCoowners();//вивести непідтверджених юзерів
-        coownerstable.setNumbeOfItemsInTable(); //вивести 100 позицій в таблиці
+        coownerstable = adminhomepage.goToNonConfirmedCoowners();
+        coownerstable.setNumbeOfItemsInTable();
         coownerstable.waitWhileTableAppear();
     }
 

@@ -25,7 +25,15 @@ public class CoownersTable extends AdminHomePage {
     String NEXT_BUTTON_ID = "example_next";
     String PAGINATE_CURRENT_BUTTON_CSSSELECTOR = ".paginate_button.current";
 
-    //table columns search row
+    //table sorting rows
+    String FIRST_NAME_SORT_XPATH = ".//*[@id='example']/thead/tr/th[2]";
+    String LAST_NAME_SORT_XPATH = ".//*[@id='example']/thead/tr/th[3]";
+    String LOGIN_SORT_XPATH = ".//*[@id='example']/thead/tr/th[4]";
+    String COMMUNITY_SORT_XPATH = ".//*[@id='example']/thead/tr/th[5]";
+    String EMAIL_SORT_XPATH = ".//*[@id='example']/thead/tr/th[6]";
+    String ROLE_SORT_XPATH = ".//*[@id='example']/thead/tr/th[7]";
+
+    //table search row
     String FIRST_NAME_COLUMN = ".//*[@id='inputIndex1']";
     String LAST_NAME_COLUMN = ".//*[@id='inputIndex2']";
     String LOGIN_COLUMN = ".//*[@id='inputIndex3']";
@@ -120,6 +128,36 @@ public class CoownersTable extends AdminHomePage {
         return new InactiveCoownersActionsDropdown(driver);
     }
 
+    //table sorting rows Click
+    public void clickFIRST_NAME_SORT() {
+        driver.findElement(By.xpath(FIRST_NAME_SORT_XPATH)).click();
+        waitWhileTableAppear();
+    }
+
+    public void clickLAST_NAME_SORT() {
+        driver.findElement(By.xpath(LAST_NAME_SORT_XPATH)).click();
+        waitWhileTableAppear();
+    }
+
+    public void clickLOGIN_SORT() {
+        driver.findElement(By.xpath(LOGIN_SORT_XPATH)).click();
+        waitWhileTableAppear();
+    }
+
+    public void clickCOMMUNITY_SORT() {
+        driver.findElement(By.xpath(COMMUNITY_SORT_XPATH)).click();
+        waitWhileTableAppear();
+    }
+
+    public void clickEMAIL_SORT() {
+        driver.findElement(By.xpath(EMAIL_SORT_XPATH)).click();
+    }
+
+    public void clickROLE_SORT() {
+        driver.findElement(By.xpath(ROLE_SORT_XPATH)).click();
+    }
+
+    //table search row getters
     public WebElement getFirstNameColumn() {
         return driver.findElement(By.xpath(FIRST_NAME_COLUMN));
     }
@@ -305,10 +343,51 @@ public class CoownersTable extends AdminHomePage {
         return userList;
     }
 
-    public void compareLists(List<UserForSerchTableTest> userList, List<UserForSerchTableTest> userList2) {
-        System.out.println(userList.equals(userList2));
-        Assert.assertTrue(userList.size() == userList2.size());
+    public void compareLists(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+        System.out.println(userList1.equals(userList2));
+        Assert.assertTrue(userList1.size() == userList2.size());
     }
 
+    //methods to compare two object lists by chosen parameter
+    public boolean compareToSortedListsByObjectFirstName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+        for (int i = 0; i <= userList1.size() - 1; i++) {
+            if (!(userList1.get(i).getFirstName().equalsIgnoreCase(userList2.get(i).getFirstName()))) {
+                System.out.println(userList1.get(i).getFirstName() + " " + userList2.get(i).getFirstName());
+                return false;
+            }
+        }
+        return true;
+    }
 
+    public boolean compareToSortedListsByObjectLogin(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+        for (int i = 0; i <= userList1.size() - 1; i++) {
+            if (!(userList1.get(i).getLogin().equalsIgnoreCase(userList2.get(i).getLogin()))) {
+                System.out.println(userList1.get(i).getLogin() + " " + userList2.get(i).getLogin());
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean compareToSortedListsByObjectCommunityName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+        for (int i = 0; i <= userList1.size() - 1; i++) {
+            if (!(userList1.get(i).getTerritorialCommunityName().equalsIgnoreCase(userList2.get(i).getTerritorialCommunityName()))) {
+                System.out.println(userList1.get(i).getTerritorialCommunityName() + " " + userList2.get(i).getTerritorialCommunityName());
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean compareToSortedListsByObjectLastName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+        for (int i = 0; i <= userList1.size() - 1; i++) {
+            if (!(userList1.get(i).getLastName().equalsIgnoreCase(userList2.get(i).getLastName()))) {
+                System.out.println(userList1.get(i).getLastName() + " " + userList2.get(i).getLastName());
+                return false;
+            }
+        }
+        return true;
+    }
 }
+
+
