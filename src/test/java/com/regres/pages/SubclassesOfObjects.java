@@ -14,7 +14,7 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	public WebElement deleteSubclassSidney; // Шукаю кнопку "Видалити" за назваю сабкласу "Sidney"
 	public WebElement deleteSubclassIvanoFrankivsk; // Шукаю кнопку "Видалити" за назваю сабкласу "Ivano-Frankivsk"
 	private WebElement okButton;
-	private ConfirmMessagePage confirmMessage;
+	
 
 	String ADD_NEW_SUBCLASS_XPATH = "//a[contains(@href,\'addrestype\')]";
 	String LIST_OF_ALL_SUBCLASS_XPATH = "//*[@id='body']/div/h4";
@@ -23,22 +23,22 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	String DELETE_BUTT_XPATH = "//td[contains(., 'Ivano-Frankivsk')]/following::a";
 	String NAME_SUB_XPATH = "//td[contains(., 'Ivano-Frankivsk')]";
 	String OK_BUTTON_XPATH = "//button[@data-bb-handler='confirm']";
-	String CONFIRM_MESSAGE_NAME = "bootbox-body";
-
+	
 	public SubclassesOfObjects(WebDriver driver) {
 		super(driver);
 		listOfAllSubclassesTitle = driver.findElement(By.xpath(LIST_OF_ALL_SUBCLASS_XPATH));
-		// confirmMessage = driver.findElement(By.className(CONFIRM_MESSAGE_NAME));
+		addNewSubclass = driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
+		
 
+	}
+	public WebElement getOkButton() {
+		okButton=driver.findElement(By.xpath(OK_BUTTON_XPATH));
+		return okButton;
 	}
 
 	public WebElement getNameSubclass() {
 		nameSubclassSidney = driver.findElement(By.xpath(NAME_SUBCLASS_XPATH));
 		return nameSubclassSidney;
-	}
-
-	public ConfirmMessagePage getconfirmMessage() {
-		return confirmMessage;
 	}
 
 	public WebElement getNameSub() {
@@ -61,7 +61,7 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	}
 
 	public WebElement getAddNewSubclass() {
-		addNewSubclass = driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
+		//addNewSubclass = driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
 		return addNewSubclass;
 	}
 
@@ -74,23 +74,16 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	public SubclassesOfObjects clickOnDeleteSubclassButton() {
 		getDeleteSubclassSidney().click();
 		return new SubclassesOfObjects(driver);
-
 	}
-
-	public ConfirmMessagePage getConfirmMessage() {
-		return confirmMessage;
+	public SubclassesOfObjects clickDeleteSubclassButton() {
+		getdeleteSubclassIvano_Frankivsk().click();
+		return new SubclassesOfObjects(driver);
 	}
-
-	public void simpleConfirmMessage() {
-		confirmMessage = new ConfirmMessagePage(driver);
-		(new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("bootbox-body"))));
-		confirmMessage.setConfirmMessage(driver.findElement(By.className("bootbox-body")));
-		confirmMessage.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='confirm']")));
+	public SubclassesOfObjects clickOkButton() {
+		getOkButton().click();
+		return new SubclassesOfObjects(driver);
 	}
+	
+	
 
-	public void clickConfirmOnSetCommunityMessage() {
-		confirmMessage.clickOkButton();
-		simpleConfirmMessage();
-	}
 }

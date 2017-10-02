@@ -60,7 +60,7 @@ public class AddNewSubclassPage {
 		dropdownButton = driver.findElement(By.xpath(DROPDOWN_BUTTON_XPATH));
 		optionLinearParameter = driver.findElement(By.xpath(OPTION_LINEAR_PARAMETER_XPATH));
 		optionDiscreteParameters = driver.findElement(By.xpath(OPTION_DISCRETE_PARAMETERS_XPATH));
-		saveButton = driver.findElement(By.xpath(SAVE_BUTTON_XPATH));
+		//saveButton = driver.findElement(By.xpath(SAVE_BUTTON_XPATH));
 	}
 
 	// getData
@@ -117,6 +117,7 @@ public class AddNewSubclassPage {
 	}
 
 	public WebElement getSaveButton() {
+		saveButton = driver.findElement(By.xpath(SAVE_BUTTON_XPATH));
 		return saveButton;
 	}
 

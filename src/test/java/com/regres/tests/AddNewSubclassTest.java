@@ -1,14 +1,15 @@
 package com.regres.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.regres.application.Application;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AddNewSubclassPage;
-import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegistratorHomePage;
 import com.regres.pages.SubclassesOfObjects;
@@ -21,7 +22,6 @@ public class AddNewSubclassTest {
 	private SubclassesOfObjects subclassesOfObjects;
 	private AddNewSubclassPage addNewSublassPage;
 	private Application app;
-	private ConfirmMessagePage confirmMessage;
 
 	@BeforeMethod
 	public void setUp() {
@@ -30,14 +30,15 @@ public class AddNewSubclassTest {
 		registratorpage = loginpage.successfullLoginRegistrator(UserContainer.getRegistrator());
 		subclassesOfObjects = registratorpage.clickSubclassesOfObjects();
 		addNewSublassPage = subclassesOfObjects.clickAddNewSubclass();
+		addNewSublassPage = subclassesOfObjects.clickAddNewSubclass();
 	}
 
-	@AfterMethod
+	@AfterClass
 	public void closeApp() {
 		app.quit();
 	}
 
-	// @Test
+	@Test
 	public void checkEmptyEnterNameField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getInvalidEmptyData());
@@ -58,13 +59,11 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		Assert.assertEquals(subclassesOfObjects.getNameSubclass().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSubclass().getText().contains("Sidney"));
-		subclassesOfObjects=subclassesOfObjects.clickOnDeleteSubclassButton();
-		subclassesOfObjects.getConfirmMessage().clickOkButton();
-		
-		
+		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton().clickOkButton();
+
 	}
 
-	// @Test
+	@Test
 	public void checkAddedSubclassWithExistName() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getSameClassName());
@@ -76,7 +75,7 @@ public class AddNewSubclassTest {
 
 	}
 
-	// @Test
+	@Test
 	public void checkSuccessfulAddedSubclassClear() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValidDataClear());
@@ -91,7 +90,7 @@ public class AddNewSubclassTest {
 		Assert.assertTrue(addNewSublassPage.getDropdownButtonText().contains("Виберіть тип параметру"));
 	}
 
-	// @Test
+	@Test
 	public void checkAddSubclassField() {
 		addNewSublassPage.clickButtonShowParameters();
 		addNewSublassPage.addedNewSubclass(NewSubclassContainer.getValData());
@@ -104,5 +103,6 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		Assert.assertEquals(subclassesOfObjects.getNameSub().isEnabled(), true);
 		Assert.assertTrue(subclassesOfObjects.getNameSub().getText().contains("Ivano-Frankivsk"));
+		subclassesOfObjects = subclassesOfObjects.clickDeleteSubclassButton().clickOkButton();
 	}
 }
