@@ -1,6 +1,7 @@
 package com.regres.pages.manage.coowners;
 
 import com.regres.testdata.UserForSerchTableTest;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,6 +68,10 @@ public class CoownersTable extends AdminHomePage {
 		return driver.findElement(By.id(SEARCH_BUTTON_ID));
 	}
 
+	public void ClickSearchButton() {
+		getSearchButton().click();
+	}
+
 	public WebElement getPrevButtton() {
 		return driver.findElement(By.id(PREV_BUTTON_ID));
 	}
@@ -89,20 +94,16 @@ public class CoownersTable extends AdminHomePage {
 		new Select(driver.findElement(By.name("example_length"))).selectByVisibleText("10");
 	}
 
-
 	public WebElement getFirstNameFirstRow() {
 		return driver.findElement(By.xpath(FIRST_NAME_FIRST_XPATH));
 	}
-	public void ClickFirstNameFirstRow() {
-		getFirstNameFirstRow().click();
-	}
-	
+
 	public WebElement getLastNameFirstRow() {
-		return driver.findElement(By.xpath(LAST_NAME_SEARCH_FIRST_XPATH)); 
+		return driver.findElement(By.xpath(LAST_NAME_SEARCH_FIRST_XPATH));
 	}
 
 	public WebElement getLoginFirstRow() {
-		return driver.findElement(By.xpath(LOGIN_SEARCH_FIRST_XPATH)); 
+		return driver.findElement(By.xpath(LOGIN_SEARCH_FIRST_XPATH));
 	}
 
 	public WebElement getCommunityNameFirstRow() {
@@ -116,11 +117,11 @@ public class CoownersTable extends AdminHomePage {
 	public WebElement getRoleFirstRow() {
 		return driver.findElement(By.xpath(ROLE_SEARCH_FIRST_XPATH));
 	}
+
 	public String getRoleFirstRowText() {
-		 return getRoleFirstRow().getText().trim();
+		return getRoleFirstRow().getText().trim();
 	}
-	
-	
+
 	// Business Logic
 	public InactiveCoownersActionsDropdown goToInactiveCoowners() {
 		// Return a new page object representing the destination.
@@ -137,6 +138,10 @@ public class CoownersTable extends AdminHomePage {
 
 	public WebElement getLoginColumn() {
 		return driver.findElement(By.xpath(LOGIN_COLUMN));
+	}
+
+	public void ClickLoginColumn() {
+		getLoginColumn().click();
 	}
 
 	public WebElement getCommunityColumn() {
@@ -257,4 +262,18 @@ public class CoownersTable extends AdminHomePage {
 		Assert.assertTrue(userList.size() == userList2.size());
 	}
 
+	public void ClickFirstNameFirstRow() {
+		(new WebDriverWait(driver, 40))
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(FIRST_NAME_FIRST_XPATH)));
+		getFirstNameFirstRow().click();
+	}
+
+	public void FindAndClickUserInTable(String value) {
+		ClickLoginColumn();
+		getLoginColumn().sendKeys(value);
+		ClickSearchButton();
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(PREV_BUTTON_ID)));
+		getLoginColumn().clear();
+		ClickFirstNameFirstRow();
+	}
 }

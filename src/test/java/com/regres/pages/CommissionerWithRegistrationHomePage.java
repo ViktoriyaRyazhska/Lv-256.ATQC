@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.mysql.jdbc.PreparedStatement;
-import com.regres.testdata.UserDB;
+import com.regres.testdata.DB.UserDB;
 
 public class CommissionerWithRegistrationHomePage extends CommissionerHomePage {
 	String REGISTRATION_CSSSELECTOR = "[href=\"/manualregistration\"]";

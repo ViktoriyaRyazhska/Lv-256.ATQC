@@ -1,4 +1,4 @@
-package com.regres.testdata;
+package com.regres.testdata.DB;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,13 +25,13 @@ public class UserDB {
 	private String status;
 	private String role_id;
 	private String territorialCommunity_id;
-
-	private Connection conn;
+	private String nameCommunity;
 
 	public UserDB(String account_non_expired, String account_non_locked, String attempts,
-			String credentials_non_expired, String date_of_accession, String email, String enabled, String first_Name,
-			String last_modified, String last_Name, String locked_till, String login, String middle_name,
-			String password, String phonenumber, String status, String role_id, String territorialCommunity_id) {
+			String credentials_non_expired, String date_of_accession, String email, String enabled,
+			String first_Name, String last_modified, String last_Name, String locked_till, String login,
+			String middle_name, String password, String phonenumber, String status, String role_id,
+			String territorialCommunity_id, String nameCommunity) {
 		this.account_non_expired = account_non_expired;
 		this.account_non_locked = account_non_locked;
 		this.attempts = attempts;
@@ -50,6 +50,7 @@ public class UserDB {
 		this.status = status;
 		this.role_id = role_id;
 		this.territorialCommunity_id = territorialCommunity_id;
+		this.nameCommunity=nameCommunity;
 	}
 
 	public String getAccount_non_expired() {
@@ -123,7 +124,11 @@ public class UserDB {
 	public String getTerritorialCommunity_id() {
 		return territorialCommunity_id;
 	}
-
+	
+	public String getNameCommunity() {
+		return nameCommunity;
+	}
+	
 	public void setAccount_non_expired(String account_non_expire) {
 		this.account_non_expired = account_non_expired;
 	}
@@ -197,7 +202,7 @@ public class UserDB {
 	}
 
 	// Method for creating new Use in DD
-	public void createUserInDB(Connection conn, UserDB userDB) throws SQLException, ClassNotFoundException {
+	public static void createUserInDB(Connection conn, UserDB userDB) throws SQLException, ClassNotFoundException {
 		String createUser = "Insert into registrator_db.users (account_non_expired,account_non_locked,attempts,credentials_non_expired,date_of_accession,email,enabled,first_name,last_modified,last_name,locked_till,login,middle_name,password,phonenumber,status,role_id,territorialCommunity_id)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		PreparedStatement st = (PreparedStatement) conn.prepareStatement(createUser);
 
@@ -221,15 +226,20 @@ public class UserDB {
 		st.setString(17, userDB.getRole_id());
 		st.setString(18, userDB.getTerritorialCommunity_id());
 		st.executeUpdate();
-		st.close();
+//		st.close();
 	}
 
-	public void deleteUserInDB(Connection conn, UserDB userDB) throws SQLException, ClassNotFoundException {
+	public static void deleteUserInDB(Connection conn, UserDB userDB) throws SQLException, ClassNotFoundException {
 		String deleteUser = "Delete from registrator_db.users where login=(?)";
 		PreparedStatement st = (PreparedStatement) conn.prepareStatement(deleteUser);
 		st.setString(1, userDB.getLogin());
 		st.executeUpdate();
+//		st.close();
 	}
 
-	
+	// @Override
+	// public String toString() {
+	// return "UserDB [email=" + email + ", login=" + login + "]";
+	// }
+
 }
