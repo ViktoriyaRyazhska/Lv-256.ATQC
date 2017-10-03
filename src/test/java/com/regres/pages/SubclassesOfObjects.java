@@ -68,4 +68,8 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 		return nameSubclass;
 	}
 
+	public WebElement getNameSubclassDB(NewSubclass sub) {
+		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getnameClasses() + "')]"));
+		return nameSubclass;
+	}
 }
