@@ -13,7 +13,7 @@ public class RegistratorHomePage extends DropdownHomePage {
 	WebElement subclassesOfObjects;
 	WebElement procuration;
 	WebElement addNewResource;
-	//
+
 	WebElement procurationEnteringData;
 	WebElement procurationExtractFromRegister;
 
@@ -74,6 +74,7 @@ public class RegistratorHomePage extends DropdownHomePage {
 		return new SubclassesOfObjects(driver);
 	}
 
+	
 	// Business Logic
 	@Override
 	public RegistratorHomePage setLanguage(ChangeLanguageFields language) {

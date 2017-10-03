@@ -287,6 +287,9 @@ public class LoginPage extends TitleLocalFooter {
 		signIn(invaliduser);
 		return new LoginPage(driver);
 	}
+	public RegistratorHomePage getRegistratorHomePage() {
+		return new RegistratorHomePage(driver);
+	}
 
 	/**
 	 * This enum is made for further localization testing.
