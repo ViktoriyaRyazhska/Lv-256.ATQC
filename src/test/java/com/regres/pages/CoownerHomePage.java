@@ -4,38 +4,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CoownerHomePage {
-	WebDriver driver;
-	WebElement resourcesSearch;
-	WebElement procuration;
-	WebElement procurationEnteringData;
-	WebElement procurationExtractFromRegister;
+public class CoownerHomePage extends DropdownHomePage {
+    private String RESOURSE_SEARCH_CSS = ".dropdown>a";
+    private String PROCURATION_XPATH = ".//*[@id='navigationbar']/ul/li[3]/a";
+    private String PROCURATION_ENTERING_DATA = ".//*[@id='menuForUser']";
+    private String PROCURATION_EXTRACT_FROM_REGISTER = ".//*[@id='navigationbar']/ul/li[3]/ul/li[2]/a";
 
-	public CoownerHomePage(WebDriver driver) {
-		this.driver = driver;
-		resourcesSearch = driver.findElement(By.cssSelector(".dropdown>a"));
-		procuration = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/a"));
-		procurationEnteringData = driver.findElement(By.xpath(".//*[@id='menuForUser']"));
-		procurationExtractFromRegister = driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/ul/li[2]/a"));
-	}
+    public CoownerHomePage(WebDriver driver) {
+        super(driver);
+        getResourcesSearch();
+        getProcuration();
+        getProcurationEnteringData();
+        getProcurationExtractFromRegister();
+    }
 
-	public WebDriver getDriver() {
-		return driver;
-	}
+    public WebElement getResourcesSearch() {
+        return driver.findElement(By.cssSelector(RESOURSE_SEARCH_CSS));
+    }
 
-	public WebElement getResourcesSearch() {
-		return resourcesSearch;
-	}
+    public WebElement getProcuration() {
+        return driver.findElement(By.xpath(PROCURATION_XPATH));
+    }
 
-	public WebElement getProcuration() {
-		return procuration;
-	}
+    public WebElement getProcurationEnteringData() {
+        return driver.findElement(By.xpath(PROCURATION_ENTERING_DATA));
+    }
 
-	public WebElement getProcurationEnteringData() {
-		return procurationEnteringData;
-	}
-
-	public WebElement getProcurationExtractFromRegister() {
-		return procurationExtractFromRegister;
-	}
+    public WebElement getProcurationExtractFromRegister() {
+        return driver.findElement(By.xpath(PROCURATION_EXTRACT_FROM_REGISTER));
+    }
 }

@@ -9,7 +9,7 @@ import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 
 public class RegistratorHomePage extends DropdownHomePage {
 	// Fields
-	WebElement resourcesSearch;// винести окремою сторінкою
+	WebElement resourcesSearch;
 	WebElement subclassesOfObjects;
 	WebElement procuration;
 	WebElement addNewResource;
