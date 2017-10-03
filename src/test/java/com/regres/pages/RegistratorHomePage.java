@@ -26,7 +26,7 @@ public class RegistratorHomePage extends DropdownHomePage {
 		// driver.findElement(By.xpath(".//*[@id='menuForUser']"));
 		// procurationExtractFromRegister =
 		// driver.findElement(By.xpath(".//*[@id='navigationbar']/ul/li[3]/ul/li[2]/a"));
-		addNewResource = driver.findElement(By.linkText("Add new resource"));
+		addNewResource = driver.findElement(By.xpath("//a[contains(@href,\"resource/new\")]"));
 	}
 
 	// public void clickProcuration(WebDriver driver) {
