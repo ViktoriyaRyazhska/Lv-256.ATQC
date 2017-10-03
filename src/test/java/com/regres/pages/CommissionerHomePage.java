@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import com.regres.pages.manage.coowners.CoownersElementsOnPageDropdown;
 import com.regres.pages.manage.coowners.actions.ActiveCoownersActionsDropdown;
 
 
@@ -77,6 +78,7 @@ public class CommissionerHomePage extends DropdownHomePage{
 	}
 	public void clickInactiveCoowners() {
 		getInactiveCoowners().click();
+		
 	}
 	public void clickNonConfirmedCoowners() {
 		getNonConfirmedCoowners().click();
