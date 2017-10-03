@@ -106,19 +106,5 @@ public class ApplicationSources {
 	public static void closeConnectionDB() throws ClassNotFoundException, SQLException {
 		if (dbConnection != null)
 			dbConnection.close();
-	}
-
-	// public static void createCommunityinDB(Connection conn, String nameCommunity)
-	// throws SQLException, ClassNotFoundException {
-	// // the mysql insert statement
-	// conn = createDBConnection();
-	// String createCommunity = "Insert into
-	// registrator_db.territorial_community(name) values (?);";
-	// PreparedStatement st = (PreparedStatement)
-	// conn.prepareStatement(createCommunity);
-	//
-	// // Statement allows you to send inquiries database
-	// st.setString(1, nameCommunity);
-	// st.executeUpdate();
-	// }
+	}	
 }

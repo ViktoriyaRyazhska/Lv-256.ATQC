@@ -27,7 +27,7 @@ public class UserDB {
 	private String territorialCommunity_id;
 
 	private Connection conn;
-	
+
 	public UserDB(String account_non_expired, String account_non_locked, String attempts,
 			String credentials_non_expired, String date_of_accession, String email, String enabled, String first_Name,
 			String last_modified, String last_Name, String locked_till, String login, String middle_name,
@@ -197,7 +197,7 @@ public class UserDB {
 	}
 
 	// Method for creating new Use in DD
-	public void createUserInDB(UserDB userDB) throws SQLException, ClassNotFoundException {
+	public void createUserInDB(Connection conn, UserDB userDB) throws SQLException, ClassNotFoundException {
 		String createUser = "Insert into registrator_db.users (account_non_expired,account_non_locked,attempts,credentials_non_expired,date_of_accession,email,enabled,first_name,last_modified,last_name,locked_till,login,middle_name,password,phonenumber,status,role_id,territorialCommunity_id)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		PreparedStatement st = (PreparedStatement) conn.prepareStatement(createUser);
 
@@ -221,13 +221,15 @@ public class UserDB {
 		st.setString(17, userDB.getRole_id());
 		st.setString(18, userDB.getTerritorialCommunity_id());
 		st.executeUpdate();
+		st.close();
 	}
 
-	public void deleteUserInDB(UserDB userDB) throws SQLException, ClassNotFoundException {
+	public void deleteUserInDB(Connection conn, UserDB userDB) throws SQLException, ClassNotFoundException {
 		String deleteUser = "Delete from registrator_db.users where login=(?)";
 		PreparedStatement st = (PreparedStatement) conn.prepareStatement(deleteUser);
 		st.setString(1, userDB.getLogin());
 		st.executeUpdate();
 	}
 
+	
 }

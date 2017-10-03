@@ -37,7 +37,7 @@ public class CoownersTable extends AdminHomePage {
 	String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
 	String LAST_NAME_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[3]";
 	String LOGIN_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[4]";
-	String COMMUNITY_SEARCHN_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
+	String COMMUNITY_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
 	String EMAIL_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[6]";
 	String ROLE_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[7]";
 
@@ -103,7 +103,7 @@ public class CoownersTable extends AdminHomePage {
 	}
 
 	public WebElement getCommunityNameFirstRow() {
-		return driver.findElement(By.xpath(COMMUNITY_SEARCHN_FIRST_XPATH));
+		return driver.findElement(By.xpath(COMMUNITY_SEARCH_FIRST_XPATH));
 	}
 
 	public WebElement getEmailFirstRow() {

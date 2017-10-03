@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.regres.pages.ConfirmMessagePage;
@@ -21,13 +22,17 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	String COMMISSIONER_ROLE_XPATH = "//a[@val=\"COMMISSIONER\"]";
 
 	By communitiesName = By.className(".communName");
+	private ConfirmMessagePage confirmMessage;
 
 	//Locators for Confirm message window
-	String OK_BUTTON_XPATH = "//button[@data-bb-handler='ok']";
+	String CONFIRM_BUTTON_CSSSELECTOR = ".submit.btn.btn-success";
+//	String  CONFIRM_BUTTON_XPATH= "//*[@id='userCommunitySelectModal']/div/div/div[3]/button[2]";
+	String DROPDOWN_INPUT_CSSSELECTOR= ".autocomplete-suggestion.autocomplete-selected";
 	String CLOSE_BUTTON_CLASS_NAME = "close";
 	String CANSEL_BUTTON_CSSSELECTOR = ".btn.btn-info";
 	String TITLE_MESSAGE_CLASS_NAME = "modal-title";
 	String LABEL_CLASS_NAME = "control-label";
+	String INPUT_ID = "tc_search";
 	
 	
 	public ActiveCoownersActionsDropdown(WebDriver driver) {
@@ -88,23 +93,13 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 		return driver.findElement(By.xpath(COMMISSIONER_ROLE_XPATH));
 	}
 
-	public void clickSetCommunity() {
-		getSetCommunity().click();
-		confirm = new ConfirmMessagePage(driver);
-		// initialize these elements on 'Set community' confirm message
-		confirm.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
-		confirm.setCloseButton(driver.findElement(By.className("close")));
-		confirm.setCancelButton(driver.findElement(By.cssSelector(".btn.btn-info")));
-		confirm.setTitleMessage(driver.findElement(By.className("modal-title")));
-		confirm.setLabel(driver.findElement(By.className("control-label")));
-		confirm.setInput(driver.findElement(By.id("tc_search")));
-	}
+	
 
 	public void clickSetCommunityNotSelected() {
 		getSetCommunity().click();
 		initConfMessage();
 	}
-
+	
 	public void clickResetPassword() {
 		getResetPassword().click();
 		initConfMessage();
@@ -157,5 +152,48 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	public String getCommissionerRoleText() {
 		return getCommissionerRole().getText().trim();
 	}
+	
+	public void clickSetCommunity() {
+		getSetCommunity().click();
+		// initialize these elements on 'Set community' window			
+		getInputField();
+		getConfirmButton();
+		getCloseButton();
+		getCancelButton();
+		getTitleMessage();
+		getLabel();
+	}
+	
+	public WebElement getInputField() {
+		return driver.findElement(By.id(INPUT_ID));
+	}
+	public WebElement getConfirmButton() {
+		return driver.findElement(By.cssSelector(CONFIRM_BUTTON_CSSSELECTOR));
+	}
+	public void ClickConfirmButton() {	
+		confirmMessage = new ConfirmMessagePage(driver);
+		
+		getConfirmButton().click();
+		confirm.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
+		confirm.setTitleMessage(driver.findElement(By.className("bootbox-body")));
+		new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bb-handler='ok']")));
+		
+	}
+	public WebElement getCancelButton() {
+		return driver.findElement(By.cssSelector(CANSEL_BUTTON_CSSSELECTOR));
+	}
+	public WebElement getCloseButton() {
+		return driver.findElement(By.className(CLOSE_BUTTON_CLASS_NAME));
+	}
+	public WebElement getTitleMessage() {
+		return driver.findElement(By.className(TITLE_MESSAGE_CLASS_NAME));
+	}
+	public WebElement getLabel() {
+		return driver.findElement(By.className(LABEL_CLASS_NAME));
+	}	
+	public WebElement getDropdownInput() {
+		return driver.findElement(By.cssSelector(DROPDOWN_INPUT_CSSSELECTOR));
+	}
 
+	
 }
