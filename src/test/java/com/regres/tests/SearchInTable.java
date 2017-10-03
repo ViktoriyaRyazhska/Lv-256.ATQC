@@ -7,6 +7,7 @@ import com.regres.pages.LoginPage;
 import com.regres.pages.manage.coowners.CoownersTable;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForSerchTableTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -57,9 +58,9 @@ public class SearchInTable {
         // read table and write searched users to list
         coownerstable.setLastNameSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
@@ -76,9 +77,9 @@ public class SearchInTable {
         // read table and write searched users to list
         coownerstable.setLoginSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
@@ -95,9 +96,9 @@ public class SearchInTable {
         // read table and write searched users to list
         coownerstable.setCommunitySearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
@@ -114,11 +115,17 @@ public class SearchInTable {
         // read table and write searched users to list
         coownerstable.setLastNameSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
-
+    //check if message appear when result search table empty and if message correct
+    @Test
+    public void searchInEmptyTable() {
+        coownerstable.setFirstNameSearch("ahsgdlajhsdgkads");
+        coownerstable.getSearchButton().click();
+        Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), "В таблиці немає даних");
+    }
 }
 

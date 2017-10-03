@@ -51,7 +51,8 @@ public class CoownersTable extends AdminHomePage {
 
     //table body
     private String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
-    private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";//"//*[@id='example']/tbody/tr/td";
+    private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";
+    private String EMPTY_TABLE_CSS = ".dataTables_empty";
 
     public CoownersTable(WebDriver driver) {
         super(driver);
@@ -123,25 +124,30 @@ public class CoownersTable extends AdminHomePage {
         driver.findElement(By.xpath(FIRST_NAME_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by last name
     public void sortByLastName() {
         driver.findElement(By.xpath(LAST_NAME_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by login
     public void sortByLogin() {
         driver.findElement(By.xpath(LOGIN_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by community
     public void sortByCommunity() {
         driver.findElement(By.xpath(COMMUNITY_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by email
     public void sortByEmail() {
         driver.findElement(By.xpath(EMAIL_SORT_XPATH)).click();
     }
+
     //table sorting by role
     public void sortByRole() {
         driver.findElement(By.xpath(ROLE_SORT_XPATH)).click();
@@ -239,6 +245,12 @@ public class CoownersTable extends AdminHomePage {
         return getAlltableBodyCell().size();
     }
 
+    public String waitWhileEmptyTableAppear() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TABLE_BODY_CELL)));
+        return driver.findElement(By.cssSelector(EMPTY_TABLE_CSS)).getText();
+    }
+
     public void waitWhileTableAppear() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TABLE_BODY_CELL)));
@@ -259,6 +271,7 @@ public class CoownersTable extends AdminHomePage {
         }
         return filteredList;
     }
+
     /**
      * search in table by community
      *
@@ -307,8 +320,8 @@ public class CoownersTable extends AdminHomePage {
         return filteredList;
     }
 
-    public UserForSerchTableTest getSearchParameter(List<UserForSerchTableTest> userList){
-        return userList.get((int) (Math.random()*(userList.size()+1)));
+    public UserForSerchTableTest getSearchParameter(List<UserForSerchTableTest> userList) {
+        return userList.get((int) (Math.random() * (userList.size() + 1)));
     }
 
     /**
