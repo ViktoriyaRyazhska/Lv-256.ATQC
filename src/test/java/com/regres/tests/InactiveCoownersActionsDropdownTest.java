@@ -12,7 +12,6 @@ import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
-import com.regres.pages.manage.coowners.CoownersTable;
 import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown.LoginPageL10n;
 import com.regres.testdata.UserContainer;
@@ -21,7 +20,6 @@ public class InactiveCoownersActionsDropdownTest {
 	private Application app;
 	private LoginPage loginpage;
 	private AdminHomePage adminhomepage;
-	private CoownersTable coownerstable;
 	private InactiveCoownersActionsDropdown inactivecoowners;
 
 	@BeforeClass
@@ -29,8 +27,7 @@ public class InactiveCoownersActionsDropdownTest {
 		app = app.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
 		loginpage = app.load();
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		coownerstable = adminhomepage.goToInactiveCoowners();
-		inactivecoowners = coownerstable.goToInactiveCoowners();
+		inactivecoowners = adminhomepage.goToInactiveCoowners();
 	}
 
 	@AfterClass(alwaysRun = true)
