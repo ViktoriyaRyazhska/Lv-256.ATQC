@@ -6,7 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.regres.testdata.UserContainer;
-
+/**
+ * ChangePassword Page Object
+ * @author Юрій
+ *
+ */
 public class ChangePasswordPage extends DropdownHomePage {
 	// Elements of ChangePasswordPage
 	private WebElement title;

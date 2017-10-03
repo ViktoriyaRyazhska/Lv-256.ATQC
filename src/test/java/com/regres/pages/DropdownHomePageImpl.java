@@ -4,7 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
+/**
+ * DropdownHomePageImpl Page Object
+ * @author Юрій
+ *
+ */
 public class DropdownHomePageImpl extends DropdownHomePage {
 	private WebElement message;
 	String MESSAGE_LOCATOR = "strong";

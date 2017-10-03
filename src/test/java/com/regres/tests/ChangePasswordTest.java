@@ -16,7 +16,11 @@ import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 import com.regres.testdata.ChangePasswordPageLocalization;
 import com.regres.testdata.User;
 import com.regres.testdata.UserContainer;
-
+/**
+ * ChangePassword Tests
+ * @author Юрій
+ *
+ */
 public class ChangePasswordTest {
 	//fields declaration
 	ChangePasswordPageLocalization localization;
