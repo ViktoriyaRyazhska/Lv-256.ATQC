@@ -29,8 +29,7 @@ public class AddNewSubclassDBTest {
 	private SubclassesOfObjects subclassesOfObjects;
 	private AddNewSubclassPage addNewSublassPage;
 	private Application app;
-	private ConfirmMessagePage confirmMessage;
-
+	
 	@BeforeMethod
 	public void setUp() {
 		app = Application.get(ApplicationSourcesRepo.getChromeLocalApplicationDb());
