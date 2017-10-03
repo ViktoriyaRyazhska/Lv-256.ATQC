@@ -11,9 +11,9 @@ import com.regres.application.Application;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.ConfirmMessagePage;
+import com.regres.pages.GoogleEmailPage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.manage.coowners.actions.NonConfirmedCoownersActionsDropdown;
-import com.regres.testdata.GoogleEmail;
 import com.regres.testdata.UserContainer;
 
 public class NonConfirmedCoownersActionsTest {
@@ -22,7 +22,7 @@ public class NonConfirmedCoownersActionsTest {
 	private AdminHomePage adminhomepage;
 	private ConfirmMessagePage confirmMessage;
 	private NonConfirmedCoownersActionsDropdown nonConfirmed;
-	private GoogleEmail email;
+	private GoogleEmailPage email;
 
 	@BeforeClass
 	public void setUp() {
@@ -37,7 +37,7 @@ public class NonConfirmedCoownersActionsTest {
 		app.quit();
 	}
 
-	// @Test
+	 @Test
 	// this test verify that when in actions dropdown by clicking on 'Delete'
 	// link confirm message appears when not chosen co owner
 	public void checkClickDeleteWhenNotChosenCoowner() {
@@ -50,7 +50,7 @@ public class NonConfirmedCoownersActionsTest {
 		confirmMessage.clickCloseButton();
 	}
 
-	// @Test
+	 @Test(priority = 1)
 	// this test verify that when in actions dropdown by clicking on 'Send Email'
 	// link confirm message appears when not chosen co owner
 	public void checkClickSendEmailWhenNotChosenCoowner() {
@@ -63,7 +63,7 @@ public class NonConfirmedCoownersActionsTest {
 		confirmMessage.clickCloseButton();
 	}
 
-	// @Test
+	 @Test
 	// this test verify that when we choose coowner in table and click actions
 	// dropdown by clicking on 'Send Email Again'
 	// link confirm message appears
@@ -78,7 +78,7 @@ public class NonConfirmedCoownersActionsTest {
 		assertEquals(nonConfirmed.getTitleText(), "Непідтверджені співвласники");
 	}
 
-	// @Test
+	 @Test
 	// this test verify that when we choose coowner in table and click actions
 	// dropdown by clicking on 'Send Email Again'
 	// link confirm message appears
@@ -92,15 +92,18 @@ public class NonConfirmedCoownersActionsTest {
 		assertEquals(nonConfirmed.getTitleText(), "Непідтверджені співвласники");
 	}
 
-	@Test
+	@Test(dependsOnMethods = { "checkClickSendEmailOK"})
 	// this test verify that coowner get Email
 	public void checkEmail() {
 		email = nonConfirmed.goToEmail();
-		email.signIn();
-		email.search();
+		email.switchToNewTab();
+		email.signIn("bzhyvko90@gmail.com", "19902712");
+		email.search("l:unread", "Заявка на реєстрацію");
 		assertTrue(email.getEmail().size() > 0);
 		email.openEmail();
 		assertEquals(email.getLoginName(), "bzhyvko");
+		email.logout();
+		email.switchBackToMainAndCloseOldTab();
 	}
 
 }

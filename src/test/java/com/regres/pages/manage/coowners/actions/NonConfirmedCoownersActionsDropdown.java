@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.regres.pages.ConfirmMessagePage;
+import com.regres.pages.GoogleEmailPage;
 import com.regres.pages.manage.coowners.CoownersTable;
-import com.regres.testdata.GoogleEmail;
 
 public class NonConfirmedCoownersActionsDropdown extends CoownersTable {
 
@@ -75,9 +75,9 @@ public class NonConfirmedCoownersActionsDropdown extends CoownersTable {
 		return inactive.getConfirmMessage();
 	}
 
-	public GoogleEmail goToEmail() {
+	public GoogleEmailPage goToEmail() {
 		// Return a new page object representing the destination.
-		return new GoogleEmail(driver);
+		return new GoogleEmailPage(driver);
 	}
 
 	@Override
