@@ -1,10 +1,6 @@
 package com.regres.tests;
 
-import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,55 +12,59 @@ import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+import com.regres.testdata.UnblockAllCoownersMessageLocalization;
 import com.regres.testdata.UserContainer;
-
-
-
+/**
+ * UnblockAllCoowners test 
+ * @author Юрій
+ *
+ */
 public class UnblockAllCoownersTest {
-	private String baseURL;
+	//fields declaration;
+	UnblockAllCoownersMessageLocalization localization;
 	AdminHomePage adminhomepage;
 	Application app;
-	
-
+	// setup test
 	@BeforeClass
 	public void setUp() {
-		/*System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		baseURL = "http://localhost:8080/resources/";
-		driver.get(baseURL);*/
-		app = Application.get(ApplicationSourcesRepo.getChromeHerokuLocalhost());
-		
+		// setting up parameters
+		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+		// getting on login page
 		LoginPage loginpage = app.load();
+		//logging in as admin
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		
-	}
 
+	}
+// quit after end of tests
 	@AfterClass
 	public void tearDown() {
-		
+		// logging out
 		adminhomepage.clickLogout();
+		// quiting marionette
 		app.quit();
 	}
-
-	@Test(dataProvider="langProvider")
-	public void checkUnblockAllCoowners(ChangeLanguageFields language,String message) {
-		adminhomepage=adminhomepage.setLanguage(language);
+//checking UnblickAllCoowners
+	@Test(dataProvider = "langProvider")
+	public void checkUnblockAllCoowners(ChangeLanguageFields language, UnblockAllCoownersMessageLocalization localization) {
+		//changing localization
+		adminhomepage = adminhomepage.setLanguage(language);
+		//clicking unblockAllCoowners
 		adminhomepage.clickUnblockAllCoowners();
-		Assert.assertTrue(adminhomepage.getConfirmMessageUnblockAllCoownersText().equals(message));
+		//asserting succes message
+		Assert.assertEquals(adminhomepage.getConfirmMessageUnblockAllCoownersText(), localization.getMessage());
+		//clicking ok button
 		adminhomepage = adminhomepage.clickOkButtonOnConfirmUnblockAllCoowners();
-	
+		adminhomepage = new AdminHomePage(app.getDriver());
+
 	}
-	
+//Data provider
 	@DataProvider
 	public Object[] langProvider() {
-		
-		return new Object[][] {{ChangeLanguageFields.UKRAINIAN,"Ви успішно розблокували всіх співвласників"},{ChangeLanguageFields.ENGLISH,"Youve successfully unblocked all coowners!"},{ChangeLanguageFields.RUSSIAN,"Вы успешно разблокировали всех совладельцев!"}};
-	
-	}
-	
-	
-	
-	
-}
 
+		return new Object[][] { { ChangeLanguageFields.UKRAINIAN, localization.UA_MESSAGE },
+				{ ChangeLanguageFields.ENGLISH, localization.EN_MESSAGE },
+				{ ChangeLanguageFields.RUSSIAN,localization.RU_MESSAGE } };
+
+	}
+
+}
