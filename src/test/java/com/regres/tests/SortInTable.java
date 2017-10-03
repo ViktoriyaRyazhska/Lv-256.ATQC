@@ -14,7 +14,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class SortInTable {
@@ -50,11 +49,13 @@ public class SortInTable {
      */
     @Test
     public void sortInTableByFirstName() {
-        List<UserForSerchTableTest> userList1 = coownerstable.getListOfUsersFromTable();
-        Collections.sort(userList1, UserForSerchTableTest.userFirstNameComparatorASC);
-        coownerstable.clickFIRST_NAME_SORT();
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        Assert.assertTrue(coownerstable.compareToSortedListsByObjectFirstName(userList1, userList2));
+        //find all users from table write to list and sort by first name in ASC
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        Collections.sort(allUsers, UserForSerchTableTest.userFirstNameComparatorASC);
+        //sets sorting by first name and reads all table
+        coownerstable.sortByFirstName();
+        List<UserForSerchTableTest> sortedUsers = coownerstable.getListOfUsersFromTable();
+        Assert.assertTrue(coownerstable.compareListsByFirstName(allUsers, sortedUsers));
     }
 
     /**
@@ -62,11 +63,13 @@ public class SortInTable {
      */
     @Test
     public void sortInTableByLogin() {
-        List<UserForSerchTableTest> userList1 = coownerstable.getListOfUsersFromTable();
-        Collections.sort(userList1, UserForSerchTableTest.userLoginComparatorDESC);
-        coownerstable.clickLOGIN_SORT();//one click - desc, because sorted default by login in ASC
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        Assert.assertTrue(coownerstable.compareToSortedListsByObjectLogin(userList1, userList2));
+        //find all users from table write to list and sort by login in DESC
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        Collections.sort(allUsers, UserForSerchTableTest.userLoginComparatorDESC);
+        //sets sorting by login and reads all table
+        coownerstable.sortByLogin();
+        List<UserForSerchTableTest> sortedUsers = coownerstable.getListOfUsersFromTable();
+        Assert.assertTrue(coownerstable.compareListsByLogin(allUsers, sortedUsers));
     }
 
     /**
@@ -74,11 +77,13 @@ public class SortInTable {
      */
     @Test
     public void sortInTableByCommunity() {
-        List<UserForSerchTableTest> userList1 = coownerstable.getListOfUsersFromTable();
-        Collections.sort(userList1, UserForSerchTableTest.userCommunityNameComparatorASC);
-        coownerstable.clickCOMMUNITY_SORT();
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        Assert.assertTrue(coownerstable.compareToSortedListsByObjectCommunityName(userList1, userList2));
+        //find all users from table write to list and sort by community in ASC
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        Collections.sort(allUsers, UserForSerchTableTest.userCommunityNameComparatorASC);
+        //sets sorting by community and reads all table
+        coownerstable.sortByCommunity();
+        List<UserForSerchTableTest> sortedUsers = coownerstable.getListOfUsersFromTable();
+        Assert.assertTrue(coownerstable.compareListsByCommunityName(allUsers, sortedUsers));
     }
 
     /**
@@ -86,11 +91,13 @@ public class SortInTable {
      */
     @Test
     public void sortInTableByLastName() {
-        List<UserForSerchTableTest> userList1 = coownerstable.getListOfUsersFromTable();
-        Collections.sort(userList1, UserForSerchTableTest.userLastNameComparatorASC);
-        coownerstable.clickLAST_NAME_SORT();
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        Assert.assertTrue(coownerstable.compareToSortedListsByObjectLastName(userList1, userList2));
+        //find all users from table write to list and sort by last name in ASC
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        Collections.sort(allUsers, UserForSerchTableTest.userLastNameComparatorASC);
+        //sets sorting by last name and reads all table
+        coownerstable.sortByLastName();
+        List<UserForSerchTableTest> sortedUsers = coownerstable.getListOfUsersFromTable();
+        Assert.assertTrue(coownerstable.compareListsByLastName(allUsers, sortedUsers));
     }
 }
 

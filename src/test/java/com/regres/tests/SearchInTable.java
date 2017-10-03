@@ -7,6 +7,7 @@ import com.regres.pages.LoginPage;
 import com.regres.pages.manage.coowners.CoownersTable;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForSerchTableTest;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -19,7 +20,6 @@ public class SearchInTable {
     private LoginPage loginpage;
     private AdminHomePage adminhomepage;
     private CoownersTable coownerstable;
-
 
     @BeforeClass
     public void setUp() {
@@ -34,7 +34,7 @@ public class SearchInTable {
     }
 
     /**
-     * choose non-confirmed co-owners and set option items on page = 100
+     * choose non-confirmed co-owners
      */
     @BeforeMethod
     public void beforeTest() {
@@ -48,47 +48,77 @@ public class SearchInTable {
      */
     @Test
     public void searchInTableByFirstName() {
-        //read full table and write to list users whose first name contains "ya"
-        List<UserForSerchTableTest> userList1 = coownerstable.searchByFirstName("ya");
-        //set value in search field "First Name"
-        coownerstable.setFIRST_NAME_SEARCH("ya");
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getFirstName();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByFirstName(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setLastNameSearch(searchParam);
         coownerstable.getSearchButton().click();
-        //read new table with search result and write user to new list
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        coownerstable.compareLists(userList1, userList2);
+        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
     }
+
     /**
      * test verify that seatch in table by "Login" work correct
      */
     @Test
     public void searchInTableByLogin() {
-        List<UserForSerchTableTest> userList1 = coownerstable.searchByLogin("in");
-        coownerstable.setLOGIN_SEARCH("in");
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getLogin();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByLogin(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setLoginSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        coownerstable.compareLists(userList1, userList2);
+        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
     }
+
     /**
      * test verify that seatch in table by "Community" work correct
      */
     @Test
     public void searchInTableByCommunity() {
-        List<UserForSerchTableTest> userList1 = coownerstable.searchByTerritorialCommunityName("Ukr");
-        coownerstable.setCOMMUNITY_SEARCHN("Ukr");
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getTerritorialCommunityName();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByCommunity(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setCommunitySearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        coownerstable.compareLists(userList1, userList2);
+        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
     }
+
     /**
      * test verify that seatch in table by "Last Name" work correct
      */
     @Test
     public void searchInTableByLastName() {
-        List<UserForSerchTableTest> userList1 = coownerstable.searchByLastName("aa");
-        coownerstable.setLAST_NAME_SEARCH("aa");
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getLastName();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByLastName(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setLastNameSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> userList2 = coownerstable.getListOfUsersFromTable();
-        coownerstable.compareLists(userList1, userList2);
+        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
     }
+
+
 }
 

@@ -11,47 +11,47 @@ import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CoownersTable extends AdminHomePage {
     public ConfirmMessagePage confirm;
-    String ACTIONS_ID = "dLabel";
-    String COUNT_ELEMENTS_CSSSELECTOR = "label>select";
-    String SEARCH_BUTTON_ID = "bth-search";
-    String PREV_BUTTON_ID = "example_previous";
-    String NEXT_BUTTON_ID = "example_next";
-    String PAGINATE_CURRENT_BUTTON_CSSSELECTOR = ".paginate_button.current";
+    private String ACTIONS_ID = "dLabel";
+    private String COUNT_ELEMENTS_CSSSELECTOR = "label>select";
+    private String SEARCH_BUTTON_ID = "bth-search";
+    private String PREV_BUTTON_ID = "example_previous";
+    private String NEXT_BUTTON_ID = "example_next";
+    private String PAGINATE_CURRENT_BUTTON_CSSSELECTOR = ".paginate_button.current";
+    private String NUMBERS_OF_ROWN_IN_TABLE_NAME = "example_length";
 
     //table sorting rows
-    String FIRST_NAME_SORT_XPATH = ".//*[@id='example']/thead/tr/th[2]";
-    String LAST_NAME_SORT_XPATH = ".//*[@id='example']/thead/tr/th[3]";
-    String LOGIN_SORT_XPATH = ".//*[@id='example']/thead/tr/th[4]";
-    String COMMUNITY_SORT_XPATH = ".//*[@id='example']/thead/tr/th[5]";
-    String EMAIL_SORT_XPATH = ".//*[@id='example']/thead/tr/th[6]";
-    String ROLE_SORT_XPATH = ".//*[@id='example']/thead/tr/th[7]";
+    private String FIRST_NAME_SORT_XPATH = ".//*[@id='example']/thead/tr/th[2]";
+    private String LAST_NAME_SORT_XPATH = ".//*[@id='example']/thead/tr/th[3]";
+    private String LOGIN_SORT_XPATH = ".//*[@id='example']/thead/tr/th[4]";
+    private String COMMUNITY_SORT_XPATH = ".//*[@id='example']/thead/tr/th[5]";
+    private String EMAIL_SORT_XPATH = ".//*[@id='example']/thead/tr/th[6]";
+    private String ROLE_SORT_XPATH = ".//*[@id='example']/thead/tr/th[7]";
 
     //table search row
-    String FIRST_NAME_COLUMN = ".//*[@id='inputIndex1']";
-    String LAST_NAME_COLUMN = ".//*[@id='inputIndex2']";
-    String LOGIN_COLUMN = ".//*[@id='inputIndex3']";
-    String COMMUNITY_COLUMN = ".//*[@id='inputIndex4']";
-    String EMAIL_COLUMN = ".//*[@id='inputIndex5']";
-    String ROLE_COLUMN = ".//*[@id='inputIndex6']";
+    private String FIRST_NAME_COLUMN = ".//*[@id='inputIndex1']";
+    private String LAST_NAME_COLUMN = ".//*[@id='inputIndex2']";
+    private String LOGIN_COLUMN = ".//*[@id='inputIndex3']";
+    private String COMMUNITY_COLUMN = ".//*[@id='inputIndex4']";
+    private String EMAIL_COLUMN = ".//*[@id='inputIndex5']";
+    private String ROLE_COLUMN = ".//*[@id='inputIndex6']";
 
     // table columns second row search
-    String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
-    String LAST_NAME_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[3]";
-    String LOGIN_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[4]";
-    String COMMUNITY_SEARCHN_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
-    String EMAIL_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[6]";
-    String ROLE_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[7]";
+    private String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
+    private String LAST_NAME_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[3]";
+    private String LOGIN_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[4]";
+    private String COMMUNITY_SEARCHN_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
+    private String EMAIL_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[6]";
+    private String ROLE_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[7]";
 
     //table body
-    String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
-    String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";//"//*[@id='example']/tbody/tr/td";
+    private String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
+    private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";//"//*[@id='example']/tbody/tr/td";
 
     public CoownersTable(WebDriver driver) {
         super(driver);
@@ -63,11 +63,11 @@ public class CoownersTable extends AdminHomePage {
         getPaginateCurrentButton();
     }
 
-    public WebElement getActions() {
+    protected WebElement getActions() {
         return driver.findElement(By.id(ACTIONS_ID));
     }
 
-    public WebElement getCountElements() {
+    private WebElement getCountElements() {
         return driver.findElement(By.cssSelector(COUNT_ELEMENTS_CSSSELECTOR));
     }
 
@@ -75,15 +75,15 @@ public class CoownersTable extends AdminHomePage {
         return driver.findElement(By.id(SEARCH_BUTTON_ID));
     }
 
-    public WebElement getPrevButtton() {
+    private WebElement getPrevButtton() {
         return driver.findElement(By.id(PREV_BUTTON_ID));
     }
 
-    public WebElement getNextButtton() {
+    private WebElement getNextButtton() {
         return driver.findElement(By.id(NEXT_BUTTON_ID));
     }
 
-    public WebElement getPaginateCurrentButton() {
+    private WebElement getPaginateCurrentButton() {
         return driver.findElement(By.cssSelector(PAGINATE_CURRENT_BUTTON_CSSSELECTOR));
     }
 
@@ -111,16 +111,6 @@ public class CoownersTable extends AdminHomePage {
         return driver.findElement(By.xpath(ROLE_SEARCH_FIRST_XPATH));
     }
 
-    //sets the number of visible rows in table 100
-    public void setNumbeOfItemsInTable() {
-        new Select(driver.findElement(By.name("example_length"))).selectByVisibleText("100");
-    }
-
-    //sets the number of visible rows in table 10
-    public void setNumbeOfItemsInTable10() {
-        new Select(driver.findElement(By.name("example_length"))).selectByVisibleText("10");
-    }
-
     // Business Logic
 
     public InactiveCoownersActionsDropdown goToInactiveCoowners() {
@@ -128,32 +118,32 @@ public class CoownersTable extends AdminHomePage {
         return new InactiveCoownersActionsDropdown(driver);
     }
 
-    //table sorting rows Click
-    public void clickFIRST_NAME_SORT() {
+    //table sorting by first name
+    public void sortByFirstName() {
         driver.findElement(By.xpath(FIRST_NAME_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
-
-    public void clickLAST_NAME_SORT() {
+    //table sorting by last name
+    public void sortByLastName() {
         driver.findElement(By.xpath(LAST_NAME_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
-
-    public void clickLOGIN_SORT() {
+    //table sorting by login
+    public void sortByLogin() {
         driver.findElement(By.xpath(LOGIN_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
-
-    public void clickCOMMUNITY_SORT() {
+    //table sorting by community
+    public void sortByCommunity() {
         driver.findElement(By.xpath(COMMUNITY_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
-
-    public void clickEMAIL_SORT() {
+    //table sorting by email
+    public void sortByEmail() {
         driver.findElement(By.xpath(EMAIL_SORT_XPATH)).click();
     }
-
-    public void clickROLE_SORT() {
+    //table sorting by role
+    public void sortByRole() {
         driver.findElement(By.xpath(ROLE_SORT_XPATH)).click();
     }
 
@@ -206,47 +196,47 @@ public class CoownersTable extends AdminHomePage {
         return getRoleColumn().getText().trim();
     }
 
-    public void setFIRST_NAME_SEARCH(String FIRST_NAME_SEARCH) {
-        getFirstNameColumn().sendKeys(FIRST_NAME_SEARCH);
+    public void setFirstNameSearch(String firstNameSearch) {
+        getFirstNameColumn().sendKeys(firstNameSearch);
     }
 
-    public void setLAST_NAME_SEARCH(String LAST_NAME_SEARCH) {
-        getLastNameColumn().sendKeys(LAST_NAME_SEARCH);
+    public void setLastNameSearch(String lastNameSearch) {
+        getLastNameColumn().sendKeys(lastNameSearch);
     }
 
-    public void setLOGIN_SEARCH(String LOGIN_SEARCH) {
-        getLoginColumn().sendKeys(LOGIN_SEARCH);
+    public void setLoginSearch(String loginSearch) {
+        getLoginColumn().sendKeys(loginSearch);
     }
 
-    public void setCOMMUNITY_SEARCHN(String COMMUNITY_SEARCHN) {
-        getCommunityColumn().sendKeys(COMMUNITY_SEARCHN);
+    public void setCommunitySearch(String communitySearch) {
+        getCommunityColumn().sendKeys(communitySearch);
     }
 
-    public void setEMAIL_SEARCH(String EMAIL_SEARCH) {
-        getEmailColumn().sendKeys(EMAIL_SEARCH);
+    public void setEmailSearch(String emailSearch) {
+        getEmailColumn().sendKeys(emailSearch);
     }
 
-    public void setROLE_SEARCH(String ROLE_SEARCH) {
-        getRoleColumn().sendKeys(ROLE_SEARCH);
+    public void setRoleSearch(String roleSearch) {
+        getRoleColumn().sendKeys(roleSearch);
     }
 
     //work with table
-    public List<WebElement> getALL_TABLE_BODY_ROWS() {
+    public List<WebElement> getAllTableBodyRows() {
         List<WebElement> rows_collection = driver.findElements(By.xpath(TABLE_BODY_ROWS));
         return rows_collection;
     }
 
-    public List<WebElement> getALL_TABLE_BODY_CELL() {
+    public List<WebElement> getAlltableBodyCell() {
         List<WebElement> cell_collection = driver.findElements(By.xpath(TABLE_BODY_CELL));
         return cell_collection;
     }
 
-    public int getTABLE_BODY_ROWS_COUNT() {
-        return getALL_TABLE_BODY_ROWS().size();
+    public int getTableBodyRowsCount() {
+        return getAllTableBodyRows().size();
     }
 
-    public int getTABLE_BODY_CELL_COUNT() {
-        return getALL_TABLE_BODY_CELL().size();
+    public int getTableBodyCellsCount() {
+        return getAlltableBodyCell().size();
     }
 
     public void waitWhileTableAppear() {
@@ -255,80 +245,84 @@ public class CoownersTable extends AdminHomePage {
     }
 
     /**
-     * search in table users whose "firstName" contains "text"
+     * search in table by last Name
      *
-     * @param firstName - "text" to search in firstName
+     * @param - "searchParamether"
      * @return list of searched users
      */
-    public List<UserForSerchTableTest> searchByFirstName(String firstName) {
-        List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
-        for (UserForSerchTableTest u : getListOfUsersFromTable()) {
-            if (u.getFirstName().contains(firstName)) {
-                userList.add(u);
+    public List<UserForSerchTableTest> searchByLastName(List<UserForSerchTableTest> userList, String searchParamether) {
+        List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
+        for (UserForSerchTableTest u : userList) {
+            if (u.getLastName().contains(searchParamether)) {
+                filteredList.add(u);
             }
         }
-        return userList;
+        return filteredList;
+    }
+    /**
+     * search in table by community
+     *
+     * @param - searchParamether
+     * @return list of searched users
+     */
+    public List<UserForSerchTableTest> searchByCommunity(List<UserForSerchTableTest> userList, String searchParamether) {
+        List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
+        for (UserForSerchTableTest u : userList) {
+            if (u.getTerritorialCommunityName().contains(searchParamether)) {
+                filteredList.add(u);
+            }
+        }
+        return filteredList;
     }
 
     /**
-     * search in table users whose "lastName" contains "text"
+     * search in table by first name
      *
-     * @param lastName - "text" to search in firstName
+     * @param - "searchParamether"
      * @return list of searched users
      */
-    public List<UserForSerchTableTest> searchByLastName(String lastName) {
-        List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
-        for (UserForSerchTableTest u : getListOfUsersFromTable()) {
-            if (u.getLastName().contains(lastName)) {
-                userList.add(u);
+    public List<UserForSerchTableTest> searchByFirstName(List<UserForSerchTableTest> userList, String searchParamether) {
+        List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
+        for (UserForSerchTableTest u : userList) {
+            if (u.getFirstName().contains(searchParamether)) {
+                filteredList.add(u);
             }
         }
-        return userList;
+        return filteredList;
     }
 
     /**
-     * search in table users whose "login" contains "text"
+     * search in table by login
      *
-     * @param login - "text" to search in firstName
+     * @param - "searchParamether"
      * @return list of searched users
      */
-    public List<UserForSerchTableTest> searchByLogin(String login) {
-        List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
-        for (UserForSerchTableTest u : getListOfUsersFromTable()) {
-            if (u.getLogin().contains(login)) {
-                userList.add(u);
+    public List<UserForSerchTableTest> searchByLogin(List<UserForSerchTableTest> userList, String searchParamether) {
+        List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
+        for (UserForSerchTableTest u : userList) {
+            if (u.getLogin().contains(searchParamether)) {
+                filteredList.add(u);
             }
         }
-        return userList;
+        return filteredList;
     }
 
-    /**
-     * search in table users whose "TerritorialCommunityName" contains "text"
-     *
-     * @param TerritorialCommunityName - "text" to search in firstName
-     * @return list of searched users
-     */
-    public List<UserForSerchTableTest> searchByTerritorialCommunityName(String TerritorialCommunityName) {
-        List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
-        for (UserForSerchTableTest u : getListOfUsersFromTable()) {
-            if (u.getTerritorialCommunityName().contains(TerritorialCommunityName)) {
-                userList.add(u);
-            }
-        }
-        return userList;
+    public UserForSerchTableTest getSearchParameter(List<UserForSerchTableTest> userList){
+        return userList.get((int) (Math.random()*(userList.size()+1)));
     }
 
     /**
      * read all table and write users to list, one row - one user
+     * one row contains 8 cells
      *
      * @return list of users from table
      */
     public List<UserForSerchTableTest> getListOfUsersFromTable() {
         waitWhileTableAppear();
         List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
-        List<WebElement> celllist = getALL_TABLE_BODY_CELL();//choose all cells in table
-        int count = getTABLE_BODY_CELL_COUNT();//вирараховуємо кількість комірок
-        for (int j = 0; j <= count - 8; j = j + 8) {//в рядку по 8 комірок, вичитуємо коженя рядок
+        List<WebElement> celllist = getAlltableBodyCell();
+        int count = getTableBodyCellsCount();
+        for (int j = 0; j <= count - 8; j = j + 8) {
             userList.add(new UserForSerchTableTest(
                     celllist.get(j + 0).getText(),
                     celllist.get(j + 1).getText(),
@@ -343,13 +337,16 @@ public class CoownersTable extends AdminHomePage {
         return userList;
     }
 
-    public void compareLists(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
-        System.out.println(userList1.equals(userList2));
-        Assert.assertTrue(userList1.size() == userList2.size());
+    // compares equality of two user lists
+    public boolean compareLists(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+        if (userList1.equals(userList2)) {
+            return true;
+        }
+        return false;
     }
 
-    //methods to compare two object lists by chosen parameter
-    public boolean compareToSortedListsByObjectFirstName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+    //methods to compare two object lists by FirstName
+    public boolean compareListsByFirstName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
         for (int i = 0; i <= userList1.size() - 1; i++) {
             if (!(userList1.get(i).getFirstName().equalsIgnoreCase(userList2.get(i).getFirstName()))) {
                 System.out.println(userList1.get(i).getFirstName() + " " + userList2.get(i).getFirstName());
@@ -359,7 +356,8 @@ public class CoownersTable extends AdminHomePage {
         return true;
     }
 
-    public boolean compareToSortedListsByObjectLogin(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+    //methods to compare two object lists by Login
+    public boolean compareListsByLogin(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
         for (int i = 0; i <= userList1.size() - 1; i++) {
             if (!(userList1.get(i).getLogin().equalsIgnoreCase(userList2.get(i).getLogin()))) {
                 System.out.println(userList1.get(i).getLogin() + " " + userList2.get(i).getLogin());
@@ -369,7 +367,8 @@ public class CoownersTable extends AdminHomePage {
         return true;
     }
 
-    public boolean compareToSortedListsByObjectCommunityName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+    //methods to compare two object lists by CommunityName
+    public boolean compareListsByCommunityName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
         for (int i = 0; i <= userList1.size() - 1; i++) {
             if (!(userList1.get(i).getTerritorialCommunityName().equalsIgnoreCase(userList2.get(i).getTerritorialCommunityName()))) {
                 System.out.println(userList1.get(i).getTerritorialCommunityName() + " " + userList2.get(i).getTerritorialCommunityName());
@@ -379,7 +378,8 @@ public class CoownersTable extends AdminHomePage {
         return true;
     }
 
-    public boolean compareToSortedListsByObjectLastName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
+    //methods to compare two object lists by LastName
+    public boolean compareListsByLastName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
         for (int i = 0; i <= userList1.size() - 1; i++) {
             if (!(userList1.get(i).getLastName().equalsIgnoreCase(userList2.get(i).getLastName()))) {
                 System.out.println(userList1.get(i).getLastName() + " " + userList2.get(i).getLastName());
@@ -387,6 +387,16 @@ public class CoownersTable extends AdminHomePage {
             }
         }
         return true;
+    }
+
+    //sets the number of visible rows in table 100
+    public void setNumbeOfItemsInTable() {
+        new Select(driver.findElement(By.name(NUMBERS_OF_ROWN_IN_TABLE_NAME))).selectByVisibleText("100");
+    }
+
+    //sets the number of visible rows in table 10
+    public void setNumbeOfItemsInTable10() {
+        new Select(driver.findElement(By.name(NUMBERS_OF_ROWN_IN_TABLE_NAME))).selectByVisibleText("10");
     }
 }
 
