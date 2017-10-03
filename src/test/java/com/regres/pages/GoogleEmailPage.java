@@ -58,7 +58,7 @@ public class GoogleEmailPage {
 			.visibilityOfElementLocated(By
 					.xpath(INPUT_SEARCH_XPATH)));
 		driver.findElement(By.xpath(INPUT_SEARCH_XPATH))
-				.sendKeys(commandSearch + searchEmail);
+				.sendKeys(commandSearch +" "+ searchEmail);
 		driver.findElement(By.xpath(BUTTON_SEARCH_XPATH)).click();
 	}
 	// open email

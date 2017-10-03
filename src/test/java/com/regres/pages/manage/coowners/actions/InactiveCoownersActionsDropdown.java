@@ -30,7 +30,9 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 	private String SET_COMMUNITY_CLASS_NAME = "set-community";
 	// Locators for confirm message on inactive co-owners page
 	private String OK_BUTTON_CONFIRM_XPATH = "//button[@data-bb-handler='ok']";
+	private String CONFIRM_BUTTON_CSS_SELECTOR = "button.submit";
 	private String CLOSE_BUTTON_CONFIRM_CSS_SELECTOR = "div.modal-body button.close";
+	private String CLOSE_BUTTON_SET_COMMUNITY_XPATH = "//div[@id='userCommunitySelectModal']//button[@class = 'close']";
 	private String CANCEL_BUTTON_CONFIRM_CSS_SELECTOR = ".btn.btn-info";
 	private String TITLE_CONFIRM_CLASS_NAME = "modal-title";
 	private String LABLE_CONFIRM_CLASS_NAME = "control-label";
@@ -118,9 +120,12 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 	public void clickSetCommunity() {
 		confirmMessage = new ConfirmMessagePage(driver);
 		this.setCommunity.click();
+		//wait for confirm message appears
+				(new WebDriverWait(driver, 10)).until(
+						ExpectedConditions.visibilityOf(driver.findElement(By.className(TITLE_CONFIRM_CLASS_NAME))));
 		// initialize these elements on 'Set community' confirm message
-		confirmMessage.setOkButton(driver.findElement(By.xpath(OK_BUTTON_CONFIRM_XPATH)));
-		confirmMessage.setCloseButton(driver.findElement(By.cssSelector(CLOSE_BUTTON_CONFIRM_CSS_SELECTOR)));
+		confirmMessage.setOkButton(driver.findElement(By.cssSelector(CONFIRM_BUTTON_CSS_SELECTOR)));
+		confirmMessage.setCloseButton(driver.findElement(By.xpath(CLOSE_BUTTON_SET_COMMUNITY_XPATH)));
 		confirmMessage.setCancelButton(driver.findElement(By.cssSelector(CANCEL_BUTTON_CONFIRM_CSS_SELECTOR)));
 		confirmMessage.setTitleMessage(driver.findElement(By.className(TITLE_CONFIRM_CLASS_NAME)));
 		confirmMessage.setLabel(driver.findElement(By.className(LABLE_CONFIRM_CLASS_NAME)));
@@ -170,7 +175,17 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 				"Для выполнения данной операции сначала нужно выбрать совладельцев, "
 						+ "нажав на соответствующие строки в таблице",
 				"To perform this operation you must first select coowners"
-						+ " by clicking on the appropriate rows in the table" );
+						+ " by clicking on the appropriate rows in the table" ),
+		TITLE_SET_COMMUNITY_CONFIRM_MESSAGE("Введіть дані", "Введите данные","Enter the data"),
+		LABEL_SET_COMMUNITY_CONFIRM_MESSAGE("Найменування громади:","Найменование общины:","Community name:"),
+		CANCEL_SET_COMMUNITY_CONFIRM_MESSAGE("Відмінити","Отменить","Cancel"),
+		CONFIRM_SET_COMMUNITY_CONFIRM_MESSAGE("Підтвердити","Подтвердить","Confirm"),
+		NOT_BE_EMPTY_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Поле \"Громада\" не може бути пустим. Будь-ласка виберіть значення зі списку.",
+				"Поле не может быть пустым. Пожалуйста выберите значение из списка.",
+				"This field cant be empty. Please select a value from the list."),
+		OK("OK","OK","OK"),
+		CHANGES_ACCEPTED("Зміни застосовано","Изменения сохранены","Changes accepted");
 		
 		private HashMap<ChangeLanguageFields, String> field;
 

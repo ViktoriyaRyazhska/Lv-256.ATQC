@@ -70,6 +70,33 @@ public class InactiveCoownersActionsDropdownTest {
 				LoginPageL10n.CONFIRM_MESSAGE_WHEN_DONOT_CHOSEN_COOWNER.getLocalization(language));
 		inactivecoowners.getConfirmMessage().clickCloseButton();
 	}
+	
+	@Test(dataProvider = "L10N")
+	// this test verify that when in action dropdown by clicking on 'Set community'
+	// link confirm message appears when not chosen co-owner
+	public void checkClickSetCommunity(ChangeLanguageFields language) {
+		inactivecoowners = inactivecoowners.setLanguage(language);
+		inactivecoowners.search("co_owner");
+		inactivecoowners.clickFirstRow();
+		inactivecoowners.clickActionsDropdown();
+		inactivecoowners.clickSetCommunity();
+		assertEquals(inactivecoowners.getConfirmMessage().getTitleMessageText(),
+				LoginPageL10n.TITLE_SET_COMMUNITY_CONFIRM_MESSAGE.getLocalization(language));
+		assertEquals(inactivecoowners.getConfirmMessage().getLabelText(),
+				LoginPageL10n.LABEL_SET_COMMUNITY_CONFIRM_MESSAGE.getLocalization(language));
+		assertEquals(inactivecoowners.getConfirmMessage().getOkButtonText(),
+				LoginPageL10n.CONFIRM_SET_COMMUNITY_CONFIRM_MESSAGE.getLocalization(language));
+        assertEquals(inactivecoowners.getConfirmMessage().getCancelButtonText(),
+        		LoginPageL10n.CANCEL_SET_COMMUNITY_CONFIRM_MESSAGE.getLocalization(language));
+		inactivecoowners.getConfirmMessage().clickOkButton();
+		inactivecoowners.simpleConfirmMessage();
+		assertEquals(inactivecoowners.getConfirmMessage().getOkButtonText(),
+				LoginPageL10n.OK.getLocalization(language));
+        assertEquals(inactivecoowners.getConfirmMessage().getConfirmMessageText(),
+        		LoginPageL10n.NOT_BE_EMPTY_SET_COMMUNITY_CONFIRM_MESSAGE.getLocalization(language));
+        inactivecoowners.getConfirmMessage().clickOkButton();
+	}
+	
 
 	@DataProvider(name = "L10N")
 	public static Object[] localizationProvider() {

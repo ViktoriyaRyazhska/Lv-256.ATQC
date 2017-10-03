@@ -26,7 +26,8 @@ public class NonConfirmedCoownersActionsTest {
 
 	@BeforeClass
 	public void setUp() {
-		app = app.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+		//app = app.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
 		loginpage = app.load();
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
 		nonConfirmed = adminhomepage.goToNonConfirmedCoowners();

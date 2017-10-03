@@ -61,7 +61,7 @@ public class CoownersTable extends AdminHomePage {
 	}
 
 	public WebElement getSearchButton() {
-		return driver.findElement(By.id(ACTIONS_ID));
+		return driver.findElement(By.id(SEARCH_BUTTON_ID));
 	}
 
 	public WebElement getPrevButtton() {
@@ -146,6 +146,7 @@ public class CoownersTable extends AdminHomePage {
 	}
 
 	public void clickFirstRow() {
+		this.clickUserName();
 		this.getFirstRowTable().click();
 	}
 
