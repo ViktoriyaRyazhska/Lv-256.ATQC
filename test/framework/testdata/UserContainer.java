@@ -43,7 +43,7 @@ public class UserContainer {
 	 */
 	public static User getCommissioner() {
 
-		return new User().setLogin("andriy97").setPassword("andriy97");
+		return new User().setLogin("a123").setPassword("qwerty");
 	}
 
 	/**
