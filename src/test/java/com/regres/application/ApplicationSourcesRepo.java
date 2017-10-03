@@ -29,6 +29,12 @@ public final class ApplicationSourcesRepo {
 			"http://localhost:8080/resources/login",
 			"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db","root","1234567890");
 		}
+	
+	public static ApplicationSources getFirefoxLocalApplicationDB() {
+		  return new ApplicationSources("FireFox", "resources\\geckodriver.exe",
+			"http://localhost:8080/resources/login",
+			"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db","root","1234567890");
+		}
 
 }
 

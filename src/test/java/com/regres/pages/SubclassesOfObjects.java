@@ -58,18 +58,18 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	}
 
 	public WebElement getDeleteSubclass(NewSubclass sub) {
-		deleteSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getnameClasses() + "')]/following::a"));
+		deleteSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]/following::a"));
 		return deleteSubclass;
 
 	}
 
 	public WebElement getSubclassName(NewSubclass sub) {
-		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getnameClasses() + "')]"));
+		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]"));
 		return nameSubclass;
 	}
 
 	public WebElement getNameSubclassDB(NewSubclass sub) {
-		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getnameClasses() + "')]"));
+		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]"));
 		return nameSubclass;
 	}
 }

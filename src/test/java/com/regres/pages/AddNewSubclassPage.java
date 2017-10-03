@@ -1,12 +1,17 @@
 package com.regres.pages;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import com.regres.testdata.NewSubclass;
 
 public class AddNewSubclassPage extends RegistratorHomePage {
@@ -27,6 +32,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public WebElement optionLinearParameter;
 	public WebElement optionDiscreteParameters;
 	private WebElement errorMessage;
+	private WebElement dropdownOptionByDefault;
 
 	String TITLE_ADD_NEW_SUBCLASS_XPATH = "//*[@id='body']/h2";
 	String ENTER_NAME_FIELD_NAME = "typeName";
@@ -41,7 +47,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	String SAVE_BUTTON_XPATH = "//*[@type='submit']";
 	String CLEAR_BUTTON_XPATH = "//*[@type='reset']";
 	String DROPDOWN_BUTTON_XPATH = "//*[@id='myparam2']";
-	String OPTION_BY_DEFAULT_XPATH = "";
+	String DROPDOWN_OPTION_BY_DEFAULT_XPATH = "//*[@id='myparam2']/option[1]";
 	String OPTION_LINEAR_PARAMETER_XPATH = "//*[@id='myparam2']/option[2]";
 	String OPTION_DISCRETE_PARAMETERS_XPATH = "//*[@id='myparam2']/option[3]";
 	String ERROR_MESSAGE_XPATH = "//*[@id='typeName.errors']";
@@ -173,8 +179,13 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		getDropdownButton().click();
 	}
 
-	public String getDropdownButtonText() {
-		return dropdownButton.getText().trim();
+	public WebElement getDropdownOptionByDefault() {
+		dropdownOptionByDefault = driver.findElement(By.xpath(DROPDOWN_OPTION_BY_DEFAULT_XPATH));
+		return dropdownOptionByDefault;
+	}
+
+	public String getValidationMessageText() {
+		return getEnterNameField().getAttribute("validationMessage");
 	}
 
 	public void clickButtonShowParameters() {
@@ -206,8 +217,11 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		return errorMessage;
 	}
 
-	public void inputNameClassClear(String nameClass) {
+	public String getErrorMessageText() {
+		return errorMessage.getText().trim();
+	}
 
+	public void inputNameClassClear(String nameClass) {
 		getEnterNameField().clear();
 		inputNameClass(nameClass);
 	}
@@ -243,7 +257,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	}
 
 	public void addedNewSubclass(NewSubclass newSubclass) {
-		inputNameClassClear(newSubclass.getnameClasses());
+		inputNameClassClear(newSubclass.getNameClasses());
 		getButtonShowParameters().click();
 		inputParameterDescriptionClear(newSubclass.getParameterDescription());
 		inputUnitOfMeasurementClear(newSubclass.getUnitOfMeasurement());
@@ -264,5 +278,35 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		}
 		return new AddNewSubclassPage(driver);
 
+	}
+
+	@Override
+	public AddNewSubclassPage setLanguage(ChangeLanguageFields language) {
+		Select lang = new Select(getLocalizationDropdown());
+		lang.selectByVisibleText(language.toString());
+		// Return a new page object representing the destination.
+		return new AddNewSubclassPage(driver);
+	}
+
+	public static enum AddNewSubclassPageL10n {
+		ERROR_MESSAGE_WHEN_INVALID_DATA_ENTERED("Підклас з вказаним іменем вже існує",
+				"Подкласс с указаным наименованием уже существует",
+				"The subclass with the specified name already exists"), DROPDOWN_DEFAULT_VALUE("Виберіть тип параметру",
+						"Выберите тип параметра", "Choose type parameters");
+
+		private HashMap<ChangeLanguageFields, String> field;
+
+		private AddNewSubclassPageL10n(String... localization) {
+			this.field = new HashMap<ChangeLanguageFields, String>();
+			int i = 0;
+			for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+				this.field.put(language, localization[i]);
+				i++;
+			}
+		}
+
+		public String getLocalization(ChangeLanguageFields language) {
+			return this.field.get(language).trim();
+		}
 	}
 }

@@ -1,8 +1,8 @@
 package com.regres.testdata;
 
 public class NewSubclass {
-	private String nameClasses;
-	private String unitOfMeasurement;
+	public String nameClasses;
+	public String unitOfMeasurement;
 	private String parameterDescription;
 	private String parameterDescription1;
 	private String unitOfMeasurement1;
@@ -10,11 +10,11 @@ public class NewSubclass {
 	public NewSubclass() {
 	}
 
-	public String getnameClasses() {
+	public String getNameClasses() {
 		return nameClasses;
 	}
 
-	public NewSubclass setnameClasses(String nameClasses) {
+	public NewSubclass setNameClasses(String nameClasses) {
 		this.nameClasses = nameClasses;
 		return this;
 	}
