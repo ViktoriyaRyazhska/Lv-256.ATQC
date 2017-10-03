@@ -5,9 +5,7 @@ import java.sql.SQLException;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -28,7 +26,7 @@ public class ActionActiveCoownersTest {
 	private Application app;
 	private LoginPage loginpage;
 	private AdminHomePage adminhomepage;
-	private static Connection conn;
+	private Connection conn;
 	private UserDB db;
 
 	@BeforeMethod
@@ -65,7 +63,7 @@ public class ActionActiveCoownersTest {
 		//Click on 'Active Co-owner' item
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
 		//Select User from table
-		actions.getFirstNameFirstRow().click();
+		actions.ClickFirstNameFirstRow();
 		//Click on 'Actions' button
 		actions.clickActionsDropdown();
 		//Click on 'Set Role' item
@@ -75,7 +73,7 @@ public class ActionActiveCoownersTest {
 		//Click "OK'
 		actions.confirm.clickOkButton();
 		//Verify that User has role, that we select previously
-		Assert.assertEquals(actions.getRoleFirstRow().getText(), "Співвласник");
+		Assert.assertEquals(actions.getRoleFirstRowText(), "Співвласник");
 				
 		//delete user
 		db.deleteUserInDB(conn, userDB);
@@ -85,7 +83,7 @@ public class ActionActiveCoownersTest {
 	/**
 	 * Check appearing of message when no one row is selected
 	 */
-	@Test
+//	@Test
 	public void checkConfirmMessageSetCommunity() {
 		//Click on 'Active Co-owner' item
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
@@ -106,7 +104,7 @@ public class ActionActiveCoownersTest {
 		return new Object[][] { { CommunityDBRepo.getCommunity1() } };
 	}
 	
-//		
+		
 //	public void createUserInDB(UserDB userDB) throws SQLException, ClassNotFoundException {
 //	
 //		String createUser = "Insert into registrator_db.users (account_non_expired,account_non_locked,attempts,credentials_non_expired,date_of_accession,email,enabled,first_name,last_modified,last_name,locked_till,login,middle_name,password,phonenumber,status,role_id,territorialCommunity_id)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";

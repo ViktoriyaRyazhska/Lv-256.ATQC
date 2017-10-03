@@ -93,7 +93,10 @@ public class CoownersTable extends AdminHomePage {
 	public WebElement getFirstNameFirstRow() {
 		return driver.findElement(By.xpath(FIRST_NAME_FIRST_XPATH));
 	}
-
+	public void ClickFirstNameFirstRow() {
+		getFirstNameFirstRow().click();
+	}
+	
 	public WebElement getLastNameFirstRow() {
 		return driver.findElement(By.xpath(LAST_NAME_SEARCH_FIRST_XPATH)); 
 	}
@@ -113,7 +116,9 @@ public class CoownersTable extends AdminHomePage {
 	public WebElement getRoleFirstRow() {
 		return driver.findElement(By.xpath(ROLE_SEARCH_FIRST_XPATH));
 	}
-
+	public String getRoleFirstRowText() {
+		 return getRoleFirstRow().getText().trim();
+	}
 	
 	
 	// Business Logic

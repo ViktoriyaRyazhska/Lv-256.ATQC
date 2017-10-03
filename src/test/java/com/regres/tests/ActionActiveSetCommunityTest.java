@@ -26,7 +26,7 @@ public class ActionActiveSetCommunityTest {
 	private Application app;
 	private LoginPage loginpage;
 	private AdminHomePage adminhomepage;
-	private static Connection conn;
+	private Connection conn;
 //	private UserDB DB;
 
 	@BeforeMethod
@@ -54,7 +54,7 @@ public class ActionActiveSetCommunityTest {
 	/**
 	 * Check appearing of message when no one row is selected
 	 */
-	@Test
+//	@Test
 	public void checkConfirmMessageSetCommunity() {
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
 		actions.clickActionsDropdown();
@@ -78,13 +78,14 @@ public class ActionActiveSetCommunityTest {
 	public void checkUserCommunityChange(UserDB userDB) throws ClassNotFoundException, SQLException, InterruptedException{		
 		createUserInDB(userDB);
 		ActiveCoownersActionsDropdown actions = adminhomepage.clickActiveCoowners();
-		actions.getFirstNameFirstRow().click();
+		actions.ClickFirstNameFirstRow();
 		actions.clickActionsDropdown();
 		actions.clickSetCommunity();
 //		actions.getInputField().sendKeys(сommunityDB.getNameCommunity());
-		actions.getInputField().click();
-		actions.getInputField().sendKeys("Ukraine");
-		actions.getDropdownInput().click();
+//		actions.clickInputField();
+//		actions.getInputField().sendKeys("Ukraine");
+		actions.sendValueInInputField("Ukraine");
+		actions.clickDropdownInput();
 		actions.getConfirmButton().click();
 
 		actions.getFirstNameFirstRow().click();

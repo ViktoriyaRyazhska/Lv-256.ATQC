@@ -33,6 +33,7 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	String TITLE_MESSAGE_CLASS_NAME = "modal-title";
 	String LABEL_CLASS_NAME = "control-label";
 	String INPUT_ID = "tc_search";
+	private String inputValue;
 	
 	
 	public ActiveCoownersActionsDropdown(WebDriver driver) {
@@ -167,6 +168,18 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	public WebElement getInputField() {
 		return driver.findElement(By.id(INPUT_ID));
 	}
+	public void clickInputField() {
+		getInputField().click();
+	}
+	public void sendValueInInputField(String value) {
+		clickInputField();
+		getInputField().sendKeys(value);
+	}
+	
+	public void setInputField(String inputValue) {
+		this.inputValue = inputValue;
+	}
+
 	public WebElement getConfirmButton() {
 		return driver.findElement(By.cssSelector(CONFIRM_BUTTON_CSSSELECTOR));
 	}
@@ -194,6 +207,8 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	public WebElement getDropdownInput() {
 		return driver.findElement(By.cssSelector(DROPDOWN_INPUT_CSSSELECTOR));
 	}
-
+	public void clickDropdownInput() {
+		getDropdownInput().click();
+	}
 	
 }
