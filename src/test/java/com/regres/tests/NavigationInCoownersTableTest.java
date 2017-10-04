@@ -33,9 +33,9 @@ public class NavigationInCoownersTableTest {
 	@BeforeClass
 	public void setUp() {
 		// start application with firefox browser
+		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
 		// app =
-		// Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
-		app = Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
+		// Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		// go to login page
 		loginpage = app.load();
 		// login as administrator
@@ -43,29 +43,14 @@ public class NavigationInCoownersTableTest {
 
 	}
 
-	// check option 10 in dropdown list
-	/*
-	 * @Test(dataProvider = "L10N") public void
-	 * dropdownTenTest(ChangeLanguageFields language) { elements =
-	 * adminhomepage.selectNonConfirmedCoowners();
-	 * elements.selectTenElementsOnPage(); //
-	 * Assert.assertEquals(elements.getElementsInfoText(),
-	 * pageL10n.EXAMPLE_INFO10.getLocalization(language)); //
-	 * Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10); }
-	 */
+/
 
 	// check option 25 in dropdown list
 	@Test(dataProvider = "L10N")
 	public void dropdownTwentyFiveTest(ChangeLanguageFields language) {
+		adminhomepage = adminhomepage.setLanguage(language);
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements.selectTwentyFiveElementsOnPage();
-		elements = new CoownersElementsOnPageDropdown(app.getDriver());
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO25.getLocalization(language));
 		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 25);
 		adminhomepage = new AdminHomePage(app.getDriver());
@@ -74,16 +59,10 @@ public class NavigationInCoownersTableTest {
 	// check option 50 in dropdown list
 	@Test(dataProvider = "L10N")
 	public void dropdownFiftyTest(ChangeLanguageFields language) {
-
+		adminhomepage = adminhomepage.setLanguage(language);
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements = elements.selectFiftyElementsOnPage();
 		elements = new CoownersElementsOnPageDropdown(app.getDriver());
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
 		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 50);
 		adminhomepage = new AdminHomePage(app.getDriver());
@@ -92,17 +71,11 @@ public class NavigationInCoownersTableTest {
 	// check option 100 in dropdown list
 	@Test(dataProvider = "L10N")
 	public void dropdownHundredTest(ChangeLanguageFields language) {
+		adminhomepage = adminhomepage.setLanguage(language);
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements.selectHundredElementsOnPage();
-		elements = new CoownersElementsOnPageDropdown(app.getDriver());
-		// try {
-		//// Thread.sleep(1000);
-		//// } catch (InterruptedException e) {
-		//// // TODO Auto-generated catch block
-		//// e.printStackTrace();
-		//// }
-		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 50);
+		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO100.getLocalization(language));
+		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 51);
 		adminhomepage = new AdminHomePage(app.getDriver());
 
 	}
@@ -111,42 +84,32 @@ public class NavigationInCoownersTableTest {
 	@Test(dataProvider = "L10N")
 	public void checkPaginateButtons(ChangeLanguageFields language) {
 		adminhomepage = adminhomepage.setLanguage(language);
+		adminhomepage = adminhomepage.setLanguage(language);
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements.selectTenElementsOnPage();
-		elements = new CoownersElementsOnPageDropdown(app.getDriver());
+		// elements = new CoownersElementsOnPageDropdown(app.getDriver());
 		elements = elements.checkPenultimatePaginateButton();
-
-		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO40.getLocalization(language));
+		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
 		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
-
 		elements.checkFirstPaginateButton();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO10.getLocalization(language));
 		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
-
 		elements.checkLastPaginateButton();
 		adminhomepage = new AdminHomePage(app.getDriver());
-		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
+		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO100.getLocalization(language));
+		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 1);
 	}
 
 	// check previous and next button
 	@Test(dataProvider = "L10N")
 	public void previousNextButtonTest(ChangeLanguageFields language) {
+		adminhomepage = adminhomepage.setLanguage(language);
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements = elements.selectTenElementsOnPage();
 		elements.checkLastPaginateButton();
-
 		elements.clickPreviousButton();
-//		 try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
-		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO40.getLocalization(language));
+		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
 		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
-
 		elements.checkFirstPaginateButton();
 		elements.clickNextButton();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO20.getLocalization(language));
@@ -157,7 +120,7 @@ public class NavigationInCoownersTableTest {
 	// logout and quit browser after tests
 	@AfterClass
 	public void tearDown() {
-		// elements.clickLogout();
+		elements.clickLogout();
 		app.quit();
 	}
 
@@ -165,9 +128,8 @@ public class NavigationInCoownersTableTest {
 	@DataProvider(name = "L10N")
 	public static Object[] localizationProvider() {
 		return new Object[][] { { ChangeLanguageFields.UKRAINIAN }
-				// ,
-				// { ChangeLanguageFields.RUSSIAN },
-				// { ChangeLanguageFields.ENGLISH }
+				 , { ChangeLanguageFields.RUSSIAN },
+				 { ChangeLanguageFields.ENGLISH }
 		};
 	}
 

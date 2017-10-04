@@ -36,7 +36,7 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 	}
 
 	public WebElement getElementsInfo() {
-		(new WebDriverWait(driver, 10000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(ELEMENTS_ON_PAGE_INFO_ID))));
+		(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(ELEMENTS_ON_PAGE_INFO_ID))));
 		return elementsInfo = driver.findElement(By.id(ELEMENTS_ON_PAGE_INFO_ID));
 	}
 
@@ -83,6 +83,7 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 
 	// get text of element which show count of elements on page
 	public String getElementsInfoText() {
+		(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(ELEMENTS_ON_PAGE_INFO_ID))));
 		return getElementsInfo().getText().trim();
 	}
 
@@ -93,13 +94,13 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 
 	// click on button that choose previous paginate button
 	public void clickPreviousButton() {
-		//(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(PREV_BUTTON_ID))));
+		(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(PREV_BUTTON_ID))));
 		getPrevButtton().click();
 	}
 
 	// click on button that choose next paginate button
 	public void clickNextButton() {
-	//	(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(NEXT_BUTTON_ID))));
+		(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(NEXT_BUTTON_ID))));
 		getNextButtton().click();
 	}
 
@@ -139,13 +140,13 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 	// Localization enum
 	public static enum pageL10n {
 		DROPDOWN_LABEL("елементів на сторінку", "элементов на страницу", "elements on page"), 
-		EXAMPLE_INFO10("10 із 50","10 из 50", "10 of 50"), 
-		EXAMPLE_INFO20("20 із 50", "20 из 50", "20 of 50"), 
-		EXAMPLE_INFO30("30 із 50","30 из 50", "30 of 50"), 
-		EXAMPLE_INFO40("40 із 50", "40 из 50", "40 of 50"), 
-		EXAMPLE_INFO50("50 із 50", "50 из 50","50 of 50"), 
-		EXAMPLE_INFO25("25 із 50", "25 из 50", "25 of 50"), 
-		EXAMPLE_INFO100("50 із 50", "50 из 50", "50 of 50"), 
+		EXAMPLE_INFO10("10 із 51","10 из 51", "10 of 51"), 
+		EXAMPLE_INFO20("20 із 51", "20 из 51", "20 of 51"), 
+		EXAMPLE_INFO30("30 із 51","30 из 51", "30 of 51"), 
+		EXAMPLE_INFO40("40 із 51", "40 из 51", "40 of 51"), 
+		EXAMPLE_INFO50("50 із 51", "50 из 51","50 of 51"), 
+		EXAMPLE_INFO25("25 із 51", "25 из 51", "25 of 51"), 
+		EXAMPLE_INFO100("51 із 51", "51 из 51", "51 of 51"), 
 		PREVIOUS_BUTTON("Попер.", "Пред.","Prev"),
 		NEXT_BUTTON("Наст.", "След.", "Next");
 
