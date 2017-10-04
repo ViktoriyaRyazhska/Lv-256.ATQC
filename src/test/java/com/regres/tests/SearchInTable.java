@@ -28,7 +28,7 @@ public class SearchInTable {
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
     }
 
-    @AfterClass
+    //@AfterClass
     public void tearDown() {
         app.quit();
     }
@@ -55,10 +55,11 @@ public class SearchInTable {
         List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByFirstName(allUsers, searchParam);
         //set search parameter in table search field and press button search
         // read table and write searched users to list
-        coownerstable.setLastNameSearch(searchParam);
+        coownerstable.setFirstNameSearch(searchParam);
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        System.out.println(searchParam);
         if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
             System.out.println(expectFilteredUsers);
             System.out.println(actualFilteredUsers);
@@ -69,7 +70,7 @@ public class SearchInTable {
     /**
      * test verify that seatch in table by "Login" work correct
      */
-    //@Test
+    @Test
     public void searchInTableByLogin() {
         //find all users from table and chose random user's last name for future search in table
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
@@ -82,6 +83,7 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        System.out.println(searchParam);
         if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
             System.out.println(expectFilteredUsers);
             System.out.println(actualFilteredUsers);
@@ -92,7 +94,7 @@ public class SearchInTable {
     /**
      * test verify that seatch in table by "Community" work correct
      */
-    //@Test
+    @Test
     public void searchInTableByCommunity() {
         //find all users from table and chose random user's last name for future search in table
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
@@ -105,6 +107,7 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        System.out.println(searchParam);
         if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
             System.out.println(expectFilteredUsers);
             System.out.println(actualFilteredUsers);
@@ -115,7 +118,7 @@ public class SearchInTable {
     /**
      * test verify that seatch in table by "Last Name" work correct
      */
-    //@Test
+    @Test
     public void searchInTableByLastName() {
         //find all users from table and chose random user's last name for future search in table
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
@@ -128,6 +131,7 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        System.out.println(searchParam);
         if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
             System.out.println(expectFilteredUsers);
             System.out.println(actualFilteredUsers);
