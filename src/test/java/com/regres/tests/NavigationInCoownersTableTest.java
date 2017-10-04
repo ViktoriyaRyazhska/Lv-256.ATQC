@@ -43,7 +43,6 @@ public class NavigationInCoownersTableTest {
 
 	}
 
-/
 
 	// check option 25 in dropdown list
 	@Test(dataProvider = "L10N")
