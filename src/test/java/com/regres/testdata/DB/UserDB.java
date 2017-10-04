@@ -26,12 +26,13 @@ public class UserDB {
 	private String role_id;
 	private String territorialCommunity_id;
 	private String nameCommunity;
+	private String emptyCommunityMes;
 
 	public UserDB(String account_non_expired, String account_non_locked, String attempts,
 			String credentials_non_expired, String date_of_accession, String email, String enabled,
 			String first_Name, String last_modified, String last_Name, String locked_till, String login,
 			String middle_name, String password, String phonenumber, String status, String role_id,
-			String territorialCommunity_id, String nameCommunity) {
+			String territorialCommunity_id, String nameCommunity, String emptyCommunityMes) {
 		this.account_non_expired = account_non_expired;
 		this.account_non_locked = account_non_locked;
 		this.attempts = attempts;
@@ -51,6 +52,7 @@ public class UserDB {
 		this.role_id = role_id;
 		this.territorialCommunity_id = territorialCommunity_id;
 		this.nameCommunity=nameCommunity;
+		this.emptyCommunityMes=emptyCommunityMes;
 	}
 
 	public String getAccount_non_expired() {
@@ -65,6 +67,10 @@ public class UserDB {
 		return attempts;
 	}
 
+	public String getEmptyCommunityMes() {
+		return emptyCommunityMes;
+	}
+	
 	public String getCredentials_non_expired() {
 		return credentials_non_expired;
 	}

@@ -68,7 +68,7 @@ public class SetCommunityActiveCoownersActionTest {
 	/**
 	 * Check that community changed if enter existing community
 	 */
-	@Test(priority = 2)
+	@Test
 	public void checkUserCommunityChange() throws ClassNotFoundException, SQLException {
 		// Click on "active co-owners" item
 		activecoowners = adminhomepage.clickActiveCoowners();
@@ -92,7 +92,7 @@ public class SetCommunityActiveCoownersActionTest {
 	/**
 	 * Check that community didn't change if enter non exist community
 	 */
-	@Test(priority = 1)
+	@Test
 	public void checkUserInvalideCommunity() throws ClassNotFoundException, SQLException {
 
 		// Fill invalid community
@@ -111,7 +111,7 @@ public class SetCommunityActiveCoownersActionTest {
 		activecoowners.ClickConfirmButton();
 		// Verify that users community changed
 		Assert.assertEquals(activecoowners.confirm.getConfirmMessageText(),
-				"Поле \"Громада\" не може бути пустим. Будь-ласка виберіть значення зі списку.");
+				userDB.getEmptyCommunityMes());
 		// Click "OK" button
 		activecoowners.confirm.clickOkButton();
 
