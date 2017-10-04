@@ -51,7 +51,7 @@ public class NavigationInCoownersTableTest {
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements.selectTwentyFiveElementsOnPage();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO25.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 25);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 25);
 		adminhomepage = new AdminHomePage(app.getDriver());
 	}
 
@@ -63,7 +63,7 @@ public class NavigationInCoownersTableTest {
 		elements = elements.selectFiftyElementsOnPage();
 		elements = new CoownersElementsOnPageDropdown(app.getDriver());
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 50);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 50);
 		adminhomepage = new AdminHomePage(app.getDriver());
 	}
 
@@ -74,7 +74,7 @@ public class NavigationInCoownersTableTest {
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements.selectHundredElementsOnPage();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO100.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 52);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 52);
 		adminhomepage = new AdminHomePage(app.getDriver());
 
 	}
@@ -88,14 +88,14 @@ public class NavigationInCoownersTableTest {
 		// elements = new CoownersElementsOnPageDropdown(app.getDriver());
 		elements = elements.checkPenultimatePaginateButton();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 10);
 		elements.checkFirstPaginateButton();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO10.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 10);
 		elements.checkLastPaginateButton();
 		adminhomepage = new AdminHomePage(app.getDriver());
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO100.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 2);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 2);
 	}
 
 	// check previous and next button
@@ -107,11 +107,11 @@ public class NavigationInCoownersTableTest {
 		elements.checkLastPaginateButton();
 		elements.clickPreviousButton();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO50.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 10);
 		elements.checkFirstPaginateButton();
 		elements.clickNextButton();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO20.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 10);
+		Assert.assertEquals(elements.getTableBodyRowsCount(), 10);
 		adminhomepage = new AdminHomePage(app.getDriver());
 	}
 

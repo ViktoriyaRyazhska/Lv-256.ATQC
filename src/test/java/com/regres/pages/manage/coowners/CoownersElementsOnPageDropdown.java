@@ -97,13 +97,13 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 
 	// click on button that choose previous paginate button
 	public void clickPreviousButton() {
-		(new WebDriverWait(driver, 10000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(PREV_BUTTON_ID))));
+		(new WebDriverWait(driver, 10000)).until(ExpectedConditions.visibilityOf(this.getPrevButtton()));
 		getPrevButtton().click();
 	}
 
 	// click on button that choose next paginate button
 	public void clickNextButton() {
-		(new WebDriverWait(driver, 10000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(NEXT_BUTTON_ID))));
+		(new WebDriverWait(driver, 10000)).until(ExpectedConditions.visibilityOf(this.getNextButtton()));
 		getNextButtton().click();
 	}
 
