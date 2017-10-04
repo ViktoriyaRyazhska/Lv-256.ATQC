@@ -1,10 +1,7 @@
 package com.regres.tests;
 
-import org.testng.annotations.Test;
+import org.testng.annotations.Test; 
 import com.regres.pages.AdminCommunitiesPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -23,9 +20,7 @@ public class LocalizationForCommunitiesPageTest {
 	private AdminHomePage adminpage;
 	private Application app;
 	private AdminCommunitiesPage compage;
-	WebDriver driver;
-	WebDriverWait wait;
-
+	
 	@BeforeClass
 	public void beforeClass() throws IOException {
 		app = Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
@@ -43,23 +38,29 @@ public class LocalizationForCommunitiesPageTest {
 	@Test(dataProvider = "localization")
 	public void checkCommunitiesStaticPageLocalization(ChangeLanguageFields language) throws IOException {
 		compage = compage.setLanguage(language);
-		compage.loadLocalizationFile(language);
-		Assert.assertEquals(compage.getCommunitiesLabelText(), compage.getObject("Communities_label"));
-		Assert.assertEquals(compage.getAddNewCommunityButtonText(), compage.getObject("Add_new_community"));
-		Assert.assertEquals(compage.getDeleteCommunityButtonText(), compage.getObject("Delete_Community_Button"));
-		Assert.assertEquals(compage.getEditCommunityButtonText(), compage.getObject("Edit_Community_Button"));
-		Assert.assertEquals(compage.getActionsHeaderText(), compage.getObject("Actions_Header_Text"));
-		Assert.assertEquals(compage.getRegistrationNumberHeaderText(), compage.getObject("Registration_Number_Header"));
-		Assert.assertEquals(compage.getTerritorialCommunityHeaderText(),compage.getObject("Territorial_Community_Header"));
-		Assert.assertEquals(compage.getInactiveCheckboxLabelText(), compage.getObject("Inactive_Checkbox_Label"));
+		compage.setLanguageFileToBeLoaded(language);
+		Assert.assertEquals(compage.getCommunitiesLabelText(), compage.getLocalizationValue("Communities_label"));
+		Assert.assertEquals(compage.getAddNewCommunityButtonText(), compage.getLocalizationValue("Add_new_community"));
+		Assert.assertEquals(compage.getDeleteCommunityButtonText(),
+				compage.getLocalizationValue("Delete_Community_Button"));
+		Assert.assertEquals(compage.getEditCommunityButtonText(),
+				compage.getLocalizationValue("Edit_Community_Button"));
+		Assert.assertEquals(compage.getActionsHeaderText(), compage.getLocalizationValue("Actions_Header_Text"));
+		Assert.assertEquals(compage.getRegistrationNumberHeaderText(),
+				compage.getLocalizationValue("Registration_Number_Header"));
+		Assert.assertEquals(compage.getTerritorialCommunityHeaderText(),
+				compage.getLocalizationValue("Territorial_Community_Header"));
+		Assert.assertEquals(compage.getInactiveCheckboxLabelText(),
+				compage.getLocalizationValue("Inactive_Checkbox_Label"));
 	}
 
 	@Test(dataProvider = "localization")
 	public void checkActivateButtonLocalization(ChangeLanguageFields language) throws IOException {
 		compage = compage.setLanguage(language);
-		compage.loadLocalizationFile(language);
+		compage.setLanguageFileToBeLoaded(language);
 		compage.clickInactiveCheckbox();
-		Assert.assertEquals(compage.getActiveCommunityButtonText(), compage.getObject("Active_Community_Button"));
+		Assert.assertEquals(compage.getActiveCommunityButtonText(),
+				compage.getLocalizationValue("Active_Community_Button"));
 	}
 
 	@AfterClass

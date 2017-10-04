@@ -8,10 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.DataProvider;
 
-public class AddNewCommunitiesPage extends AdminHomePage{
-	
+public class AddNewCommunitiesPage extends AdminHomePage {
+
 	String COMMUNITIES_NAME_FILED_NAME = "name";
 	String REG_NUMBER_FILED_NAME = "registrationNumber";
 	String SUBMIT_BUTTON_XPATH = "//input[@type='submit']";
@@ -20,18 +19,20 @@ public class AddNewCommunitiesPage extends AdminHomePage{
 	String REG_NUMBER_LABEL_XPATH = "//div[2]/label";
 	String ADD_COMMUNITY_PAGE_LABEL_XPATH = "//h2";
 	String REGISTRATION_NUMBER_ERROR_ID = "registrationNumber.errors";
-	
+
 	public AddNewCommunitiesPage(WebDriver driver) {
 		super(driver);
 	}
-	
+
+	// getters for elements on a page
 	public WebElement getCommunitiesName() {
 		return driver.findElement(By.name(COMMUNITIES_NAME_FILED_NAME));
 	}
+
 	public WebElement getRegError() {
 		return driver.findElement(By.id(REGISTRATION_NUMBER_ERROR_ID));
 	}
-	
+
 	public WebElement getCommunitiesRegistrationNumber() {
 		return driver.findElement(By.name(REG_NUMBER_FILED_NAME));
 	}
@@ -55,69 +56,72 @@ public class AddNewCommunitiesPage extends AdminHomePage{
 	public WebElement getAddNewCommunitiesPageLabel() {
 		return driver.findElement(By.xpath(ADD_COMMUNITY_PAGE_LABEL_XPATH));
 	}
+
+	// getters of text from elements on a page
 	public String getSubmitButtonText() {
 		return getSubmitButton().getText().trim();
 	}
+
 	public String getClearFormButtonText() {
 		return getClearFormButton().getText().trim();
 	}
+
 	public String getCommunitiesNameLabelText() {
 		return getCommunitiesNameLabel().getText().trim();
 	}
+
 	public String getCommunitiesRegistrationNumberLabelText() {
 		return getCommunitiesRegistrationNumberLabel().getText().trim();
 	}
+
 	public String getAddNewCommunitiesPageLabelText() {
 		return getAddNewCommunitiesPageLabel().getText().trim();
 	}
+
 	public String getRegErrorText() {
 		return getRegError().getText().trim();
 	}
+
 	public String getCommunitiesNameText() {
 		return getCommunitiesName().getText().trim();
 	}
+
 	public String getRegistrationNumberText() {
 		return getCommunitiesRegistrationNumber().getText().trim();
 	}
+
+	// clicks on elements on a page
 	public void clickClearFormButton() {
 		getClearFormButton().click();
 	}
+
 	public void clickSubmitButton() {
 		getSubmitButton().click();
 	}
-	
-	
-	public AdminCommunitiesPage createNewCommunities(String name, String number){
+
+	// method that creates new community
+	public AdminCommunitiesPage createNewCommunities(String communityName, String regNumber) {
 		getCommunitiesName().clear();
-		getCommunitiesName().sendKeys(name);
+		getCommunitiesName().sendKeys(communityName);
 		getCommunitiesRegistrationNumber().clear();
-		getCommunitiesRegistrationNumber().sendKeys(number);
+		getCommunitiesRegistrationNumber().sendKeys(regNumber);
 		clickSubmitButton();
 		return new AdminCommunitiesPage(driver);
 	}
-	
-	public AdminCommunitiesPage inputIncorrectDataInRegNumber(String name, String number){
+
+	// method that fills communities name and reg number
+	public void fillInNameandRegNumber(String communityName, String regNumber) {
 		getCommunitiesName().clear();
-		getCommunitiesName().sendKeys(name);
+		getCommunitiesName().sendKeys(communityName);
 		getCommunitiesRegistrationNumber().clear();
-		getCommunitiesRegistrationNumber().sendKeys(number);
-		clickSubmitButton();
-		return new AdminCommunitiesPage(driver);
+		getCommunitiesRegistrationNumber().sendKeys(regNumber);
 	}
-	
-	public void fillInNameandRegNumber(String name, String number){
+
+	// method that clears name field and fills reg number field for community
+	public void clearNameAndfillIndRegNumber(String regNumber) {
 		getCommunitiesName().clear();
-		getCommunitiesName().sendKeys(name);
 		getCommunitiesRegistrationNumber().clear();
-		getCommunitiesRegistrationNumber().sendKeys(number);
-		
+		getCommunitiesRegistrationNumber().sendKeys(regNumber);
 	}
-	
-	public void clearNameAndfillIndRegNumber(String number){
-		getCommunitiesName().clear();
-		getCommunitiesRegistrationNumber().clear();
-		getCommunitiesRegistrationNumber().sendKeys(number);
-		}
 
 }
-
