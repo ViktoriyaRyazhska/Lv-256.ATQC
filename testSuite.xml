@@ -8,6 +8,6 @@
 </suite> <!-- Suite -->
 
 <!--  suite run: 
-				mvn clean test -DsuiteXmlFile=mytestng.xml
-	  suires run:
-				mvn clean test -DsuiteXmlFile=mytestng.xml,mytestng2.xml -->
+				mvn clean test -Dsurefire.suiteXmlFiles=mytestng1.xml
+	  suites run:
+				mvn clean test -Dsurefire.suiteXmlFiles=mytestng1.xml,mytestng2.xml -->
