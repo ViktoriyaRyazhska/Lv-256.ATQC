@@ -18,21 +18,36 @@ public class DropdownHomePage extends TitleLocalFooter {
 	public WebElement resetPassword;
 	public WebElement menuDownButton;
 	public WebElement logout;
+	protected String HOME_BUTTON_LOCATOR = "//*[@id=\"navigationbar\"]//following::a";
+	protected String USER_NAME_LOCATOR = ".btn.btn-primary.btn-sm";
+	protected String MENU_DOWN_BUTTON_LOCATOR = ".btn.btn-primary.btn-sm.dropdown-toggle";
+	protected String CHANGE_PASSWORD_LOCATOR = ".change-password";
+	protected String RESET_PASSWORD_LOCATOR = ".reset-my-password";
+	protected String LOGOUT_LOCATOR = "[href*='/logout']";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param driver
+	 *            - Selenium WebDriver
+	 */
 	public DropdownHomePage(WebDriver driver) {
 		super(driver);
-		homeButton = driver.findElement(By.xpath("//*[@id=\"navigationbar\"]//following::a"));
-		userName = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm"));
-		menuDownButton = driver.findElement(By.cssSelector(".btn.btn-primary.btn-sm.dropdown-toggle"));
+		homeButton = driver.findElement(By.xpath(HOME_BUTTON_LOCATOR));
+		userName = driver.findElement(By.cssSelector(USER_NAME_LOCATOR));
+		menuDownButton = driver.findElement(By.cssSelector(MENU_DOWN_BUTTON_LOCATOR));
 	}
-
+/**
+ * clicks on dropdown menu and initiates dropdown elements
+ */
 	public void clickMenuDownButton() {
 		getMenuDownButton().click();
-		changePassword = driver.findElement(By.cssSelector(".change-password"));
-		resetPassword = driver.findElement(By.cssSelector(".reset-my-password"));
-		logout = driver.findElement(By.cssSelector("[href='/logout']"));
+		changePassword = driver.findElement(By.cssSelector(CHANGE_PASSWORD_LOCATOR));
+		resetPassword = driver.findElement(By.cssSelector(RESET_PASSWORD_LOCATOR));
+		logout = driver.findElement(By.cssSelector(LOGOUT_LOCATOR));
 	}
 
+	// Getters and Setters
 	public WebElement getHomeButton() {
 		return homeButton;
 	}
@@ -81,6 +96,7 @@ public class DropdownHomePage extends TitleLocalFooter {
 		this.logout = logout;
 	}
 
+	// returns visible text on the element
 	public String getHomeButtonText() {
 		return getHomeButton().getText().trim();
 	}
@@ -105,15 +121,23 @@ public class DropdownHomePage extends TitleLocalFooter {
 		return getLogout().getText().trim();
 	}
 
+	// clicks homeButton
 	public void clickHomeButton() {
 		getHomeButton().click();
 	}
 
+	// clicks userName
 	public void clickUserName() {
 		getUserName().click();
 	}
+
 	// public void getChangePassword() {getChangePassword().click();}
 	// public void getResetPassword() {getResetPassword().click();}
+	/**
+	 * Clicks logout
+	 * 
+	 * @return new Login page
+	 */
 
 	public LoginPage clickLogout() {
 		clickMenuDownButton();
@@ -122,12 +146,38 @@ public class DropdownHomePage extends TitleLocalFooter {
 		return new LoginPage(driver);
 	}
 
-	// Business Logic
+	/**
+	 * changes language for the page
+	 * 
+	 * @return - new dropdown page
+	 */
 	@Override
 	public DropdownHomePage setLanguage(ChangeLanguageFields language) {
 		Select lang = new Select(getLocalizationDropdown());
 		lang.selectByVisibleText(language.toString());
 		// Return a new page object representing the destination.
 		return new DropdownHomePage(driver);
+	}
+
+	/**
+	 * Gets on password change page
+	 * 
+	 * @return - new password change page
+	 */
+	public ChangePasswordPage clickChangePassword() {
+		clickMenuDownButton();
+		getChangePassword().click();
+		return new ChangePasswordPage(driver);
+
+	}
+
+	/**
+	 * Gets on password change page
+	 * 
+	 * @return - new password change page
+	 */
+	public ChangePasswordPage changePassword() {
+		getChangePassword().click();
+		return new ChangePasswordPage(driver);
 	}
 }
