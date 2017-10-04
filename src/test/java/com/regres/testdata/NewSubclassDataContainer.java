@@ -9,7 +9,7 @@ public class NewSubclassDataContainer {
 
 	public static NewSubclass setExistClassName() {
 
-		return new NewSubclass().setNameClasses("Italy").setParameterDescription("").setUnitOfMeasurement("");
+		return new NewSubclass().setNameClasses("земельний").setParameterDescription("").setUnitOfMeasurement("");
 	}
 
 	public static NewSubclass setValidData() {
