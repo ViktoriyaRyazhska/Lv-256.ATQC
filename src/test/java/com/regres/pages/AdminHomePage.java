@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.regres.pages.manage.coowners.CoownersTable;
+import com.regres.pages.manage.coowners.CoownersElementsOnPageDropdown;
 import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import com.regres.pages.manage.coowners.actions.NonConfirmedCoownersActionsDropdown;
 
@@ -171,5 +171,17 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		this.clickNonConfirmedCoowners();
 		// Return a new page object representing the destination.
 		return new NonConfirmedCoownersActionsDropdown(driver);
+	}
+    public CoownersElementsOnPageDropdown selectInactiveCoowners() {
+		this.clickCoowners();
+		this.clickInactiveCoowners();
+		// Return a new page object representing the destination.
+		return new CoownersElementsOnPageDropdown(driver);
+	}
+	public CoownersElementsOnPageDropdown selectNonConfirmedCoowners() {
+		this.clickCoowners();
+		this.clickNonConfirmedCoowners();
+		// Return a new page object representing the destination.
+		return new CoownersElementsOnPageDropdown(driver);
 	}
 }

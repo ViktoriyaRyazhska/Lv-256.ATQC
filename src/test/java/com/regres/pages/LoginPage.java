@@ -3,6 +3,7 @@ package com.regres.pages;
 import java.util.HashMap;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -270,7 +271,11 @@ public class LoginPage extends TitleLocalFooter {
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
 		return new RegistratorHomePage(driver);
 	}
-
+	//maximize Window brouser
+	public LoginPage maximizeWindow(){
+		driver.findElement(By.tagName("body")).sendKeys(Keys.F11);
+		return new LoginPage(driver);
+	}
 	/**
 	 * Signs in as Commissioner
 	 * 

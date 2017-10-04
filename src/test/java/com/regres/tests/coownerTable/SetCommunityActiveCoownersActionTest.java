@@ -68,7 +68,7 @@ public class SetCommunityActiveCoownersActionTest {
 	/**
 	 * Check that community changed if enter existing community
 	 */
-	@Test
+//	@Test
 	public void checkUserCommunityChange() throws ClassNotFoundException, SQLException {
 		// Click on "active co-owners" item
 		activecoowners = adminhomepage.clickActiveCoowners();
@@ -93,7 +93,7 @@ public class SetCommunityActiveCoownersActionTest {
 	 * Check that community didn't change if enter non exist community
 	 */
 	@Test
-	public void checkUserInvalideCommunity() throws ClassNotFoundException, SQLException {
+	public void checkUserInvalidCommunity() throws ClassNotFoundException, SQLException {
 
 		// Fill invalid community
 		communityDB2 = CommunityDBRepo.getInvalidCommunity();
