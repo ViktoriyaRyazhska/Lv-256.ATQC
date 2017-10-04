@@ -20,6 +20,8 @@ import com.regres.pages.LoginPage;
 import com.regres.pages.RegistratorHomePage;
 import com.regres.pages.SubclassesOfObjects;
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+import com.regres.testdata.EnteredCommunityRepo;
+import com.regres.testdata.EnteredNameSubclass;
 import com.regres.testdata.NewSubclassDataContainer;
 import com.regres.testdata.UserContainer;
 
@@ -37,6 +39,7 @@ public class AddNewSubclassTest {
 	private Application app;
 	public Connection conn;
 	public BaseFunctionalForDB baseFunctionalForDB;
+	private EnteredNameSubclass enteredNameSubclass;
 
 	@BeforeClass
 	public void setUp() throws ClassNotFoundException, SQLException {
@@ -71,7 +74,6 @@ public class AddNewSubclassTest {
 	// Method verify that user can't create new subclass with invalid data
 	@Test(dataProvider = "L10N")
 	public void checkEmptyEnterNameField(ChangeLanguageFields language) {
-		addNewSublassPage = addNewSublassPage.setLanguage(language);
 		// click button show parameters
 		addNewSublassPage.clickButtonShowParameters();
 		// fill fields invalid data (leave the enter name field empty)
@@ -83,7 +85,8 @@ public class AddNewSubclassTest {
 		// save modifications
 		addNewSublassPage = addNewSublassPage.clickSave();
 		// verify validation error message
-		Assert.assertEquals(addNewSublassPage.getValidationMessageText(), "Заповніть будь ласка це поле.");
+		Assert.assertEquals(addNewSublassPage.getValidationMessageText(), "Заповніть будь ласка це поле.");//Please fill out this field.
+
 	}
 
 	// This method verify that created new subclass with valid data saved in List of
@@ -91,7 +94,7 @@ public class AddNewSubclassTest {
 	@Test(dataProvider = "L10N")
 	public void checkSuccessfulAddedSubclass(ChangeLanguageFields language) throws SQLException {
 		// set language
-		// addNewSublassPage = addNewSublassPage.setLanguage(language);
+		addNewSublassPage = addNewSublassPage.setLanguage(language);
 		// click on button show parameter
 		addNewSublassPage.clickButtonShowParameters();
 		// fill field with valid data
@@ -104,15 +107,16 @@ public class AddNewSubclassTest {
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
 		// new subclass created in List of subclass table
 		String actual = subclassesOfObjects.getSubclassName(NewSubclassDataContainer.setValidData()).getText();
+		enteredNameSubclass = EnteredCommunityRepo.getCitySidney();
 		// expected that name of subclass created in DB
-		String expected = baseFunctionalForDB.getSubclassNameFromDb(conn, "Sidney");
+		String expected = baseFunctionalForDB.getSubclassNameFromDb(conn, enteredNameSubclass);
 		// compare the actual and expected result
 		Assert.assertEquals(actual, expected);
 		// delete test data
 		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton(NewSubclassDataContainer.setValidData());
 		// verify that name of subclass delete from DB
-		Assert.assertNotNull(baseFunctionalForDB.getSubclassNameFromDb(conn, ""));
-
+		enteredNameSubclass = EnteredCommunityRepo.getEmptyCity();
+		Assert.assertNotNull(baseFunctionalForDB.getSubclassNameFromDb(conn, enteredNameSubclass));
 	}
 
 	// This test verify that registrator can create subclass with existing name of
@@ -184,16 +188,15 @@ public class AddNewSubclassTest {
 		addNewSublassPage = addNewSublassPage.clickButtonHideParameters();
 		// save modification
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
-		Assert.assertTrue(subclassesOfObjects.getSubclassName(NewSubclassDataContainer.setValidValue()).isEnabled());
-		Assert.assertTrue(subclassesOfObjects.getSubclassName(NewSubclassDataContainer.setValidValue()).getText()
-				.contains("Ivano-Frankivsk"));
 		// new subclass created in List of subclass table
 		String actual = subclassesOfObjects.getSubclassName(NewSubclassDataContainer.setValidValue()).getText();
 		// expected that name of subclass created in DB
-		String expected = baseFunctionalForDB.getSubclassNameFromDb(conn, "Ivano-Frankivsk");
+		enteredNameSubclass = EnteredCommunityRepo.getCity();
+		String expected = baseFunctionalForDB.getSubclassNameFromDb(conn, enteredNameSubclass);
 		Assert.assertEquals(actual, expected);
 		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton(NewSubclassDataContainer.setValidValue());
-		Assert.assertNotNull(baseFunctionalForDB.getSubclassNameFromDb(conn, ""));
+		enteredNameSubclass = EnteredCommunityRepo.getEmptyCity();
+		Assert.assertNotNull(baseFunctionalForDB.getSubclassNameFromDb(conn, enteredNameSubclass));
 	}
 
 	/**
