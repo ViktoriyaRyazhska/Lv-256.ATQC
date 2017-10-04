@@ -1,5 +1,7 @@
 package com.regres.testdata;
 
+import java.util.Comparator;
+
 public class UserForSerchTableTest {
     String status;
     String firstName;
@@ -127,4 +129,51 @@ public class UserForSerchTableTest {
         result = 31 * result + role_type.hashCode();
         return result;
     }
+
+    //methods
+
+    public static Comparator<UserForSerchTableTest> userFirstNameComparatorASC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s1.firstName.compareToIgnoreCase(s2.firstName);
+        }
+    };
+
+    public static Comparator<UserForSerchTableTest> userFirstNameComparatorDESC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s2.firstName.compareToIgnoreCase(s1.firstName);
+        }
+    };
+    public static Comparator<UserForSerchTableTest> userLastNameComparatorASC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s1.lastName.compareToIgnoreCase(s2.lastName);
+        }
+    };
+
+    public static Comparator<UserForSerchTableTest> userLastNameComparatorDESC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s2.lastName.compareToIgnoreCase(s1.lastName);
+        }
+    };
+    public static Comparator<UserForSerchTableTest> userCommunityNameComparatorASC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s1.territorialCommunityName.compareToIgnoreCase(s2.territorialCommunityName);
+        }
+    };
+
+    public static Comparator<UserForSerchTableTest> userCommunityNameComparatorDESC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s2.territorialCommunityName.compareToIgnoreCase(s1.territorialCommunityName);
+        }
+    };
+    public static Comparator<UserForSerchTableTest> userLoginComparatorASC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s1.login.compareToIgnoreCase(s2.login);
+        }
+    };
+
+    public static Comparator<UserForSerchTableTest> userLoginComparatorDESC = new Comparator<UserForSerchTableTest>() {
+        public int compare(UserForSerchTableTest s1, UserForSerchTableTest s2) {
+            return s2.login.compareToIgnoreCase(s1.login);
+        }
+    };
 }
