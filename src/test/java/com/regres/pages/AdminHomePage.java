@@ -1,11 +1,13 @@
 package com.regres.pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.By; 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.regres.pages.manage.coowners.CoownersTable;
+
+import com.regres.pages.AdminCommunitiesPage;
 
 /**
  * Class representation of a Administrator home page with navigation bar.
@@ -104,6 +106,12 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		this.settings.click();
 		return new AdminSettingsPage(driver);
 	}
+	
+	//click on 'Communities' tab
+		public AdminCommunitiesPage clickCommunities() {
+			this.communities.click();
+			return new AdminCommunitiesPage(driver);
+		}
 	
 	//click on 'Unblock all coowners' button
 	public void clickUnblockAllCoowners() {
