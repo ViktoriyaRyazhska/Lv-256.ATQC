@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -35,6 +36,7 @@ public class LoginPageTest extends Reports {
 	private CommissionerHomePage commissionerhomepage;
 	private RegistratorHomePage registratorhomepage;
 	private CoownerHomePage coownerhomepage;
+	
 	private ExtentTest test;
 
 	/**
@@ -145,6 +147,11 @@ public class LoginPageTest extends Reports {
 		
 		Assert.assertTrue(loginpage.getErrorMessage().getText().contains("Wrong login or password"));
 		test.log(Status.PASS, "Verified error message is correct");
+	}
+	
+	@AfterSuite(alwaysRun = true)
+	public void getREPORT() {
+		report.flush();
 	}
 
 }

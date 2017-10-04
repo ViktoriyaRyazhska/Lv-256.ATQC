@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -107,6 +108,11 @@ public class AdminSettingsTimeZoneTest extends Reports{
 		settings = settings.clickSettings();
 		test.log(Status.INFO, "Opened 'Settings' page.");
 
+	}
+	
+	@AfterSuite(alwaysRun = true)
+	public void getREPORT() {
+		report.flush();
 	}
 
 }
