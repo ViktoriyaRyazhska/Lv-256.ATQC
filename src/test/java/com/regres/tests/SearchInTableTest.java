@@ -61,7 +61,7 @@ public class SearchInTableTest {
     }
 
     /**
-     * test verify that search in table by "Login" work correct
+     * test verify that seatch in table by "Login" work correct
      */
     @Test
     public void searchInTableByLogin() {
@@ -80,7 +80,7 @@ public class SearchInTableTest {
     }
 
     /**
-     * test verify that search in table by "Community" work correct
+     * test verify that seatch in table by "Community" work correct
      */
     @Test
     public void searchInTableByCommunity() {
@@ -99,7 +99,7 @@ public class SearchInTableTest {
     }
 
     /**
-     * test verify that search in table by "Last Name" work correct
+     * test verify that seatch in table by "Last Name" work correct
      */
     @Test
     public void searchInTableByLastName() {
