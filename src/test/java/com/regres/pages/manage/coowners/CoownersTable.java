@@ -1,16 +1,23 @@
 package com.regres.pages.manage.coowners;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
+import com.regres.testdata.UserForSerchTableTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.regres.pages.AdminHomePage;
+import com.regres.pages.ConfirmMessagePage;
+import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
@@ -56,7 +63,7 @@ public class CoownersTable extends AdminHomePage {
     private String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
     private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";
     private String EMPTY_TABLE_CSS = ".dataTables_empty";
-    
+
  // table hider
  	private String TABLE_TITLE_XPATH = "//div[@class = 'dataTable_wrapper']/preceding::h4";
     private String FIRST_ROW_TABLE_XPATH = "//tbody/tr[1]";
@@ -86,7 +93,7 @@ public class CoownersTable extends AdminHomePage {
 	public void ClickSearchButton() {
 		getSearchButton().click();
 	}
-	
+
 	public WebElement getTitleTableName() {
 		return driver.findElement(By.xpath(TABLE_TITLE_XPATH));
 	}
@@ -222,7 +229,7 @@ public class CoownersTable extends AdminHomePage {
 	public String getEmailColumnText() {
 		return getEmailColumn().getText().trim();
 	}
-	
+
 	public WebElement getFirstRowTable() {
 		return driver.findElement(By.xpath(FIRST_ROW_TABLE_XPATH));
 	}
@@ -283,9 +290,29 @@ public class CoownersTable extends AdminHomePage {
         return driver.findElement(By.cssSelector(EMPTY_TABLE_CSS)).getText();
     }
 
-    public void waitWhileTableAppear() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TABLE_BODY_CELL)));
+    public boolean waitWhileTableAppear() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        // wait for jQuery to load
+        ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                try {
+                    return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
+                } catch (Exception e) {
+                    // no jQuery present
+                    return true;
+                }
+            }
+        };
+
+        // wait for Javascript to load
+        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState")
+                        .toString().equals("complete");
+            }
+        };
+        return wait.until(jQueryLoad) && wait.until(jsLoad);
     }
 
     /**
@@ -363,23 +390,27 @@ public class CoownersTable extends AdminHomePage {
      * @return list of users from table
      */
     public List<UserForSerchTableTest> getListOfUsersFromTable() {
-        waitWhileTableAppear();
-        List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
-        List<WebElement> celllist = getAlltableBodyCell();
-        int count = getTableBodyCellsCount();
-        for (int j = 0; j <= count - 8; j = j + 8) {
-            userList.add(new UserForSerchTableTest(
-                    celllist.get(j + 0).getText(),
-                    celllist.get(j + 1).getText(),
-                    celllist.get(j + 2).getText(),
-                    celllist.get(j + 3).getText(),
-                    celllist.get(j + 4).getText(),
-                    celllist.get(j + 5).getText(),
-                    celllist.get(j + 6).getText(),
-                    celllist.get(j + 7).getText()
-            ));
+        if (waitWhileTableAppear() == true) {
+            List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
+            List<WebElement> celllist = getAlltableBodyCell();
+            int count = getTableBodyCellsCount();
+            for (int j = 0; j <= count - 8; j = j + 8) {
+                userList.add(new UserForSerchTableTest(
+                        celllist.get(j + 0).getText(),
+                        celllist.get(j + 1).getText(),
+                        celllist.get(j + 2).getText(),
+                        celllist.get(j + 3).getText(),
+                        celllist.get(j + 4).getText(),
+                        celllist.get(j + 5).getText(),
+                        celllist.get(j + 6).getText(),
+                        celllist.get(j + 7).getText()
+                ));
+            }
+            return userList;
+        } else {
+            getListOfUsersFromTable();
         }
-        return userList;
+        return null;
     }
 
     // compares equality of two user lists
@@ -390,20 +421,20 @@ public class CoownersTable extends AdminHomePage {
         return false;
     }
 
-	public void ClickFirstNameFirstRow() {
-		(new WebDriverWait(driver, 40))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(FIRST_NAME_FIRST_XPATH)));
-		getFirstNameFirstRow().click();
-	}
+    public void ClickFirstNameFirstRow() {
+        (new WebDriverWait(driver, 40))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(FIRST_NAME_FIRST_XPATH)));
+        getFirstNameFirstRow().click();
+    }
 
-	public void FindAndClickUserInTable(String value) {
-		ClickLoginColumn();
-		getLoginColumn().sendKeys(value);
-		ClickSearchButton();
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(PREV_BUTTON_ID)));
-		getLoginColumn().clear();
-		ClickFirstNameFirstRow();
-	}
+    public void FindAndClickUserInTable(String value) {
+        ClickLoginColumn();
+        getLoginColumn().sendKeys(value);
+        ClickSearchButton();
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(PREV_BUTTON_ID)));
+        getLoginColumn().clear();
+        ClickFirstNameFirstRow();
+    }
 
     //methods to compare two object lists by FirstName
     public boolean compareListsByFirstName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
@@ -477,6 +508,7 @@ public class CoownersTable extends AdminHomePage {
         // Return a new page object representing the destination.
         return new CoownersTable(driver);
     }
+
     public enum LoginPageL10n {
         MESSAGE_WHEN_TABLE_EMPTY(
                 "В таблиці немає даних",
