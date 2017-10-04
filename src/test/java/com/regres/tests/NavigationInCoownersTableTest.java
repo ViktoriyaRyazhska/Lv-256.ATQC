@@ -40,7 +40,7 @@ public class NavigationInCoownersTableTest {
 		loginpage = app.load();
 		// login as administrator
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-
+		
 	}
 
 
@@ -74,7 +74,7 @@ public class NavigationInCoownersTableTest {
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements.selectHundredElementsOnPage();
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO100.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 51);
+		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 52);
 		adminhomepage = new AdminHomePage(app.getDriver());
 
 	}
@@ -82,7 +82,6 @@ public class NavigationInCoownersTableTest {
 	// check paginate buttons
 	@Test(dataProvider = "L10N")
 	public void checkPaginateButtons(ChangeLanguageFields language) {
-		adminhomepage = adminhomepage.setLanguage(language);
 		adminhomepage = adminhomepage.setLanguage(language);
 		elements = adminhomepage.selectNonConfirmedCoowners();
 		elements.selectTenElementsOnPage();
@@ -96,7 +95,7 @@ public class NavigationInCoownersTableTest {
 		elements.checkLastPaginateButton();
 		adminhomepage = new AdminHomePage(app.getDriver());
 		Assert.assertEquals(elements.getElementsInfoText(), pageL10n.EXAMPLE_INFO100.getLocalization(language));
-		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 1);
+		Assert.assertEquals(elements.getTABLE_BODY_ROWS_COUNT(), 2);
 	}
 
 	// check previous and next button
