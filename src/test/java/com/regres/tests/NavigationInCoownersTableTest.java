@@ -38,7 +38,6 @@ public class NavigationInCoownersTableTest {
 		// Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		// go to login page
 		loginpage = app.load();
-		loginpage = loginpage.maximizeWindow();
 		// login as administrator
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
 		
