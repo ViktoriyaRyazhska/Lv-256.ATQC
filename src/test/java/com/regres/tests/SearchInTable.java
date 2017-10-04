@@ -4,14 +4,14 @@ import com.regres.application.Application;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
+import com.regres.pages.TitleLocalFooter;
 import com.regres.pages.manage.coowners.CoownersTable;
+import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForSerchTableTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
@@ -55,11 +55,11 @@ public class SearchInTable {
         List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByFirstName(allUsers, searchParam);
         //set search parameter in table search field and press button search
         // read table and write searched users to list
-        coownerstable.setLastNameSearch(searchParam);
+        coownerstable.setFirstNameSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
@@ -76,9 +76,9 @@ public class SearchInTable {
         // read table and write searched users to list
         coownerstable.setLoginSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
@@ -95,9 +95,9 @@ public class SearchInTable {
         // read table and write searched users to list
         coownerstable.setCommunitySearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
@@ -114,11 +114,25 @@ public class SearchInTable {
         // read table and write searched users to list
         coownerstable.setLastNameSearch(searchParam);
         coownerstable.getSearchButton().click();
-        List<UserForSerchTableTest> actualFilteredUsersBy = coownerstable.getListOfUsersFromTable();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsersBy));
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
+    //check if message appear when result search table empty and if message correct
+    @Test(dataProvider = "L10N")
+    public void searchInEmptyTable(TitleLocalFooter.ChangeLanguageFields language) {
+        coownerstable = coownerstable.setLanguage(language);
+        coownerstable.setFirstNameSearch("ahsgdlajhsdgkads");
+        coownerstable.getSearchButton().click();
+        //Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), "В таблиці немає даних");
+        Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), CoownersTable.LoginPageL10n.MESSAGE_WHEN_TABLE_EMPTY.getLocalization(language));
+    }
 
+    @DataProvider(name = "L10N")
+    public static Object[] localizationProvider() {
+        return new Object[][]{{TitleLocalFooter.ChangeLanguageFields.UKRAINIAN}, {TitleLocalFooter.ChangeLanguageFields.ENGLISH},
+                {TitleLocalFooter.ChangeLanguageFields.RUSSIAN}};
+    }
 }
 

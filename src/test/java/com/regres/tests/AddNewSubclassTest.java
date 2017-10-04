@@ -86,6 +86,7 @@ public class AddNewSubclassTest {
 		addNewSublassPage = addNewSublassPage.clickSave();
 		// verify validation error message
 		Assert.assertEquals(addNewSublassPage.getValidationMessageText(), "Заповніть будь ласка це поле.");//Please fill out this field.
+
 	}
 
 	// This method verify that created new subclass with valid data saved in List of
@@ -116,7 +117,6 @@ public class AddNewSubclassTest {
 		// verify that name of subclass delete from DB
 		enteredNameSubclass = EnteredCommunityRepo.getEmptyCity();
 		Assert.assertNotNull(baseFunctionalForDB.getSubclassNameFromDb(conn, enteredNameSubclass));
-
 	}
 
 	// This test verify that registrator can create subclass with existing name of
@@ -127,7 +127,7 @@ public class AddNewSubclassTest {
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
 		// click button show parameters
 		addNewSublassPage.clickButtonShowParameters();
-		// //fill the fields with the existing name
+		// fill the fields with the existing name
 		addNewSublassPage.addedNewSubclass(NewSubclassDataContainer.setExistClassName());
 		// select linear parameter
 		addNewSublassPage.selectOptionLinearParameter();
@@ -145,7 +145,7 @@ public class AddNewSubclassTest {
 	public void checkSuccessfulAddedSubclassClear(ChangeLanguageFields language) {
 		// set language
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
-		// //click button show parameters
+		// click button show parameters
 		addNewSublassPage.clickButtonShowParameters();
 		// fill field with valid data
 		addNewSublassPage.addedNewSubclass(NewSubclassDataContainer.setValidDataClear());

@@ -59,20 +59,6 @@ public class SortInTable {
     }
 
     /**
-     * test verify that sort in table by "Login" work correct
-     */
-    @Test
-    public void sortInTableByLogin() {
-        //find all users from table write to list and sort by login in DESC
-        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
-        Collections.sort(allUsers, UserForSerchTableTest.userLoginComparatorDESC);
-        //sets sorting by login and reads all table
-        coownerstable.sortByLogin();
-        List<UserForSerchTableTest> sortedUsers = coownerstable.getListOfUsersFromTable();
-        Assert.assertTrue(coownerstable.compareListsByLogin(allUsers, sortedUsers));
-    }
-
-    /**
      * test verify that sort in table by "Community" work correct
      */
     @Test
