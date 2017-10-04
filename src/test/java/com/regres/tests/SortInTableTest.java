@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.util.Collections;
 import java.util.List;
 
-public class SortInTable {
+public class SortInTableTest {
     private Application app;
     private LoginPage loginpage;
     private AdminHomePage adminhomepage;
@@ -41,7 +41,7 @@ public class SortInTable {
     public void beforeTest() {
         coownerstable = adminhomepage.goToNonConfirmedCoowners();
         coownerstable.setNumbeOfItemsInTable();
-        coownerstable.waitWhileTableAppear();
+        coownerstable.waitWhileScriptsExecute();
     }
 
     /**

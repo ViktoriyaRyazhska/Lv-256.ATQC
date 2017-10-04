@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Sort and Search in user table" parallel="false">
+  <test name="Actions in Table">
+    <classes>
+      <class name="com.regres.tests.SearchInTableTest"/>
+      <class name="com.regres.tests.SortInTableTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+<!--  suite run: 
+				mvn clean test -Dsurefire.suiteXmlFiles=SearchAndSortInUserTable.xml
+	  suites run:
+				mvn clean test -Dsurefire.suiteXmlFiles=mytestng1.xml,mytestng2.xml -->
