@@ -2,6 +2,7 @@ package com.regres.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -28,13 +29,16 @@ public class GoogleEmailPage {
 	private String EMAIL_TEXT_CSS_SELECTOR= "strong";
 	private String ACCAUNT_NAME_XPATH = "//span[@class='gb_7a gbii']";
 	private String LOGOUT_ID = "gb_71";
+	private String FIRST_EMAIL_CSS_SELECTOR = "span.y2";
+	private String BODY_CSS_SELECTOR = "body";
 	
 	public GoogleEmailPage(WebDriver driver) {
 		this.driver = driver;
 	}
 	// this constructor 
-	public List<WebElement> getEmail() {						
-		return 	driver.findElements(By.cssSelector("span.y2"));
+	public List<WebElement> getEmail() {
+
+		return 	driver.findElements(By.cssSelector(FIRST_EMAIL_CSS_SELECTOR));
 	}
 	// sign in to gmail
 	public void signIn(String email, String password) {
@@ -52,22 +56,19 @@ public class GoogleEmailPage {
 		driver.findElement(By.name(PASSWORD_NAME)).sendKeys(password + "\n");
 	}
 	// search email wit specific command
-	public void search(String commandSearch, String searchEmail) {
+	public void search(String search) {
 		(new WebDriverWait(driver, 30))
 		.until(ExpectedConditions
 			.visibilityOfElementLocated(By
 					.xpath(INPUT_SEARCH_XPATH)));
 		driver.findElement(By.xpath(INPUT_SEARCH_XPATH))
-				.sendKeys(commandSearch +" "+ searchEmail);
+				.sendKeys(search);
 		driver.findElement(By.xpath(BUTTON_SEARCH_XPATH)).click();
 	}
 	// open email
 	public void openEmail() {
 		driver.navigate().refresh();
-		(new WebDriverWait(driver, 30))
-		.until(ExpectedConditions
-				.stalenessOf(driver.findElement(By
-						.cssSelector("span.y2"))));
+
 		Reporter.log("Open Email" , true);
 		this.getEmail().get(0).click();
 	}
@@ -79,12 +80,17 @@ public class GoogleEmailPage {
 	// logout from gmail.com
 	public void logout() {
 		driver.findElement(By.xpath(ACCAUNT_NAME_XPATH)).click();
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		(new WebDriverWait(driver, 30))
+		.until(ExpectedConditions
+			.visibilityOf(driver.findElement(By.id(LOGOUT_ID))));
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.id(LOGOUT_ID)).click();
 	}
 	
 	// open new tab and switch to it
 	public void switchToNewTab() {
-		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+		driver.findElement(By.cssSelector(BODY_CSS_SELECTOR)).sendKeys(Keys.CONTROL +"t");
 	    ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 	    
 	    String winHandle = null;
