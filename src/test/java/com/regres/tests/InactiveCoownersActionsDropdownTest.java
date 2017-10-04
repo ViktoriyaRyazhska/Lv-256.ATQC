@@ -21,6 +21,14 @@ public class InactiveCoownersActionsDropdownTest {
 	private LoginPage loginpage;
 	private AdminHomePage adminhomepage;
 	private InactiveCoownersActionsDropdown inactivecoowners;
+	
+	@DataProvider(name = "L10N")
+	public static Object[] localizationProvider() {
+		return new Object[][] {
+			{ ChangeLanguageFields.UKRAINIAN },
+			{ ChangeLanguageFields.ENGLISH },
+			{ ChangeLanguageFields.RUSSIAN } };
+	}
 
 	@BeforeClass
 	public void setUp() {
@@ -74,7 +82,7 @@ public class InactiveCoownersActionsDropdownTest {
 	@Test(dataProvider = "L10N")
 	// this test verify that when in action dropdown by clicking on 'Set community'
 	// link confirm message appears when not chosen co-owner
-	public void checkClickSetCommunity(ChangeLanguageFields language) {
+	public void checkL10NClickSetCommunity(ChangeLanguageFields language) {
 		inactivecoowners = inactivecoowners.setLanguage(language);
 		inactivecoowners.search("co_owner");
 		inactivecoowners.clickFirstRow();
@@ -96,12 +104,4 @@ public class InactiveCoownersActionsDropdownTest {
         		LoginPageL10n.NOT_BE_EMPTY_SET_COMMUNITY_CONFIRM_MESSAGE.getLocalization(language));
         inactivecoowners.getConfirmMessage().clickOkButton();
 	}
-	
-
-	@DataProvider(name = "L10N")
-	public static Object[] localizationProvider() {
-		return new Object[][] { { ChangeLanguageFields.UKRAINIAN }, { ChangeLanguageFields.ENGLISH },
-				{ ChangeLanguageFields.RUSSIAN } };
-	}
-
 }

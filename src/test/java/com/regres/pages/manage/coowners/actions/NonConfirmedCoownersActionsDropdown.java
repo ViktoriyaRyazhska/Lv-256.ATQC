@@ -1,5 +1,7 @@
 package com.regres.pages.manage.coowners.actions;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.GoogleEmailPage;
+import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 import com.regres.pages.manage.coowners.CoownersTable;
 
 public class NonConfirmedCoownersActionsDropdown extends CoownersTable {
@@ -87,5 +90,42 @@ public class NonConfirmedCoownersActionsDropdown extends CoownersTable {
 		// Return a new page object representing the destination.
 		return new NonConfirmedCoownersActionsDropdown(driver);
 	}
+	
+	public static enum LoginPageL10n {
+		CONFIRM_MESSAGE_WHEN_DONOT_CHOSEN_COOWNER(
+				"Для виконання даної операції спочатку потрібно вибрати співвласників, "
+						+ "натиснувши на відповідні стрічки в таблиці",
+				"Для выполнения данной операции сначала нужно выбрать совладельцев, "
+						+ "нажав на соответствующие строки в таблице",
+				"To perform this operation you must first select coowners"
+						+ " by clicking on the appropriate rows in the table" ),
+		TITLE_TABLE_TEXT("Непідтверджені співвласники", "Неподтверждённые совладельцы", "Non-confirmed coowners"),
+		SEND_EMAIL_CONFIRM_MESSAGE(
+				"Листи успішно надіслано","Успешно отправлено","Successfully sent"),
+		CANCEL_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Відмінити","Отменить","Cancel"),
+		CONFIRM_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Підтвердити","Подтвердить","Confirm"),
+		NOT_BE_EMPTY_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Поле \"Громада\" не може бути пустим. Будь-ласка виберіть значення зі списку.",
+				"Поле не может быть пустым. Пожалуйста выберите значение из списка.",
+				"This field cant be empty. Please select a value from the list."),
+		OK("OK","OK","OK"),
+		CHANGES_ACCEPTED("Зміни застосовано","Изменения сохранены","Changes accepted");
+		
+		private HashMap<ChangeLanguageFields, String> field;
 
+		private LoginPageL10n(String... localization) {
+			this.field = new HashMap<ChangeLanguageFields, String>();
+			int i = 0;
+			for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+				this.field.put(language, localization[i]);
+				i++;
+			}
+		}
+
+		public String getLocalization(ChangeLanguageFields language) {
+			return this.field.get(language).trim();
+		}
+	}
 }

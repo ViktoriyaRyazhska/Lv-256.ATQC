@@ -2,7 +2,7 @@ package com.regres.testdata;
 
 public class GoogleEmailSearchRepo {
 	
-	public GoogleEmailSearch getGmailSearch() {
+	public static GoogleEmailSearch getGmailSearch() {
 		return new GoogleEmailSearch("l:unread", "Заявка на реєстрацію");
 	}
 	
