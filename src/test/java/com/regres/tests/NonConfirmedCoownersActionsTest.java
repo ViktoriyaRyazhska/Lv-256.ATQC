@@ -14,6 +14,7 @@ import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.GoogleEmailPage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.manage.coowners.actions.NonConfirmedCoownersActionsDropdown;
+import com.regres.testdata.GoogleEmailSearchRepo;
 import com.regres.testdata.UserContainer;
 
 public class NonConfirmedCoownersActionsTest {
@@ -23,6 +24,7 @@ public class NonConfirmedCoownersActionsTest {
 	private ConfirmMessagePage confirmMessage;
 	private NonConfirmedCoownersActionsDropdown nonConfirmed;
 	private GoogleEmailPage email;
+	private GoogleEmailSearchRepo emailSearch; 
 
 	@BeforeClass
 	public void setUp() {
@@ -99,7 +101,7 @@ public class NonConfirmedCoownersActionsTest {
 		email = nonConfirmed.goToEmail();
 		email.switchToNewTab();
 		email.signIn("bzhyvko90@gmail.com", "19902712");
-		email.search("l:unread", "Заявка на реєстрацію");
+		email.search(emailSearch.getGmailSearch().toString());
 		assertTrue(email.getEmail().size() > 0);
 		email.openEmail();
 		assertEquals(email.getLoginName(), "testsendmail");

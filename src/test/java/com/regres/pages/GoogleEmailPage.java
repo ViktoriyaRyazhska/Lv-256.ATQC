@@ -52,13 +52,13 @@ public class GoogleEmailPage {
 		driver.findElement(By.name(PASSWORD_NAME)).sendKeys(password + "\n");
 	}
 	// search email wit specific command
-	public void search(String commandSearch, String searchEmail) {
+	public void search(String search) {
 		(new WebDriverWait(driver, 30))
 		.until(ExpectedConditions
 			.visibilityOfElementLocated(By
 					.xpath(INPUT_SEARCH_XPATH)));
 		driver.findElement(By.xpath(INPUT_SEARCH_XPATH))
-				.sendKeys(commandSearch +" "+ searchEmail);
+				.sendKeys(search);
 		driver.findElement(By.xpath(BUTTON_SEARCH_XPATH)).click();
 	}
 	// open email
