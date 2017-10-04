@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CoownersTable extends AdminHomePage {
@@ -410,6 +411,35 @@ public class CoownersTable extends AdminHomePage {
     //sets the number of visible rows in table 10
     public void setNumbeOfItemsInTable10() {
         new Select(driver.findElement(By.name(NUMBERS_OF_ROWN_IN_TABLE_NAME))).selectByVisibleText("10");
+    }
+
+    @Override
+    public CoownersTable setLanguage(ChangeLanguageFields language) {
+        Select lang = new Select(getLocalizationDropdown());
+        lang.selectByVisibleText(language.toString());
+        // Return a new page object representing the destination.
+        return new CoownersTable(driver);
+    }
+    public enum LoginPageL10n {
+        MESSAGE_WHEN_TABLE_EMPTY(
+                "В таблиці немає даних",
+                "В таблице нет данных",
+                "No data" );
+
+        private HashMap<ChangeLanguageFields, String> field;
+
+        private LoginPageL10n(String... localization) {
+            this.field = new HashMap<ChangeLanguageFields, String>();
+            int i = 0;
+            for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+                this.field.put(language, localization[i]);
+                i++;
+            }
+        }
+
+        public String getLocalization(ChangeLanguageFields language) {
+            return this.field.get(language).trim();
+        }
     }
 }
 
