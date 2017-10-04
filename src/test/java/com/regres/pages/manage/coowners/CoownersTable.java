@@ -1,20 +1,22 @@
 package com.regres.pages.manage.coowners;
 
-import com.regres.testdata.UserForSerchTableTest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.regres.pages.AdminHomePage;
-import com.regres.pages.ConfirmMessagePage;
-import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.regres.pages.AdminHomePage;
+import com.regres.pages.ConfirmMessagePage;
+import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
+import com.regres.pages.manage.coowners.actions.NonConfirmedCoownersActionsDropdown;
+import com.regres.testdata.UserForSerchTableTest;
 
 public class CoownersTable extends AdminHomePage {
     public ConfirmMessagePage confirm;
@@ -35,12 +37,12 @@ public class CoownersTable extends AdminHomePage {
     private String ROLE_SORT_XPATH = ".//*[@id='example']/thead/tr/th[7]";
 
     //table search row
-    private String FIRST_NAME_COLUMN = ".//*[@id='inputIndex1']";
-    private String LAST_NAME_COLUMN = ".//*[@id='inputIndex2']";
-    private String LOGIN_COLUMN = ".//*[@id='inputIndex3']";
-    private String COMMUNITY_COLUMN = ".//*[@id='inputIndex4']";
-    private String EMAIL_COLUMN = ".//*[@id='inputIndex5']";
-    private String ROLE_COLUMN = ".//*[@id='inputIndex6']";
+    private String FIRST_NAME_COLUMN_ID= "inputIndex1";
+    private String LAST_NAME_COLUMN_ID = "inputIndex2";
+    private String LOGIN_COLUMN_ID = "inputIndex3";
+    private String COMMUNITY_COLUMN_ID = "inputIndex4";
+    private String EMAIL_COLUMN_ID = "inputIndex5";
+    private String ROLE_COLUMN_ID = "inputIndex6";
 
 	// table columns second row search
 	String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
@@ -54,6 +56,10 @@ public class CoownersTable extends AdminHomePage {
     private String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
     private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";
     private String EMPTY_TABLE_CSS = ".dataTables_empty";
+    
+ // table hider
+ 	private String TABLE_TITLE_XPATH = "//div[@class = 'dataTable_wrapper']/preceding::h4";
+    private String FIRST_ROW_TABLE_XPATH = "//tbody/tr[1]";
 
 	public CoownersTable(WebDriver driver) {
 		super(driver);
@@ -79,6 +85,13 @@ public class CoownersTable extends AdminHomePage {
 
 	public void ClickSearchButton() {
 		getSearchButton().click();
+	}
+	
+	public WebElement getTitleTableName() {
+		return driver.findElement(By.xpath(TABLE_TITLE_XPATH));
+	}
+	public String getTitleTableNameText() {
+		return getTitleTableName().getText().trim();
 	}
 
 	public WebElement getPrevButtton() {
@@ -163,15 +176,15 @@ public class CoownersTable extends AdminHomePage {
 
     //table search row getters
     public WebElement getFirstNameColumn() {
-        return driver.findElement(By.xpath(FIRST_NAME_COLUMN));
+        return driver.findElement(By.id(FIRST_NAME_COLUMN_ID));
     }
 
 	public WebElement getLastNameColumn() {
-		return driver.findElement(By.xpath(LAST_NAME_COLUMN));
+		return driver.findElement(By.id(LAST_NAME_COLUMN_ID));
 	}
 
 	public WebElement getLoginColumn() {
-		return driver.findElement(By.xpath(LOGIN_COLUMN));
+		return driver.findElement(By.id(LOGIN_COLUMN_ID));
 	}
 
 	public void ClickLoginColumn() {
@@ -179,15 +192,15 @@ public class CoownersTable extends AdminHomePage {
 	}
 
 	public WebElement getCommunityColumn() {
-		return driver.findElement(By.xpath(COMMUNITY_COLUMN));
+		return driver.findElement(By.id(COMMUNITY_COLUMN_ID));
 	}
 
 	public WebElement getEmailColumn() {
-		return driver.findElement(By.xpath(EMAIL_COLUMN));
+		return driver.findElement(By.id(EMAIL_COLUMN_ID));
 	}
 
 	public WebElement getRoleColumn() {
-		return driver.findElement(By.xpath(ROLE_COLUMN));
+		return driver.findElement(By.id(ROLE_COLUMN_ID));
 	}
 
 	public String getFirstNameColumnText() {
@@ -208,6 +221,10 @@ public class CoownersTable extends AdminHomePage {
 
 	public String getEmailColumnText() {
 		return getEmailColumn().getText().trim();
+	}
+	
+	public WebElement getFirstRowTable() {
+		return driver.findElement(By.xpath(FIRST_ROW_TABLE_XPATH));
 	}
 
 	public String getRoleColumnText() {
@@ -237,6 +254,9 @@ public class CoownersTable extends AdminHomePage {
     public void setRoleSearch(String roleSearch) {
         getRoleColumn().sendKeys(roleSearch);
     }
+    public WebElement getLoginIinputField() {
+		return driver.findElement(By.id(LOGIN_COLUMN_ID));
+	}
 
     //work with table
     public List<WebElement> getAllTableBodyRows() {
@@ -438,6 +458,17 @@ public class CoownersTable extends AdminHomePage {
     public void setNumbeOfItemsInTable10() {
         new Select(driver.findElement(By.name(NUMBERS_OF_ROWN_IN_TABLE_NAME))).selectByVisibleText("10");
     }
+ // search by login name
+ 	public void search(String login) {
+ 		this.getLoginIinputField().clear();
+ 		this.getLoginIinputField().sendKeys(login);
+ 		this.getSearchButton().click();
+ 	}
+
+ 	public void clickFirstRow() {
+ 		this.clickUserName();
+ 		this.getFirstRowTable().click();
+ 	}
 
     @Override
     public CoownersTable setLanguage(ChangeLanguageFields language) {
@@ -468,5 +499,3 @@ public class CoownersTable extends AdminHomePage {
         }
     }
 }
-
-
