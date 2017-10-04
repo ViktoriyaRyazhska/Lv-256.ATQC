@@ -4,15 +4,14 @@ import com.regres.application.Application;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
+import com.regres.pages.TitleLocalFooter;
 import com.regres.pages.manage.coowners.CoownersTable;
+import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForSerchTableTest;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
@@ -60,13 +59,17 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
+        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
      * test verify that seatch in table by "Login" work correct
      */
-    @Test
+    //@Test
     public void searchInTableByLogin() {
         //find all users from table and chose random user's last name for future search in table
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
@@ -79,13 +82,17 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
+        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
      * test verify that seatch in table by "Community" work correct
      */
-    @Test
+    //@Test
     public void searchInTableByCommunity() {
         //find all users from table and chose random user's last name for future search in table
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
@@ -98,13 +105,17 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
+        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     /**
      * test verify that seatch in table by "Last Name" work correct
      */
-    @Test
+    //@Test
     public void searchInTableByLastName() {
         //find all users from table and chose random user's last name for future search in table
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
@@ -117,15 +128,27 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
+        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
     //check if message appear when result search table empty and if message correct
-    @Test
-    public void searchInEmptyTable() {
+    @Test(dataProvider = "L10N")
+    public void searchInEmptyTable(TitleLocalFooter.ChangeLanguageFields language) {
+        coownerstable = coownerstable.setLanguage(language);
         coownerstable.setFirstNameSearch("ahsgdlajhsdgkads");
         coownerstable.getSearchButton().click();
-        Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), "В таблиці немає даних");
+        //Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), "В таблиці немає даних");
+        Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), CoownersTable.LoginPageL10n.MESSAGE_WHEN_TABLE_EMPTY.getLocalization(language));
+    }
+
+    @DataProvider(name = "L10N")
+    public static Object[] localizationProvider() {
+        return new Object[][]{{TitleLocalFooter.ChangeLanguageFields.UKRAINIAN}, {TitleLocalFooter.ChangeLanguageFields.ENGLISH},
+                {TitleLocalFooter.ChangeLanguageFields.RUSSIAN}};
     }
 }
 
