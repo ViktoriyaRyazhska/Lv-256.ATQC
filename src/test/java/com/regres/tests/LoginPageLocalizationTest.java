@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -103,6 +104,11 @@ public class LoginPageLocalizationTest extends Reports {
 				LoginPageL10n.FORGOT_PASSWORD_LINK.getLocalization(language));
 		test.log(Status.PASS, "Checked forgot password link label spelling.");
 
+	}
+	
+	@AfterSuite(alwaysRun = true)
+	public void getREPORT() {
+		report.flush();
 	}
 
 }

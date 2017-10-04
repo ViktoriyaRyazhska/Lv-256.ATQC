@@ -69,7 +69,7 @@ public class AddNewSubclassTest {
 	}
 
 	// Method verify that user can't create new subclass with invalid data
-	 @Test(dataProvider = "L10N")
+	@Test(dataProvider = "L10N")
 	public void checkEmptyEnterNameField(ChangeLanguageFields language) {
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
 		// click button show parameters
@@ -91,7 +91,7 @@ public class AddNewSubclassTest {
 	@Test(dataProvider = "L10N")
 	public void checkSuccessfulAddedSubclass(ChangeLanguageFields language) throws SQLException {
 		// set language
-		//addNewSublassPage = addNewSublassPage.setLanguage(language);
+		// addNewSublassPage = addNewSublassPage.setLanguage(language);
 		// click on button show parameter
 		addNewSublassPage.clickButtonShowParameters();
 		// fill field with valid data
