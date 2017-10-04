@@ -1,94 +1,46 @@
 package com.regres.pages.manage.coowners;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 
 public class CoownersElementsOnPageDropdown extends CoownersTable {
-
-	private WebElement elementsOnPageDropdown;
-	private WebElement elementsInfo;
-	private WebElement pageOne;
-	private WebElement pageTwo;
-	private WebElement pageThree;
-	private WebElement pageFour;
-	private WebElement pageFive;
-	private WebElement pageSix;
-	private WebElement pageSeven;
-	private WebElement pageEight;
-	private WebElement pageNine;
-	private WebElement pageTen;
-
 	// locators
 	String ELEMENTS_ON_PAGE_DROPDOWN_NAME = "example_length";
 	String ELEMENTS_ON_PAGE_INFO_ID = "example_info";
+	String PAGINATION_LIST_XPATH = "//*[@id=\"example_paginate\"]/span/a";
 
-	// add pagination
-	String PAGE_ONE_XPATH = "//*[@id=\"example_paginate\"]/span/a[1]";
-	String PAGE_TWO_XPATH = "//*[@id=\"example_paginate\"]/span/a[2]";
-	String PAGE_THREE_XPATH = "//*[@id=\"example_paginate\"]/span/a[3]";
-	String PAGE_FOUR_XPATH = "//*[@id=\"example_paginate\"]/span/a[4]";
-	String PAGE_FIVE_XPATH = "//*[@id=\"example_paginate\"]/span/a[5]";
-	String PAGE_SIX_XPATH = "//*[@id=\"example_paginate\"]/span/a[6]";
-	String PAGE_SEVEN_XPATH = "//*[@id=\"example_paginate\"]/span/a[7]";
-	String PAGE_EIGHT_XPATH = "//*[@id=\"example_paginate\"]/span/a[8]";
-	String PAGE_NINE_XPATH = "//*[@id=\"example_paginate\"]/span/a[9]";
-	String PAGE_TEN_XPATH = "//*[@id=\"example_paginate\"]/span/a[10]";
+	private WebElement elementsOnPageDropdown;
+	private WebElement elementsInfo;
+	private List<WebElement> pagination;
 
+	// constructor from superclass
 	public CoownersElementsOnPageDropdown(WebDriver driver) {
 		super(driver);
 		getElementsOnPageDropdown();
 		getElementsInfo();
-
 	}
 
-	public WebElement getPageOne() {
-		return pageOne = driver.findElement(By.xpath(PAGE_ONE_XPATH));
-	}
-
-	public WebElement getPageTwo() {
-		return pageTwo = driver.findElement(By.xpath(PAGE_TWO_XPATH));
-	}
-
-	public WebElement getPageThree() {
-		return pageThree = driver.findElement(By.xpath(PAGE_THREE_XPATH));
-	}
-
-	public WebElement getPageFour() {
-		return pageFour = driver.findElement(By.xpath(PAGE_FOUR_XPATH));
-	}
-
-	public WebElement getPageFive() {
-		return pageFive = driver.findElement(By.xpath(PAGE_FIVE_XPATH));
-	}
-
-	public WebElement getPageSix() {
-		return pageSix = driver.findElement(By.xpath(PAGE_SIX_XPATH));
-	}
-
-	public WebElement getPageSeven() {
-		return pageSeven = driver.findElement(By.xpath(PAGE_SEVEN_XPATH));
-	}
-
-	public WebElement getPageEight() {
-		return pageEight = driver.findElement(By.xpath(PAGE_EIGHT_XPATH));
-	}
-
-	public WebElement getPageNine() {
-		return pageNine = driver.findElement(By.xpath(PAGE_NINE_XPATH));
-	}
-
-	public WebElement getPageTen() {
-		return pageTen = driver.findElement(By.xpath(PAGE_TEN_XPATH));
-	}
-
+	// getters and setters
 	public WebElement getElementsOnPageDropdown() {
 		return elementsOnPageDropdown = driver.findElement(By.name(ELEMENTS_ON_PAGE_DROPDOWN_NAME));
 	}
 
 	public WebElement getElementsInfo() {
 		return elementsInfo = driver.findElement(By.id(ELEMENTS_ON_PAGE_INFO_ID));
+	}
+
+	public List<WebElement> getPagination() {
+		return pagination = driver.findElements(By.xpath(PAGINATION_LIST_XPATH));
 	}
 
 	public void setElementsOnPageDropdown(WebElement elementsOnPageDropdown) {
@@ -98,113 +50,106 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 	public void setElementsInfo(WebElement elementsInfo) {
 		this.elementsInfo = elementsInfo;
 	}
-// select
+
+	public void setPagination(List<WebElement> pagination) {
+		this.pagination = pagination;
+	}
+
+	// select options of elemets on page dropdown
+	// select option ten
 	public void selectTenElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("10");
 	}
 
+	// select option twenty five
 	public void selectTwentyFiveElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("25");
 	}
 
+	// select option fifty
 	public void selectFiftyElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("50");
 	}
 
+	// select option hundred
 	public void selectHundredElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("100");
 	}
-//get text
+
+	// get text of element which show count of elements on page
 	public String getElementsInfoText() {
 		return getElementsInfo().getText().trim();
 	}
 
-	public String getPageOneText() {
-		return getPageOne().getText().trim();
+	// get pagination size
+	public int getPaginationSize() {
+		return getPagination().size();
 	}
 
-	public String getPageTwoText() {
-		return getPageTwo().getText().trim();
-	}
-
-	public String getPageThreeText() {
-		return getPageThree().getText().trim();
-	}
-
-	public String getPageFourText() {
-		return getPageFour().getText().trim();
-	}
-
-	public String getPageFiveText() {
-		return getPageFive().getText().trim();
-	}
-
-	public String getPageSixText() {
-		return getPageSix().getText().trim();
-	}
-
-	public String getPageSevenText() {
-		return getPageOne().getText().trim();
-	}
-
-	public String getPageEightText() {
-		return getPageEight().getText().trim();
-	}
-
-	public String getPageNineText() {
-		return getPageNine().getText().trim();
-	}
-
-	public String getPageTenText() {
-		return getPageTen().getText().trim();
-	}
-	// click
-	public void clickPageOne() {
-		this.getPageOne().click();
-		
-	}
-	
-	public void  clickPageTwo() {
-		getPageTwo().click();
-		
-	}
-	// click
-	public void  clickPageThree() {
-		getPageThree().click();
-		
-	}
-	
-	public void  clickPageFour() {
-		getPageFour().click();
-		
-	}
-	public void  clickPageFive() {
-		getPageFive().click();
-		
-	}
-	public void  clickPageSix() {
-		getPageSix().click();
-	}
-	public void  clickPageSeven() {
-		getPageSeven().click();
-		
-	}
-	public void  clickPageEight() {
-		getPageEight().click();
-		
-	}
-	public void  clickPageNine() {
-		getPageNine().click();
-		
-	}
-	public void clickPageTen() {
-		getPageTen().click();
-		
-	}
-	public  void clickPreviousButton() {
+	// click on button that choose previous paginate button
+	public void clickPreviousButton() {
 		getPrevButtton().click();
 	}
-public void clickNextButton() {
-	  getNextButtton().click();
-}
+
+	// click on button that choose next paginate button
+	public void clickNextButton() {
+		getNextButtton().click();
+	}
+
+	// choose first paginate button
+	public void checkFirstPaginateButton() {
+		for (int i = 0; i < getPaginationSize(); i++) {
+			getPagination().get(0).click();
+		}
+	}
+
+	// choose last paginate button
+	public void checkLastPaginateButton() {
+		for (int i = 0; i < getPaginationSize(); i++) {
+			getPagination().get(getPaginationSize()).click();
+		}
+	}
+
+	// choose penultimate paginate button
+	public void checkPenultimatePaginateButton() {
+		for (int i = 0; i < getPaginationSize(); i++) {
+			getPagination().get(getPaginationSize() - 1).click();
+		}
+	}
+
+	// change language
+	@Override
+	public CoownersElementsOnPageDropdown setLanguage(ChangeLanguageFields language) {
+		Select lang = new Select(getLocalizationDropdown());
+		lang.selectByVisibleText(language.toString());
+		// Return a new page object representing the destination.
+		return new CoownersElementsOnPageDropdown(driver);
+	}
+
+	// Localization enum
+	public static enum pageL10n {
+		DROPDOWN_LABEL("елементів на сторінку", "элементов на страницу", "elements on page"), EXAMPLE_INFO10("10 із 51",
+				"10 из 51", "10 of 51"), EXAMPLE_INFO20("20 із 51", "20 из 51", "20 of 51"), EXAMPLE_INFO30("30 із 51",
+						"30 из 51", "30 of 51"), EXAMPLE_INFO40("40 із 51", "40 из 51", "40 of 51"), EXAMPLE_INFO50(
+								"50 із 51", "50 из 51",
+								"50 of 51"), EXAMPLE_INFO25("25 із 51", "25 из 51", "25 of 51"), EXAMPLE_INFO100(
+										"51 із 51", "51 из 51", "51 of 51"), PREVIOUS_BUTTON("Попер.", "Пред.",
+												"Prev"), NEXT_BUTTON("Наст.", "След.", "Next");
+
+		private HashMap<ChangeLanguageFields, String> field;
+
+		private pageL10n(String... localization) {
+			this.field = new HashMap<ChangeLanguageFields, String>();
+			int i = 0;
+			for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+				this.field.put(language, localization[i]); // initialization of the field HashMap(sets all values for
+															// current language)
+				i++;
+			}
+		}
+
+		public String getLocalization(ChangeLanguageFields language) {
+			return this.field.get(language).trim();
+		}
+	}
 }
