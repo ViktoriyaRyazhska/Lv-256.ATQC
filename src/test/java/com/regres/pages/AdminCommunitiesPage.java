@@ -238,9 +238,9 @@ public class AdminCommunitiesPage extends AdminHomePage {
 		driver.navigate().refresh();
 
 		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.textToBePresentInElementLocated(
+		return wait.until(ExpectedConditions.textToBePresentInElementLocated(
 				By.xpath("//tr[@class='commun']//*[text()='" + name2 + "']"), name2));
-		return true;
+		
 	}
 	public boolean verifyEditedCommunityAbsence(String name) throws TimeoutException {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MILLISECONDS);

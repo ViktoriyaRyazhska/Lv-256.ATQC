@@ -37,11 +37,7 @@ public class AdminCommunitiesPageTest {
 	public Object[][] communityNameAndNumber() {
 		return new Object[][] { { "ddddd2", "111:11:11:111:11115" } };
 	}
-	@DataProvider
-	public Object[][] communityNameAndNumber2() {
-		return new Object[][] { { "ddddd2", "111:11:11:111:11115" } };
-	}
-
+	
 	@DataProvider
 	public Object[][] editCommunityNameAndNumber() {
 		return new Object[][] { { "ddddd3", "ddddd5", "111:11:11:111:11116", "111:11:11:111:11188" } };
@@ -87,7 +83,7 @@ public class AdminCommunitiesPageTest {
 		addcompage.inputIncorrectDataInRegNumber(name, number);
 		Assert.assertTrue(addcompage.getRegError().isDisplayed());
 	}
-		@Test(dataProvider = "communityNameAndNumber2")
+		@Test(dataProvider = "communityNameAndNumber")
 		public void verifyClearFormButton(String name, String number) {
 			addcompage = compage.clickAddNewCommunityButton();
 			addcompage.fillInNameandRegNumber(name, number);
