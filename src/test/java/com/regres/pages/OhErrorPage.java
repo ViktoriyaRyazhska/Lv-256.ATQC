@@ -40,7 +40,7 @@ public class OhErrorPage {
 	public WebElement getGoToHomePageButton() {
 		return goToHomePageButton;
 	}
-	
+
 	public String getErrorTitleText() {
 		return errorTitle.getText();
 	}

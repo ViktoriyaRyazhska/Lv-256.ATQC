@@ -42,6 +42,9 @@ public class Application {
 			driver.quit();
 		}
 	}
+	public WebDriver getDriver(){
+		return driver;
+	}
 
 	private WebDriver getWebDriver() {
 

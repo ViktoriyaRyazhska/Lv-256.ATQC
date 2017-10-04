@@ -1,203 +1,154 @@
 package com.regres.tests;
 
+import com.regres.application.Application;
+import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
+import com.regres.pages.TitleLocalFooter;
 import com.regres.pages.manage.coowners.CoownersTable;
+import com.regres.pages.manage.coowners.actions.InactiveCoownersActionsDropdown;
 import com.regres.testdata.UserContainer;
+import com.regres.testdata.UserForSerchTableTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class SearchInTable {
-    private WebDriver driver;
-    private String baseURL;
+    private Application app;
+    private LoginPage loginpage;
+    private AdminHomePage adminhomepage;
+    private CoownersTable coownerstable;
 
     @BeforeClass
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        baseURL = "http://regres.herokuapp.com";
-        driver.get(baseURL);
-        LoginPage loginpage = new LoginPage(driver);
-        AdminHomePage adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-        CoownersTable coownersTable = adminhomepage.goToNonConfirmedCoowners();
-        coownersTable.getNonConfirmedCoowners();//вивести непідтверджених юзерів
-        //coownersTable.setNumbeOfItemsInTable(); //вивести 100 позицій в таблиці, поставити вейтер
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
+        app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+        loginpage = app.load();
+        adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
     }
 
     @AfterClass
     public void tearDown() {
-        driver.close();
+        app.quit();
     }
 
+    /**
+     * choose non-confirmed co-owners
+     */
+    @BeforeMethod
+    public void beforeTest() {
+        coownerstable = adminhomepage.goToNonConfirmedCoowners();
+        coownerstable.setNumbeOfItemsInTable();
+        coownerstable.waitWhileTableAppear();
+    }
+
+    /**
+     * test verify that seatch in table by "First Name" work correct
+     */
     @Test
-    public void searchInTable() {
-//        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-//        List<WebElement> tr_collection = driver.findElements(By.xpath("//table/tbody/tr"));
-//        System.out.println(tr_collection.toString());
-//        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-//        WebElement element = driver.findElement(By.xpath(".//*[@id='example']/tbody"));
-//        List<WebElement> rowCollection = element.findElements(By.xpath("//*[@id='example']/tbody/tr"));
-//        System.out.println("Numer of rows in this table: " + rowCollection.size());
-        usersFromTable(driver);
-
+    public void searchInTableByFirstName() {
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getFirstName();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByFirstName(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setLastNameSearch(searchParam);
+        coownerstable.getSearchButton().click();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
+        }
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
-    public void usersFromTable(WebDriver driver) {
-        List<User> userList = new ArrayList<User>();
-        List<WebElement> td_collection = driver.findElements(By.xpath("//*[@id='example']/tbody/tr/td"));
-        System.out.println("td_collection size " + td_collection.size());
-        List<String> list = new ArrayList<String>();
-        int count = 0;
-        for (WebElement td : td_collection) {
-            list.add(td.getText());
-            count++;
+    /**
+     * test verify that seatch in table by "Login" work correct
+     */
+    //@Test
+    public void searchInTableByLogin() {
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getLogin();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByLogin(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setLoginSearch(searchParam);
+        coownerstable.getSearchButton().click();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
         }
-        System.out.println(list);
-        for (int j = 0; j <= count - 8; j = j + 8) {
-//            for (int i = 0; i <= 7; i++) {
-////                td_collection.get(j+i).getText();
-//
-
-            userList.add(new User(
-                    td_collection.get(j + 0).getText(),
-                    td_collection.get(j + 1).getText(),
-                    td_collection.get(j + 2).getText(),
-                    td_collection.get(j + 3).getText(),
-                    td_collection.get(j + 4).getText(),
-                    td_collection.get(j + 5).getText(),
-                    td_collection.get(j + 6).getText(),
-                    td_collection.get(j + 7).getText()
-            ));
-        }
-        for (User u : userList) {
-            System.out.println(u);
-        }
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
-//            for (WebElement tdElement : td_collection) {
-//                userList.add(new User(
-//                        tdElement.findElement(By.cssSelector(".status")).getText(),
-//                        tdElement.findElement(By.cssSelector(".firstName")).getText(),
-//                        tdElement.findElement(By.cssSelector(".lastName")).getText(),
-//                        tdElement.findElement(By.cssSelector(".login.sorting_1")).getText(),
-//                        tdElement.findElement(By.cssSelector(".territorialCommunity_name")).getText(),
-//                        tdElement.findElement(By.cssSelector(".email")).getText(),
-//                        tdElement.findElement(By.cssSelector(".role_type")).getText())
-//                );
-//            }
-
-    class User {
-        String status;
-        String firstName;
-        String lastName;
-        String login;
-        String territorialCommunity_name;
-        String email;
-        String role_type;
-        String button;
-
-
-        @Override
-        public String toString() {
-            return "User{" +
-                    "status='" + status + '\'' +
-                    ", firstName='" + firstName + '\'' +
-                    ", lastName='" + lastName + '\'' +
-                    ", login='" + login + '\'' +
-                    ", territorialCommunity_name='" + territorialCommunity_name + '\'' +
-                    ", email='" + email + '\'' +
-                    ", role_type='" + role_type + '\'' +
-                    ", button='" + button + '\'' +
-                    '}';
+    /**
+     * test verify that seatch in table by "Community" work correct
+     */
+    //@Test
+    public void searchInTableByCommunity() {
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getTerritorialCommunityName();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByCommunity(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setCommunitySearch(searchParam);
+        coownerstable.getSearchButton().click();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
         }
-
-        public User(String status, String firstName, String lastName, String login, String territorialCommunity_name, String email, String role_type, String button) {
-            this.status = status;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.login = login;
-            this.territorialCommunity_name = territorialCommunity_name;
-            this.email = email;
-            this.role_type = role_type;
-            this.button = button;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-
-        public String getLogin() {
-            return login;
-        }
-
-        public void setLogin(String login) {
-            this.login = login;
-        }
-
-        public String getTerritorialCommunity_name() {
-            return territorialCommunity_name;
-        }
-
-        public void setTerritorialCommunity_name(String territorialCommunity_name) {
-            this.territorialCommunity_name = territorialCommunity_name;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getRole_type() {
-            return role_type;
-        }
-
-        public void setRole_type(String role_type) {
-            this.role_type = role_type;
-        }
-
-        public String getButton() {
-            return button;
-        }
-
-        public void setButton(String button) {
-            this.button = button;
-        }
-
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
+    /**
+     * test verify that seatch in table by "Last Name" work correct
+     */
+    //@Test
+    public void searchInTableByLastName() {
+        //find all users from table and chose random user's last name for future search in table
+        List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
+        String searchParam = coownerstable.getSearchParameter(allUsers).getLastName();
+        //select users from all user list by search parameter
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByLastName(allUsers, searchParam);
+        //set search parameter in table search field and press button search
+        // read table and write searched users to list
+        coownerstable.setLastNameSearch(searchParam);
+        coownerstable.getSearchButton().click();
+        List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
+        //compare to lists
+        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
+            System.out.println(expectFilteredUsers);
+            System.out.println(actualFilteredUsers);
+        }
+        Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
+    }
+
+    //check if message appear when result search table empty and if message correct
+    @Test(dataProvider = "L10N")
+    public void searchInEmptyTable(TitleLocalFooter.ChangeLanguageFields language) {
+        coownerstable = coownerstable.setLanguage(language);
+        coownerstable.setFirstNameSearch("ahsgdlajhsdgkads");
+        coownerstable.getSearchButton().click();
+        //Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), "В таблиці немає даних");
+        Assert.assertEquals(coownerstable.waitWhileEmptyTableAppear(), CoownersTable.LoginPageL10n.MESSAGE_WHEN_TABLE_EMPTY.getLocalization(language));
+    }
+
+    @DataProvider(name = "L10N")
+    public static Object[] localizationProvider() {
+        return new Object[][]{{TitleLocalFooter.ChangeLanguageFields.UKRAINIAN}, {TitleLocalFooter.ChangeLanguageFields.ENGLISH},
+                {TitleLocalFooter.ChangeLanguageFields.RUSSIAN}};
+    }
 }
+

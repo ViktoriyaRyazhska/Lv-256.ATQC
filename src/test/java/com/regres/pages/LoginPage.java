@@ -13,11 +13,12 @@ import com.regres.testdata.User;
 
 /**
  * Class representation of a Login page.
+ * 
  * @author PETYAggg
  *
  */
 public class LoginPage extends TitleLocalFooter {
-	
+
 	private WebElement loginLabel;
 	private WebElement loginField;
 	private WebElement passwordLabel;
@@ -30,13 +31,13 @@ public class LoginPage extends TitleLocalFooter {
 	private WebElement helpLink;
 	private WebElement feedbackLink;
 	private WebElement errormessage;
-	
+
 	String LOGIN_LABEL_XPATH = "//label[@for='inputEmail']";
 	String LOGIN_FIELD_NAME = "login";
 	String PASSWORD_LABEL_XPATH = "//label[@for='inputPassword']";
 	String PASSWORD_FIELD_NAME = "password";
 	String REMEMBER_ME_CHECKBOX_ID = "_spring_security_remember_me";
-	String REMEMBER_ME_LABEL_XPATH= "//div[@class='checkbox']/label";
+	String REMEMBER_ME_LABEL_XPATH = "//div[@class='checkbox']/label";
 	String SIGN_IN_BUTTON_XPATH = "//*[@type='submit']";
 	String FORGOT_PASSWORD_LINK_CLASSNAME = "forgot-password";
 	String HELP_LINK_XPATH = "//div[@id='footer']//a[contains(@href,'faq')]";
@@ -49,7 +50,7 @@ public class LoginPage extends TitleLocalFooter {
 		super(driver);
 		loginLabel = driver.findElement(By.xpath(LOGIN_LABEL_XPATH));
 		loginField = driver.findElement(By.name(LOGIN_FIELD_NAME));
-		passwordLabel = driver.findElement(By.xpath(PASSWORD_LABEL_XPATH ));
+		passwordLabel = driver.findElement(By.xpath(PASSWORD_LABEL_XPATH));
 		passwordField = driver.findElement(By.name(PASSWORD_FIELD_NAME));
 		rememberMeCheckBox = driver.findElement(By.id(REMEMBER_ME_CHECKBOX_ID));
 		rememberMeLabel = driver.findElement(By.xpath(REMEMBER_ME_LABEL_XPATH));
@@ -122,6 +123,10 @@ public class LoginPage extends TitleLocalFooter {
 		return forgotPasswordLink.getText().trim();
 	}
 
+	public RegistratorHomePage getRegistratorHomePage() {
+		return new RegistratorHomePage(driver);
+	}
+
 	/**
 	 * Initializes errormessage field and returns it.
 	 */
@@ -136,22 +141,22 @@ public class LoginPage extends TitleLocalFooter {
 	 */
 	public WebElement getRegisterButton() {
 
-		registerButton = driver.findElement(By.xpath(REGISTER_BUTTON_XPATH ));
+		registerButton = driver.findElement(By.xpath(REGISTER_BUTTON_XPATH));
 		return registerButton;
 	}
-	
+
 	/**
 	 * Verifies if register button is present on the LoginPage
+	 * 
 	 * @return True - if register button is present.
 	 * @return False - if register button is NOT present.
 	 */
 	public boolean checkRegisterButtonExists() {
-		 return !driver.findElements(By.xpath(REGISTER_BUTTON_XPATH)).isEmpty();
+		return !driver.findElements(By.xpath(REGISTER_BUTTON_XPATH)).isEmpty();
 	}
 
 	/**
-	 * Checks 'Remember me' checkbox.
-	 * If it is already checked, does nothing.
+	 * Checks 'Remember me' checkbox. If it is already checked, does nothing.
 	 */
 	public void checkRememberMeCheckBox() {
 
@@ -161,8 +166,7 @@ public class LoginPage extends TitleLocalFooter {
 	}
 
 	/**
-	 * Unchecks 'Remember me' checkbox.
-	 * If it is already unchecked, does nothing.
+	 * Unchecks 'Remember me' checkbox. If it is already unchecked, does nothing.
 	 */
 	public void unCheckRememberMeCheckBox() {
 
@@ -184,7 +188,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Fills login field with given value
-	 * @param login - value to be set.
+	 * 
+	 * @param login
+	 *            - value to be set.
 	 */
 	public void inputLogin(String login) {
 		loginField.sendKeys(login);
@@ -192,7 +198,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Fills password field with given value
-	 * @param password - value to be set.
+	 * 
+	 * @param password
+	 *            - value to be set.
 	 */
 	public void inputPassword(String password) {
 		passwordField.sendKeys(password);
@@ -200,7 +208,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Clears login field and fills it with given value.
-	 * @param login - value to be set.
+	 * 
+	 * @param login
+	 *            - value to be set.
 	 */
 	public void inputLoginClear(String login) {
 
@@ -210,7 +220,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Clears password field and fills it with given value.
-	 * @param password - value to be set.
+	 * 
+	 * @param password
+	 *            - value to be set.
 	 */
 	public void inputPasswordClear(String password) {
 
@@ -220,7 +232,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Signs in to the application.
-	 * @param user - credentials for sign in.
+	 * 
+	 * @param user
+	 *            - credentials for sign in.
 	 */
 	private void signIn(User user) {
 
@@ -231,7 +245,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Signs in as Administrator
-	 * @param validuser - valid credentials for administrator.
+	 * 
+	 * @param validuser
+	 *            - valid credentials for administrator.
 	 * @return new AdminHomePage.
 	 */
 	public AdminHomePage successfullLoginAdmin(User validuser) {
@@ -243,7 +259,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Signs in as Registrator
-	 * @param validuser - valid credentials for Registrator.
+	 * 
+	 * @param validuser
+	 *            - valid credentials for Registrator.
 	 * @return new RegistratorHomePage.
 	 */
 	public RegistratorHomePage successfullLoginRegistrator(User validuser) {
@@ -255,7 +273,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Signs in as Commissioner
-	 * @param validuser - valid credentials for commissioner.
+	 * 
+	 * @param validuser
+	 *            - valid credentials for commissioner.
 	 * @return new CommissionerHomePage.
 	 */
 	public CommissionerHomePage successfullLoginCommissioner(User validuser) {
@@ -264,10 +284,12 @@ public class LoginPage extends TitleLocalFooter {
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.stalenessOf(loginLabel));
 		return new CommissionerHomePage(driver);
 	}
-	
+
 	/**
 	 * Signs in as Coowner
-	 * @param validuser - valid credentials for coowner.
+	 * 
+	 * @param validuser
+	 *            - valid credentials for coowner.
 	 * @return new CoownerHomePage.
 	 */
 	public CoownerHomePage successfullLoginCoowner(User validuser) {
@@ -279,7 +301,9 @@ public class LoginPage extends TitleLocalFooter {
 
 	/**
 	 * Unsuccesfull login attempt.
-	 * @param invaliduser - invalid credentials
+	 * 
+	 * @param invaliduser
+	 *            - invalid credentials
 	 * @return LoginPage with error message.
 	 */
 	public LoginPage unSuccessfullLogin(User invaliduser) {
@@ -289,8 +313,9 @@ public class LoginPage extends TitleLocalFooter {
 	}
 
 	/**
-	 * This enum is made for further localization testing.
-	 * Has text of each label on the page in every available language.
+	 * This enum is made for further localization testing. Has text of each label on
+	 * the page in every available language.
+	 * 
 	 * @author PETYAggg
 	 *
 	 */
@@ -304,14 +329,15 @@ public class LoginPage extends TitleLocalFooter {
 										"Decentralized registry ofUkrainian natural resources"), FOOTER_LABEL(
 												"©2017 ІТ Академія Софтсерв", "©2017 ИТ Академия Софтсерв",
 												"©2017 Softserve IT Academy");
-		
+
 		private HashMap<ChangeLanguageFields, String> field; // is different for every language.
 
 		private LoginPageL10n(String... localization) {
-			this.field = new HashMap<ChangeLanguageFields, String>(); 
+			this.field = new HashMap<ChangeLanguageFields, String>();
 			int i = 0;
 			for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
-				this.field.put(language, localization[i]); //initialization of the field HashMap(sets all values for current language)
+				this.field.put(language, localization[i]); // initialization of the field HashMap(sets all values for
+															// current language)
 				i++;
 			}
 		}

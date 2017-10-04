@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="testSuite" parallel="false">
+  <test name="Test">
+    <classes>
+      <class name="com.regres.tests.InactiveCoownersActionsDropdownTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+<!--  suite run: 
+				mvn clean test -Dsurefire.suiteXmlFiles=mytestng1.xml
+	  suites run:
+				mvn clean test -Dsurefire.suiteXmlFiles=mytestng1.xml,mytestng2.xml -->

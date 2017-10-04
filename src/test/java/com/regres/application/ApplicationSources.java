@@ -31,7 +31,7 @@ public class ApplicationSources {
 	// Database Password
 	private static String password;
 
-	private Connection dbConnection;
+	private static Connection dbConnection;
 
 	public ApplicationSources(String browserName, String driverPath, String loginUrl, String logoutUrl,
 			long implicitTimeOut) {
@@ -94,8 +94,7 @@ public class ApplicationSources {
 		this.logoutUrl = logoutUrl;
 	}
 
-	public Connection createDBConnection() throws ClassNotFoundException, SQLException {
-		// String myUrl = "jdbc:mysql://localhost:3306/registrator_db";
+	public static Connection createDBConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 		dbConnection = DriverManager.getConnection(DBmyUrl, username, password);
 		if (dbConnection == null) {
@@ -104,22 +103,8 @@ public class ApplicationSources {
 		return dbConnection;
 	}
 
-	public void closeConnectionDB() throws ClassNotFoundException, SQLException {
+	public static void closeConnectionDB() throws ClassNotFoundException, SQLException {
 		if (dbConnection != null)
 			dbConnection.close();
-	}
-
-	// public static void createCommunityinDB(Connection conn, String nameCommunity)
-	// throws SQLException, ClassNotFoundException {
-	// // the mysql insert statement
-	// conn = createDBConnection();
-	// String createCommunity = "Insert into
-	// registrator_db.territorial_community(name) values (?);";
-	// PreparedStatement st = (PreparedStatement)
-	// conn.prepareStatement(createCommunity);
-	//
-	// // Statement allows you to send inquiries database
-	// st.setString(1, nameCommunity);
-	// st.executeUpdate();
-	// }
+	}	
 }
