@@ -1,7 +1,7 @@
 package com.regres.testdata;
 
 public class NewSubclassDataContainer {
-	
+
 	public static NewSubclass setInvalidData() {
 
 		return new NewSubclass().setNameClasses("").setParameterDescription("Lviv").setUnitOfMeasurement("m2");
@@ -31,6 +31,4 @@ public class NewSubclassDataContainer {
 		return new NewSubclass().setNameClasses("Ivano-Frankivsk").setParameterDescription("Galych")
 				.setUnitOfMeasurement("m3");
 	}
-
 }
-

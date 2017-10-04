@@ -72,4 +72,3 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 		return nameSubclass;
 	}
 }
-

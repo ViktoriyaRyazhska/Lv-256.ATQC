@@ -8,11 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import com.regres.testdata.NewSubclass;
+
 /**
  * Class representation of a Add New Subclass page.
  * 
  * @author Khrystyna Terletska
- *
  */
 
 public class AddNewSubclassPage extends RegistratorHomePage {
@@ -90,6 +90,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public WebElement getButtonHideParameters() {
 		return buttonHideParameters;
 	}
+
 	public WebElement getClearButton() {
 		return clearButton;
 	}
@@ -101,12 +102,15 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public WebElement getOptionDiscreteParameters() {
 		return optionDiscreteParameters;
 	}
+
 	public WebElement getSaveButton() {
 		return saveButton;
 	}
+
 	public WebElement getUnitOfMeasurementField() {
 		return unitOfMeasurementField;
 	}
+
 	public WebElement getButtonDelParameters() {
 		return buttonDelParameters;
 	}
@@ -123,7 +127,6 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		getDropdownButton().click();
 	}
 
-
 	public AddNewSubclassPage clickButtonHideParameters() {
 		getButtonHideParameters().click();
 		return new AddNewSubclassPage(driver);
@@ -133,7 +136,8 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		getButtonDelParameters().click();
 		return new AddNewSubclassPage(driver);
 	}
-		public WebElement getParameterDescriptionField1() {
+
+	public WebElement getParameterDescriptionField1() {
 		parameterDescriptionField1 = driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD1_NAME));
 		return parameterDescriptionField1;
 	}
@@ -142,7 +146,6 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		unitOfMeasurementField1 = driver.findElement(By.name(UNIT_OF_MEASUREMENT_FIELD1_NAME));
 		return unitOfMeasurementField1;
 	}
-
 
 	public SubclassesOfObjects clickSaveButton() {
 		getSaveButton().click();
@@ -165,6 +168,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public String getValidationMessageText() {
 		return getEnterNameField().getAttribute("validationMessage");
 	}
+
 	public void clickButtonShowParameters() {
 		getButtonShowParameters().click();
 	}
@@ -175,6 +179,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 
 	/**
 	 * clicks on add parameters button
+	 * 
 	 * @return new AddNewSubclassPage
 	 */
 
@@ -182,22 +187,27 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		getButtonAddParameters().click();
 		return new AddNewSubclassPage(driver);
 	}
+
 	/**
 	 * clicks on clear button
+	 * 
 	 * @return new AddNewSubclassPage
 	 */
 	public AddNewSubclassPage clickClearButton() {
 		getClearButton().click();
 		return new AddNewSubclassPage(driver);
 	}
+
 	/**
 	 * clicks on save button
+	 * 
 	 * @return new AddNewSubclassPage
 	 */
 	public AddNewSubclassPage clickSave() {
 		getSaveButton().click();
 		return new AddNewSubclassPage(driver);
 	}
+
 	/**
 	 * Initializes DropdownOption field and returns it.
 	 */
@@ -205,6 +215,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		dropdownOptionByDefault = driver.findElement(By.xpath(DROPDOWN_OPTION_BY_DEFAULT_XPATH));
 		return dropdownOptionByDefault;
 	}
+
 	/**
 	 * Fills Unit Of Measurement field with given value
 	 * 
@@ -214,10 +225,11 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public void inputUnitOfMeasurement(String unitOfMeasurement) {
 		getUnitOfMeasurementField().sendKeys(unitOfMeasurement);
 	}
-	
+
 	public void inputUnitOfMeasurement1(String unitOfMeasurement1) {
 		getUnitOfMeasurementField1().sendKeys(unitOfMeasurement1);
 	}
+
 	/**
 	 * Fills Parameter Description field with given value
 	 * 
@@ -231,6 +243,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public void inputParameterDescription1(String parameterDescription1) {
 		getParameterDescriptionField1().sendKeys(parameterDescription1);
 	}
+
 	/**
 	 * Initializes errorMessage field and returns it.
 	 */
@@ -238,6 +251,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		errorMessage = driver.findElement(By.xpath(ERROR_MESSAGE_XPATH));
 		return errorMessage;
 	}
+
 	/**
 	 * Clears enter name field and fills it with given value.
 	 * 
@@ -248,6 +262,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		getEnterNameField().clear();
 		inputNameClass(nameClass);
 	}
+
 	/**
 	 * Clears parameter description field and fills it with given value.
 	 * 
@@ -266,6 +281,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		getParameterDescriptionField1().clear();
 		inputParameterDescription1(parameterDescription1);
 	}
+
 	/**
 	 * Clears unit of measurement field and fills it with given value.
 	 * 
@@ -289,6 +305,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		inputUnitOfMeasurementClear1(newSubclass.getUnitOfMeasurement1());
 		return new AddNewSubclassPage(driver);
 	}
+
 	/**
 	 * Added New Subclass
 	 * 
@@ -302,8 +319,11 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		inputParameterDescriptionClear(newSubclass.getParameterDescription());
 		inputUnitOfMeasurementClear(newSubclass.getUnitOfMeasurement());
 	}
+
 	/**
-	 * Checks "Option Linear Parameters" dropdown. If it is already checked, does nothing.
+	 * Checks "Option Linear Parameters" dropdown. If it is already checked, does
+	 * nothing.
+	 * 
 	 * @return new AddNewSubclassPage
 	 */
 	public AddNewSubclassPage selectOptionLinearParameter() {
@@ -313,8 +333,11 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		}
 		return new AddNewSubclassPage(driver);
 	}
+
 	/**
-	 * Checks "Option Discrete Parameters" dropdown. If it is already checked, does nothing.
+	 * Checks "Option Discrete Parameters" dropdown. If it is already checked, does
+	 * nothing.
+	 * 
 	 * @return new AddNewSubclassPage
 	 */
 	public AddNewSubclassPage selectOptionDiscreteParameters() {
@@ -325,6 +348,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		return new AddNewSubclassPage(driver);
 
 	}
+
 	/**
 	 * Sets the language for the app
 	 */
@@ -335,8 +359,9 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		// Return a new page object representing the destination.
 		return new AddNewSubclassPage(driver);
 	}
+
 	/**
-	 * Create enum  for further localization testing. 
+	 * Create enum for further localization testing.
 	 */
 	public static enum AddNewSubclassPageL10n {
 		ERROR_MESSAGE_WHEN_INVALID_DATA_ENTERED("Підклас з вказаним іменем вже існує",

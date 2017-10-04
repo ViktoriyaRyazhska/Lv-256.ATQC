@@ -12,10 +12,8 @@ public class BaseFunctionalForDB {
 
 	/**
 	 * Method which takes Connection for the database and the name "Subclass of
-	 * objects"
-	 * 
-	 * Method returns a record from the database if it finds such a record otherwise
-	 * empty tape
+	 * objects" Method returns a record from the database if it finds such a record
+	 * otherwise empty tape
 	 */
 
 	public String getSubclassNameFromDb(Connection conn, String name) throws SQLException {

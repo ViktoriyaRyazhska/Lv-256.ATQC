@@ -5,26 +5,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
-
 public class RegistratorHomePage extends DropdownHomePage {
 	// Fields
 	WebElement resourcesSearch;
 	WebElement subclassesOfObjects;
-	WebElement procuration;
-	WebElement addNewResource;
-	//
-	WebElement procurationEnteringData;
-	WebElement procurationExtractFromRegister;
-	private String RESOURCES_SEARCH_LOCATOR=".dropdown>a";
-	private String SUBCLASSES_OF_OBJECT_LOCATOR=".//*[@id='navigationbar']/ul/li[3]/a";
+
+	private String RESOURCES_SEARCH_LOCATOR = ".dropdown>a";
+	private String SUBCLASSES_OF_OBJECT_LOCATOR = ".//*[@id='navigationbar']/ul/li[3]/a";
 
 	public RegistratorHomePage(WebDriver driver) {
 		super(driver);
 		resourcesSearch = driver.findElement(By.cssSelector(RESOURCES_SEARCH_LOCATOR));
 		subclassesOfObjects = driver.findElement(By.xpath(SUBCLASSES_OF_OBJECT_LOCATOR));
-			}
-
+	}
 
 	public WebElement getResourcesSearch() {
 		return resourcesSearch;
@@ -60,5 +53,4 @@ public class RegistratorHomePage extends DropdownHomePage {
 		// Return a new page object representing the destination.
 		return new RegistratorHomePage(driver);
 	}
-
 }

@@ -54,5 +54,4 @@ public class NewSubclass {
 		this.unitOfMeasurement1 = unitOfMeasurement1;
 		return this;
 	}
-
 }

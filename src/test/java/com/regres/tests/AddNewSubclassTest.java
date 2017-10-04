@@ -83,7 +83,7 @@ public class AddNewSubclassTest {
 		//save modifications
 		addNewSublassPage = addNewSublassPage.clickSave();
 		//verify validation error message
-		Assert.assertEquals(addNewSublassPage.getValidationMessageText(), "Заповніть будь ласка це поле."); // "Please
+		Assert.assertEquals(addNewSublassPage.getValidationMessageText(), "Please fill out this field."); 
 	}
     //This method verify that created new subclass with valid data saved in List of Subclass table and DB 
 	@Test(dataProvider = "L10N")
