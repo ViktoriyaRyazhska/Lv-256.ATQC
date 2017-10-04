@@ -36,6 +36,7 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 	}
 
 	public WebElement getElementsInfo() {
+		(new WebDriverWait(driver, 10000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(ELEMENTS_ON_PAGE_INFO_ID))));
 		return elementsInfo = driver.findElement(By.id(ELEMENTS_ON_PAGE_INFO_ID));
 	}
 
@@ -57,23 +58,27 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 
 	// select options of elemets on page dropdown
 	// select option ten
-	public void selectTenElementsOnPage() {
+	public CoownersElementsOnPageDropdown selectTenElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("10");
+		return new CoownersElementsOnPageDropdown(driver);
 	}
 
 	// select option twenty five
-	public void selectTwentyFiveElementsOnPage() {
+	public CoownersElementsOnPageDropdown selectTwentyFiveElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("25");
+		return new CoownersElementsOnPageDropdown(driver);
 	}
 
 	// select option fifty
-	public void selectFiftyElementsOnPage() {
+	public CoownersElementsOnPageDropdown selectFiftyElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("50");
+		return new CoownersElementsOnPageDropdown(driver);
 	}
 
 	// select option hundred
-	public void selectHundredElementsOnPage() {
+	public CoownersElementsOnPageDropdown selectHundredElementsOnPage() {
 		new Select(elementsOnPageDropdown).selectByVisibleText("100");
+		return new CoownersElementsOnPageDropdown (driver);
 	}
 
 	// get text of element which show count of elements on page
@@ -88,33 +93,38 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 
 	// click on button that choose previous paginate button
 	public void clickPreviousButton() {
+		//(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(PREV_BUTTON_ID))));
 		getPrevButtton().click();
 	}
 
 	// click on button that choose next paginate button
 	public void clickNextButton() {
+	//	(new WebDriverWait(driver, 1000)).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(NEXT_BUTTON_ID))));
 		getNextButtton().click();
 	}
 
 	// choose first paginate button
-	public void checkFirstPaginateButton() {
+	public CoownersElementsOnPageDropdown  checkFirstPaginateButton() {
 		for (int i = 0; i < getPaginationSize(); i++) {
 			getPagination().get(0).click();
 		}
+		return new CoownersElementsOnPageDropdown(driver);
 	}
 
 	// choose last paginate button
-	public void checkLastPaginateButton() {
+	public CoownersElementsOnPageDropdown checkLastPaginateButton() {
 		for (int i = 0; i < getPaginationSize(); i++) {
-			getPagination().get(getPaginationSize()).click();
+			getPagination().get(getPaginationSize()-1).click();
 		}
+		return new CoownersElementsOnPageDropdown(driver);
 	}
 
 	// choose penultimate paginate button
-	public void checkPenultimatePaginateButton() {
+	public CoownersElementsOnPageDropdown checkPenultimatePaginateButton() {
 		for (int i = 0; i < getPaginationSize(); i++) {
-			getPagination().get(getPaginationSize() - 1).click();
+			getPagination().get(getPaginationSize() - 2).click();
 		}
+		return new CoownersElementsOnPageDropdown(driver);
 	}
 
 	// change language
@@ -128,13 +138,16 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 
 	// Localization enum
 	public static enum pageL10n {
-		DROPDOWN_LABEL("елементів на сторінку", "элементов на страницу", "elements on page"), EXAMPLE_INFO10("10 із 51",
-				"10 из 51", "10 of 51"), EXAMPLE_INFO20("20 із 51", "20 из 51", "20 of 51"), EXAMPLE_INFO30("30 із 51",
-						"30 из 51", "30 of 51"), EXAMPLE_INFO40("40 із 51", "40 из 51", "40 of 51"), EXAMPLE_INFO50(
-								"50 із 51", "50 из 51",
-								"50 of 51"), EXAMPLE_INFO25("25 із 51", "25 из 51", "25 of 51"), EXAMPLE_INFO100(
-										"51 із 51", "51 из 51", "51 of 51"), PREVIOUS_BUTTON("Попер.", "Пред.",
-												"Prev"), NEXT_BUTTON("Наст.", "След.", "Next");
+		DROPDOWN_LABEL("елементів на сторінку", "элементов на страницу", "elements on page"), 
+		EXAMPLE_INFO10("10 із 50","10 из 50", "10 of 50"), 
+		EXAMPLE_INFO20("20 із 50", "20 из 50", "20 of 50"), 
+		EXAMPLE_INFO30("30 із 50","30 из 50", "30 of 50"), 
+		EXAMPLE_INFO40("40 із 50", "40 из 50", "40 of 50"), 
+		EXAMPLE_INFO50("50 із 50", "50 из 50","50 of 50"), 
+		EXAMPLE_INFO25("25 із 50", "25 из 50", "25 of 50"), 
+		EXAMPLE_INFO100("50 із 50", "50 из 50", "50 of 50"), 
+		PREVIOUS_BUTTON("Попер.", "Пред.","Prev"),
+		NEXT_BUTTON("Наст.", "След.", "Next");
 
 		private HashMap<ChangeLanguageFields, String> field;
 

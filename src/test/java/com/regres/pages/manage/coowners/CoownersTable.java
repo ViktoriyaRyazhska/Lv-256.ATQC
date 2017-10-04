@@ -19,7 +19,7 @@ import java.util.List;
 public class CoownersTable extends AdminHomePage {
     public ConfirmMessagePage confirm;
     String ACTIONS_ID = "dLabel";
-    String COUNT_ELEMENTS_CSSSELECTOR = "label>select";
+   // String COUNT_ELEMENTS_CSSSELECTOR = "label>select";
     String SEARCH_BUTTON_ID = "bth-search";
     String PREV_BUTTON_ID = "example_previous";
     String NEXT_BUTTON_ID = "example_next";
@@ -40,7 +40,7 @@ public class CoownersTable extends AdminHomePage {
     public CoownersTable(WebDriver driver) {
         super(driver);
         getActions();
-        getCountElements();
+      //  getCountElements();
         getSearchButton();
         getPrevButtton();
         getNextButtton();
@@ -51,9 +51,9 @@ public class CoownersTable extends AdminHomePage {
         return driver.findElement(By.id(ACTIONS_ID));
     }
 
-    public WebElement getCountElements() {
-        return driver.findElement(By.cssSelector(COUNT_ELEMENTS_CSSSELECTOR));
-    }
+//    public WebElement getCountElements() {
+//        return driver.findElement(By.cssSelector(COUNT_ELEMENTS_CSSSELECTOR));
+//    }
 
     public WebElement getSearchButton() {
         return driver.findElement(By.id(SEARCH_BUTTON_ID));
