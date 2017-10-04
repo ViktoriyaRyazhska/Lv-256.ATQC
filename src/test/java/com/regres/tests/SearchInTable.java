@@ -28,17 +28,6 @@ public class SearchInTable {
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
     }
 
-	/**
-	 * choose non-confirmed co-owners and set option items on page = 100
-	 */
-	// @BeforeMethod
-	// public void beforeTest() {
-	// CoownersTable
-	// coownerstable=adminhomepage.goToNonConfirmedCoowners();//вивести
-	// непідтверджених юзерів
-	// coownerstable.setNumbeOfItemsInTable(); //вивести 100 позицій в таблиці
-	// coownerstable.waitWhileTableAppear();
-	// }
     /**
      * choose non-confirmed co-owners
      */
