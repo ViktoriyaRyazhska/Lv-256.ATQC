@@ -56,6 +56,9 @@ public class CoownersTable extends AdminHomePage {
     private String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
     private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";
     private String EMPTY_TABLE_CSS = ".dataTables_empty";
+    
+ // table hider
+ 	private String TABLE_TITLE_XPATH = "//div[@class = 'dataTable_wrapper']/preceding::h4";
     private String FIRST_ROW_TABLE_XPATH = "//tbody/tr[1]";
 
 	public CoownersTable(WebDriver driver) {
@@ -82,6 +85,13 @@ public class CoownersTable extends AdminHomePage {
 
 	public void ClickSearchButton() {
 		getSearchButton().click();
+	}
+	
+	public WebElement getTitleTableName() {
+		return driver.findElement(By.xpath(TABLE_TITLE_XPATH));
+	}
+	public String getTitleTableNameText() {
+		return getTitleTableName().getText().trim();
 	}
 
 	public WebElement getPrevButtton() {

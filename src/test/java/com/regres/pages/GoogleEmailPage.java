@@ -64,6 +64,10 @@ public class GoogleEmailPage {
 	// open email
 	public void openEmail() {
 		driver.navigate().refresh();
+		(new WebDriverWait(driver, 30))
+		.until(ExpectedConditions
+				.stalenessOf(driver.findElement(By
+						.cssSelector("span.y2"))));
 		Reporter.log("Open Email" , true);
 		this.getEmail().get(0).click();
 	}

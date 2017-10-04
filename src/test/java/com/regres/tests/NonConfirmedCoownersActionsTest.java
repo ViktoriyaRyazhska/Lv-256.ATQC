@@ -69,14 +69,14 @@ public class NonConfirmedCoownersActionsTest {
 	// dropdown by clicking on 'Send Email Again'
 	// link confirm message appears
 	public void checkClickSendEmail() {
-		nonConfirmed.search("bzhyvko");
+		nonConfirmed.search("testsendmail");
 		nonConfirmed.clickFirstRow();
 		nonConfirmed.clickActionsDropdown();
 		nonConfirmed.clickSendEmail();
 		confirmMessage = nonConfirmed.getConfMessage();
 		assertEquals(confirmMessage.getConfirmMessageText(), "Листи успішно надіслано");
 		confirmMessage.clickCloseButton();
-		assertEquals(nonConfirmed.getTitleText(), "Непідтверджені співвласники");
+		assertEquals(nonConfirmed.getTitleTableNameText(), "Непідтверджені співвласники");
 	}
 
 	 @Test
@@ -84,13 +84,13 @@ public class NonConfirmedCoownersActionsTest {
 	// dropdown by clicking on 'Send Email Again'
 	// link confirm message appears
 	public void checkClickSendEmailOK() {
-		nonConfirmed.search("bzhyvko");
+		nonConfirmed.search("testsendmail");
 		nonConfirmed.clickFirstRow();
 		nonConfirmed.clickActionsDropdown();
 		nonConfirmed.clickSendEmail();
 		confirmMessage = nonConfirmed.getConfMessage();
 		confirmMessage.clickOkButton();
-		assertEquals(nonConfirmed.getTitleText(), "Непідтверджені співвласники");
+		assertEquals(nonConfirmed.getTitleTableNameText(), "Непідтверджені співвласники");
 	}
 
 	@Test(dependsOnMethods = { "checkClickSendEmailOK"})
@@ -102,7 +102,7 @@ public class NonConfirmedCoownersActionsTest {
 		email.search("l:unread", "Заявка на реєстрацію");
 		assertTrue(email.getEmail().size() > 0);
 		email.openEmail();
-		assertEquals(email.getLoginName(), "bzhyvko");
+		assertEquals(email.getLoginName(), "testsendmail");
 		email.logout();
 		email.switchBackToMainAndCloseOldTab();
 	}

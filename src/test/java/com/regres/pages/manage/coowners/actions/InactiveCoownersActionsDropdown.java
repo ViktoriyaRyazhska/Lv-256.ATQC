@@ -176,10 +176,14 @@ public class InactiveCoownersActionsDropdown extends CoownersTable {
 						+ "нажав на соответствующие строки в таблице",
 				"To perform this operation you must first select coowners"
 						+ " by clicking on the appropriate rows in the table" ),
-		TITLE_SET_COMMUNITY_CONFIRM_MESSAGE("Введіть дані", "Введите данные","Enter the data"),
-		LABEL_SET_COMMUNITY_CONFIRM_MESSAGE("Найменування громади:","Найменование общины:","Community name:"),
-		CANCEL_SET_COMMUNITY_CONFIRM_MESSAGE("Відмінити","Отменить","Cancel"),
-		CONFIRM_SET_COMMUNITY_CONFIRM_MESSAGE("Підтвердити","Подтвердить","Confirm"),
+		TITLE_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Введіть дані", "Введите данные","Enter the data"),
+		LABEL_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Найменування громади:","Найменование общины:","Community name:"),
+		CANCEL_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Відмінити","Отменить","Cancel"),
+		CONFIRM_SET_COMMUNITY_CONFIRM_MESSAGE(
+				"Підтвердити","Подтвердить","Confirm"),
 		NOT_BE_EMPTY_SET_COMMUNITY_CONFIRM_MESSAGE(
 				"Поле \"Громада\" не може бути пустим. Будь-ласка виберіть значення зі списку.",
 				"Поле не может быть пустым. Пожалуйста выберите значение из списка.",
