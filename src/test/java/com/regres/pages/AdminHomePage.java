@@ -142,6 +142,11 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		this.okButtonUnblockAllCoowners.click();
 		return new AdminHomePage(driver);
 	}
+  //click on 'Communities' tab
+		public AdminCommunitiesPage clickCommunities() {
+			this.communities.click();
+			return new AdminCommunitiesPage(driver);
+		}
 
 	// Business Logic
 	@Override
