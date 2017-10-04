@@ -172,4 +172,16 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		// Return a new page object representing the destination.
 		return new NonConfirmedCoownersActionsDropdown(driver);
 	}
+  public CoownersElementsOnPageDropdown selectInactiveCoowners() {
+		this.clickCoowners();
+		this.clickInactiveCoowners();
+		// Return a new page object representing the destination.
+		return new CoownersElementsOnPageDropdown(driver);
+	}
+	public CoownersElementsOnPageDropdown selectNonConfirmedCoowners() {
+		this.clickCoowners();
+		this.clickNonConfirmedCoowners();
+		// Return a new page object representing the destination.
+		return new CoownersElementsOnPageDropdown(driver);
+	}
 }

@@ -28,11 +28,6 @@ public class SearchInTable {
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
     }
 
-    @AfterClass
-    public void tearDown() {
-        app.quit();
-    }
-
     /**
      * choose non-confirmed co-owners
      */
@@ -135,4 +130,3 @@ public class SearchInTable {
                 {TitleLocalFooter.ChangeLanguageFields.RUSSIAN}};
     }
 }
-
