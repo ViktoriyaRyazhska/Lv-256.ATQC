@@ -16,16 +16,33 @@ public final class ApplicationSourcesRepo {
 	}
 
 	public static ApplicationSources getFirefoxHerokuApplicationDB() {
-		  return new ApplicationSources("FireFox", "resources\\geckodriver.exe",
-			"http://localhost:8080/resources/login",
-			"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db","root","root");
-		}
-	
+		return new ApplicationSources("FireFox", "resources\\geckodriver.exe", "http://localhost:8080/resources/login",
+				"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db", "root",
+				"root");
+	}
 
-	public static ApplicationSources getChromeLocalApplicationDb() {
+	public static ApplicationSources getChromeLocalApplicationDB() {
 		return new ApplicationSources("Chrome", "resources\\chromedriver.exe", "http://localhost:8080/resources/login",
 				"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db", "root",
 				"root");
+	}
+
+	public static ApplicationSources getFirefoxLocalApplicationDB() {
+		return new ApplicationSources("FireFox", "resources\\geckodriver.exe", "http://localhost:8080/resources/login",
+				"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db", "root",
+				"root");
+	}
+
+	public static ApplicationSources getChromeHerokuLocalhost() {
+		return new ApplicationSources("Chrome", "resources\\chromedriver.exe", "http://localhost:8080/resources/login",
+				"http://localhost:8080/resources/logout", 5L);
+
+	}
+
+	public static ApplicationSources getFirefoxHerokuLocalhost() {
+		return new ApplicationSources("Firefox", "resources\\gechodriver.exe", "http://localhost:8080/resources/login",
+				"http://localhost:8080/resources/logout", 5L);
+
 	}
 
 }

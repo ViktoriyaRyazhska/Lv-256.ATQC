@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CoownersTable extends AdminHomePage {
@@ -41,107 +42,120 @@ public class CoownersTable extends AdminHomePage {
     private String EMAIL_COLUMN = ".//*[@id='inputIndex5']";
     private String ROLE_COLUMN = ".//*[@id='inputIndex6']";
 
-    // table columns second row search
-    private String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
-    private String LAST_NAME_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[3]";
-    private String LOGIN_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[4]";
-    private String COMMUNITY_SEARCHN_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
-    private String EMAIL_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[6]";
-    private String ROLE_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[7]";
+	// table columns second row search
+	String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
+	String LAST_NAME_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[3]";
+	String LOGIN_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[4]";
+	String COMMUNITY_SEARCHN_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
+	String EMAIL_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[6]";
+	String ROLE_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[7]";
 
     //table body
     private String TABLE_BODY_ROWS = "//*[@id='example']/tbody/tr";
-    private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";//"//*[@id='example']/tbody/tr/td";
+    private String TABLE_BODY_CELL = TABLE_BODY_ROWS + "/td";
+    private String EMPTY_TABLE_CSS = ".dataTables_empty";
 
-    public CoownersTable(WebDriver driver) {
-        super(driver);
-        getActions();
-        getCountElements();
-        getSearchButton();
-        getPrevButtton();
-        getNextButtton();
-        getPaginateCurrentButton();
-    }
+	public CoownersTable(WebDriver driver) {
+		super(driver);
+		getActions();
+		getCountElements();
+		getSearchButton();
+		getPrevButtton();
+		getNextButtton();
+		getPaginateCurrentButton();
+	}
 
-    protected WebElement getActions() {
-        return driver.findElement(By.id(ACTIONS_ID));
-    }
+	public WebElement getActions() {
+		return driver.findElement(By.id(ACTIONS_ID));
+	}
 
-    private WebElement getCountElements() {
-        return driver.findElement(By.cssSelector(COUNT_ELEMENTS_CSSSELECTOR));
-    }
+	public WebElement getCountElements() {
+		return driver.findElement(By.cssSelector(COUNT_ELEMENTS_CSSSELECTOR));
+	}
 
-    public WebElement getSearchButton() {
-        return driver.findElement(By.id(SEARCH_BUTTON_ID));
-    }
+	public WebElement getSearchButton() {
+		return driver.findElement(By.id(SEARCH_BUTTON_ID));
+	}
 
-    private WebElement getPrevButtton() {
-        return driver.findElement(By.id(PREV_BUTTON_ID));
-    }
+	public void ClickSearchButton() {
+		getSearchButton().click();
+	}
 
-    private WebElement getNextButtton() {
-        return driver.findElement(By.id(NEXT_BUTTON_ID));
-    }
+	public WebElement getPrevButtton() {
+		return driver.findElement(By.id(PREV_BUTTON_ID));
+	}
 
-    private WebElement getPaginateCurrentButton() {
-        return driver.findElement(By.cssSelector(PAGINATE_CURRENT_BUTTON_CSSSELECTOR));
-    }
+	public WebElement getNextButtton() {
+		return driver.findElement(By.id(NEXT_BUTTON_ID));
+	}
 
-    public WebElement getFirstNameFirstRow() {
-        return driver.findElement(By.xpath(FIRST_NAME_FIRST_XPATH));
-    }
+	public WebElement getPaginateCurrentButton() {
+		return driver.findElement(By.cssSelector(PAGINATE_CURRENT_BUTTON_CSSSELECTOR));
+	}
+
+	public WebElement getFirstNameFirstRow() {
+		return driver.findElement(By.xpath(FIRST_NAME_FIRST_XPATH));
+	}
 
     public WebElement getLastNameFirstRow() {
         return driver.findElement(By.xpath(LAST_NAME_SEARCH_FIRST_XPATH));
     }
 
-    public WebElement getLoginFirstRow() {
-        return driver.findElement(By.xpath(LOGIN_SEARCH_FIRST_XPATH));
-    }
+	public WebElement getLoginFirstRow() {
+		return driver.findElement(By.xpath(LOGIN_SEARCH_FIRST_XPATH)); 
+	}
 
-    public WebElement getCommunityNameFirstRow() {
-        return driver.findElement(By.xpath(COMMUNITY_SEARCHN_FIRST_XPATH));
-    }
+	public WebElement getCommunityNameFirstRow() {
+		return driver.findElement(By.xpath(COMMUNITY_SEARCHN_FIRST_XPATH));
+	}
 
-    public WebElement getEmailFirstRow() {
-        return driver.findElement(By.xpath(EMAIL_SEARCH_FIRST_XPATH));
-    }
+	public WebElement getEmailFirstRow() {
+		return driver.findElement(By.xpath(EMAIL_SEARCH_FIRST_XPATH));
+	}
 
-    public WebElement getRoleFirstRow() {
-        return driver.findElement(By.xpath(ROLE_SEARCH_FIRST_XPATH));
-    }
+	public WebElement getRoleFirstRow() {
+		return driver.findElement(By.xpath(ROLE_SEARCH_FIRST_XPATH));
+	}
 
-    // Business Logic
+	public String getRoleFirstRowText() {
+		return getRoleFirstRow().getText().trim();
+	}
 
-    public InactiveCoownersActionsDropdown goToInactiveCoowners() {
-        // Return a new page object representing the destination.
-        return new InactiveCoownersActionsDropdown(driver);
-    }
+	// Business Logic
+	public InactiveCoownersActionsDropdown goToInactiveCoowners() {
+		// Return a new page object representing the destination.
+		return new InactiveCoownersActionsDropdown(driver);
+	}
 
     //table sorting by first name
     public void sortByFirstName() {
         driver.findElement(By.xpath(FIRST_NAME_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by last name
     public void sortByLastName() {
         driver.findElement(By.xpath(LAST_NAME_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by login
     public void sortByLogin() {
         driver.findElement(By.xpath(LOGIN_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by community
     public void sortByCommunity() {
         driver.findElement(By.xpath(COMMUNITY_SORT_XPATH)).click();
         waitWhileTableAppear();
     }
+
     //table sorting by email
     public void sortByEmail() {
         driver.findElement(By.xpath(EMAIL_SORT_XPATH)).click();
     }
+
     //table sorting by role
     public void sortByRole() {
         driver.findElement(By.xpath(ROLE_SORT_XPATH)).click();
@@ -152,49 +166,53 @@ public class CoownersTable extends AdminHomePage {
         return driver.findElement(By.xpath(FIRST_NAME_COLUMN));
     }
 
-    public WebElement getLastNameColumn() {
-        return driver.findElement(By.xpath(LAST_NAME_COLUMN));
-    }
+	public WebElement getLastNameColumn() {
+		return driver.findElement(By.xpath(LAST_NAME_COLUMN));
+	}
 
-    public WebElement getLoginColumn() {
-        return driver.findElement(By.xpath(LOGIN_COLUMN));
-    }
+	public WebElement getLoginColumn() {
+		return driver.findElement(By.xpath(LOGIN_COLUMN));
+	}
 
-    public WebElement getCommunityColumn() {
-        return driver.findElement(By.xpath(COMMUNITY_COLUMN));
-    }
+	public void ClickLoginColumn() {
+		getLoginColumn().click();
+	}
 
-    public WebElement getEmailColumn() {
-        return driver.findElement(By.xpath(EMAIL_COLUMN));
-    }
+	public WebElement getCommunityColumn() {
+		return driver.findElement(By.xpath(COMMUNITY_COLUMN));
+	}
 
-    public WebElement getRoleColumn() {
-        return driver.findElement(By.xpath(ROLE_COLUMN));
-    }
+	public WebElement getEmailColumn() {
+		return driver.findElement(By.xpath(EMAIL_COLUMN));
+	}
 
-    public String getFirstNameColumnText() {
-        return getFirstNameColumn().getText().trim();
-    }
+	public WebElement getRoleColumn() {
+		return driver.findElement(By.xpath(ROLE_COLUMN));
+	}
 
-    public String getLastNameColumnText() {
-        return getLastNameColumn().getText().trim();
-    }
+	public String getFirstNameColumnText() {
+		return getFirstNameColumn().getText().trim();
+	}
 
-    public String getLoginColumnText() {
-        return getLoginColumn().getText().trim();
-    }
+	public String getLastNameColumnText() {
+		return getLastNameColumn().getText().trim();
+	}
 
-    public String getCommunityColumnText() {
-        return getCommunityColumn().getText().trim();
-    }
+	public String getLoginColumnText() {
+		return getLoginColumn().getText().trim();
+	}
 
-    public String getEmailColumnText() {
-        return getEmailColumn().getText().trim();
-    }
+	public String getCommunityColumnText() {
+		return getCommunityColumn().getText().trim();
+	}
 
-    public String getRoleColumnText() {
-        return getRoleColumn().getText().trim();
-    }
+	public String getEmailColumnText() {
+		return getEmailColumn().getText().trim();
+	}
+
+	public String getRoleColumnText() {
+		return getRoleColumn().getText().trim();
+	}
 
     public void setFirstNameSearch(String firstNameSearch) {
         getFirstNameColumn().sendKeys(firstNameSearch);
@@ -239,6 +257,12 @@ public class CoownersTable extends AdminHomePage {
         return getAlltableBodyCell().size();
     }
 
+    public String waitWhileEmptyTableAppear() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TABLE_BODY_CELL)));
+        return driver.findElement(By.cssSelector(EMPTY_TABLE_CSS)).getText();
+    }
+
     public void waitWhileTableAppear() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TABLE_BODY_CELL)));
@@ -259,6 +283,7 @@ public class CoownersTable extends AdminHomePage {
         }
         return filteredList;
     }
+
     /**
      * search in table by community
      *
@@ -307,8 +332,8 @@ public class CoownersTable extends AdminHomePage {
         return filteredList;
     }
 
-    public UserForSerchTableTest getSearchParameter(List<UserForSerchTableTest> userList){
-        return userList.get((int) (Math.random()*(userList.size()+1)));
+    public UserForSerchTableTest getSearchParameter(List<UserForSerchTableTest> userList) {
+        return userList.get((int) (Math.random() * (userList.size() + 1)));
     }
 
     /**
@@ -344,6 +369,21 @@ public class CoownersTable extends AdminHomePage {
         }
         return false;
     }
+
+	public void ClickFirstNameFirstRow() {
+		(new WebDriverWait(driver, 40))
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(FIRST_NAME_FIRST_XPATH)));
+		getFirstNameFirstRow().click();
+	}
+
+	public void FindAndClickUserInTable(String value) {
+		ClickLoginColumn();
+		getLoginColumn().sendKeys(value);
+		ClickSearchButton();
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(PREV_BUTTON_ID)));
+		getLoginColumn().clear();
+		ClickFirstNameFirstRow();
+	}
 
     //methods to compare two object lists by FirstName
     public boolean compareListsByFirstName(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
@@ -397,6 +437,35 @@ public class CoownersTable extends AdminHomePage {
     //sets the number of visible rows in table 10
     public void setNumbeOfItemsInTable10() {
         new Select(driver.findElement(By.name(NUMBERS_OF_ROWN_IN_TABLE_NAME))).selectByVisibleText("10");
+    }
+
+    @Override
+    public CoownersTable setLanguage(ChangeLanguageFields language) {
+        Select lang = new Select(getLocalizationDropdown());
+        lang.selectByVisibleText(language.toString());
+        // Return a new page object representing the destination.
+        return new CoownersTable(driver);
+    }
+    public enum LoginPageL10n {
+        MESSAGE_WHEN_TABLE_EMPTY(
+                "В таблиці немає даних",
+                "В таблице нет данных",
+                "No data" );
+
+        private HashMap<ChangeLanguageFields, String> field;
+
+        private LoginPageL10n(String... localization) {
+            this.field = new HashMap<ChangeLanguageFields, String>();
+            int i = 0;
+            for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+                this.field.put(language, localization[i]);
+                i++;
+            }
+        }
+
+        public String getLocalization(ChangeLanguageFields language) {
+            return this.field.get(language).trim();
+        }
     }
 }
 
