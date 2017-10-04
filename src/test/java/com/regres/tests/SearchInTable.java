@@ -28,7 +28,7 @@ public class SearchInTable {
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
     }
 
-    //@AfterClass
+    @AfterClass
     public void tearDown() {
         app.quit();
     }
@@ -59,11 +59,6 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        System.out.println(searchParam);
-        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
-            System.out.println(expectFilteredUsers);
-            System.out.println(actualFilteredUsers);
-        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
@@ -83,11 +78,6 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        System.out.println(searchParam);
-        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
-            System.out.println(expectFilteredUsers);
-            System.out.println(actualFilteredUsers);
-        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
@@ -107,11 +97,6 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        System.out.println(searchParam);
-        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
-            System.out.println(expectFilteredUsers);
-            System.out.println(actualFilteredUsers);
-        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
@@ -131,11 +116,6 @@ public class SearchInTable {
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
         //compare to lists
-        System.out.println(searchParam);
-        if (coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers)==false){
-            System.out.println(expectFilteredUsers);
-            System.out.println(actualFilteredUsers);
-        }
         Assert.assertTrue(coownerstable.compareLists(expectFilteredUsers, actualFilteredUsers));
     }
 
