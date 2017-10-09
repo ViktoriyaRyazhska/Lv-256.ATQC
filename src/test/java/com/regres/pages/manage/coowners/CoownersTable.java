@@ -422,7 +422,7 @@ public class CoownersTable extends AdminHomePage {
         getFirstNameFirstRow().click();
     }
 
-    public void FindAndClickUserInTable(String value) {
+    public void findAndClickUserInTable(String value) {
         ClickLoginColumn();
         getLoginColumn().sendKeys(value);
         ClickSearchButton();
