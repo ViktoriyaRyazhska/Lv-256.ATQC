@@ -8,7 +8,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -100,7 +99,7 @@ public class SetCommunityActiveCoownersActionTest extends Reports {
 	/**
 	 * Check that community changed if enter existing community
 	 */
-//	 @Test
+	 @Test
 	public void checkUserCommunityChange() throws ClassNotFoundException, SQLException {
 		activecoowners = adminhomepage.clickActiveCoowners();
 		test.log(Status.INFO, "Click on 'Active Co-owner' item");
@@ -123,13 +122,14 @@ public class SetCommunityActiveCoownersActionTest extends Reports {
 		test.log(Status.INFO, "Find User in table and click on it");
 
 		Assert.assertEquals(activecoowners.getCommunityNameFirstRow().getText(), communityDB.getNameCommunity());
-		test.log(Status.PASS, "Verified that users community changed.");	
+		test.log(Status.PASS, "Verified that users community changed.");
+		Assert.assertEquals(communityDB.getNameCommunityFromDb(conn, communityDB),communityDB.getNameCommunity());
 	}
 
 	/**
 	 * Check that community didn't change if enter non exist community
 	 */
-	@Test
+//	@Test
 	public void checkUserInvalidCommunity() throws ClassNotFoundException, SQLException {
 		communityDB2 = CommunityDBRepo.getInvalidCommunity();
 		test.log(Status.INFO, "Fill invalid community");
@@ -163,6 +163,7 @@ public class SetCommunityActiveCoownersActionTest extends Reports {
 
 		Assert.assertEquals(activecoowners.getCommunityNameFirstRow().getText(), userDB.getNameCommunity());
 		test.log(Status.PASS, "Verified that users community did not change.");
+		Assert.assertEquals(communityDB.getNameCommunityFromDb(conn, communityDB),userDB.getNameCommunity());
 	}
 
 }
