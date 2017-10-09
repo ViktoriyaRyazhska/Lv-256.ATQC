@@ -16,8 +16,8 @@ public final class ApplicationSourcesRepo {
 	}
 
 	public static ApplicationSources getFirefoxHerokuApplicationDB() {
-		return new ApplicationSources("FireFox", "resources\\geckodriver.exe", "http://localhost:8081/resources/login",
-				"http://localhost:8081/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db", "root",
+		return new ApplicationSources("FireFox", "resources\\geckodriver.exe", "http://localhost:8080/resources/login",
+				"http://localhost:8080/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db", "root",
 				"root");
 	}
 

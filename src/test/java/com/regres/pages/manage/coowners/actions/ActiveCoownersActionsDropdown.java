@@ -201,7 +201,7 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 		return driver.findElement(By.cssSelector(CONFIRM_BUTTON_CSSSELECTOR));
 	}
 
-	public void ClickConfirmButton() {
+	public void clickConfirmButton() {
 		confirmMessage = new ConfirmMessagePage(driver);
 		getConfirmButton().click();
 		initConfMessage();

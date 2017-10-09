@@ -4,53 +4,101 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.regres.application.Application;
 import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
+import com.regres.pages.AdminSettingsPage;
 import com.regres.pages.LoginPage;
+import com.regres.pages.OhErrorPage;
 import com.regres.pages.manage.coowners.actions.ActiveCoownersActionsDropdown;
+import com.regres.reports.Reports;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.DB.RoleDBRepo;
 import com.regres.testdata.DB.UserDB;
 import com.regres.testdata.DB.UserDBRepo;
 
-public class SetRoleActiveCoownersActionTest {
+public class SetRoleActiveCoownersActionTes extends Reports {
 
 	private Application app;
 	private LoginPage loginpage;
 	private AdminHomePage adminhomepage;
 	private Connection conn;
+	private ExtentTest test;
 	private UserDB userDB;
 	private ActiveCoownersActionsDropdown activecoowners;
 
+	/**
+	 * Sign in as admin. Go to settings.
+	 */
 	@BeforeTest
 	public void beforeTest() throws ClassNotFoundException, SQLException {
-		// Select browser
+
+		test = report.createTest("AdminSettingsInvalidTimeZoneTest");
+
 		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-		// Cronnect to DB
+		test.log(Status.INFO, "Opened browser");
+
 		conn = ApplicationSources.createDBConnection();
-		// Fill User
+		test.log(Status.INFO, "Connect to DB");
+
 		userDB = UserDBRepo.getUser1();
-		// Create new User in DB
+		test.log(Status.INFO, "Fill User");
+
 		UserDB.createUserInDB(conn, userDB);
-		// Load app
+		test.log(Status.INFO, "Fill User");
+
 		loginpage = app.load();
-		// Login in system as administrator
+		test.log(Status.INFO, "Opened 'Login page'");
+
 		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-		// Click on Coowners item
+		test.log(Status.INFO, "Signed in as Administrator");
+
 		adminhomepage.clickCoowners();
+		test.log(Status.INFO, "Opened 'Coowners' dropdownlist");
+
 	}
 
+	/**
+	 * Getting test result and writing it to report
+	 * 
+	 * @param result
+	 *            - object with test results
+	 */
+	@AfterMethod(alwaysRun = true)
+	public void reportresults(ITestResult result) {
+		getResult(result, test);
+	}
+
+	/**
+	 * Sign out. Close the app.
+	 */
 	@AfterTest
 	public void afterTest() throws ClassNotFoundException, SQLException {
 		UserDB.deleteUserInDB(conn, userDB);
+		test.log(Status.INFO, "Delete User in DB");
+
 		ApplicationSources.closeConnectionDB();
+		test.log(Status.INFO, "Closed connection to DB");
+
 		app.quit();
+		test.log(Status.INFO, "Closed firefox");
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void getREPORT() {
+		report.flush();
 	}
 
 	/**
@@ -58,62 +106,55 @@ public class SetRoleActiveCoownersActionTest {
 	 */
 	@Test
 	public void checkUserRoleChanged() throws ClassNotFoundException, SQLException {
-		// Click on 'Active Co-owner' item
+
 		activecoowners = adminhomepage.clickActiveCoowners();
+		test.log(Status.INFO, "Click on 'Active Co-owner' item");
 
 		// Check Co-owner Role
-		// Find User in table and click on it
-		activecoowners.FindAndClickUserInTable(userDB.getLogin());
-		// Click on 'Actions' button
+		activecoowners.findAndClickUserInTable(userDB.getLogin());
+		test.log(Status.INFO, "Find User in table and click on it");
+
 		activecoowners.clickActionsDropdown();
-		// Click on 'Set Role' item
+		test.log(Status.INFO, "Click on 'Actions' button");
+
 		activecoowners.clickSetRole();
-		// Click on 'Co-owner Role'
+		test.log(Status.INFO, "Click on 'Set Role' item");
+
 		activecoowners.clickCoownerRole();
-		// Click "OK'
+		test.log(Status.INFO, "Click on 'Co-owner Role'");
+
 		activecoowners.confirm.clickOkButton();
-		// Verify that User has role, that we select previously
+		test.log(Status.INFO, "Click 'OK'");
+
 		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleCoowner().getRoleName());
+		test.log(Status.PASS, "Verified that User has role, that we select previously.");
 
 		// Check Commissioner Role
-		// Find User in table and click on it
-		activecoowners.FindAndClickUserInTable(userDB.getLogin());
-		// Click on 'Actions' button
+		activecoowners.findAndClickUserInTable(userDB.getLogin());
 		activecoowners.clickActionsDropdown();
-		// Click on 'Set Role' item
 		activecoowners.clickSetRole();
-		// Click on 'Commissioner Role'
 		activecoowners.clickCommissionerRole();
-		// Click "OK'
 		activecoowners.confirm.clickOkButton();
-		// Verify that User has role, that we select previously
 		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleCommissioner().getRoleName());
+		test.log(Status.PASS, "Verified that User has role, that we select previously.");
 
 		// Check Registrator Role
-		// DUG in program
-		// // Find User in table and click on it
+		// BUG in program
+		// Find User in table and click on it
 		// activecoowners.FindAndClickUserInTable(userDB.getLogin());
-		// // Click on 'Actions' button
 		// activecoowners.clickActionsDropdown();
-		// // Click on 'Set Role' item
 		// activecoowners.clickSetRole();
-		// // Click on 'Registrator Role'
-		// activecoowners.clickRegistratorRole();//
-		// // Verify that User appeared on home page
+		// activecoowners.clickRegistratorRole();
 		// Assert.assertEquals(activecoowners.getRoleFirstRowText(),RoleDBRepo.getRoleRegistrator().getRoleName());
 
 		// Check Administrator Role
-		// Find User in table and click on it
-		activecoowners.FindAndClickUserInTable(userDB.getLogin());
-		// Click on 'Actions' button
+		activecoowners.findAndClickUserInTable(userDB.getLogin());
 		activecoowners.clickActionsDropdown();
-		// Click on 'Set Role' item
 		activecoowners.clickSetRole();
-		// Click on 'Commissioner Role'
 		activecoowners.clickAdministratorRole();
-		// Click "OK'
 		activecoowners.confirm.clickOkButton();
-		// Verify that User has role, that we select previously
 		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleAdmin().getRoleName());
+		test.log(Status.PASS, "Verified that User has role, that we select previously.");
 	}
+
 }

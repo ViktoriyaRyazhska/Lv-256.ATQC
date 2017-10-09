@@ -63,7 +63,7 @@ public class UnblockBlockedCoownersActionTest {
 	 */
 	public void convertInactiveCoownerBloked() {
 		adminhomepage.clickInactiveCoowners();
-		coownerstable.FindAndClickUserInTable(userDB.getLogin());
+		coownerstable.findAndClickUserInTable(userDB.getLogin());
 		inactivecoowners.clickActionsDropdown();
 		inactivecoowners.clickBlock();
 	}
@@ -76,7 +76,7 @@ public class UnblockBlockedCoownersActionTest {
 		convertInactiveCoownerBloked();
 		adminhomepage.clickCoowners();
 		adminhomepage.clickBlockedCoowners();
-		activecoowners.FindAndClickUserInTable(userDB.getLogin());
+		activecoowners.findAndClickUserInTable(userDB.getLogin());
 		// Click on 'Active Co-owner' item
 		blockedcoowners.clickActionsDropdown();
 		blockedcoowners.clickUnblock();
