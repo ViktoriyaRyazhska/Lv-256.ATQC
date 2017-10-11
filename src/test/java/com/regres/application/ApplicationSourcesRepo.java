@@ -15,6 +15,12 @@ public final class ApplicationSourcesRepo {
 				"http://regres.herokuapp.com/logout", 5L);
 	}
 
+	public static ApplicationSources getFirefoxHerokuApplicationDB() {
+		return new ApplicationSources("FireFox", "resources\\geckodriver.exe", "http://localhost:80801/resources/login",
+				"http://localhost:8081/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db", "root",
+				"root");
+	}
+
 	public static ApplicationSources getChromeLocalApplicationDB() {
 		return new ApplicationSources("Chrome", "resources\\chromedriver.exe", "http://localhost:8081/resources/login",
 				"http://localhost:8081/resources/logout", 5L, "jdbc:mysql://localhost:3306/registrator_db", "root",
