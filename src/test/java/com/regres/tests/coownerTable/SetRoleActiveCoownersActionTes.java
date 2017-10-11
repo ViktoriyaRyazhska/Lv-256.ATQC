@@ -1,6 +1,7 @@
 package com.regres.tests.coownerTable;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.testng.Assert;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.mysql.jdbc.PreparedStatement;
 import com.regres.application.Application;
 import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
@@ -21,6 +23,7 @@ import com.regres.pages.LoginPage;
 import com.regres.pages.manage.coowners.actions.ActiveCoownersActionsDropdown;
 import com.regres.reports.Reports;
 import com.regres.testdata.UserContainer;
+import com.regres.testdata.DB.RoleDB;
 import com.regres.testdata.DB.RoleDBRepo;
 import com.regres.testdata.DB.UserDB;
 import com.regres.testdata.DB.UserDBRepo;
@@ -34,6 +37,7 @@ public class SetRoleActiveCoownersActionTes extends Reports {
 	private ExtentTest test;
 	private UserDB userDB;
 	private ActiveCoownersActionsDropdown activecoowners;
+	private RoleDB roleDB;
 
 	/**
 	 * Sign in as admin. Go to settings.
@@ -123,16 +127,16 @@ public class SetRoleActiveCoownersActionTes extends Reports {
 		test.log(Status.INFO, "Click 'OK'");
 
 		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleCoowner().getRoleName());
-		test.log(Status.PASS, "Verified that User has role, that we select previously.");
-
-		// Check Commissioner Role
-		activecoowners.findAndClickUserInTable(userDB.getLogin());
-		activecoowners.clickActionsDropdown();
-		activecoowners.clickSetRole();
-		activecoowners.clickCommissionerRole();
-		activecoowners.confirm.clickOkButton();
-		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleCommissioner().getRoleName());
-		test.log(Status.PASS, "Verified that User has role, that we select previously.");
+		test.log(Status.PASS, "Verified that User has role, that we select previously.");		
+		Assert.assertEquals(roleDB.getRoleNameFromDb(conn, roleDB).toLowerCase(), RoleDBRepo.getRoleCoownerDB().getRoleName().toLowerCase());		 
+//		// Check Commissioner Role
+//		activecoowners.findAndClickUserInTable(userDB.getLogin());
+//		activecoowners.clickActionsDropdown();
+//		activecoowners.clickSetRole();
+//		activecoowners.clickCommissionerRole();
+//		activecoowners.confirm.clickOkButton();
+//		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleCommissioner().getRoleName());
+//		test.log(Status.PASS, "Verified that User has role, that we select previously.");
 
 		// Check Registrator Role
 		// BUG in program
@@ -144,13 +148,14 @@ public class SetRoleActiveCoownersActionTes extends Reports {
 		// Assert.assertEquals(activecoowners.getRoleFirstRowText(),RoleDBRepo.getRoleRegistrator().getRoleName());
 
 		// Check Administrator Role
-		activecoowners.findAndClickUserInTable(userDB.getLogin());
-		activecoowners.clickActionsDropdown();
-		activecoowners.clickSetRole();
-		activecoowners.clickAdministratorRole();
-		activecoowners.confirm.clickOkButton();
-		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleAdmin().getRoleName());
-		test.log(Status.PASS, "Verified that User has role, that we select previously.");
+//		activecoowners.findAndClickUserInTable(userDB.getLogin());
+//		activecoowners.clickActionsDropdown();
+//		activecoowners.clickSetRole();
+//		activecoowners.clickAdministratorRole();
+//		activecoowners.confirm.clickOkButton();
+//		Assert.assertEquals(activecoowners.getRoleFirstRowText(), RoleDBRepo.getRoleAdmin().getRoleName());
+//		test.log(Status.PASS, "Verified that User has role, that we select previously.");
+//		Assert.assertEquals(roleDB.getRoleNameFromDb(conn, roleDB).toLowerCase(), RoleDBRepo.getRoleAdmin().getRoleName().toLowerCase());
 	}
 
 }
