@@ -311,15 +311,15 @@ public class CoownersTable extends AdminHomePage {
     }
 
     /**
-     * search in table by last Name
+     * search in table by any field
      *
      * @param - "searchParamether"
      * @return list of searched users
      */
-    public List<UserForSerchTableTest> searchByLastName(List<UserForSerchTableTest> userList, String searchParamether) {
+    public List<UserForSerchTableTest> searchByUserField(List<UserForSerchTableTest> userList, UserSearchField searchField, String searchParamether) {
         List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
         for (UserForSerchTableTest u : userList) {
-            if (u.getLastName().contains(searchParamether)) {
+            if (checkContainingTextInField(u,searchField,searchParamether)) {
                 filteredList.add(u);
             }
         }
@@ -327,51 +327,45 @@ public class CoownersTable extends AdminHomePage {
     }
 
     /**
-     * search in table by community
-     *
-     * @param - searchParamether
-     * @return list of searched users
+     * method verify that userfield contains text(searchParamether) and return true
+     * @param user
+     * @param searchField
+     * @param searchParamether
+     * @return
      */
-    public List<UserForSerchTableTest> searchByCommunity(List<UserForSerchTableTest> userList, String searchParamether) {
-        List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
-        for (UserForSerchTableTest u : userList) {
-            if (u.getTerritorialCommunityName().contains(searchParamether)) {
-                filteredList.add(u);
-            }
+    private boolean checkContainingTextInField(UserForSerchTableTest user, UserSearchField searchField,String searchParamether ){
+        Boolean containing=null;
+        switch (searchField){
+            case STATUS:
+                containing=user.getStatus().contains(searchParamether);
+                break;
+            case FIRST_NAME:
+                containing=user.getFirstName().contains(searchParamether);
+                break;
+            case LAST_NAME:
+                containing=user.getLastName().contains(searchParamether);
+                break;
+            case LOGIN:
+                containing=user.getLogin().contains(searchParamether);
+                break;
+            case COMMUNITY:
+                containing=user.getTerritorialCommunityName().contains(searchParamether);
+                break;
+            case EMAIL:
+                containing=user.getEmail().contains(searchParamether);
+                break;
+            case ROLE_TYPE:
+                containing=user.getRole_type().contains(searchParamether);
+                break;
         }
-        return filteredList;
+        return containing;
     }
 
     /**
-     * search in table by first name
      *
-     * @param - "searchParamether"
-     * @return list of searched users
      */
-    public List<UserForSerchTableTest> searchByFirstName(List<UserForSerchTableTest> userList, String searchParamether) {
-        List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
-        for (UserForSerchTableTest u : userList) {
-            if (u.getFirstName().contains(searchParamether)) {
-                filteredList.add(u);
-            }
-        }
-        return filteredList;
-    }
-
-    /**
-     * search in table by login
-     *
-     * @param - "searchParamether"
-     * @return list of searched users
-     */
-    public List<UserForSerchTableTest> searchByLogin(List<UserForSerchTableTest> userList, String searchParamether) {
-        List<UserForSerchTableTest> filteredList = new ArrayList<UserForSerchTableTest>();
-        for (UserForSerchTableTest u : userList) {
-            if (u.getLogin().contains(searchParamether)) {
-                filteredList.add(u);
-            }
-        }
-        return filteredList;
+    public enum UserSearchField {
+        STATUS, FIRST_NAME, LAST_NAME, LOGIN, COMMUNITY, EMAIL, ROLE_TYPE
     }
 
     public UserForSerchTableTest getSearchParameter(List<UserForSerchTableTest> userList) {
@@ -385,8 +379,8 @@ public class CoownersTable extends AdminHomePage {
      * @return list of users from table
      */
     public List<UserForSerchTableTest> getListOfUsersFromTable() {
-        if (waitWhileScriptsExecute() == true) {
-            List<UserForSerchTableTest> userList = new ArrayList<UserForSerchTableTest>();
+        if (waitWhileScriptsExecute()) {
+            List<UserForSerchTableTest> userList = new ArrayList<>();
             List<WebElement> celllist = getAlltableBodyCell();
             int count = getTableBodyCellsCount();
             for (int j = 0; j <= count - 8; j = j + 8) {
@@ -410,10 +404,7 @@ public class CoownersTable extends AdminHomePage {
 
     // compares equality of two user lists
     public boolean compareLists(List<UserForSerchTableTest> userList1, List<UserForSerchTableTest> userList2) {
-        if (userList1.equals(userList2)) {
-            return true;
-        }
-        return false;
+        return userList1.equals(userList2);
     }
 
     public void ClickFirstNameFirstRow() {

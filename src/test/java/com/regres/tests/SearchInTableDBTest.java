@@ -22,9 +22,8 @@ import java.util.List;
 
 public class SearchInTableDBTest {
     private Application app;
-    private LoginPage loginpage;
     private AdminHomePage adminhomepage;
-    private Connection dbConnector;
+    private Connection conn;
     private CoownersTable coownerstable;
     private String sheet = "sheet1";
     private File file = new File("UsersBD.xlsx");
@@ -33,13 +32,14 @@ public class SearchInTableDBTest {
     @BeforeClass
     public void setUp() throws SQLException, ClassNotFoundException, IOException {
         app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-        dbConnector = ApplicationSources.createDBConnection();
+        conn = ApplicationSources.createDBConnection();
         List<UserDB> userDBList = new ReadUsersFromEcxel().addUserFromEcxelToList(file, sheet);
         for (UserDB u : userDBList) {
-            UserDB.createUserInDB(dbConnector, u);
+            UserDB.createUserInDB(conn, u);
         }
-        loginpage = app.load();
+        LoginPage loginpage = app.load();
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+
     }
 
     @BeforeMethod
@@ -52,7 +52,7 @@ public class SearchInTableDBTest {
     @AfterClass
     public void afterTest() throws ClassNotFoundException, SQLException, IOException {
         for (UserDB u : new ReadUsersFromEcxel().addUserFromEcxelToList(file, sheet)) {
-            UserDB.deleteUserInDB(dbConnector, u);
+            UserDB.deleteUserInDB(conn, u);
         }
         ApplicationSources.closeConnectionDB();
         app.quit();
@@ -67,7 +67,7 @@ public class SearchInTableDBTest {
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
         String searchParam = coownerstable.getSearchParameter(allUsers).getFirstName();
         //select users from all user list by search parameter
-        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByFirstName(allUsers, searchParam);
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByUserField(allUsers,CoownersTable.UserSearchField.FIRST_NAME, searchParam);
         //set search parameter in table search field and press button search
         //read table and write searched users to list
         coownerstable.setFirstNameSearch(searchParam);
@@ -86,7 +86,7 @@ public class SearchInTableDBTest {
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
         String searchParam = coownerstable.getSearchParameter(allUsers).getLogin();
         //select users from all user list by search parameter
-        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByLogin(allUsers, searchParam);
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByUserField(allUsers,CoownersTable.UserSearchField.LOGIN, searchParam);
         //set search parameter in table search field and press button search
         // read table and write searched users to list
         coownerstable.setLoginSearch(searchParam);
@@ -105,7 +105,7 @@ public class SearchInTableDBTest {
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
         String searchParam = coownerstable.getSearchParameter(allUsers).getTerritorialCommunityName();
         //select users from all user list by search parameter
-        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByCommunity(allUsers, searchParam);
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByUserField(allUsers,CoownersTable.UserSearchField.COMMUNITY, searchParam);
         //set search parameter in table search field and press button search
         // read table and write searched users to list
         coownerstable.setCommunitySearch(searchParam);
@@ -124,7 +124,7 @@ public class SearchInTableDBTest {
         List<UserForSerchTableTest> allUsers = coownerstable.getListOfUsersFromTable();
         String searchParam = coownerstable.getSearchParameter(allUsers).getLastName();
         //select users from all user list by search parameter
-        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByLastName(allUsers, searchParam);
+        List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByUserField(allUsers,CoownersTable.UserSearchField.LAST_NAME, searchParam);
         //set search parameter in table search field and press button search
         // read table and write searched users to list
         coownerstable.setLastNameSearch(searchParam);
