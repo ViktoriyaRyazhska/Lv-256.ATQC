@@ -375,7 +375,7 @@ public class CoownersTable extends AdminHomePage {
     }
 
     public UserForSerchTableTest getSearchParameter(List<UserForSerchTableTest> userList) {
-        return userList.get((int) (Math.random() * (userList.size() + 1)));
+        return userList.get((int) (Math.random() * (userList.size())));
     }
 
     /**
