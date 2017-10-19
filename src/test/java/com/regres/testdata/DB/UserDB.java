@@ -70,7 +70,7 @@ public class UserDB {
 	public String getEmptyCommunityMes() {
 		return emptyCommunityMes;
 	}
-	
+
 	public String getCredentials_non_expired() {
 		return credentials_non_expired;
 	}
@@ -130,11 +130,11 @@ public class UserDB {
 	public String getTerritorialCommunity_id() {
 		return territorialCommunity_id;
 	}
-	
+
 	public String getNameCommunity() {
 		return nameCommunity;
 	}
-	
+
 	public void setAccount_non_expired(String account_non_expire) {
 		this.account_non_expired = account_non_expired;
 	}
@@ -248,4 +248,29 @@ public class UserDB {
 	// return "UserDB [email=" + email + ", login=" + login + "]";
 	// }
 
+	@Override
+	public String toString() {
+		return "UserDB{" +
+				"account_non_expired='" + account_non_expired + '\'' +
+				", account_non_locked='" + account_non_locked + '\'' +
+				", attempts='" + attempts + '\'' +
+				", credentials_non_expired='" + credentials_non_expired + '\'' +
+				", date_of_accession='" + date_of_accession + '\'' +
+				", email='" + email + '\'' +
+				", enabled='" + enabled + '\'' +
+				", first_Name='" + first_Name + '\'' +
+				", last_modified='" + last_modified + '\'' +
+				", last_Name='" + last_Name + '\'' +
+				", locked_till='" + locked_till + '\'' +
+				", login='" + login + '\'' +
+				", middle_name='" + middle_name + '\'' +
+				", password='" + password + '\'' +
+				", phonenumber='" + phonenumber + '\'' +
+				", status='" + status + '\'' +
+				", role_id='" + role_id + '\'' +
+				", territorialCommunity_id='" + territorialCommunity_id + '\'' +
+				", nameCommunity='" + nameCommunity + '\'' +
+				", emptyCommunityMes='" + emptyCommunityMes + '\'' +
+				'}';
+	}
 }

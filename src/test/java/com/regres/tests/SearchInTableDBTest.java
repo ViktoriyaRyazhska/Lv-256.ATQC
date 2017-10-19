@@ -1,43 +1,61 @@
 package com.regres.tests;
 
 import com.regres.application.Application;
+import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.TitleLocalFooter;
 import com.regres.pages.manage.coowners.CoownersTable;
+import com.regres.testdata.DB.UserDB;
+import com.regres.testdata.ReadUsersFromEcxel;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForSerchTableTest;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
-public class SearchInTableTest {
+public class SearchInTableDBTest {
     private Application app;
     private AdminHomePage adminhomepage;
+    private Connection conn;
     private CoownersTable coownerstable;
+    private String sheet = "sheet1";
+    private File file = new File("UsersBD.xlsx");
+
 
     @BeforeClass
-    public void setUp() {
-        app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+    public void setUp() throws SQLException, ClassNotFoundException, IOException {
+        app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
+        conn = ApplicationSources.createDBConnection();
+        List<UserDB> userDBList = new ReadUsersFromEcxel().addUserFromEcxelToList(file, sheet);
+        for (UserDB u : userDBList) {
+            UserDB.createUserInDB(conn, u);
+        }
         LoginPage loginpage = app.load();
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+
+    }
+
+    @BeforeMethod
+    public void beforeMethod(){
+        coownerstable = adminhomepage.goToActiveCoowners();
+        coownerstable.setNumbeOfItemsInTable();
+        coownerstable.waitWhileScriptsExecute();
     }
 
     @AfterClass
-    public void tearDown() {
+    public void afterTest() throws ClassNotFoundException, SQLException, IOException {
+        for (UserDB u : new ReadUsersFromEcxel().addUserFromEcxelToList(file, sheet)) {
+            UserDB.deleteUserInDB(conn, u);
+        }
+        ApplicationSources.closeConnectionDB();
         app.quit();
-    }
-
-    /**
-     * choose non-confirmed co-owners
-     */
-    @BeforeMethod
-    public void beforeTest() {
-        coownerstable = adminhomepage.goToNonConfirmedCoowners();
-        coownerstable.setNumbeOfItemsInTable();
-        coownerstable.waitWhileScriptsExecute();
     }
 
     /**
@@ -51,7 +69,7 @@ public class SearchInTableTest {
         //select users from all user list by search parameter
         List<UserForSerchTableTest> expectFilteredUsers = coownerstable.searchByUserField(allUsers,CoownersTable.UserSearchField.FIRST_NAME, searchParam);
         //set search parameter in table search field and press button search
-        // read table and write searched users to list
+        //read table and write searched users to list
         coownerstable.setFirstNameSearch(searchParam);
         coownerstable.getSearchButton().click();
         List<UserForSerchTableTest> actualFilteredUsers = coownerstable.getListOfUsersFromTable();
@@ -132,4 +150,3 @@ public class SearchInTableTest {
                 {TitleLocalFooter.ChangeLanguageFields.RUSSIAN}};
     }
 }
-
