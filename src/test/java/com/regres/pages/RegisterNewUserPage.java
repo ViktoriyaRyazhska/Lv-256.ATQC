@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public final class RegisterNewUserPage extends AdminHomePage{
     //Basic information
-    private String FIRST_NAME_XPATH = ".//*[@id='firstName']";// must be
+    private String FIRST_NAME_XPATH = "firstName";// must be
     private String SECOND_NAME_XPATH = ".//*[@id='lastName']";// must be
     private String MIDDLE_NAME_XPATH = ".//*[@id='middleName']";
     private String EMAIL_XPATH = ".//*[@id='email']";// must be
@@ -30,6 +30,10 @@ public final class RegisterNewUserPage extends AdminHomePage{
     private String PHONE_NUMBER_XPATH = ".//*[@id='phone_number']";
     private String COMMUNITY_XPATH = ".//*[@id='territorial_Community']";// must be
     private String DATE_OF_ACCESSION_XPATH = ".//*[@id='datepicker']";// must be
+    //Buttons
+    private String BUTTON_SEND_XPATH=".//*[@id='submit']";
+    private String BUTTON_CLEAR_XPATH=".//*[@id='registrationForm']/div[2]/button[2]";
+    private String BUTTON_CANCEL_XPATH=".//*[@id='registrationForm']/div[2]/button[3]";
 
     //Basic information
     private WebElement firstName;
@@ -56,6 +60,9 @@ public final class RegisterNewUserPage extends AdminHomePage{
     private WebElement community; //Select
     private WebElement dateOfAccession; //Calendar
     //Buttons
+    private WebElement buttonSend;
+    private WebElement buttonClear;
+    private WebElement buttonCancel;
 
 
     private static volatile RegisterNewUserPage instance = null;
@@ -75,8 +82,9 @@ public final class RegisterNewUserPage extends AdminHomePage{
         return instance;
     }
 
+    //GETTERS
     public WebElement getFirstName() {
-        return driver.findElement(By.xpath(FIRST_NAME_XPATH));
+        return driver.findElement(By.id(FIRST_NAME_XPATH));
     }
 
     public WebElement getSecondName() {
@@ -155,7 +163,9 @@ public final class RegisterNewUserPage extends AdminHomePage{
         return driver.findElement(By.xpath(DATE_OF_ACCESSION_XPATH));
     }
 
+    // SETTERS
     public void setFirstName(String firstName) {
+        getFirstName().clear();
         getFirstName().sendKeys(firstName);
     }
 
@@ -233,5 +243,40 @@ public final class RegisterNewUserPage extends AdminHomePage{
 
     public void setDateOfAccession(String dateOfAccession) {
         getDateOfAccession().sendKeys(dateOfAccession);
+    }
+
+    //Buttons click
+    public void clickButtonSend() {
+        driver.findElement(By.xpath(BUTTON_SEND_XPATH)).click();
+    }
+
+    public void clickButtonClear() {
+        driver.findElement(By.xpath(BUTTON_CLEAR_XPATH)).click();
+    }
+
+    public void clickButtonCancel() {
+        driver.findElement(By.xpath(BUTTON_CANCEL_XPATH)).click();
+    }
+
+    public void registerNewUser(String firstName, String secondName, String middleName, String email, String login, String password, String confirmPassword, String city, String region, String district, String street, String building, String flat, String postcode, String passportSeria, String passportNumber, String passportPublishedBy, String phoneNumber, String community) {
+        setFirstName(firstName);
+        setSecondName(secondName);
+        setMiddleName(middleName);
+        setEmail(email);
+        setLogin(login);
+        setPassword(password);
+        setConfirmPassword(confirmPassword);
+        setCity(city);
+        setRegion(region);
+        setDistrict(district);
+        setBuilding(building);
+        setFlat(flat);
+        setPostcode(postcode);
+        setPassportSeria(passportSeria);
+        setPassportNumber(passportNumber);
+        setPassportPublishedBy(passportPublishedBy);
+        setPhoneNumber(phoneNumber);
+        setCommunity(community);
+        clickButtonSend();
     }
 }

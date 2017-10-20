@@ -17,6 +17,7 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	// these elements are for navigate on admin pages
 	private WebElement settings;
 	private WebElement communities;
+	private WebElement registerNewUser;
 	private WebElement unblockAllCoowners;
 	// these elements are on confirm unblock all coowners
 	private WebElement confirmMessageUnblockAllCoowners;
@@ -24,6 +25,7 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	private WebElement okButtonUnblockAllCoowners;
 	private String COMUNITIES_LOCATOR = "[href $= 'show-all-communities']";
 	private String SETTINGS_LOCATOR = "[href $= 'settings']";
+	private String REGISTER_NEW_USER_XPATH=".//*[@id='navigationbar']/ul/li[5]/a";
 	private String UNBLOCK_ALL_COOWNERS_LOCATOR = "unlockUsers";
 	private String OK_BUTTON_UNBLOCK_ALL_COOWNERS_LOCATOR = ".modal-footer > button";
 	private String CLOSE_BUTTON_UNBLOCK_ALL_COOWNERS_LOCATOR = "close";
@@ -41,6 +43,7 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		this.communities = driver.findElement(By.cssSelector(COMUNITIES_LOCATOR));
 		this.settings = driver.findElement(By.cssSelector(SETTINGS_LOCATOR));
 		this.unblockAllCoowners = driver.findElement(By.id(UNBLOCK_ALL_COOWNERS_LOCATOR));
+		this.registerNewUser = driver.findElement(By.xpath(REGISTER_NEW_USER_XPATH));
 	}
 
 	// PageObject
@@ -192,5 +195,10 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		this.clickNonConfirmedCoowners();
 		// Return a new page object representing the destination.
 		return new CoownersElementsOnPageDropdown(driver);
+	}
+
+	public RegisterNewUserPage clickRegisterNewUser(){
+		driver.findElement(By.xpath(REGISTER_NEW_USER_XPATH)).click();
+		return RegisterNewUserPage.get(driver);
 	}
 }
