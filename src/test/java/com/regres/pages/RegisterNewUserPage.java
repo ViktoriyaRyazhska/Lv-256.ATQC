@@ -1,5 +1,6 @@
 package com.regres.pages;
 
+import com.regres.testdata.UserForRegisterNewUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -258,25 +259,25 @@ public final class RegisterNewUserPage extends AdminHomePage{
         driver.findElement(By.xpath(BUTTON_CANCEL_XPATH)).click();
     }
 
-    public void registerNewUser(String firstName, String secondName, String middleName, String email, String login, String password, String confirmPassword, String city, String region, String district, String street, String building, String flat, String postcode, String passportSeria, String passportNumber, String passportPublishedBy, String phoneNumber, String community) {
-        setFirstName(firstName);
-        setSecondName(secondName);
-        setMiddleName(middleName);
-        setEmail(email);
-        setLogin(login);
-        setPassword(password);
-        setConfirmPassword(confirmPassword);
-        setCity(city);
-        setRegion(region);
-        setDistrict(district);
-        setBuilding(building);
-        setFlat(flat);
-        setPostcode(postcode);
-        setPassportSeria(passportSeria);
-        setPassportNumber(passportNumber);
-        setPassportPublishedBy(passportPublishedBy);
-        setPhoneNumber(phoneNumber);
-        setCommunity(community);
+    public void registerNewUser(UserForRegisterNewUser userForRegisterNewUser){
+        setFirstName(userForRegisterNewUser.getFirstName());
+        setSecondName(userForRegisterNewUser.getSecondName());
+        setMiddleName(userForRegisterNewUser.getMiddleName());
+        setEmail(userForRegisterNewUser.getEmail());
+        setLogin(userForRegisterNewUser.getLogin());
+        setPassword(userForRegisterNewUser.getPassword());
+        setConfirmPassword(userForRegisterNewUser.getConfirmPassword());
+        setCity(userForRegisterNewUser.getCity());
+        setRegion(userForRegisterNewUser.getRegion());
+        setDistrict(userForRegisterNewUser.getDistrict());
+        setBuilding(userForRegisterNewUser.getBuilding());
+        setFlat(userForRegisterNewUser.getFlat());
+        setPostcode(userForRegisterNewUser.getPostcode());
+        setPassportSeria(userForRegisterNewUser.getPassportSeria());
+        setPassportNumber(userForRegisterNewUser.getPassportNumber());
+        setPassportPublishedBy(userForRegisterNewUser.getPassportPublishedBy());
+        setPhoneNumber(userForRegisterNewUser.getPhoneNumber());
+        setCommunity(userForRegisterNewUser.getCommunity());
         clickButtonSend();
     }
 }
