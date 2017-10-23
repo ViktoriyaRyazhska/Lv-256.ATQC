@@ -15,11 +15,12 @@ public class RegistratorHomePage extends DropdownHomePage {
 
 	public RegistratorHomePage(WebDriver driver) {
 		super(driver);
-		resourcesSearch = driver.findElement(By.cssSelector(RESOURCES_SEARCH_LOCATOR));
-		subclassesOfObjects = driver.findElement(By.xpath(SUBCLASSES_OF_OBJECT_LOCATOR));
+		//resourcesSearch = driver.findElement(By.cssSelector(RESOURCES_SEARCH_LOCATOR));
+		//subclassesOfObjects = driver.findElement(By.xpath(SUBCLASSES_OF_OBJECT_LOCATOR));
 	}
 
 	public WebElement getResourcesSearch() {
+		resourcesSearch = driver.findElement(By.cssSelector(RESOURCES_SEARCH_LOCATOR));
 		return resourcesSearch;
 	}
 
@@ -33,6 +34,7 @@ public class RegistratorHomePage extends DropdownHomePage {
 	}
 
 	public WebElement getSubclassesOfObjects() {
+		subclassesOfObjects = driver.findElement(By.xpath(SUBCLASSES_OF_OBJECT_LOCATOR));
 		return subclassesOfObjects;
 	}
 
@@ -42,7 +44,7 @@ public class RegistratorHomePage extends DropdownHomePage {
 
 	public SubclassesOfObjects clickSubclassesOfObjects() {
 		getSubclassesOfObjects().click();
-		return new SubclassesOfObjects(driver);
+		return SubclassesOfObjects.get(driver);
 	}
 
 	// Business Logic

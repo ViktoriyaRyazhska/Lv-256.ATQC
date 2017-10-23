@@ -13,14 +13,7 @@ import com.regres.application.ResourceTypes;
  * The class that provides the basic functionality for working with the database
  */
 public class BaseFunctionalForDB {
-
-	public boolean hasSubclassNameInDb(String enteredNameSubclass) {
-		String typeName = getSubclassNameFromDb(enteredNameSubclass);
-		boolean result = !typeName.equals("");
-		return result;
-	}
-
-	public String getSubclassNameFromDb(String enteredNameSubclass) {
+	    public String getSubclassNameFromDb(String enteredNameSubclass) {
 		String typeName = "";
 
 		Session session = HibernateSessionFactory.currentSession();
@@ -38,5 +31,12 @@ public class BaseFunctionalForDB {
 		HibernateSessionFactory.closeSession();
 		return typeName;
 	}
+
+	public boolean hasSubclassNameInDb(String enteredNameSubclass) {
+		String typeName = getSubclassNameFromDb(enteredNameSubclass);
+		boolean result = !typeName.equals("");
+		return result;
+	}
+
 
 }

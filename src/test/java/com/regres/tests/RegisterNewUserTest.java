@@ -5,11 +5,18 @@ import com.regres.application.Application;
 import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
+import com.regres.pages.CoownerHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegisterNewUserPage;
+import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+import com.regres.pages.manage.coowners.CoownersElementsOnPageDropdown;
 import com.regres.pages.manage.coowners.CoownersTable;
 import com.regres.testdata.DB.UserDB;
+import com.regres.testdata.NewSubclass;
+import com.regres.testdata.NewSubclassDataContainer;
 import com.regres.testdata.ReadUsersFromEcxel;
+import com.regres.testdata.RegisteredUserContainer;
+import com.regres.testdata.RegisteredUsers;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForRegisterNewUser;
 import com.regres.testdata.UserForSerchTableTest;
@@ -27,36 +34,39 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class RegisterNewUserTest {
-    private Application app;
-    private AdminHomePage adminhomepage;
-    Connection conn;
-    RegisterNewUserPage registerNewUserPage;
-    UserForRegisterNewUser userForRegisterNewUser;
-    private String sheet = "sheet1";
-    private File file = new File("UsersForRegisteredTest.xlsx");
+	private Application app;
+	private AdminHomePage adminhomepage;
+	Connection conn;
+	RegisterNewUserPage registerNewUserPage;
+	UserForRegisterNewUser userForRegisterNewUser;
+	CoownersElementsOnPageDropdown coownersElementOnPageDropdown;
+	private String sheet = "sheet1";
+	private File file = new File("UsersForRegisteredTest.xlsx");
 
-    @BeforeClass
-    public void setUp() throws SQLException, ClassNotFoundException, IOException {
-        app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
-        conn = ApplicationSources.createDBConnection();
-        LoginPage loginpage = app.load();
-        adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
-        registerNewUserPage = adminhomepage.clickRegisterNewUser();
-    }
+	@BeforeClass
+	public void setUp() {
+		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplicationDB());
+		// conn = ApplicationSources.createDBConnection();
+		LoginPage loginpage = app.load();
+		adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
+		registerNewUserPage = adminhomepage.clickRegisterNewUser();
+	}
 
-    @AfterClass
-    public void afterTest() throws ClassNotFoundException, SQLException, IOException {
-        ApplicationSources.closeConnectionDB();
-        app.quit();
-    }
+	@AfterClass
+	public void afterTest() {
+		// ApplicationSources.closeConnectionDB();
+		app.quit();
+	}
 
-    @Test
-    public void searchInTableByFirstName() throws SQLException, IOException {
-        app.getDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        //registerNewUserPage.registerNewUser("firstname","secondname","","asdasd@mail.com","gogidze","000000","000000","","","","","","","","","","","","Україна");
-        List<UserForRegisterNewUser> userDBList = userForRegisterNewUser.addUserFromEcxelToList(file, sheet);
-        for (UserForRegisterNewUser u : userDBList) {
-            registerNewUserPage.registerNewUser(u);
-        }
-    }
+	@Test
+	public void searchInTableByFirstName() {
+
+		List<RegisteredUsers> users = RegisteredUserContainer.getValidData();
+		for (RegisteredUsers validUser : users) {
+			registerNewUserPage.registerNewUser(validUser);
+			coownersElementOnPageDropdown = registerNewUserPage.clickButtonSend();
+			registerNewUserPage = adminhomepage.clickRegisterNewUser();
+
+		}
+	}
 }
