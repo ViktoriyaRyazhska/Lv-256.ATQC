@@ -1,4 +1,4 @@
-package com.regres.pages;
+package com.regres.dao;
 
 import java.util.List;
 
@@ -7,22 +7,18 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.regres.application.HibernateSessionFactory;
-import com.regres.application.ResourceTypes;
+import com.regres.entities.ResourceTypes;
 
-/**
- * The class that provides the basic functionality for working with the database
- */
-public class BaseFunctionalForDB {
+public class ResourceTypeDAO {
 
 	public boolean hasSubclassNameInDb(String enteredNameSubclass) {
 		String typeName = getSubclassNameFromDb(enteredNameSubclass);
 		boolean result = !typeName.equals("");
 		return result;
 	}
-
+	
 	public String getSubclassNameFromDb(String enteredNameSubclass) {
 		String typeName = "";
-
 		Session session = HibernateSessionFactory.currentSession();
 		Transaction tx = session.beginTransaction();
 		// По умолчанию entity name совпадает с именем класса.
@@ -38,5 +34,4 @@ public class BaseFunctionalForDB {
 		HibernateSessionFactory.closeSession();
 		return typeName;
 	}
-
 }

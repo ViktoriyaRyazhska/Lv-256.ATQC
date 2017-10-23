@@ -12,9 +12,9 @@ import org.testng.annotations.Test;
 import com.regres.application.Application;
 import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
+import com.regres.dao.ResourceTypeDAO;
 import com.regres.pages.AddNewSubclassPage;
 import com.regres.pages.AddNewSubclassPage.AddNewSubclassPageL10n;
-import com.regres.pages.BaseFunctionalForDB;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegistratorHomePage;
 import com.regres.pages.SubclassesOfObjects;
@@ -36,7 +36,7 @@ public class AddNewSubclassTest {
 	private SubclassesOfObjects subclassesOfObjects;
 	private AddNewSubclassPage addNewSublassPage;
 	private Application app;
-	public BaseFunctionalForDB baseFunctionalForDB;
+	public ResourceTypeDAO resourceTypeDAO;
 	private EnteredNameSubclass enteredNameSubclass;
 
 	@BeforeClass
@@ -46,7 +46,7 @@ public class AddNewSubclassTest {
 		loginpage = app.load();
 		// login as admin
 		registratorpage = loginpage.successfullLoginRegistrator(UserContainer.getRegistrator());
-		baseFunctionalForDB = new BaseFunctionalForDB();
+		resourceTypeDAO = new ResourceTypeDAO();
 	}
 
 	@AfterClass
@@ -90,7 +90,7 @@ public class AddNewSubclassTest {
 
 	// This method verify that created new subclass with valid data saved in List of
 	// Subclass table and DB
-	// @Test(dataProvider = "L10N")
+	@Test(dataProvider = "L10N")
 	public void checkSuccessfulAddedSubclass(ChangeLanguageFields language) {
 		// set language
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
@@ -109,13 +109,13 @@ public class AddNewSubclassTest {
 		// new subclass created in List of subclass table
 		String actual = subclassesOfObjects.getSubclassName(NewSubclassDataContainer.getValidData()).getText();
 		// expected that name of subclass created in DB
-		String expected = baseFunctionalForDB.getSubclassNameFromDb(subclass.getNameClasses());
+		String expected = resourceTypeDAO.getSubclassNameFromDb(subclass.getNameClasses());
 		// compare the actual and expected result
 		Assert.assertEquals(actual, expected);
 		// delete test data
 		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton(subclass);
 		// verify that name of subclass delete from DB
-		Assert.assertFalse(baseFunctionalForDB.hasSubclassNameInDb(subclass.getNameClasses()));
+		Assert.assertFalse(resourceTypeDAO.hasSubclassNameInDb(subclass.getNameClasses()));
 	}
 
 	// This test verify that registrator can create subclass with existing name of
@@ -194,11 +194,11 @@ public class AddNewSubclassTest {
 		// new subclass created in List of subclass table
 		String actual = subclassesOfObjects.getSubclassName(subclass).getText();
 		// expected that name of subclass created in DB
-		String expected = baseFunctionalForDB.getSubclassNameFromDb(subclass.getNameClasses());
+		String expected = resourceTypeDAO.getSubclassNameFromDb(subclass.getNameClasses());
 		Assert.assertEquals(actual, expected);
 		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton(subclass);
 
-		Assert.assertFalse(baseFunctionalForDB.hasSubclassNameInDb(subclass.getNameClasses()));
+		Assert.assertFalse(resourceTypeDAO.hasSubclassNameInDb(subclass.getNameClasses()));
 	}
 
 	/**
