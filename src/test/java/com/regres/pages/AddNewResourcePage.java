@@ -5,8 +5,11 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
-public class AddNewResourcePage {
+import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+
+public class AddNewResourcePage extends RegistratorHomePage {
 	WebDriver driver;
 	// add another fields
 	private WebElement selectCoownerField;
@@ -49,6 +52,10 @@ public class AddNewResourcePage {
 	private WebElement addPointButton;
 	private WebElement addTerritoryButton;
 	private WebElement deleteAllPointsButton;
+	private WebElement addPointErrorMessage;
+	private WebElement addPointMessageOKButton;
+	private WebElement deletePointButton;
+	private String errorMessage;
 
 	String SELECT_COOWNER_INPUTFIELD_ID = "#owner_search";
 	String OBJECT_NAME_INPUTFIELD_ID = "#w-input-search";
@@ -89,30 +96,85 @@ public class AddNewResourcePage {
 	String ADD_POINT_BUTTON_LOCATOR = "btnAddAreaPoint";
 	String ADD_TERRITORY_BUTTON_LOCATOR = "addPolygon";
 	String DELETE_ALL_POINTS_LOCATOR = "clearAllPoints";
-    
+	String ADD_POINT_ERROR_MESSAGE_LOCATOR = "bootbox-body";
+	String ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR = "[data-bb-handler = 'ok']";
+	String DELETE_POINT_BUTTON_LOCATOR = "delPoint";
+
+	public String getAddPointMessageText() {
+		clickSaveButton();
+		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
+		addPointMessageOKButton = driver.findElement(By.cssSelector(ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR));
+		errorMessage = addPointErrorMessage.getText().trim();
+		clickAddPointMessageButton();
+		return errorMessage;
+
+	}
+
+	public String getAddLastPointMessageText() {
+		clickDeletePointButton();
+		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
+		addPointMessageOKButton = driver.findElement(By.cssSelector(ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR));
+		errorMessage = addPointErrorMessage.getText().trim();
+		clickAddPointMessageButton();
+		return errorMessage;
+	}
+
+	public String getAddFirstPointMessageText() {
+		clickAddPointButton();
+		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
+		addPointMessageOKButton = driver.findElement(By.cssSelector(ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR));
+		errorMessage = addPointErrorMessage.getText().trim();
+		clickAddPointMessageButton();
+		return errorMessage;
+
+	}
+
+	public String getAddThreePointsMessageText() {
+		clickAddTerritotyButton();
+		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
+		addPointMessageOKButton = driver.findElement(By.cssSelector(ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR));
+		errorMessage = addPointErrorMessage.getText().trim();
+		clickAddPointMessageButton();
+		return errorMessage;
+	}
+
+	public void clickAddPointMessageButton() {
+		addPointMessageOKButton.click();
+	}
+
 	public void setSelectCoownersText(String coowner) {
 		selectCoownerField.clear();
 		selectCoownerField.sendKeys(coowner);
 	}
+
 	public void setObjectNameText(String object) {
 		objectNameField.clear();
 		objectNameField.sendKeys(object);
 	}
-	/*public void selectSubclass(){
-		objectSubclassDropdown.click();
-		
-	}*/
+
+	/*
+	 * public void selectSubclass(){ objectSubclassDropdown.click();
+	 * 
+	 * }
+	 */
 	public void checkProcurationCheckBox() {
 		procurationsCheckBox.click();
 	}
+
 	public void clickEditButton() {
 		editButton.click();
 	}
+
 	public void changeRegNumber(String regNumb) {
 		clickEditButton();
 		registrNumbOfObjectField.clear();
 		registrNumbOfObjectField.sendKeys(regNumb);
 	}
+
+	public void clickDeletePointButton() {
+		deletePointButton.click();
+	}
+
 	public void clickPointsNavTab() {
 		pointsNavTab.click();
 		latitudeDegreeField = driver.findElement(By.cssSelector(LATITUDE_DEGREE_FIELD_LOCATOR));
@@ -121,55 +183,69 @@ public class AddNewResourcePage {
 		longitudeDegreeField = driver.findElement(By.cssSelector(LONGITUDE_DEGREE_FIELD_LOCATOR));
 		longitudeMinuteField = driver.findElement(By.cssSelector(LONGITUDE_MINUTE_FIELD_LOCATOR));
 		longitudeSecondField = driver.findElement(By.cssSelector(LONGITUDE_SECOND_FIELD_LOCATOR));
+		deletePointButton = driver.findElement(By.cssSelector(DELETE_POINT_BUTTON_LOCATOR));
 		showOnMapButton = driver.findElement(By.id(SHOW_ON_MAP_BUTTON_LOCATOR));
 		addPointButton = driver.findElement(By.id(ADD_POINT_BUTTON_LOCATOR));
 		addTerritoryButton = driver.findElement(By.id(ADD_TERRITORY_BUTTON_LOCATOR));
 		deleteAllPointsButton = driver.findElement(By.id(DELETE_ALL_POINTS_LOCATOR));
 	}
+
 	public void setLatitudeDegreeField(String laD) {
 		latitudeDegreeField.clear();
 		latitudeDegreeField.sendKeys(laD);
 	}
+
 	public void setLatitudeMinutesField(String laM) {
 		latitudeMinuteField.clear();
 		latitudeMinuteField.sendKeys(laM);
 	}
+
 	public void setLatitudeSecondsField(String laS) {
 		latitudeSecondField.clear();
 		latitudeSecondField.sendKeys(laS);
 	}
+
 	public void setLongitudeDegreeField(String loD) {
 		longitudeDegreeField.clear();
 		longitudeDegreeField.sendKeys(loD);
 	}
+
 	public void setLongitudeMinutesField(String loM) {
 		longitudeMinuteField.clear();
 		longitudeMinuteField.sendKeys(loM);
 	}
+
 	public void setLongitudeSecondsField(String loS) {
 		longitudeSecondField.clear();
 		longitudeSecondField.sendKeys(loS);
 	}
+
 	public void clickShowOnMapButton() {
 		showOnMapButton.click();
 	}
+
 	public void clickAddPointButton() {
 		addPointButton.click();
 	}
+
 	public void clickAddTerritotyButton() {
 		addTerritoryButton.click();
 	}
+
 	public void clickDeleteAllPointsButton() {
 		deleteAllPointsButton.click();
 	}
+
 	public void clickSaveButton() {
 		saveButton.click();
 	}
+
 	public void clickClearButton() {
 		clearButton.click();
 	}
+
 	public AddNewResourcePage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 		selectCoownerField = driver.findElement(By.id(SELECT_COOWNER_INPUTFIELD_ID));
 		objectNameField = driver.findElement(By.id(OBJECT_NAME_INPUTFIELD_ID));
 		objectSubclassDropdown = driver.findElement(By.id(OBJECT_SUBCLASS_DROPDOWN_ID));
@@ -342,7 +418,6 @@ public class AddNewResourcePage {
 		this.resourceActsUkrCheckBox = resourceActsUkr;
 	}
 
-
 	public WebElement getCloseButton() {
 		return closeButton;
 	}
@@ -435,7 +510,6 @@ public class AddNewResourcePage {
 		return deleteAllPointsButton;
 	}
 
-
 	public void setLatitudeDegreeField(WebElement latitudeDegreeField) {
 		this.latitudeDegreeField = latitudeDegreeField;
 	}
@@ -522,6 +596,12 @@ public class AddNewResourcePage {
 
 	public void setDeleteAllPointsButton(WebElement deleteAllPointsButton) {
 		this.deleteAllPointsButton = deleteAllPointsButton;
+	}
+
+	public AddNewResourcePage setLanguage(ChangeLanguageFields language) {
+		Select lang = new Select(getLocalizationDropdown());
+		lang.selectByVisibleText(language.toString());
+		return new AddNewResourcePage(driver);
 	}
 
 }
