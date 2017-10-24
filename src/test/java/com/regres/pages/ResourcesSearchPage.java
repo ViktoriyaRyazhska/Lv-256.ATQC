@@ -85,19 +85,18 @@ public class ResourcesSearchPage extends RegistratorHomePage {
 	}
 	
 	//click
-	
 	public SearchResourcesByParameters clickSearchByParameterButton() {
-		getSearchByParameterButton();
+		getSearchByParameterButton().click();
 		return new SearchResourcesByParameters(driver);
 	}
 	
 	public SearchResourcesByArea clickSearchByAreaButton() {
-		getSearchByAreaButton();
+		getSearchByAreaButton().click();
 		return new SearchResourcesByArea(driver);
 	}
 	
 	public SearchResourcesByPoint clickSearchByPointButton() {
-		getSearchByPointButton();
+		getSearchByPointButton().click();
 		return new SearchResourcesByPoint(driver);
 	}
 	
