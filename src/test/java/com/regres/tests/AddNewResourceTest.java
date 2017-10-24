@@ -1,7 +1,7 @@
 package com.regres.tests;
 
-import static org.testng.Assert.assertEquals;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -43,29 +43,51 @@ public class AddNewResourceTest {
 		app.quit();
 	}
 
-	@Test(dataProvider = "AddPoint")
+	 @Test(dataProvider = "AddPoint")
 	public void checkAddPointErrorMessage(ChangeLanguageFields language, AddNewResourceLocalization localization) {
 		addNewResourcePage = addNewResourcePage.setLanguage(language);
-		assertEquals(localization.getMessage(), addNewResourcePage.getAddPointMessageText());
+		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
+		addNewResourcePage.clickPointsTab();
+		addNewResourcePage.clickSaveButton();
+		addNewResourcePage.getErrorMessage();
+		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
+		addNewResourcePage.clickAddPointMessageButton();
 	}
 
-	@Test(dataProvider = "AddFirstPoint")
+	 @Test(dataProvider = "AddFirstPoint")
 	public void checkAddFirstPointErrorMessage(ChangeLanguageFields language, AddNewResourceLocalization localization) {
 		addNewResourcePage = addNewResourcePage.setLanguage(language);
-		assertEquals(localization.getMessage(), addNewResourcePage.getAddFirstPointMessageText());
+		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
+		addNewResourcePage.clickPointsTab();
+		addNewResourcePage.clickAddPointButton();
+		addNewResourcePage.getErrorMessage();
+		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
+		addNewResourcePage.clickAddPointMessageButton();
 	}
 
 	@Test(dataProvider = "AddThreePoint")
 	public void checkAddThreePointsMessageText(ChangeLanguageFields language, AddNewResourceLocalization localization) {
 		addNewResourcePage = addNewResourcePage.setLanguage(language);
-		assertEquals(localization.getMessage(), addNewResourcePage.getAddThreePointsMessageText());
+		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
+		addNewResourcePage.clickPointsTab();
+		addNewResourcePage.clickAddTerritotyButton();
+		addNewResourcePage.getErrorMessage();
+		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
+		addNewResourcePage.clickAddPointMessageButton();
 	}
-	
-	@Test(dataProvider = "DeletePoint")
+
+	 @Test(dataProvider = "DeletePoint")
 	public void checkDeletePointMessageText(ChangeLanguageFields language, AddNewResourceLocalization localization) {
 		addNewResourcePage = addNewResourcePage.setLanguage(language);
-		assertEquals(localization.getMessage(), addNewResourcePage.getAddThreePointsMessageText());
+		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
+		addNewResourcePage.clickPointsTab();
+		addNewResourcePage.clickDeletePointButton();
+		addNewResourcePage.getErrorMessage();
+		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
+		addNewResourcePage.clickAddPointMessageButton();
+		addNewResourcePage = new AddNewResourcePage(app.getDriver());
 	}
+
 	
 	@DataProvider(name = "DeletePoint")
 	public Object[] deletePoint() {
@@ -75,7 +97,6 @@ public class AddNewResourceTest {
 				{ ChangeLanguageFields.RUSSIAN, localization.RU_DELETE_POINT } };
 
 	}
-	
 
 	@DataProvider(name = "AddFirstPoint")
 	public Object[] addFirstPoint() {
@@ -104,4 +125,5 @@ public class AddNewResourceTest {
 
 	}
 
+	
 }

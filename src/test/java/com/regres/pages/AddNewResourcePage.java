@@ -1,16 +1,19 @@
 package com.regres.pages;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
+import com.regres.testdata.Coordinates;
 
 public class AddNewResourcePage extends RegistratorHomePage {
-	WebDriver driver;
 	// add another fields
 	private WebElement selectCoownerField;
 	private WebElement objectNameField;
@@ -56,50 +59,63 @@ public class AddNewResourcePage extends RegistratorHomePage {
 	private WebElement addPointMessageOKButton;
 	private WebElement deletePointButton;
 	private String errorMessage;
-
-	String SELECT_COOWNER_INPUTFIELD_ID = "#owner_search";
-	String OBJECT_NAME_INPUTFIELD_ID = "#w-input-search";
-	String OBJECT_SUBCLASS_DROPDOWN_ID = "#resourcesTypeSelect";
-	String REASON_FOR_INCLUSION_ID = "#reasonInclusion";
-	String DATE_ID = "#datepicker";
-	String REGISTRNUMB_OBJ_ID = "#identifier";
-	String EDIT_BUTTON_ID = "#editNumber";
-	String PROCURATIONS_CHECKBOX_ID = "#delivery";
-	String MAP_NAV_TAB_ID = "#map";
-	String POINTS_NAV_TAB_ID = "#points";
-	String PERIMETER_NAV_TAB_ID = "#calculatedParams";
-	String ZOOM_IN_CLASS = ".leaflet-control-zoom-in";
-	String ZOOM_OUT_CLASS = ".leaflet-control-zoom-out";
-	String RESORCE_ACTS_UKRAINE_ID = "#allUkraine";
-	String SAVE_BUTTON_ID = "#submitForm";
-	String CLEAR_FORM_BUTTON_ID = "#resetForm";
-	String CLOSE_BUTTON_LOCATOR = "";
-	String LATITUDE_DEGREE_FIELD_LOCATOR = "[name*='poligons[0].points[0].latitudeDegrees'";
-	String LATITUDE_MINUTE_FIELD_LOCATOR = "[name*='poligons[0].points[0].latitudeMinutes'";
-	String LATITUDE_SECOND_FIELD_LOCATOR = "[name*='poligons[0].points[0].latitudeSeconds'";
-	String LONGITUDE_DEGREE_FIELD_LOCATOR = "[name*='poligons[0].points[0].longitudeDegrees'";
-	String LONGITUDE_MINUTE_FIELD_LOCATOR = "[name*='poligons[0].points[0].longitudeMinutes'";
-	String LONGITUDE_SECOND_FIELD_LOCATOR = "[name*='poligons[0].points[0].longitudeSeconds'";
-	String LATITUDE_DEGREE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].latitudeDegrees'";
-	String LATITUDE_MINUTE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].latitudeMinutes'";
-	String LATITUDE_SECOND_FIELD2_LOCATOR = "[name*='poligons[0].points[1].latitudeSeconds'";
-	String LONGITUDE_DEGREE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].longitudeDegrees'";
-	String LONGITUDE_MINUTE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].longitudeMinutes'";
-	String LONGITUDE_SECOND_FIELD2_LOCATOR = "[name*='poligons[0].points[1].longitudeSeconds'";
-	String LATITUDE_DEGREE_FIELD3_LOCATOR = "[name*='poligons[0].points[2].latitudeDegrees'";
-	String LATITUDE_MINUTE_FIELD3_LOCATOR = "[name*='poligons[0].points[2].latitudeMinutes'";
-	String LATITUDE_SECOND_FIELD3_LOCATOR = "[name*='poligons[0].points[2].latitudeSeconds'";
-	String LONGITUDE_DEGREE_FIELD3_LOCATOR = "[name*='poligons[0].points[2].longitudeDegrees'";
+	private WebElement resourceNameError;
+	private WebElement reasonError;
+	
+	String RESOURCE_NAME_ERROR_LOCATOR = "description.errors";
+	String REASON_ERROR_LOCATOR = "reasonInclusion.errors";
+	String SELECT_COOWNER_INPUTFIELD_ID = "owner_search";
+	String OBJECT_NAME_INPUTFIELD_ID = "w-input-search";
+	String OBJECT_SUBCLASS_DROPDOWN_ID = "resourcesTypeSelect";
+	String REASON_FOR_INCLUSION_ID = "reasonInclusion";
+	String DATE_ID = "datepicker";
+	String REGISTRNUMB_OBJ_ID = "identifier";
+	String EDIT_BUTTON_ID = "editNumber";
+	String PROCURATIONS_CHECKBOX_ID = "delivery";
+	String MAP_NAV_TAB_ID = "map";
+	String POINTS_NAV_TAB_LOCATOR = "[data-target*='points']";
+	String PERIMETER_NAV_TAB_ID = "calculatedParams";
+	String ZOOM_IN_CLASS = "leaflet-control-zoom-in";
+	String ZOOM_OUT_CLASS = "leaflet-control-zoom-out";
+	String RESORCE_ACTS_UKRAINE_ID = "allUkraine";
+	String SAVE_BUTTON_ID = "submitForm";
+	String CLEAR_FORM_BUTTON_ID = "resetForm";
+	// String CLOSE_BUTTON_LOCATOR = "";
+	String LATITUDE_DEGREE_FIELD_LOCATOR = "[name*='poligons[0].points[0].latitudeDegrees']";
+	String LATITUDE_MINUTE_FIELD_LOCATOR = "[name*='poligons[0].points[0].latitudeMinutes']";
+	String LATITUDE_SECOND_FIELD_LOCATOR = "[name*='poligons[0].points[0].latitudeSeconds']";
+	String LONGITUDE_DEGREE_FIELD_LOCATOR = "[name*='poligons[0].points[0].longitudeDegrees']";
+	String LONGITUDE_MINUTE_FIELD_LOCATOR = "[name*='poligons[0].points[0].longitudeMinutes']";
+	String LONGITUDE_SECOND_FIELD_LOCATOR = "[name*='poligons[0].points[0].longitudeSeconds']";
+	String LATITUDE_DEGREE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].latitudeDegrees']";
+	String LATITUDE_MINUTE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].latitudeMinutes']";
+	String LATITUDE_SECOND_FIELD2_LOCATOR = "[name*='poligons[0].points[1].latitudeSeconds']";
+	String LONGITUDE_DEGREE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].longitudeDegrees']";
+	String LONGITUDE_MINUTE_FIELD2_LOCATOR = "[name*='poligons[0].points[1].longitudeMinutes']";
+	String LONGITUDE_SECOND_FIELD2_LOCATOR = "[name*='poligons[0].points[1].longitudeSeconds']";
+	String LATITUDE_DEGREE_FIELD3_LOCATOR = "[name*='poligons[0].points[2].latitudeDegrees']";
+	String LATITUDE_MINUTE_FIELD3_LOCATOR = "[name*='poligons[0].points[2].latitudeMinutes']";
+	String LATITUDE_SECOND_FIELD3_LOCATOR = "[name*='poligons[0].points[2].latitudeSeconds']";
+	String LONGITUDE_DEGREE_FIELD3_LOCATOR = "[name*='poligons[0].points[2].longitudeDegrees']";
 	String LONGITUDE_MINUTE_FIELD3_LOCATOR = "[name*='poligons[0].points[2].longitudeMinutes'";
 	String LONGITUDE_SECOND_FIELD3_LOCATOR = "[name*='poligons[0].points[2].longitudeSeconds'";
-	String SHOW_ON_MAP_BUTTON_LOCATOR = "showOnMapButton";
+	String SHOW_ON_MAP_BUTTON_LOCATOR = "addPointsToMap";
 	String ADD_POINT_BUTTON_LOCATOR = "btnAddAreaPoint";
 	String ADD_TERRITORY_BUTTON_LOCATOR = "addPolygon";
 	String DELETE_ALL_POINTS_LOCATOR = "clearAllPoints";
 	String ADD_POINT_ERROR_MESSAGE_LOCATOR = "bootbox-body";
 	String ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR = "[data-bb-handler = 'ok']";
-	String DELETE_POINT_BUTTON_LOCATOR = "delPoint";
-
+	String DELETE_POINT_BUTTON_LOCATOR = ".delPoint";
+    
+	public void selectObjSubclass() {
+		Select select = new Select(objectSubclassDropdown);
+		select.selectByVisibleText("земельний");
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		
+	}
+	
+	
+	
 	public String getAddPointMessageText() {
 		clickSaveButton();
 		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
@@ -108,6 +124,55 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		clickAddPointMessageButton();
 		return errorMessage;
 
+	}
+	public void getNameErrorMessage() {
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		resourceNameError = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(RESOURCE_NAME_ERROR_LOCATOR)));
+		
+	}
+	public void getReasoneErrorMessage() {
+		reasonError = driver.findElement(By.id(REASON_ERROR_LOCATOR));
+	}
+	public String getNameErrorMessageText() {
+		return resourceNameError.getText().trim();
+	}
+	public String getReasoneErrorMessageText() {
+		return reasonError.getText().trim();
+	}
+	
+	public void setCoordinates(Coordinates coordinates) {
+		latitudeDegreeField.clear();
+		latitudeDegreeField.sendKeys(coordinates.getLatitudeDegreeField());
+		latitudeMinuteField.clear();
+		latitudeMinuteField.sendKeys(coordinates.getLatitudeMinuteField());
+		latitudeSecondField.clear();
+		latitudeSecondField.sendKeys(coordinates.getLatitudeSecondField());
+		longitudeDegreeField.clear();
+		longitudeDegreeField.sendKeys(coordinates.getLongitudeDegreeField());
+		longitudeMinuteField.clear();
+		longitudeMinuteField.sendKeys(coordinates.getLongitudeMinuteField());
+		longitudeSecondField.clear();
+		longitudeSecondField.sendKeys(coordinates.getLongitudeSecondField());
+		
+	}
+	public void addSecondPoint() {
+		clickAddPointButton();
+		latitudeDegreeField = driver.findElement(By.cssSelector(LATITUDE_DEGREE_FIELD2_LOCATOR));
+		latitudeMinuteField = driver.findElement(By.cssSelector(LATITUDE_MINUTE_FIELD2_LOCATOR));
+		latitudeSecondField = driver.findElement(By.cssSelector(LATITUDE_SECOND_FIELD2_LOCATOR));
+		longitudeDegreeField = driver.findElement(By.cssSelector(LONGITUDE_DEGREE_FIELD2_LOCATOR));
+		longitudeMinuteField = driver.findElement(By.cssSelector(LONGITUDE_MINUTE_FIELD2_LOCATOR));
+		longitudeSecondField = driver.findElement(By.cssSelector(LONGITUDE_SECOND_FIELD2_LOCATOR));
+		
+	}
+	public void addThirdPoint() {
+		clickAddPointButton();
+		latitudeDegreeField = driver.findElement(By.cssSelector(LATITUDE_DEGREE_FIELD3_LOCATOR));
+		latitudeMinuteField = driver.findElement(By.cssSelector(LATITUDE_MINUTE_FIELD3_LOCATOR));
+		latitudeSecondField = driver.findElement(By.cssSelector(LATITUDE_SECOND_FIELD3_LOCATOR));
+		longitudeDegreeField = driver.findElement(By.cssSelector(LONGITUDE_DEGREE_FIELD3_LOCATOR));
+		longitudeMinuteField = driver.findElement(By.cssSelector(LONGITUDE_MINUTE_FIELD3_LOCATOR));
+		longitudeSecondField = driver.findElement(By.cssSelector(LONGITUDE_SECOND_FIELD3_LOCATOR));
 	}
 
 	public String getAddLastPointMessageText() {
@@ -119,14 +184,16 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		return errorMessage;
 	}
 
-	public String getAddFirstPointMessageText() {
-		clickAddPointButton();
-		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
+	public void getErrorMessage() {
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		addPointErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR)));// driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
 		addPointMessageOKButton = driver.findElement(By.cssSelector(ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR));
-		errorMessage = addPointErrorMessage.getText().trim();
-		clickAddPointMessageButton();
-		return errorMessage;
+		
+		
 
+	}
+	public String getErrorMessageText() {
+		return addPointErrorMessage.getText().trim();
 	}
 
 	public String getAddThreePointsMessageText() {
@@ -175,8 +242,9 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		deletePointButton.click();
 	}
 
-	public void clickPointsNavTab() {
-		pointsNavTab.click();
+	public void clickPointsTab() {
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		showOnMapButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(SHOW_ON_MAP_BUTTON_LOCATOR)));
 		latitudeDegreeField = driver.findElement(By.cssSelector(LATITUDE_DEGREE_FIELD_LOCATOR));
 		latitudeMinuteField = driver.findElement(By.cssSelector(LATITUDE_MINUTE_FIELD_LOCATOR));
 		latitudeSecondField = driver.findElement(By.cssSelector(LATITUDE_SECOND_FIELD_LOCATOR));
@@ -184,7 +252,7 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		longitudeMinuteField = driver.findElement(By.cssSelector(LONGITUDE_MINUTE_FIELD_LOCATOR));
 		longitudeSecondField = driver.findElement(By.cssSelector(LONGITUDE_SECOND_FIELD_LOCATOR));
 		deletePointButton = driver.findElement(By.cssSelector(DELETE_POINT_BUTTON_LOCATOR));
-		showOnMapButton = driver.findElement(By.id(SHOW_ON_MAP_BUTTON_LOCATOR));
+
 		addPointButton = driver.findElement(By.id(ADD_POINT_BUTTON_LOCATOR));
 		addTerritoryButton = driver.findElement(By.id(ADD_TERRITORY_BUTTON_LOCATOR));
 		deleteAllPointsButton = driver.findElement(By.id(DELETE_ALL_POINTS_LOCATOR));
@@ -220,8 +288,12 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		longitudeSecondField.sendKeys(loS);
 	}
 
-	public void clickShowOnMapButton() {
+	public AddNewResourcePage clickShowOnMapButton() {
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		showOnMapButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(SHOW_ON_MAP_BUTTON_LOCATOR)));
 		showOnMapButton.click();
+		return new AddNewResourcePage(driver);
 	}
 
 	public void clickAddPointButton() {
@@ -233,20 +305,49 @@ public class AddNewResourcePage extends RegistratorHomePage {
 	}
 
 	public void clickDeleteAllPointsButton() {
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		deleteAllPointsButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(DELETE_ALL_POINTS_LOCATOR)));
 		deleteAllPointsButton.click();
 	}
 
 	public void clickSaveButton() {
 		saveButton.click();
 	}
+	
+	public AddNewResourcePage saveResource() {
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.id(SAVE_BUTTON_ID)));
+		saveButton.click();
+		return new AddNewResourcePage(driver);
+	}
+	public ResourceDetailPage saveResourceSucces() {
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.id(SAVE_BUTTON_ID)));
+		saveButton.click();
+		return new ResourceDetailPage(driver);
+	}
+
+	public AddNewResourcePage clickPointsNavTab() {
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		pointsNavTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(POINTS_NAV_TAB_LOCATOR)));
+		pointsNavTab.click();
+		return new AddNewResourcePage(driver);
+	}
 
 	public void clickClearButton() {
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		clearButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(CLEAR_FORM_BUTTON_ID)));
 		clearButton.click();
 	}
 
 	public AddNewResourcePage(WebDriver driver) {
 		super(driver);
-		selectCoownerField = driver.findElement(By.id(SELECT_COOWNER_INPUTFIELD_ID));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		selectCoownerField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(SELECT_COOWNER_INPUTFIELD_ID)));
+		//selectCoownerField = driver.findElement(By.id(SELECT_COOWNER_INPUTFIELD_ID));
 		objectNameField = driver.findElement(By.id(OBJECT_NAME_INPUTFIELD_ID));
 		objectSubclassDropdown = driver.findElement(By.id(OBJECT_SUBCLASS_DROPDOWN_ID));
 		registrNumbOfObjectField = driver.findElement(By.id(REGISTRNUMB_OBJ_ID));
@@ -255,15 +356,14 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		procurationsCheckBox = driver.findElement(By.id(PROCURATIONS_CHECKBOX_ID));
 		dataField = driver.findElement(By.id(DATE_ID));
 		mapNavTab = driver.findElement(By.id(MAP_NAV_TAB_ID));
-		pointsNavTab = driver.findElement(By.id(POINTS_NAV_TAB_ID));
+		pointsNavTab = driver.findElement(By.cssSelector(POINTS_NAV_TAB_LOCATOR));
 		perimeterNavTab = driver.findElement(By.id(PERIMETER_NAV_TAB_ID));
-		zoomInButton = driver.findElement(By.className(ZOOM_IN_CLASS));
-		zoomOutButton = driver.findElement(By.className(ZOOM_OUT_CLASS));
-		pointsButton = driver.findElement(By.id(POINTS_NAV_TAB_ID));
-		closeButton = driver.findElement(By.id(CLOSE_BUTTON_LOCATOR));
+		// zoomInButton = driver.findElement(By.className(ZOOM_IN_CLASS));
+		// zoomOutButton = driver.findElement(By.className(ZOOM_OUT_CLASS));
+		// closeButton = driver.findElement(By.id(CLOSE_BUTTON_LOCATOR));
 		saveButton = driver.findElement(By.id(SAVE_BUTTON_ID));
 		clearButton = driver.findElement(By.id(CLEAR_FORM_BUTTON_ID));
-		resourceActsUkrCheckBox = driver.findElement(By.id(RESORCE_ACTS_UKRAINE_ID));
+		// resourceActsUkrCheckBox = driver.findElement(By.id(RESORCE_ACTS_UKRAINE_ID));
 
 	}
 
@@ -598,6 +698,7 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		this.deleteAllPointsButton = deleteAllPointsButton;
 	}
 
+	@Override
 	public AddNewResourcePage setLanguage(ChangeLanguageFields language) {
 		Select lang = new Select(getLocalizationDropdown());
 		lang.selectByVisibleText(language.toString());

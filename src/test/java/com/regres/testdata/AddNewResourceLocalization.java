@@ -5,15 +5,21 @@ public enum AddNewResourceLocalization {
 	UA_ADD_POINT("Будь ласка, введіть значення координат першої точки."),
 	UA_THREE_POINTS("Введіть мінімум 3 точки"),
 	UA_DELETE_POINT("Видалити останню точку не можливо."),
+	UA_NAME_WRONG("Лише літери лише від А до Я"),
+	UA_EMPTY("Поле є обовязковим для введення"),
 	RU_SAVE("Нарисуйте хоть одну территорию на карте."),
 	RU_ADD_POINT("Пожалуйста, введите значения координат первой точки."),
 	RU_THREE_POINTS("Введите минимум 3 точки"),
 	RU_DELETE_POINT("Удалить последнюю точку невозможно."),
+	RU_NAME_WRONG(""),
+	RU_EMPTY("Поле является обязательным для ввода"),
 	EN_SAVE("Draw at least one territory on the map."),
 	EN_ADD_POINT("Enter the coordinates of the first point."),
 	EN_THREE_POINTS("Enter at least 3 points"),
 	EN_DELETE_POINT("It is not possible to delete the last point."),
-	EMPTY_FIELDS_MESSAGE("Заполните это поле.");
+	EN_NAME_WRONG(""),
+	EN_EMPTY("The field is required"),
+	TEST_RESOURCE("Тестовий");
 	
 	//message
 	private String message;
