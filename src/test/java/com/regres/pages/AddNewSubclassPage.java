@@ -52,26 +52,39 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	String OPTION_LINEAR_PARAMETER_XPATH = "//*[@id='myparam2']/option[2]";
 	String OPTION_DISCRETE_PARAMETERS_XPATH = "//*[@id='myparam2']/option[3]";
 	String ERROR_MESSAGE_XPATH = "//*[@id='typeName.errors']";
+	private static volatile AddNewSubclassPage instance = null;
 
-	public AddNewSubclassPage(WebDriver driver) {
+	public static AddNewSubclassPage get(WebDriver driver) {
+		if (instance == null) {
+			synchronized (AddNewSubclassPage.class) {
+				if (instance == null) {
+					instance = new AddNewSubclassPage(driver);
+				}
+			}
+		}
+		return instance;
+	}
+
+	private AddNewSubclassPage(WebDriver driver) {
 		super(driver);
-		titleAddNewSubclass = driver.findElement(By.xpath(TITLE_ADD_NEW_SUBCLASS_XPATH));
-		enterNameField = driver.findElement(By.name(ENTER_NAME_FIELD_NAME));
-		buttonShowParameters = driver.findElement(By.id(BUTTON_SHOW_PARAMETERS_ID));
-		buttonHideParameters = driver.findElement(By.id(BUTTON_HIDE_PARAMETERS_ID));
-		buttonAddParameters = driver.findElement(By.id(BUTTON_ADD_PARAMETERS_ID));
-		buttonDelParameters = driver.findElement(By.id(BUTTON_DEL_PARAMETERS_ID));
-		parameterDescriptionField = driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD_NAME));
-		unitOfMeasurementField = driver.findElement(By.id(UNIT_OF_MEASUREMENT_FIELD_ID));
-		dropdownButton = driver.findElement(By.xpath(DROPDOWN_BUTTON_XPATH));
-		optionLinearParameter = driver.findElement(By.xpath(OPTION_LINEAR_PARAMETER_XPATH));
-		optionDiscreteParameters = driver.findElement(By.xpath(OPTION_DISCRETE_PARAMETERS_XPATH));
-		saveButton = driver.findElement(By.xpath(SAVE_BUTTON_XPATH));
-		clearButton = driver.findElement(By.xpath(CLEAR_BUTTON_XPATH));
+		//titleAddNewSubclass = driver.findElement(By.xpath(TITLE_ADD_NEW_SUBCLASS_XPATH));
+		//enterNameField = driver.findElement(By.name(ENTER_NAME_FIELD_NAME));
+		//buttonShowParameters = driver.findElement(By.id(BUTTON_SHOW_PARAMETERS_ID));
+		//buttonHideParameters = driver.findElement(By.id(BUTTON_HIDE_PARAMETERS_ID));
+		//buttonAddParameters = driver.findElement(By.id(BUTTON_ADD_PARAMETERS_ID));
+		//buttonDelParameters = driver.findElement(By.id(BUTTON_DEL_PARAMETERS_ID));
+		//parameterDescriptionField = driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD_NAME));
+		//unitOfMeasurementField = driver.findElement(By.id(UNIT_OF_MEASUREMENT_FIELD_ID));
+		//dropdownButton = driver.findElement(By.xpath(DROPDOWN_BUTTON_XPATH));
+		//optionLinearParameter = driver.findElement(By.xpath(OPTION_LINEAR_PARAMETER_XPATH));
+		//optionDiscreteParameters = driver.findElement(By.xpath(OPTION_DISCRETE_PARAMETERS_XPATH));
+		//saveButton = driver.findElement(By.xpath(SAVE_BUTTON_XPATH));
+		//clearButton = driver.findElement(By.xpath(CLEAR_BUTTON_XPATH));
 	}
 
 	// getters
 	public WebElement gettitleAddNewSubclass() {
+		titleAddNewSubclass = driver.findElement(By.xpath(TITLE_ADD_NEW_SUBCLASS_XPATH));
 		return titleAddNewSubclass;
 	}
 
@@ -80,46 +93,62 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	}
 
 	public WebElement getEnterNameField() {
+		enterNameField = driver.findElement(By.name(ENTER_NAME_FIELD_NAME));
 		return enterNameField;
 	}
 
 	public WebElement getButtonShowParameters() {
+		buttonShowParameters = driver.findElement(By.id(BUTTON_SHOW_PARAMETERS_ID));
 		return buttonShowParameters;
 	}
 
 	public WebElement getButtonHideParameters() {
+		buttonHideParameters = driver.findElement(By.id(BUTTON_HIDE_PARAMETERS_ID));
 		return buttonHideParameters;
+	}
+	
+	public boolean isEmptyWebElement(WebElement element) {
+		boolean isEmpty = element.getAttribute("value").isEmpty();
+		return isEmpty;
 	}
 
 	public WebElement getClearButton() {
+		clearButton = driver.findElement(By.xpath(CLEAR_BUTTON_XPATH));
 		return clearButton;
 	}
 
 	public WebElement getOptionLinearParameter() {
+		optionLinearParameter = driver.findElement(By.xpath(OPTION_LINEAR_PARAMETER_XPATH));
 		return optionLinearParameter;
 	}
 
 	public WebElement getOptionDiscreteParameters() {
+		optionDiscreteParameters = driver.findElement(By.xpath(OPTION_DISCRETE_PARAMETERS_XPATH));
 		return optionDiscreteParameters;
 	}
 
 	public WebElement getSaveButton() {
+		saveButton = driver.findElement(By.xpath(SAVE_BUTTON_XPATH));
 		return saveButton;
 	}
 
 	public WebElement getUnitOfMeasurementField() {
+		unitOfMeasurementField = driver.findElement(By.id(UNIT_OF_MEASUREMENT_FIELD_ID));
 		return unitOfMeasurementField;
 	}
 
 	public WebElement getButtonDelParameters() {
+		buttonDelParameters = driver.findElement(By.id(BUTTON_DEL_PARAMETERS_ID));
 		return buttonDelParameters;
 	}
 
 	public WebElement getParameterDescriptionField() {
+		parameterDescriptionField = driver.findElement(By.name(PARAMETER_DESCRIPTION_FIELD_NAME));
 		return parameterDescriptionField;
 	}
 
 	public WebElement getDropdownButton() {
+		dropdownButton = driver.findElement(By.xpath(DROPDOWN_BUTTON_XPATH));
 		return dropdownButton;
 	}
 
@@ -129,12 +158,12 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 
 	public AddNewSubclassPage clickButtonHideParameters() {
 		getButtonHideParameters().click();
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 	}
 
 	public AddNewSubclassPage clickButtonDelParameters() {
 		getButtonDelParameters().click();
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 	}
 
 	public WebElement getParameterDescriptionField1() {
@@ -150,7 +179,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public SubclassesOfObjects clickSaveButton() {
 		getSaveButton().click();
 		// Return a new page object representing the destination
-		return new SubclassesOfObjects(driver);
+		return SubclassesOfObjects.get(driver);
 	}
 
 	public void clickOptionDiscreteParameters() {
@@ -162,6 +191,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	}
 
 	public WebElement getButtonAddParameters() {
+		buttonAddParameters = driver.findElement(By.id(BUTTON_ADD_PARAMETERS_ID));
 		return buttonAddParameters;
 	}
 
@@ -171,6 +201,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 
 	public void clickButtonShowParameters() {
 		getButtonShowParameters().click();
+		
 	}
 
 	public void inputNameClass(String nameClass) {
@@ -185,7 +216,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 
 	public AddNewSubclassPage clickButtonAddParameters() {
 		getButtonAddParameters().click();
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 	}
 
 	/**
@@ -195,7 +226,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	 */
 	public AddNewSubclassPage clickClearButton() {
 		getClearButton().click();
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 	}
 
 	/**
@@ -205,7 +236,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	 */
 	public AddNewSubclassPage clickSave() {
 		getSaveButton().click();
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 	}
 
 	/**
@@ -300,10 +331,10 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		inputUnitOfMeasurement1(unitOfMeasurement1);
 	}
 
-	public AddNewSubclassPage addedNewField(NewSubclass newSubclass) {
+	public void addedNewField(NewSubclass newSubclass) {
 		inputParameterDescriptionClear1(newSubclass.getParameterDescription1());
 		inputUnitOfMeasurementClear1(newSubclass.getUnitOfMeasurement1());
-		return new AddNewSubclassPage(driver);
+
 	}
 
 	/**
@@ -331,7 +362,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		if (!getOptionLinearParameter().isSelected()) {
 			clickOptionLinearParameter();
 		}
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 	}
 
 	/**
@@ -345,10 +376,9 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		if (!getOptionDiscreteParameters().isSelected()) {
 			clickOptionDiscreteParameters();
 		}
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 
 	}
-
 	/**
 	 * Sets the language for the app
 	 */
@@ -357,7 +387,7 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		Select lang = new Select(getLocalizationDropdown());
 		lang.selectByVisibleText(language.toString());
 		// Return a new page object representing the destination.
-		return new AddNewSubclassPage(driver);
+		return AddNewSubclassPage.get(driver);
 	}
 
 	/**

@@ -3,6 +3,8 @@ package com.regres.testdata;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class NewSubclassDataContainer {
@@ -24,14 +26,39 @@ public class NewSubclassDataContainer {
 		newSubclass.setUnitOfMeasurement(properties.getProperty("EXIST_UNIT_OF_MEASUREMENT"));
 		return newSubclass;
 	}
-
-	public static NewSubclass getValidData() {
+	public static NewSubclass getAttributeValue() {
 		Properties properties = readProperties("resources/new_subclass.properties");
 		NewSubclass newSubclass = new NewSubclass();
-		newSubclass.setNameClasses(properties.getProperty("VALID_NAME_SUBCLASSES"));
-		newSubclass.setParameterDescription(properties.getProperty("VALID_PARAMETER_DESCRIPTION"));
-		newSubclass.setUnitOfMeasurement(properties.getProperty("VALID_UNIT_OF_MEASUREMENT"));
+		newSubclass.setNameClasses(properties.getProperty("ATTRIBUTE_VALUE"));
 		return newSubclass;
+	}
+
+	// Method returns list of NewSubclasses retrieved from properties files
+	public static List<NewSubclass> getValidData() {
+		Properties properties = readProperties("resources/new_subclass.properties");
+		
+		// Read multiple values from property file and split the result by comma separator
+		String[] validSubclassNames = properties.getProperty("VALID_NAME_SUBCLASSES").split(",");
+		String[] validParameterDescriptions = properties.getProperty("VALID_PARAMETER_DESCRIPTION").split(",");
+		String[] validUnitsOfMeasurements = properties.getProperty("VALID_UNIT_OF_MEASUREMENT").split(",");
+		
+		// Create new list to contain data that will be returned from this method
+		List<NewSubclass> subclasses = new ArrayList<>();
+	
+		// Read values and add them to the list
+		for (int i = 0; i < validSubclassNames.length; i++) {
+			NewSubclass newSubclass = new NewSubclass();
+			String subclassName = validSubclassNames[i].trim();
+			String parameterDescription = validParameterDescriptions[i].trim();
+			String unitOfMeasurements = validUnitsOfMeasurements[i].trim();
+			newSubclass.setNameClasses(subclassName);
+			newSubclass.setParameterDescription(parameterDescription);
+			newSubclass.setUnitOfMeasurement(unitOfMeasurements);
+			
+			subclasses.add(newSubclass);
+		}
+		
+		return subclasses;
 	}
 
 	public static NewSubclass getValidDataClear() {

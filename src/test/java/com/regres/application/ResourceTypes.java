@@ -1,8 +1,17 @@
 package com.regres.application;
 
-public class ResourceTypes {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "resource_types")
+public class ResourceTypes {
+	@Id
+	@Column(name = "resource_type_id")
 	private int resourceTypeId;
+	@Column(name = "type_name")
 	private String typeName;
 
 	public ResourceTypes() {

@@ -4,6 +4,7 @@ import com.regres.application.Application;
 import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
+import com.regres.pages.CoownerHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegisterNewUserPage;
 import com.regres.testdata.UserContainer;

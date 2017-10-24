@@ -301,25 +301,25 @@ public final class RegisterNewUserPage extends AdminHomePage{
         setCommunity(userForRegisterNewUser.getCommunity());
     }
 
-    public static enum RegisterNewUserPageL10n {
-        ERROR_MESSAGE_WHEN_INVALID_DATA_ENTERED("Підклас з вказаним іменем вже існує",
-                "Подкласс с указаным наименованием уже существует",
-                "The subclass with the specified name already exists"), DROPDOWN_DEFAULT_VALUE("Виберіть тип параметру",
-                "Выберите тип параметра", "Choose type parameters");
+	public static enum RegisterNewUserPageL10n {
+	ERROR_MESSAGE_WHEN_INVALID_DATA_ENTERED("Підклас з вказаним іменем вже існує",
+			"Подкласс с указаным наименованием уже существует",
+				"The subclass with the specified name already exists"), DROPDOWN_DEFAULT_VALUE("Виберіть тип параметру",
+						"Выберите тип параметра", "Choose type parameters");
 
-        private HashMap<ChangeLanguageFields, String> field; // is different for every language
+		private HashMap<ChangeLanguageFields, String> field; // is different for every language
 
-        private RegisterNewUserPageL10n(String... localization) {
-            this.field = new HashMap<ChangeLanguageFields, String>();
-            int i = 0;
-            for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
-                this.field.put(language, localization[i]);
-                i++;
-            }
-        }
+		private RegisterNewUserPageL10n(String... localization) {
+			this.field = new HashMap<ChangeLanguageFields, String>();
+			int i = 0;
+			for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+				this.field.put(language, localization[i]);
+				i++;
+			}
+		}
 
-        public String getLocalization(ChangeLanguageFields language) {
-            return this.field.get(language).trim();
-        }
-    }
+		public String getLocalization(ChangeLanguageFields language) {
+			return this.field.get(language).trim();
+		}
+	}
 }
