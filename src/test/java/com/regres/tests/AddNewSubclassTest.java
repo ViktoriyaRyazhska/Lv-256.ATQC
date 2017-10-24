@@ -68,7 +68,7 @@ public class AddNewSubclassTest {
 	}
 
 	// Method verify that user can't create new subclass with invalid data
-	//@Test(dataProvider = "L10N")
+	@Test(dataProvider = "L10N")
 	public void checkEmptyEnterNameField(ChangeLanguageFields language) {
 		// click button show parameters
 		addNewSublassPage.clickButtonShowParameters();
@@ -81,7 +81,7 @@ public class AddNewSubclassTest {
 		// save modifications
 		addNewSublassPage = addNewSublassPage.clickSave();
 		// verify validation error message
-		Assert.assertEquals(addNewSublassPage.getValidationMessageText(), "Заповніть будь ласка це поле."); // Please
+		Assert.assertEquals(addNewSublassPage.getValidationMessageText(), NewSubclassDataContainer.getAttributeValue().getNameClasses()); // Please
 																											// fill out
 																											// this
 																											// field.
@@ -109,13 +109,15 @@ public class AddNewSubclassTest {
 			addNewSublassPage = addNewSublassPage.clickButtonHideParameters();
 			// save modifications
 			subclassesOfObjects = addNewSublassPage.clickSaveButton();
-			Assert.assertTrue(subclassesOfObjects.hasSubclassName(validSubclass));
-			// new subclass created in List of subclass table
-			String actual = subclassesOfObjects.getSubclassName(validSubclass).getText();
+			// Verify that element is present in table
+			//Assert.assertTrue(subclassesOfObjects.getSubclassName(validSubclass).isDisplayed());
+			// actual text of subclass 
+			Assert.assertEquals(subclassesOfObjects.getSubclassName(validSubclass).isDisplayed(), baseFunctionalForDB.getSubclassNameFromDb(validSubclass.getNameClasses()));
+			//String actual = subclassesOfObjects.getSubclassName(validSubclass).getText();
 			// expected that name of subclass created in DB
-			String expected = baseFunctionalForDB.getSubclassNameFromDb(validSubclass.getNameClasses());
+			//String expected = baseFunctionalForDB.getSubclassNameFromDb(validSubclass.getNameClasses());
 			// compare the actual and expected result
-			Assert.assertEquals(actual, expected);
+			//Assert.assertEquals(actual, expected);
 			// delete test data
 			subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton(validSubclass);
 			// verify that name of subclass delete from DB
@@ -145,11 +147,11 @@ public class AddNewSubclassTest {
 		Assert.assertEquals(addNewSublassPage.getErrorMessage().getText(),
 				AddNewSubclassPageL10n.ERROR_MESSAGE_WHEN_INVALID_DATA_ENTERED.getLocalization(language));
 		subclassesOfObjects = addNewSublassPage.clickSubclassesOfObjects();
-		Assert.assertEquals(1, subclassesOfObjects.getSubclassNameCount(NewSubclassDataContainer.getExistClassName()));
+		Assert.assertTrue(subclassesOfObjects.hasUniqueSubclassName(NewSubclassDataContainer.getExistClassName()));
 	}
 
 	// This test verify that all fields are cleared after the button is pressed
-	@Test(dataProvider = "L10N")
+	//@Test(dataProvider = "L10N")
 	public void checkSuccessfulAddedSubclassClear(ChangeLanguageFields language) {
 		// set language
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
@@ -165,14 +167,14 @@ public class AddNewSubclassTest {
 		// click save button
 		addNewSublassPage = addNewSublassPage.clickSave();
 		// verify that all field is empty
-		Assert.assertTrue(addNewSublassPage.getEnterNameField().getAttribute("value").isEmpty());
-		Assert.assertTrue(addNewSublassPage.getUnitOfMeasurementField().getAttribute("value").isEmpty());
-		Assert.assertTrue(addNewSublassPage.getUnitOfMeasurementField().getAttribute("value").isEmpty());
+		Assert.assertTrue(addNewSublassPage.isEmptyWebElement(addNewSublassPage.getEnterNameField()));
+		Assert.assertTrue(addNewSublassPage.isEmptyWebElement(addNewSublassPage.getUnitOfMeasurementField()));
+		Assert.assertTrue(addNewSublassPage.isEmptyWebElement(addNewSublassPage.getParameterDescriptionField()));
 		// check that the selected default value is in dropdown
 		Assert.assertEquals(addNewSublassPage.getDropdownOptionByDefault().getText(),
 				AddNewSubclassPageL10n.DROPDOWN_DEFAULT_VALUE.getLocalization(language));
 		subclassesOfObjects = addNewSublassPage.clickSubclassesOfObjects();
-		Assert.assertEquals(0, subclassesOfObjects.getSubclassNameCount(validData));
+		Assert.assertTrue(subclassesOfObjects.hasNoneSubclassName(validData));
 	}
 
 	// This test verify that registrator can create new subclass with additional
@@ -201,12 +203,12 @@ public class AddNewSubclassTest {
 		addNewSublassPage = addNewSublassPage.clickButtonHideParameters();
 		// save modification
 		subclassesOfObjects = addNewSublassPage.clickSaveButton();
-		Assert.assertTrue(subclassesOfObjects.hasSubclassName(validSubclass));
+		//Assert.assertTrue(subclassesOfObjects.getSubclassName(validSubclass).isDisplayed());
 		// new subclass created in List of subclass table
-		String actual = subclassesOfObjects.getSubclassName(validSubclass).getText();
+		//String actual = subclassesOfObjects.getSubclassName(validSubclass).getText();
 		// expected that name of subclass created in DB
-		String expected = baseFunctionalForDB.getSubclassNameFromDb(validSubclass.getNameClasses());
-		Assert.assertEquals(actual, expected);
+		//String expected = baseFunctionalForDB.getSubclassNameFromDb(validSubclass.getNameClasses());
+		Assert.assertEquals(subclassesOfObjects.getSubclassName(validSubclass).isDisplayed(), baseFunctionalForDB.getSubclassNameFromDb(validSubclass.getNameClasses()));
 		subclassesOfObjects = subclassesOfObjects.clickOnDeleteSubclassButton(validSubclass);
 		Assert.assertFalse(baseFunctionalForDB.hasSubclassNameInDb(validSubclass.getNameClasses()));
 	}

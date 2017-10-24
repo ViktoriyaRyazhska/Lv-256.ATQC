@@ -26,6 +26,12 @@ public class NewSubclassDataContainer {
 		newSubclass.setUnitOfMeasurement(properties.getProperty("EXIST_UNIT_OF_MEASUREMENT"));
 		return newSubclass;
 	}
+	public static NewSubclass getAttributeValue() {
+		Properties properties = readProperties("resources/new_subclass.properties");
+		NewSubclass newSubclass = new NewSubclass();
+		newSubclass.setNameClasses(properties.getProperty("ATTRIBUTE_VALUE"));
+		return newSubclass;
+	}
 
 	// Method returns list of NewSubclasses retrieved from properties files
 	public static List<NewSubclass> getValidData() {

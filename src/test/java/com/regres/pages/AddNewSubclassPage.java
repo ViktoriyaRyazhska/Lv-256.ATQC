@@ -106,6 +106,11 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 		buttonHideParameters = driver.findElement(By.id(BUTTON_HIDE_PARAMETERS_ID));
 		return buttonHideParameters;
 	}
+	
+	public boolean isEmptyWebElement(WebElement element) {
+		boolean isEmpty = element.getAttribute("value").isEmpty();
+		return isEmpty;
+	}
 
 	public WebElement getClearButton() {
 		clearButton = driver.findElement(By.xpath(CLEAR_BUTTON_XPATH));

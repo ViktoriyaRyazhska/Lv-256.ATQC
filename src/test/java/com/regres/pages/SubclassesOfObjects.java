@@ -90,6 +90,25 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 		return elements.size();
 	}
 	
+	// return true if there is none subclass name in table
+	public boolean hasNoneSubclassName(NewSubclass sub) {
+		int count = getSubclassNameCount(sub);
+		if (count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean hasUniqueSubclassName(NewSubclass sub) {
+		int count = getSubclassNameCount(sub);
+		if (count == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 //	public boolean isEmpty(NewSubclass sub) {
 //		boolean exists = !(driver.findElements(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]")).isEmpty());
 //		return exists;
@@ -98,10 +117,5 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	public boolean hasSubclassName(NewSubclass sub) {
 		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]"));
 		return nameSubclass != null;
-	}
-
-	public WebElement getNameSubclassDB(NewSubclass sub) {
-		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]"));
-		return nameSubclass;
 	}
 }
