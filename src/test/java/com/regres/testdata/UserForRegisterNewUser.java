@@ -1,6 +1,9 @@
 package com.regres.testdata;
 
+import com.mysql.jdbc.PreparedStatement;
+import com.regres.testdata.DB.UserDB;
 import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -9,6 +12,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -33,6 +39,9 @@ public class UserForRegisterNewUser {
     String passportPublishedBy;
     String phoneNumber;
     String community;
+
+    public UserForRegisterNewUser() {
+    }
 
     public UserForRegisterNewUser(String firstName, String secondName, String middleName, String email, String login, String password, String confirmPassword, String city, String region, String district, String street, String building, String flat, String postcode, String passportSeria, String passportNumber, String passportPublishedBy, String phoneNumber, String community) {
         this.firstName = firstName;
@@ -208,33 +217,38 @@ public class UserForRegisterNewUser {
         this.community = community;
     }
 
-    public List<UserForRegisterNewUser> addUserFromEcxelToList(File excelFile, String sheetName) throws IOException {
+    public List<UserForRegisterNewUser> addUserFromExcelToList(File excelFile, String sheetName) throws IOException {
         List<UserForRegisterNewUser> userDBList = new ArrayList<>();
         XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(excelFile));
         XSSFSheet sheet = workbook.getSheet(sheetName);
+        if (sheet == null) {
+            throw new IllegalArgumentException("No sheet exists with name " + sheetName);
+        }
         for (int r = 1; r < sheet.getLastRowNum(); r++) {
             XSSFRow row = sheet.getRow(r);
-            userDBList.add(new UserForRegisterNewUser(
-                    row.getCell(0).getStringCellValue(),
-                    row.getCell(1).getStringCellValue(),
-                    row.getCell(2).getStringCellValue(),
-                    row.getCell(3).getStringCellValue(),
-                    row.getCell(4).getStringCellValue(),
-                    row.getCell(5).getStringCellValue(),
-                    row.getCell(6).getStringCellValue(),
-                    row.getCell(7).getStringCellValue(),
-                    row.getCell(8).getStringCellValue(),
-                    row.getCell(9).getStringCellValue(),
-                    row.getCell(10).getStringCellValue(),
-                    row.getCell(11).getStringCellValue(),
-                    row.getCell(12).getStringCellValue(),
-                    row.getCell(13).getStringCellValue(),
-                    row.getCell(14).getStringCellValue(),
-                    row.getCell(15).getStringCellValue(),
-                    row.getCell(16).getStringCellValue(),
-                    row.getCell(17).getStringCellValue(),
-                    row.getCell(18).getStringCellValue()
-            ));
+            if (row != null) {
+                userDBList.add(new UserForRegisterNewUser(
+                        ecxelEnumToStringConverter(row.getCell(0)),
+                        ecxelEnumToStringConverter(row.getCell(1)),
+                        ecxelEnumToStringConverter(row.getCell(2)),
+                        ecxelEnumToStringConverter(row.getCell(3)),
+                        ecxelEnumToStringConverter(row.getCell(4)),
+                        ecxelEnumToStringConverter(row.getCell(5)),
+                        ecxelEnumToStringConverter(row.getCell(6)),
+                        ecxelEnumToStringConverter(row.getCell(7)),
+                        ecxelEnumToStringConverter(row.getCell(8)),
+                        ecxelEnumToStringConverter(row.getCell(9)),
+                        ecxelEnumToStringConverter(row.getCell(10)),
+                        ecxelEnumToStringConverter(row.getCell(11)),
+                        ecxelEnumToStringConverter(row.getCell(12)),
+                        ecxelEnumToStringConverter(row.getCell(13)),
+                        ecxelEnumToStringConverter(row.getCell(14)),
+                        ecxelEnumToStringConverter(row.getCell(15)),
+                        ecxelEnumToStringConverter(row.getCell(16)),
+                        ecxelEnumToStringConverter(row.getCell(17)),
+                        ecxelEnumToStringConverter(row.getCell(18))
+                ));
+            }
         }
         workbook.close();
         return userDBList;
@@ -250,7 +264,7 @@ public class UserForRegisterNewUser {
                 if (DateUtil.isCellDateFormatted(cell))
                     s = cell.getDateCellValue().toString();
                 else
-                    s = String.valueOf(cell.getNumericCellValue());
+                    s = NumberToTextConverter.toText(cell.getNumericCellValue());
                 break;
             case BOOLEAN:
                 s = String.valueOf(cell.getBooleanCellValue());
@@ -265,6 +279,23 @@ public class UserForRegisterNewUser {
                 s = "";
         }
         return s;
+    }
+
+
+    //DB
+    public static void deleteUserInDB(Connection conn, UserForRegisterNewUser userDB) throws SQLException, ClassNotFoundException {
+        Statement s = conn.createStatement();
+        String foreignCheckNull = "SET FOREIGN_KEY_CHECKS=0";
+        s.addBatch(foreignCheckNull);
+        s.executeBatch();
+
+
+       // String foreignCheckNull = "SET FOREIGN_KEY_CHECKS=0";
+        String deleteUser = "Delete from registrator_db.users where login=(?)";
+        PreparedStatement st = (PreparedStatement) conn.prepareStatement(deleteUser);
+        st.setString(1, userDB.getLogin());
+        st.executeUpdate();
+//		st.close();
     }
 }
 

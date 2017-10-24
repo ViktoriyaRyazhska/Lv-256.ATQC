@@ -1,22 +1,15 @@
 package com.regres.tests;
 
-import com.mysql.jdbc.PreparedStatement;
 import com.regres.application.Application;
 import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegisterNewUserPage;
-import com.regres.pages.manage.coowners.CoownersTable;
-import com.regres.testdata.DB.UserDB;
-import com.regres.testdata.ReadUsersFromEcxel;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForRegisterNewUser;
-import com.regres.testdata.UserForSerchTableTest;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -42,10 +35,14 @@ public class RegisterNewUserTest {
         LoginPage loginpage = app.load();
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
         registerNewUserPage = adminhomepage.clickRegisterNewUser();
+        userForRegisterNewUser=new UserForRegisterNewUser();
     }
 
     @AfterClass
     public void afterTest() throws ClassNotFoundException, SQLException, IOException {
+        for (UserForRegisterNewUser u : userForRegisterNewUser.addUserFromExcelToList(file, sheet)) {
+            UserForRegisterNewUser.deleteUserInDB(conn, u);
+        }
         ApplicationSources.closeConnectionDB();
         app.quit();
     }
@@ -53,10 +50,11 @@ public class RegisterNewUserTest {
     @Test
     public void searchInTableByFirstName() throws SQLException, IOException {
         app.getDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        //registerNewUserPage.registerNewUser("firstname","secondname","","asdasd@mail.com","gogidze","000000","000000","","","","","","","","","","","","Україна");
-        List<UserForRegisterNewUser> userDBList = userForRegisterNewUser.addUserFromEcxelToList(file, sheet);
+        List<UserForRegisterNewUser> userDBList = userForRegisterNewUser.addUserFromExcelToList(file, sheet);
         for (UserForRegisterNewUser u : userDBList) {
             registerNewUserPage.registerNewUser(u);
+            registerNewUserPage.clickButtonSend();
+            registerNewUserPage = adminhomepage.clickRegisterNewUser();
         }
     }
 }

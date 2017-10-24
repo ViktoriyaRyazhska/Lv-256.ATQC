@@ -1,10 +1,13 @@
 package com.regres.pages;
 
+import com.regres.pages.manage.coowners.CoownersElementsOnPageDropdown;
 import com.regres.testdata.UserForRegisterNewUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.HashMap;
 
 public final class RegisterNewUserPage extends AdminHomePage{
     //Basic information
@@ -171,70 +174,87 @@ public final class RegisterNewUserPage extends AdminHomePage{
     }
 
     public void setSecondName(String secondName) {
+        getSecondName().clear();
         getSecondName().sendKeys(secondName);
     }
 
     public void setMiddleName(String middleName) {
+        getMiddleName().clear();
         getMiddleName().sendKeys(middleName);
     }
 
     public void setEmail(String email) {
+        getEmail().clear();
         getEmail().sendKeys(email);
     }
 
     public void setLogin(String login) {
+        getLogin().clear();
         getLogin().sendKeys(login);
     }
 
     public void setPassword(String password) {
+        getPassword().clear();
         getPassword().sendKeys(password);
     }
 
     public void setConfirmPassword(String confirmPassword) {
+        getConfirmPassword().clear();
         getConfirmPassword().sendKeys(confirmPassword);
     }
 
     public void setCity(String city) {
+        getCity().clear();
         getCity().sendKeys(city);
     }
 
     public void setRegion(String region) {
+        getRegion().clear();
         getRegion().sendKeys(region);
     }
 
     public void setDistrict(String district) {
+        getDistrict().clear();
         getDistrict().sendKeys(district);
     }
 
     public void setStreet(String street) {
+        getStreet().clear();
         getStreet().sendKeys(street);
     }
 
     public void setBuilding(String building) {
+        getBuilding().clear();
         getBuilding().sendKeys(building);
     }
 
     public void setFlat(String flat) {
+        getFlat().clear();
         getFlat().sendKeys(flat);
     }
 
     public void setPostcode(String postcode) {
+        getPostcode().clear();
         getPostcode().sendKeys(postcode);
     }
 
     public void setPassportSeria(String passportSeria) {
+        getPassportSeria().clear();
         getPassportSeria().sendKeys(passportSeria);
     }
 
     public void setPassportNumber(String passportNumber) {
+        getPassportNumber().clear();
         getPassportNumber().sendKeys(passportNumber);
     }
 
     public void setPassportPublishedBy(String passportPublishedBy) {
+        getPassportPublishedBy().clear();
         getPassportPublishedBy().sendKeys(passportPublishedBy);
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        getPhoneNumber().clear();
         getPhoneNumber().sendKeys(phoneNumber);
     }
 
@@ -247,8 +267,9 @@ public final class RegisterNewUserPage extends AdminHomePage{
     }
 
     //Buttons click
-    public void clickButtonSend() {
+    public CoownersElementsOnPageDropdown clickButtonSend() {
         driver.findElement(By.xpath(BUTTON_SEND_XPATH)).click();
+        return new CoownersElementsOnPageDropdown(driver);
     }
 
     public void clickButtonClear() {
@@ -278,6 +299,27 @@ public final class RegisterNewUserPage extends AdminHomePage{
         setPassportPublishedBy(userForRegisterNewUser.getPassportPublishedBy());
         setPhoneNumber(userForRegisterNewUser.getPhoneNumber());
         setCommunity(userForRegisterNewUser.getCommunity());
-        clickButtonSend();
+    }
+
+    public static enum RegisterNewUserPageL10n {
+        ERROR_MESSAGE_WHEN_INVALID_DATA_ENTERED("Підклас з вказаним іменем вже існує",
+                "Подкласс с указаным наименованием уже существует",
+                "The subclass with the specified name already exists"), DROPDOWN_DEFAULT_VALUE("Виберіть тип параметру",
+                "Выберите тип параметра", "Choose type parameters");
+
+        private HashMap<ChangeLanguageFields, String> field; // is different for every language
+
+        private RegisterNewUserPageL10n(String... localization) {
+            this.field = new HashMap<ChangeLanguageFields, String>();
+            int i = 0;
+            for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+                this.field.put(language, localization[i]);
+                i++;
+            }
+        }
+
+        public String getLocalization(ChangeLanguageFields language) {
+            return this.field.get(language).trim();
+        }
     }
 }
