@@ -16,7 +16,7 @@ import com.regres.pages.manage.coowners.actions.NonConfirmedCoownersActionsDropd
 public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	// these elements are for navigate on admin pages
 	private WebElement settings;
-	private WebElement communities;
+	protected WebElement communities;
 	private WebElement unblockAllCoowners;
 	// these elements are on confirm unblock all coowners
 	private WebElement confirmMessageUnblockAllCoowners;
@@ -48,6 +48,10 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 	/**
 	 * @return the settings
 	 */
+	
+	public WebElement getCommunityButtonMain() {
+		return driver.findElement(By.cssSelector(COMUNITIES_LOCATOR));
+	}
 	public WebElement getSettings() {
 		return settings;
 	}
@@ -146,7 +150,11 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		return new AdminHomePage(driver);
 	}
   //click on 'Communities' tab
-		public AdminCommunitiesPage clickCommunities() {
+		public AdminCommunitiesPage2 clickCommunities() {
+			getCommunityButtonMain().click();
+			return AdminCommunitiesPage2.get(driver);
+		}
+		public AdminCommunitiesPage clickCommunities2() {
 			this.communities.click();
 			return new AdminCommunitiesPage(driver);
 		}

@@ -1,15 +1,10 @@
-/**
- * 
- */
 package com.regres.pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.By; 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AddNewCommunitiesPage extends AdminHomePage {
+public class AddNewCommunitiesPage2 extends AdminHomePage {
 
 	String COMMUNITIES_NAME_FILED_NAME = "name";
 	String REG_NUMBER_FILED_NAME = "registrationNumber";
@@ -20,10 +15,24 @@ public class AddNewCommunitiesPage extends AdminHomePage {
 	String ADD_COMMUNITY_PAGE_LABEL_XPATH = "//h2";
 	String REGISTRATION_NUMBER_ERROR_ID = "registrationNumber.errors";
 
-	public AddNewCommunitiesPage(WebDriver driver) {
+	
+	private static volatile AddNewCommunitiesPage2 instance = null;
+
+	public AddNewCommunitiesPage2(WebDriver driver) {
 		super(driver);
 	}
 
+	public static AddNewCommunitiesPage2 get(WebDriver driver) {
+		if (instance == null) {
+			synchronized (AddNewCommunitiesPage2.class) {
+				if (instance == null) {
+					instance = new AddNewCommunitiesPage2(driver);
+				}
+			}
+		}
+		return instance;
+	}
+	
 	// getters for elements on a page
 	public WebElement getCommunitiesName() {
 		return driver.findElement(By.name(COMMUNITIES_NAME_FILED_NAME));
@@ -100,13 +109,13 @@ public class AddNewCommunitiesPage extends AdminHomePage {
 	}
 
 	// method that creates new community
-	public AdminCommunitiesPage createNewCommunities(String communityName, String regNumber) {
+	public AdminCommunitiesPage2 createNewCommunities(String communityName, String regNumber) {
 		getCommunitiesName().clear();
 		getCommunitiesName().sendKeys(communityName);
 		getCommunitiesRegistrationNumber().clear();
 		getCommunitiesRegistrationNumber().sendKeys(regNumber);
 		clickSubmitButton();
-		return new AdminCommunitiesPage(driver);
+		return AdminCommunitiesPage2.get(driver);
 	}
 
 	// method that fills communities name and reg number
