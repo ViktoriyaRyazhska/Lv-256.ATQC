@@ -342,19 +342,20 @@ public class UserForRegisterNewUser {
 
     //DB
     public static void deleteUserInDB(Connection conn, UserForRegisterNewUser userDB) throws SQLException, ClassNotFoundException {
-        Statement s = conn.createStatement();
-        String foreignCheckNull = "SET FOREIGN_KEY_CHECKS=0";
-        s.execute(foreignCheckNull);
-        if (s != null) s.close();
+        String deletewilldata = "delete from registrator_db.will_data where user_id=(select user_id from registrator_db.users where login=(?));";
+        String deleteAddress = "delete from registrator_db.address where user_id=(select user_id from registrator_db.users where login=(?));";
+        String deletePassportData = "delete from registrator_db.passport_data where user_id=(select user_id from registrator_db.users where login=(?));";
+        String deleteUser = "delete from registrator_db.users where login=(?)";
 
-//        delete from registrator_db.will_data where user_id=204;
-//        delete from registrator_db.address where user_id=204;
-//        delete from registrator_db.passport_data where user_id=204;
-//        String deletewilldata = "delete from registrator_db.will_data where login=(?)";
-//        String deleteAddress = "delete from registrator_db.address where login=(?)";
-//        String deleteUser = "Delete from registrator_db.users where login=(?)";
-        String deleteUser = "Delete from registrator_db.users where login=(?)";
-        PreparedStatement st = (PreparedStatement) conn.prepareStatement(deleteUser);
+        deletFromDb(conn, deletewilldata, userDB);
+        deletFromDb(conn, deleteAddress, userDB);
+        deletFromDb(conn, deletePassportData, userDB);
+        deletFromDb(conn, deleteUser, userDB);
+
+    }
+
+    private static void deletFromDb(Connection conn, String s, UserForRegisterNewUser userDB) throws SQLException {
+        PreparedStatement st = (PreparedStatement) conn.prepareStatement(s);
         st.setString(1, userDB.getLogin());
         st.executeUpdate();
         if (st != null) st.close();
@@ -374,7 +375,7 @@ public class UserForRegisterNewUser {
         List<UserForRegisterNewUser> userList = new ArrayList<>();
         Statement s = conn.createStatement();
         ResultSet rs = s.executeQuery("SELECT * FROM registrator_db.passport_data,registrator_db.users, registrator_db.address,registrator_db.territorial_community\n" +
-                "where registrator_db.users.user_id=registrator_db.passport_data.user_id=registrator_db.address.user_id;");
+                "where registrator_db.users.user_id=registrator_db.passport_data.user_id and registrator_db.users.user_id=registrator_db.address.user_id;");
         while (rs.next()) {
             userList.add(new UserForRegisterNewUser(
                     rs.getString("first_Name"),
