@@ -150,13 +150,13 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
 		return new AdminHomePage(driver);
 	}
   //click on 'Communities' tab
-		public AdminCommunitiesPage2 clickCommunities() {
+		public AdminCommunitiesPage clickCommunities() {
 			getCommunityButtonMain().click();
-			return AdminCommunitiesPage2.get(driver);
+			return AdminCommunitiesPage.get(driver);
 		}
-		public AdminCommunitiesPage clickCommunities2() {
+		public AdminCommunitiesPageOld clickCommunities2() {
 			this.communities.click();
-			return new AdminCommunitiesPage(driver);
+			return new AdminCommunitiesPageOld(driver);
 		}
 
 	// Business Logic

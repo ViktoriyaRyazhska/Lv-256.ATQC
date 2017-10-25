@@ -1,22 +1,19 @@
 package com.regres.pages.manage.coowners.actions;
 
-import java.util.HashMap;
-import java.util.List;
-
+import java.util.HashMap; 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.OhErrorPage;
 import com.regres.pages.manage.coowners.CoownersTable;
 
 public class ActiveCoownersActionsDropdown extends CoownersTable {
+	
 	// Locators for actions for active co-owners
 	String SET_ROLE_CSSSELECTOR = ".dropdown-submenu>a";
 	String SET_COMMUNITY_CSSSELECTOR = ".set-community";
@@ -36,7 +33,7 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	String CONFIRM_BUTTON_CSSSELECTOR = ".submit.btn.btn-success";
 	// String CONFIRM_BUTTON_XPATH=
 	// "//*[@id='userCommunitySelectModal']/div/div/div[3]/button[2]";
-	String DROPDOWN_INPUT_CSSSELECTOR = "body div.autocomplete-suggestions div.autocomplete-suggestion.autocomplete-selected";
+	String DROPDOWN_INPUT_CSSSELECTOR = "div.autocomplete-suggestion.autocomplete-selected";
 	String CLOSE_BUTTON_CLASS_NAME = "close";
 	String CANSEL_BUTTON_CSSSELECTOR = ".btn.btn-info";
 	String TITLE_MESSAGE_CLASS_NAME = "modal-title";
@@ -187,10 +184,9 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 		getInputField().click();
 	}
 
-	public void sendValueInInputField(String value) {
+	public void sendValueInInputField(String communityName) {
 		clickInputField();
-		getInputField().sendKeys(value);
-		getInputField().click();
+		getInputField().sendKeys(communityName);
 		clickDropdownInput();
 	}
 
@@ -261,11 +257,13 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	public WebElement getDropdownInput() {
 		return driver.findElement(By.cssSelector(DROPDOWN_INPUT_CSSSELECTOR));
 	}
-
-	public void clickDropdownInput() {
-	
-		getDropdownInput().click();
-		
+			
+public void clickDropdownInput() {
+	WebElement autoOptions = driver.findElement(By.cssSelector(DROPDOWN_INPUT_CSSSELECTOR));
+	getDropdownInput().click();
+	Actions actions = new Actions(driver);
+	actions.moveToElement(autoOptions).build().perform();
+	actions.click(autoOptions).build().perform();
 	}
 
 	// Business Logic

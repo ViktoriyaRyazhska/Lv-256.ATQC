@@ -1,7 +1,7 @@
 package com.regres.tests;
 
 import org.testng.annotations.Test;
-import com.regres.pages.AdminCommunitiesPage2;
+import com.regres.pages.AdminCommunitiesPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,12 +17,12 @@ import java.io.IOException;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.ExtentTest;
 
-public class LocalizationForCommunitiesPageTest2 extends Reports {
+public class LocalizationForCommunitiesPageTest extends Reports {
 
 	private LoginPage loginpage;
 	private AdminHomePage adminpage;
 	private Application app;
-	private AdminCommunitiesPage2 compage;
+	private AdminCommunitiesPage compage;
 	private ExtentTest test;
 
 	/**
@@ -84,14 +84,22 @@ public class LocalizationForCommunitiesPageTest2 extends Reports {
 	 * This test verifies activate button localization
 	 */
 	@Test(dataProvider = "localization")
-	public void checkActivateButtonLocalization(ChangeLanguageFields language) throws IOException {
+	public void checkActivateButtonLocalization(ChangeLanguageFields language) {
 		compage = compage.setLanguage(language);
-		compage.setLanguageFileToBeLoaded(language);
+		try {
+			compage.setLanguageFileToBeLoaded(language);
+		} catch (IOException e) {
+			test.log(Status.ERROR, "File not found");
+		}
 		test.log(Status.INFO, "Set language to " + language);
 		compage.clickInactiveCheckbox();
 		test.log(Status.INFO, "Click show inactive communities");
-		Assert.assertEquals(compage.getActiveCommunityButtonText(),
-				compage.getLocalizationValue("Active_Community_Button"));
+		try {
+			Assert.assertEquals(compage.getActiveCommunityButtonText(),
+					compage.getLocalizationValue("Active_Community_Button"));
+		} catch (IOException e) {
+			test.log(Status.ERROR, "File not loaded");
+		}
 		test.log(Status.PASS, "Check ActiveCommunityButtonText");
 	}
 

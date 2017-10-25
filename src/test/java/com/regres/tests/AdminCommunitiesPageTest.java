@@ -1,6 +1,6 @@
 package com.regres.tests;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -16,10 +16,10 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.ExtentTest;
 import com.regres.application.Application;
 import com.regres.application.ApplicationSourcesRepo;
-import com.regres.pages.AddNewCommunitiesPage2;
-import com.regres.pages.AdminCommunitiesPage2;
+import com.regres.pages.AddNewCommunitiesPage;
+import com.regres.pages.AdminCommunitiesPage;
 import com.regres.pages.AdminHomePage;
-import com.regres.pages.EditCommunityPage2;
+import com.regres.pages.EditCommunityPage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 import com.regres.pages.manage.coowners.actions.ActiveCoownersActionsDropdown;
@@ -27,17 +27,17 @@ import com.regres.reports.Reports;
 import com.regres.testdata.CommunitiesTable;
 import com.regres.testdata.UserContainer;
 
-public class AdminCommunitiesPageTest2 extends Reports {
+public class AdminCommunitiesPageTest extends Reports {
 
 	String EMPTY_FILED = "";
 
 	private Application app;
 	private LoginPage loginpage;
 	private AdminHomePage adminhomepage;
-	private AdminCommunitiesPage2 compage;
-	private AddNewCommunitiesPage2 addcompage;
+	private AdminCommunitiesPage compage;
+	private AddNewCommunitiesPage addcompage;
 	private ActiveCoownersActionsDropdown coowActionpage;
-	private EditCommunityPage2 editpage;
+	private EditCommunityPage editpage;
 	SoftAssert softAssert = new SoftAssert();
 	private ExtentTest test;
 	public static WebDriver driver;
@@ -83,7 +83,9 @@ public class AdminCommunitiesPageTest2 extends Reports {
 		return new Object[][] { { "111:11:11:111:11116", ChangeLanguageFields.ENGLISH } };
 	}
 
-	/** This test verifies that deleted community is not present on the table */
+	/**
+	 * This test verifies that deleted community is not present on the table
+	 */
 	@Test(dataProvider = "communityNameAndNumber")
 	public void deleteCreatedCommunitiesAndVerifyPresence(String communityName, String regNumber) {
 		test = report.createTest("deleteCreatedCommunitiesAndVerifyPresence");
@@ -157,19 +159,26 @@ public class AdminCommunitiesPageTest2 extends Reports {
 	 * name
 	 */
 	@Test(dataProvider = "RegNumberData")
-	public void verifyCommunityIsNotCreatedWithoutName(String regNumber, ChangeLanguageFields language)
-			throws IOException {
+	public void verifyCommunityIsNotCreatedWithoutName(String regNumber, ChangeLanguageFields language) {
 		test = report.createTest("verifyCommunityIsNotCreatedWithoutName");
 		compage.setLanguage(language);
-		compage.setLanguageFileToBeLoaded(language);
+		try {
+			compage.setLanguageFileToBeLoaded(language);
+		} catch (IOException e) {
+			test.log(Status.ERROR, "File not found");
+		}
 		test.log(Status.INFO, "Set language");
 		addcompage = compage.clickAddNewCommunityButton();
 		test.log(Status.INFO, "Click Add community");
 		addcompage.clearNameAndfillIndRegNumber(regNumber);
 		addcompage.clickSubmitButton();
 		test.log(Status.INFO, "Clear name and fill reg number, then submit");
-		Assert.assertEquals(addcompage.getAddNewCommunitiesPageLabelText(),
-				compage.getLocalizationValue("Add_new_community_label"));
+		try {
+			Assert.assertEquals(addcompage.getAddNewCommunitiesPageLabelText(),
+					compage.getLocalizationValue("Add_new_community_label"));
+		} catch (IOException e) {
+			test.log(Status.ERROR, "File not loaded");
+		}
 		test.log(Status.PASS, "Verify that community is not created and user stays on the same page");
 	}
 
@@ -190,9 +199,11 @@ public class AdminCommunitiesPageTest2 extends Reports {
 	/**
 	 * This test verifies that if community has some member after Admin deletes
 	 * it, it becomes Inactive and can be activated later
+	 * 
+	 * @throws Exception
 	 */
-	@Test(dataProvider = "communityNameAndNumber", expectedExceptions = WebDriverException.class)
-	public void deleteNotActivatedCommunity(String communityName, String regNumber) {
+	@Test(dataProvider = "communityNameAndNumber")
+	public void deleteNotActivatedCommunity(String communityName, String regNumber) throws Exception {
 		test = report.createTest("deleteNotActivatedCommunity");
 		addcompage = compage.clickAddNewCommunityButton();
 		compage = addcompage.createNewCommunities(communityName, regNumber);
@@ -207,7 +218,7 @@ public class AdminCommunitiesPageTest2 extends Reports {
 		compage.refreshAndWait();
 		test.log(Status.INFO, "Navigate to Communities page and delete previously created community");
 		compage.clickInactiveCheckbox();
-		compage.verifyDeletedCommunityPresence(communityName);
+		compage.verifyDeletedCommunityIsNowNotActive(communityName);
 		test.log(Status.PASS, "Verify that deleted community is now in Inactive state");
 	}
 
