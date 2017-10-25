@@ -31,7 +31,7 @@ public class AddNewResourceTest {
 		app = Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		// getting on login page
 		loginpage = app.load();
-		// loging in as Registrator and redirecting for changePassword page
+		// loging in as Registrator and redirecting for addNewResourcePage
 		registratorHomePage = loginpage.successfullLoginRegistrator(user);
 		addNewResourcePage = registratorHomePage.clickAddNewResourceNavTab();
 
@@ -39,16 +39,21 @@ public class AddNewResourceTest {
 
 	@AfterClass
 	public void tearDown() {
+		//logging out and exit
 		addNewResourcePage.clickLogout();
 		app.quit();
 	}
 
 	 @Test(dataProvider = "AddPoint")
 	public void checkAddPointErrorMessage(ChangeLanguageFields language, AddNewResourceLocalization localization) {
+		 //switching localization
 		addNewResourcePage = addNewResourcePage.setLanguage(language);
+		//switching to "Points" tab
 		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
 		addNewResourcePage.clickPointsTab();
+		//saving resource
 		addNewResourcePage.clickSaveButton();
+		//asserting error message
 		addNewResourcePage.getErrorMessage();
 		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
 		addNewResourcePage.clickAddPointMessageButton();
@@ -56,10 +61,14 @@ public class AddNewResourceTest {
 
 	 @Test(dataProvider = "AddFirstPoint")
 	public void checkAddFirstPointErrorMessage(ChangeLanguageFields language, AddNewResourceLocalization localization) {
-		addNewResourcePage = addNewResourcePage.setLanguage(language);
-		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
+		//switching localization
+		 addNewResourcePage = addNewResourcePage.setLanguage(language);
+		//switching to "Points" tab
+		 addNewResourcePage = addNewResourcePage.clickPointsNavTab();
 		addNewResourcePage.clickPointsTab();
+		//adding point
 		addNewResourcePage.clickAddPointButton();
+		//asserting error message
 		addNewResourcePage.getErrorMessage();
 		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
 		addNewResourcePage.clickAddPointMessageButton();
@@ -67,10 +76,14 @@ public class AddNewResourceTest {
 
 	@Test(dataProvider = "AddThreePoint")
 	public void checkAddThreePointsMessageText(ChangeLanguageFields language, AddNewResourceLocalization localization) {
+		//switching localization
 		addNewResourcePage = addNewResourcePage.setLanguage(language);
+		//switching to "Points" tab
 		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
 		addNewResourcePage.clickPointsTab();
+		//adding territory
 		addNewResourcePage.clickAddTerritotyButton();
+		//asserting error message
 		addNewResourcePage.getErrorMessage();
 		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
 		addNewResourcePage.clickAddPointMessageButton();
@@ -78,13 +91,18 @@ public class AddNewResourceTest {
 
 	 @Test(dataProvider = "DeletePoint")
 	public void checkDeletePointMessageText(ChangeLanguageFields language, AddNewResourceLocalization localization) {
-		addNewResourcePage = addNewResourcePage.setLanguage(language);
+		//switching localization
+		 addNewResourcePage = addNewResourcePage.setLanguage(language);
+		//switching to "Points" tab
 		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
 		addNewResourcePage.clickPointsTab();
+		//deleting last point
 		addNewResourcePage.clickDeletePointButton();
+		//asserting error message
 		addNewResourcePage.getErrorMessage();
 		Assert.assertEquals(addNewResourcePage.getErrorMessageText(), localization.getMessage());
 		addNewResourcePage.clickAddPointMessageButton();
+		//reloading page
 		addNewResourcePage = new AddNewResourcePage(app.getDriver());
 	}
 

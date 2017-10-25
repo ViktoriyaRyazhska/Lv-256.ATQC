@@ -21,6 +21,7 @@ import com.regres.testdata.User;
 import com.regres.testdata.UserContainer;
 
 public class AddNewResourceEnteringTest {
+	//setup. 
 	private AddNewResourceLocalization localization;
 	private Application app;
 	private User user = UserContainer.getRegistrator();
@@ -44,34 +45,37 @@ public class AddNewResourceEnteringTest {
 
 	@AfterClass
 	public void tearDown() {
+		//logging out and exit
 		addNewResourcePage.clickLogout();
 		app.quit();
 	}
 
 	@Test(dataProvider = "CheckError")
 	public void checkErrorMessages(ChangeLanguageFields language, AddNewResourceLocalization localization) {
+		//changing localization
 		addNewResourcePage = addNewResourcePage.setLanguage(language);
+		//switching to "Points" tab 
 		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
 		addNewResourcePage.clickPointsTab();
-		setTeretory();
+		//setting up territory
+		setTerritory();
 		addNewResourcePage.selectObjSubclass();
 		addNewResourcePage.getObjectNameField().click();
-		// JavascriptExecutor js = (JavascriptExecutor)app.getDriver();
-		// js.executeScript("arguments[0].click();",
-		// addNewResourcePage.getShowOnMapButton());
 		addNewResourcePage = addNewResourcePage.clickShowOnMapButton();
 		addNewResourcePage.clickPointsTab();
 		addNewResourcePage.getObjectNameField().click();
-		// js.executeScript("arguments[0].click();",
-		// addNewResourcePage.getSaveButton());
+		//blank action
 		addNewResourcePage.getObjectNameField().sendKeys("іфвфві");
 		addNewResourcePage.getObjectNameField().clear();
 		app.getDriver().manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		//saving resource
 		addNewResourcePage = addNewResourcePage.saveResource();
+		//asserting error messages
 		addNewResourcePage.getNameErrorMessage();
 		addNewResourcePage.getReasoneErrorMessage();
 		Assert.assertEquals(addNewResourcePage.getNameErrorMessageText(), localization.getMessage());
 		Assert.assertEquals(addNewResourcePage.getReasoneErrorMessageText(), localization.getMessage());
+		//switching to "Points" tab and clearing fields
 		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
 		addNewResourcePage.clickPointsTab();
 		addNewResourcePage.clickClearButton();
@@ -80,18 +84,24 @@ public class AddNewResourceEnteringTest {
 
 	@Test()
 	public void checkSucces() {
+		//switching to "Points" tab 
 		addNewResourcePage = addNewResourcePage.clickPointsNavTab();
 		addNewResourcePage.clickPointsTab();
-		setTeretory();
+		//setting up territory
+		setTerritory();
 		addNewResourcePage.selectObjSubclass();
 		addNewResourcePage.getObjectNameField().click();
 		addNewResourcePage.getProcurationsCheckBox().click();
 		addNewResourcePage = addNewResourcePage.clickShowOnMapButton();
 		addNewResourcePage.clickPointsTab();
 		addNewResourcePage.getObjectNameField().sendKeys(testRes);
+		//saving resource
 		resourceDetailPage = addNewResourcePage.saveResourceSucces();
+		//asserting created resource name 
 		Assert.assertEquals(resourceDetailPage.getResourceNameText(), testRes);
+		//deleting created resource
 		registratorHomePage = resourceDetailPage.deleteRes();
+		//switching to "Add new Resource" tab
 		addNewResourcePage = registratorHomePage.clickAddNewResourceNavTab();
 
 	}
@@ -105,7 +115,8 @@ public class AddNewResourceEnteringTest {
 
 	}
 
-	public void setTeretory() {
+	public void setTerritory() {
+		//setting up territory
 		addNewResourcePage.setCoordinates(Coordinates.FIRST_POINT);
 		addNewResourcePage.addSecondPoint();
 		addNewResourcePage.setCoordinates(Coordinates.SECOND_POINT);

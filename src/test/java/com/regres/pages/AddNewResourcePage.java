@@ -13,8 +13,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 import com.regres.testdata.Coordinates;
 
+/**
+ * Add new Resource Page Object
+ * 
+ * @author Юрій
+ *
+ */
 public class AddNewResourcePage extends RegistratorHomePage {
-	// add another fields
+	// Web elements of Page Object
 	private WebElement selectCoownerField;
 	private WebElement objectNameField;
 	private WebElement objectSubclassDropdown;
@@ -39,18 +45,6 @@ public class AddNewResourcePage extends RegistratorHomePage {
 	private WebElement longitudeDegreeField;
 	private WebElement longitudeMinuteField;
 	private WebElement longitudeSecondField;
-	private WebElement latitudeDegreeField2;
-	private WebElement latitudeMinuteField2;
-	private WebElement latitudeSecondField2;
-	private WebElement longitudeDegreeField2;
-	private WebElement longitudeMinuteField2;
-	private WebElement longitudeSecondField2;
-	private WebElement latitudeDegreeField3;
-	private WebElement latitudeMinuteField3;
-	private WebElement latitudeSecondField3;
-	private WebElement longitudeDegreeField3;
-	private WebElement longitudeMinuteField3;
-	private WebElement longitudeSecondField3;
 	private WebElement showOnMapButton;
 	private WebElement addPointButton;
 	private WebElement addTerritoryButton;
@@ -61,7 +55,7 @@ public class AddNewResourcePage extends RegistratorHomePage {
 	private String errorMessage;
 	private WebElement resourceNameError;
 	private WebElement reasonError;
-	
+	// Locators
 	String RESOURCE_NAME_ERROR_LOCATOR = "description.errors";
 	String REASON_ERROR_LOCATOR = "reasonInclusion.errors";
 	String SELECT_COOWNER_INPUTFIELD_ID = "owner_search";
@@ -106,16 +100,22 @@ public class AddNewResourcePage extends RegistratorHomePage {
 	String ADD_POINT_ERROR_MESSAGE_LOCATOR = "bootbox-body";
 	String ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR = "[data-bb-handler = 'ok']";
 	String DELETE_POINT_BUTTON_LOCATOR = ".delPoint";
-    
+
+	/**
+	 * Select subclass of object
+	 */
 	public void selectObjSubclass() {
 		Select select = new Select(objectSubclassDropdown);
 		select.selectByVisibleText("земельний");
 		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-		
+
 	}
-	
-	
-	
+
+	/**
+	 * Get error message
+	 * 
+	 * @return -errorMessage
+	 */
 	public String getAddPointMessageText() {
 		clickSaveButton();
 		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
@@ -125,21 +125,48 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		return errorMessage;
 
 	}
+
+	/**
+	 * Get object name error message
+	 */
 	public void getNameErrorMessage() {
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		resourceNameError = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(RESOURCE_NAME_ERROR_LOCATOR)));
-		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		resourceNameError = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id(RESOURCE_NAME_ERROR_LOCATOR)));
+
 	}
+
+	/**
+	 * Get reason for including error message
+	 */
 	public void getReasoneErrorMessage() {
 		reasonError = driver.findElement(By.id(REASON_ERROR_LOCATOR));
 	}
+
+	/**
+	 * Get error text
+	 * 
+	 * @return error text
+	 */
 	public String getNameErrorMessageText() {
 		return resourceNameError.getText().trim();
 	}
+
+	/**
+	 * Get error text
+	 * 
+	 * @return error text
+	 */
 	public String getReasoneErrorMessageText() {
 		return reasonError.getText().trim();
 	}
-	
+
+	/**
+	 * Set up points coordinates
+	 * 
+	 * @param coordinates
+	 *            -coordinates enum
+	 */
 	public void setCoordinates(Coordinates coordinates) {
 		latitudeDegreeField.clear();
 		latitudeDegreeField.sendKeys(coordinates.getLatitudeDegreeField());
@@ -153,8 +180,12 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		longitudeMinuteField.sendKeys(coordinates.getLongitudeMinuteField());
 		longitudeSecondField.clear();
 		longitudeSecondField.sendKeys(coordinates.getLongitudeSecondField());
-		
+
 	}
+
+	/**
+	 * Add second nav point
+	 */
 	public void addSecondPoint() {
 		clickAddPointButton();
 		latitudeDegreeField = driver.findElement(By.cssSelector(LATITUDE_DEGREE_FIELD2_LOCATOR));
@@ -163,8 +194,12 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		longitudeDegreeField = driver.findElement(By.cssSelector(LONGITUDE_DEGREE_FIELD2_LOCATOR));
 		longitudeMinuteField = driver.findElement(By.cssSelector(LONGITUDE_MINUTE_FIELD2_LOCATOR));
 		longitudeSecondField = driver.findElement(By.cssSelector(LONGITUDE_SECOND_FIELD2_LOCATOR));
-		
+
 	}
+
+	/**
+	 * Add third nav point
+	 */
 	public void addThirdPoint() {
 		clickAddPointButton();
 		latitudeDegreeField = driver.findElement(By.cssSelector(LATITUDE_DEGREE_FIELD3_LOCATOR));
@@ -175,6 +210,11 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		longitudeSecondField = driver.findElement(By.cssSelector(LONGITUDE_SECOND_FIELD3_LOCATOR));
 	}
 
+	/**
+	 * Get error message
+	 * 
+	 * @return errorMessage
+	 */
 	public String getAddLastPointMessageText() {
 		clickDeletePointButton();
 		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
@@ -184,18 +224,31 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		return errorMessage;
 	}
 
+	/**
+	 * Get Error message
+	 */
 	public void getErrorMessage() {
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		addPointErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR)));// driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		addPointErrorMessage = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR)));// driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
 		addPointMessageOKButton = driver.findElement(By.cssSelector(ADD_POINT_MESSAGE_OK_BUTTON_LOCATOR));
-		
-		
 
 	}
+
+	/**
+	 * Get Error text
+	 * 
+	 * @return error text
+	 */
 	public String getErrorMessageText() {
 		return addPointErrorMessage.getText().trim();
 	}
 
+	/**
+	 * Get error message
+	 * 
+	 * @return errorMessage
+	 */
 	public String getAddThreePointsMessageText() {
 		clickAddTerritotyButton();
 		addPointErrorMessage = driver.findElement(By.className(ADD_POINT_ERROR_MESSAGE_LOCATOR));
@@ -205,45 +258,70 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		return errorMessage;
 	}
 
+	/**
+	 * Click Ok
+	 */
 	public void clickAddPointMessageButton() {
 		addPointMessageOKButton.click();
 	}
 
+	/**
+	 * Set coowners
+	 * 
+	 * @param coowner
+	 */
 	public void setSelectCoownersText(String coowner) {
 		selectCoownerField.clear();
 		selectCoownerField.sendKeys(coowner);
 	}
 
+	/**
+	 * Set object name
+	 * 
+	 * @param object
+	 */
 	public void setObjectNameText(String object) {
 		objectNameField.clear();
 		objectNameField.sendKeys(object);
 	}
 
-	/*
-	 * public void selectSubclass(){ objectSubclassDropdown.click();
-	 * 
-	 * }
+	/**
+	 * Check procuration
 	 */
 	public void checkProcurationCheckBox() {
 		procurationsCheckBox.click();
 	}
 
+	/**
+	 * Click Edit
+	 */
 	public void clickEditButton() {
 		editButton.click();
 	}
 
+	/**
+	 * Change registration number
+	 * 
+	 * @param regNumb
+	 */
 	public void changeRegNumber(String regNumb) {
 		clickEditButton();
 		registrNumbOfObjectField.clear();
 		registrNumbOfObjectField.sendKeys(regNumb);
 	}
 
+	/**
+	 * Click delete
+	 */
 	public void clickDeletePointButton() {
 		deletePointButton.click();
 	}
 
+	/**
+	 * initializing web elements on "Point" tab
+	 */
 	public void clickPointsTab() {
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		showOnMapButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(SHOW_ON_MAP_BUTTON_LOCATOR)));
 		latitudeDegreeField = driver.findElement(By.cssSelector(LATITUDE_DEGREE_FIELD_LOCATOR));
 		latitudeMinuteField = driver.findElement(By.cssSelector(LATITUDE_MINUTE_FIELD_LOCATOR));
@@ -258,6 +336,7 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		deleteAllPointsButton = driver.findElement(By.id(DELETE_ALL_POINTS_LOCATOR));
 	}
 
+	// Seting up coordinates
 	public void setLatitudeDegreeField(String laD) {
 		latitudeDegreeField.clear();
 		latitudeDegreeField.sendKeys(laD);
@@ -288,6 +367,11 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		longitudeSecondField.sendKeys(loS);
 	}
 
+	/**
+	 * Click show on map
+	 * 
+	 * @return add new resource page
+	 */
 	public AddNewResourcePage clickShowOnMapButton() {
 		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -296,58 +380,93 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		return new AddNewResourcePage(driver);
 	}
 
+	/**
+	 * Click Add point
+	 */
 	public void clickAddPointButton() {
 		addPointButton.click();
 	}
 
+	/**
+	 * Click Add territory
+	 */
 	public void clickAddTerritotyButton() {
 		addTerritoryButton.click();
 	}
 
+	/**
+	 * Delete all points
+	 */
 	public void clickDeleteAllPointsButton() {
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		deleteAllPointsButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(DELETE_ALL_POINTS_LOCATOR)));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		deleteAllPointsButton = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id(DELETE_ALL_POINTS_LOCATOR)));
 		deleteAllPointsButton.click();
 	}
 
+	/**
+	 * Click Save
+	 */
 	public void clickSaveButton() {
 		saveButton.click();
 	}
-	
+
+	/**
+	 * Save resource
+	 * 
+	 * @return add new resource page
+	 */
 	public AddNewResourcePage saveResource() {
 		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.id(SAVE_BUTTON_ID)));
 		saveButton.click();
 		return new AddNewResourcePage(driver);
 	}
+
+	/**
+	 * Successfully save resource
+	 * 
+	 * @return resource detail page
+	 */
 	public ResourceDetailPage saveResourceSucces() {
 		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.id(SAVE_BUTTON_ID)));
 		saveButton.click();
 		return new ResourceDetailPage(driver);
 	}
 
+	/**
+	 * Switch to "Points" nav tab
+	 * 
+	 * @return add new resource page
+	 */
 	public AddNewResourcePage clickPointsNavTab() {
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		pointsNavTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(POINTS_NAV_TAB_LOCATOR)));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		pointsNavTab = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(POINTS_NAV_TAB_LOCATOR)));
 		pointsNavTab.click();
 		return new AddNewResourcePage(driver);
 	}
 
+	/**
+	 * Click clear fields button
+	 */
 	public void clickClearButton() {
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		clearButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(CLEAR_FORM_BUTTON_ID)));
 		clearButton.click();
 	}
 
+	// Constructors and getters/setters
 	public AddNewResourcePage(WebDriver driver) {
 		super(driver);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		WebDriverWait wait = new WebDriverWait(driver, 100);
-		selectCoownerField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(SELECT_COOWNER_INPUTFIELD_ID)));
-		//selectCoownerField = driver.findElement(By.id(SELECT_COOWNER_INPUTFIELD_ID));
+		selectCoownerField = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.id(SELECT_COOWNER_INPUTFIELD_ID)));
+		// selectCoownerField = driver.findElement(By.id(SELECT_COOWNER_INPUTFIELD_ID));
 		objectNameField = driver.findElement(By.id(OBJECT_NAME_INPUTFIELD_ID));
 		objectSubclassDropdown = driver.findElement(By.id(OBJECT_SUBCLASS_DROPDOWN_ID));
 		registrNumbOfObjectField = driver.findElement(By.id(REGISTRNUMB_OBJ_ID));
@@ -546,54 +665,6 @@ public class AddNewResourcePage extends RegistratorHomePage {
 		return longitudeSecondField;
 	}
 
-	public WebElement getLatitudeDegreeField2() {
-		return latitudeDegreeField2;
-	}
-
-	public WebElement getLatitudeMinuteField2() {
-		return latitudeMinuteField2;
-	}
-
-	public WebElement getLatitudeSecondField2() {
-		return latitudeSecondField2;
-	}
-
-	public WebElement getLongitudeDegreeField2() {
-		return longitudeDegreeField2;
-	}
-
-	public WebElement getLongitudeMinuteField2() {
-		return longitudeMinuteField2;
-	}
-
-	public WebElement getLongitudeSecondField2() {
-		return longitudeSecondField2;
-	}
-
-	public WebElement getLatitudeDegreeField3() {
-		return latitudeDegreeField3;
-	}
-
-	public WebElement getLatitudeMinuteField3() {
-		return latitudeMinuteField3;
-	}
-
-	public WebElement getLatitudeSecondField3() {
-		return latitudeSecondField3;
-	}
-
-	public WebElement getLongitudeDegreeField3() {
-		return longitudeDegreeField3;
-	}
-
-	public WebElement getLongitudeMinuteField3() {
-		return longitudeMinuteField3;
-	}
-
-	public WebElement getLongitudeSecondField3() {
-		return longitudeSecondField3;
-	}
-
 	public WebElement getShowOnMapButton() {
 		return showOnMapButton;
 	}
@@ -632,54 +703,6 @@ public class AddNewResourcePage extends RegistratorHomePage {
 
 	public void setLongitudeSecondField(WebElement longitudeSecondField) {
 		this.longitudeSecondField = longitudeSecondField;
-	}
-
-	public void setLatitudeDegreeField2(WebElement latitudeDegreeField2) {
-		this.latitudeDegreeField2 = latitudeDegreeField2;
-	}
-
-	public void setLatitudeMinuteField2(WebElement latitudeMinuteField2) {
-		this.latitudeMinuteField2 = latitudeMinuteField2;
-	}
-
-	public void setLatitudeSecondField2(WebElement latitudeSecondField2) {
-		this.latitudeSecondField2 = latitudeSecondField2;
-	}
-
-	public void setLongitudeDegreeField2(WebElement longitudeDegreeField2) {
-		this.longitudeDegreeField2 = longitudeDegreeField2;
-	}
-
-	public void setLongitudeMinuteField2(WebElement longitudeMinuteField2) {
-		this.longitudeMinuteField2 = longitudeMinuteField2;
-	}
-
-	public void setLongitudeSecondField2(WebElement longitudeSecondField2) {
-		this.longitudeSecondField2 = longitudeSecondField2;
-	}
-
-	public void setLatitudeDegreeField3(WebElement latitudeDegreeField3) {
-		this.latitudeDegreeField3 = latitudeDegreeField3;
-	}
-
-	public void setLatitudeMinuteField3(WebElement latitudeMinuteField3) {
-		this.latitudeMinuteField3 = latitudeMinuteField3;
-	}
-
-	public void setLatitudeSecondField3(WebElement latitudeSecondField3) {
-		this.latitudeSecondField3 = latitudeSecondField3;
-	}
-
-	public void setLongitudeDegreeField3(WebElement longitudeDegreeField3) {
-		this.longitudeDegreeField3 = longitudeDegreeField3;
-	}
-
-	public void setLongitudeMinuteField3(WebElement longitudeMinuteField3) {
-		this.longitudeMinuteField3 = longitudeMinuteField3;
-	}
-
-	public void setLongitudeSecondField3(WebElement longitudeSecondField3) {
-		this.longitudeSecondField3 = longitudeSecondField3;
 	}
 
 	public void setShowOnMapButton(WebElement showOnMapButton) {
