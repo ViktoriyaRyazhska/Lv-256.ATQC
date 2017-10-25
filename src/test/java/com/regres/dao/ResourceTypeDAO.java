@@ -56,22 +56,25 @@ public class ResourceTypeDAO {
 		return hasDuplicate;
 	}
 
-	public String hasDuplicateSubcl(String enteredNameSubclass) {
-
+	public boolean hasEmptyField(String enteredNameSubclass) {
+		// Delete this after I disconenect
+		boolean emptyField = true;
 		Session session = HibernateSessionFactory.currentSession();
 		Transaction tx = session.beginTransaction();
 		// The default name of the organization is the same as the name of the class.
-		Query query = session
-				.createQuery("from ResourceTypes where type_name = :subclassName IS NULL or type_name = '' ");
-		query.setParameter("subclassName", enteredNameSubclass);
+		Query query = session.createQuery("from ResourceTypes where type_name IS NULL or type_name = '' ");
 		List<ResourceTypes> resourceTypes = query.list();
-		String typeName = "";
-		if (resourceTypes != null && !resourceTypes.isEmpty()) {
-			typeName = resourceTypes.get(0).getTypeName();
+		if (resourceTypes == null || resourceTypes.isEmpty()) {
+			if (resourceTypes.isEmpty()) {
+			}
+			emptyField = true;
+			System.out.println("No values with empty field found");
+		} else {
+			System.out.println("Found value with empty ResourceType name " + resourceTypes);
 		}
-
 		tx.commit();
 		HibernateSessionFactory.closeSession();
-		return typeName;
+		return emptyField;
+
 	}
 }
