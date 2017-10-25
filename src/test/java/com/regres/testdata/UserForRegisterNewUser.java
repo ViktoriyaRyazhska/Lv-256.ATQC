@@ -19,6 +19,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class UserForRegisterNewUser {
     String firstName;
@@ -218,6 +219,62 @@ public class UserForRegisterNewUser {
         this.community = community;
     }
 
+    @Override
+    public String toString() {
+        return "UserForRegisterNewUser{" +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", district='" + district + '\'' +
+                ", street='" + street + '\'' +
+                ", building='" + building + '\'' +
+                ", flat='" + flat + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", passportSeria='" + passportSeria + '\'' +
+                ", passportNumber='" + passportNumber + '\'' +
+                ", passportPublishedBy='" + passportPublishedBy + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", community='" + community + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserForRegisterNewUser that = (UserForRegisterNewUser) o;
+        return Objects.equals(firstName, that.firstName) &&
+                Objects.equals(secondName, that.secondName) &&
+                Objects.equals(middleName, that.middleName) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(login, that.login) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(confirmPassword, that.confirmPassword) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(region, that.region) &&
+                Objects.equals(district, that.district) &&
+                Objects.equals(street, that.street) &&
+                Objects.equals(building, that.building) &&
+                Objects.equals(flat, that.flat) &&
+                Objects.equals(postcode, that.postcode) &&
+                Objects.equals(passportSeria, that.passportSeria) &&
+                Objects.equals(passportNumber, that.passportNumber) &&
+                Objects.equals(passportPublishedBy, that.passportPublishedBy) &&
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(community, that.community);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, secondName, middleName, email, login, password, confirmPassword, city, region, district, street, building, flat, postcode, passportSeria, passportNumber, passportPublishedBy, phoneNumber, community);
+    }
+
     public List<UserForRegisterNewUser> addUserFromExcelToList(File excelFile, String sheetName) throws IOException {
         List<UserForRegisterNewUser> userDBList = new ArrayList<>();
         XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(excelFile));
@@ -290,6 +347,12 @@ public class UserForRegisterNewUser {
         s.execute(foreignCheckNull);
         if (s != null) s.close();
 
+//        delete from registrator_db.will_data where user_id=204;
+//        delete from registrator_db.address where user_id=204;
+//        delete from registrator_db.passport_data where user_id=204;
+//        String deletewilldata = "delete from registrator_db.will_data where login=(?)";
+//        String deleteAddress = "delete from registrator_db.address where login=(?)";
+//        String deleteUser = "Delete from registrator_db.users where login=(?)";
         String deleteUser = "Delete from registrator_db.users where login=(?)";
         PreparedStatement st = (PreparedStatement) conn.prepareStatement(deleteUser);
         st.setString(1, userDB.getLogin());
@@ -305,6 +368,37 @@ public class UserForRegisterNewUser {
             count = rs.getInt("count(*)");
         }
         return count;
+    }
+
+    public static List<UserForRegisterNewUser> getListOfUsersInDB(Connection conn) throws SQLException, ClassNotFoundException {
+        List<UserForRegisterNewUser> userList = new ArrayList<>();
+        Statement s = conn.createStatement();
+        ResultSet rs = s.executeQuery("SELECT * FROM registrator_db.passport_data,registrator_db.users, registrator_db.address,registrator_db.territorial_community\n" +
+                "where registrator_db.users.user_id=registrator_db.passport_data.user_id=registrator_db.address.user_id;");
+        while (rs.next()) {
+            userList.add(new UserForRegisterNewUser(
+                    rs.getString("first_Name"),
+                    rs.getString("last_Name"),
+                    rs.getString("middle_name"),
+                    rs.getString("email"),
+                    rs.getString("login"),
+                    "111111",
+                    "111111",
+                    rs.getString("city"),
+                    rs.getString("region"),
+                    rs.getString("district"),
+                    rs.getString("street"),
+                    rs.getString("building"),
+                    rs.getString("flat"),
+                    rs.getString("postcode"),
+                    rs.getString("seria"),
+                    rs.getString("number"),
+                    rs.getString("published_by_data"),
+                    rs.getString("phonenumber"),
+                    rs.getString("name")
+            ));
+        }
+        return userList;
     }
 }
 

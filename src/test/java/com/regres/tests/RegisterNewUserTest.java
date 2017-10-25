@@ -38,7 +38,7 @@ public class RegisterNewUserTest {
         userForRegisterNewUser = new UserForRegisterNewUser();
     }
 
-    @AfterClass
+    //@AfterClass
     public void afterTest() throws ClassNotFoundException, SQLException, IOException {
         for (UserForRegisterNewUser u : userForRegisterNewUser.addUserFromExcelToList(file, sheet)) {
             UserForRegisterNewUser.deleteUserInDB(conn, u);
@@ -50,8 +50,8 @@ public class RegisterNewUserTest {
     //test verify that registerNewUser work correctly
     @Test
     public void registerNewUserTest() throws SQLException, IOException, ClassNotFoundException {
-        //get number of users from BD before registration
-        int userInDBBefore = UserForRegisterNewUser.usersInDBQuantity(conn);
+//        //get number of users from BD before registration
+//        int userInDBBefore = UserForRegisterNewUser.usersInDBQuantity(conn);
         //read users from excel and write to list
         List<UserForRegisterNewUser> userList = userForRegisterNewUser.addUserFromExcelToList(file, sheet);
         //register user from list
@@ -60,9 +60,21 @@ public class RegisterNewUserTest {
             registerNewUserPage.clickButtonSend();
             registerNewUserPage = adminhomepage.clickRegisterNewUser();
         }
+        List<UserForRegisterNewUser> userInDB = UserForRegisterNewUser.getListOfUsersInDB(conn);
+        for (UserForRegisterNewUser u:userList){
+            System.out.println(u);
+        }
+        System.out.println("");
+        for (UserForRegisterNewUser u:userInDB){
+            System.out.println(u);
+        }
+        System.out.println("");
+        boolean actual = userList.containsAll(userInDB);
+        System.out.println(actual);
+
         //get number of users from BD after registration
-        int userInDBAfter = UserForRegisterNewUser.usersInDBQuantity(conn);
+        //  int userInDBAfter = UserForRegisterNewUser.usersInDBQuantity(conn);
         //verified that quantity of registered users same as userList size
-        Assert.assertEquals(userList.size(), userInDBAfter-userInDBBefore);
+        //Assert.assertEquals(userList.size(), userInDBAfter - userInDBBefore);
     }
 }

@@ -175,7 +175,7 @@ public class AddNewSubclassTest extends Reports {
 	 * This test verify that user cann't create new subclass with existing name of
 	 * subclass
 	 */
-	//@Test(dataProvider = "L10N")
+	@Test(dataProvider = "L10N")
 	public void checkAddedSubclassWithExistName(ChangeLanguageFields language) {
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
 		test.log(Status.INFO, "Set language");
@@ -214,7 +214,7 @@ public class AddNewSubclassTest extends Reports {
 	 * This test verify that all fields are cleared and don't save in table and DB
 	 * after the clear button is pressed
 	 */
-	//@Test(dataProvider = "L10N")
+	@Test(dataProvider = "L10N")
 	public void checkSuccessfulAddedSubclassClear(ChangeLanguageFields language) {
 		// set language
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
@@ -261,7 +261,7 @@ public class AddNewSubclassTest extends Reports {
 	 * This test verify that user can create new subclass with additional
 	 * parameters. Verify that entered parameters saved in table and DB
 	 */
-	//@Test(dataProvider = "L10N")
+	@Test(dataProvider = "L10N")
 	public void verifySubclassAddition(ChangeLanguageFields language) { // ChangeLanguageFields language
 		// set language
 		addNewSublassPage = addNewSublassPage.setLanguage(language);
