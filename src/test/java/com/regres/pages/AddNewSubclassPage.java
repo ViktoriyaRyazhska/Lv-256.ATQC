@@ -41,8 +41,6 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	public WebElement optionDiscreteParameters;
 	private WebElement errorMessage;
 	private WebElement dropdownOptionByDefault;
-	private Application application;
-	private ApplicationSources applicationSourse;
 
 	String TITLE_ADD_NEW_SUBCLASS_XPATH = "//*[@id='body']/h2";
 	String ENTER_NAME_FIELD_NAME = "typeName";
@@ -196,9 +194,10 @@ public class AddNewSubclassPage extends RegistratorHomePage {
 	}
 
 	public AddNewSubclassPage clickButtonShowParameters() {
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(getButtonShowParameters()));
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		// driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		// new WebDriverWait(driver,
+		// 20).until(ExpectedConditions.elementToBeClickable(getButtonShowParameters()));
+		// driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		getButtonShowParameters().click();
 		return AddNewSubclassPage.get(driver);
 

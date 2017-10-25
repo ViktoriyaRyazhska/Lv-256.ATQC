@@ -37,23 +37,41 @@ public class ResourceTypeDAO {
 	}
 
 	public boolean hasDuplicateSubclass(String enteredNameSubclass) {
-		  boolean hasDuplicate = false;
-		  Session session = HibernateSessionFactory.currentSession();
-		  Transaction tx = session.beginTransaction();
-		  // The default name of the organization is the same as the name of the class.
-		  Query query = session.createQuery("from ResourceTypes where type_name = :subclassName");
-		  query.setParameter("subclassName", enteredNameSubclass);
-		  List<ResourceTypes> resourceTypes = query.list();
+		boolean hasDuplicate = false;
+		Session session = HibernateSessionFactory.currentSession();
+		Transaction tx = session.beginTransaction();
+		// The default name of the organization is the same as the name of the class.
+		Query query = session.createQuery("from ResourceTypes where type_name = :subclassName ");
+		query.setParameter("subclassName", enteredNameSubclass);
+		List<ResourceTypes> resourceTypes = query.list();
 
-		  if (resourceTypes != null && !resourceTypes.isEmpty()) {
-		     if (resourceTypes.size() > 1) {
-		           hasDuplicate = true;
-		     }
-		  }
+		if (resourceTypes != null && !resourceTypes.isEmpty()) {
+			if (resourceTypes.size() > 1) {
+				hasDuplicate = true;
+			}
+		}
 
-		  tx.commit();
-		  HibernateSessionFactory.closeSession();
-		  return hasDuplicate;
-		 }
+		tx.commit();
+		HibernateSessionFactory.closeSession();
+		return hasDuplicate;
+	}
 
+	public String hasDuplicateSubcl(String enteredNameSubclass) {
+
+		Session session = HibernateSessionFactory.currentSession();
+		Transaction tx = session.beginTransaction();
+		// The default name of the organization is the same as the name of the class.
+		Query query = session
+				.createQuery("from ResourceTypes where type_name = :subclassName IS NULL or type_name = '' ");
+		query.setParameter("subclassName", enteredNameSubclass);
+		List<ResourceTypes> resourceTypes = query.list();
+		String typeName = "";
+		if (resourceTypes != null && !resourceTypes.isEmpty()) {
+			typeName = resourceTypes.get(0).getTypeName();
+		}
+
+		tx.commit();
+		HibernateSessionFactory.closeSession();
+		return typeName;
+	}
 }

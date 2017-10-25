@@ -59,19 +59,21 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	public WebElement getAddNewSubclass() {
 		addNewSubclass = driver.findElement(By.xpath(ADD_NEW_SUBCLASS_XPATH));
 		return addNewSubclass;
+
 	}
 
 	public AddNewSubclassPage clickAddNewSubclass() {
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(getAddNewSubclass()));
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		 driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		 new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(getAddNewSubclass()));
+		 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		getAddNewSubclass().click();
 		return AddNewSubclassPage.get(driver);
 	}
 
 	public SubclassesOfObjects clickOnDeleteSubclassButton(NewSubclass sub) {
+		//new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(getOkButton()));
 		getDeleteSubclass(sub).click();
-		new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(getOkButton()));
+		new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(getOkButton()));
 		okButton.click();
 		return SubclassesOfObjects.get(driver);
 	}
@@ -83,9 +85,6 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 	}
 
 	public WebElement getSubclassName(NewSubclass sub) {
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]")));
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		nameSubclass = driver.findElement(By.xpath("//td[contains(., '" + sub.getNameClasses() + "')]"));
 		return nameSubclass;
 	}
@@ -104,7 +103,7 @@ public class SubclassesOfObjects extends RegistratorHomePage {
 			return false;
 		}
 	}
-
+	// return true if there is one subclass name in table
 	public boolean hasUniqueSubclassName(NewSubclass sub) {
 		int count = getSubclassNameCount(sub);
 		if (count == 1) {
