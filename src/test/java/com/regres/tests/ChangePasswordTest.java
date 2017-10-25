@@ -142,7 +142,7 @@ public class ChangePasswordTest {
 	}
 
 	// checking logging in with new passowrd
-	@Test
+	//@Test
 	public void checkNewPassword() {
 		// changing password
 		dropdownHomePage = changePasswordPage.setNewPassword(user.getPassword());
