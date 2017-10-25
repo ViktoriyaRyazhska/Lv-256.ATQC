@@ -14,14 +14,14 @@ public abstract class TitleLocalFooter {
 	
 	String TITLE_FIRST_PART_XPATH = "//div[@class='col-md-7 col-xs-12']/h3[1]";
 	String TITLE_SECOND_PART_XPATH = "//div[@class='col-md-7 col-xs-12']/h3[2]";
-	String LOVALIZATION_DROPDOWN_ID = "changeLanguage";
+	String LOCALIZATION_DROPDOWN_ID = "changeLanguage";
 	String FOOTER_XPATH = "//div[@id='footer']//span";
 	
 	public TitleLocalFooter(WebDriver driver) {		
 		this.driver=driver;
 		titleFirstPart = driver.findElement(By.xpath(TITLE_FIRST_PART_XPATH));
 		titleSecondPart = driver.findElement(By.xpath(TITLE_SECOND_PART_XPATH));
-		localization_dropdown= driver.findElement(By.id(LOVALIZATION_DROPDOWN_ID));
+		//localization_dropdown= driver.findElement(By.id(LOCALIZATION_DROPDOWN_ID));
 		footer= driver.findElement(By.xpath(FOOTER_XPATH));
 	}
 	
@@ -30,12 +30,10 @@ public abstract class TitleLocalFooter {
 		
 		return footer;
 	}
-	
-	public WebElement getLocalizationDropdown(){
-		
-		return localization_dropdown;
+	public WebElement getLocalizationDropdown() {
+		return driver.findElement(By.id(LOCALIZATION_DROPDOWN_ID));
 	}
-	
+		
 	/**
 	 * 
 	 * @return Text of the title(composed from two parts)
