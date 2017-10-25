@@ -2,6 +2,7 @@ package com.regres.tests;
 
 import java.util.List;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -26,7 +27,7 @@ public class SearchResourcesByParametersTest {
 	@BeforeClass
 	public void setUp() {
 		// start application with firefox browser
-		app = Application.get(ApplicationSourcesRepo.getFirefoxHerokuApplication());
+		app = Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		// app =
 		// Application.get(ApplicationSourcesRepo.getChromeHerokuApplication());
 		// go to login page
@@ -35,20 +36,43 @@ public class SearchResourcesByParametersTest {
 		reghomepage = loginpage.successfullLoginRegistrator(UserContainer.getRegistrator());	
 	}
 	
+//	@Test
+//	public void firstTest(){
+//		search = reghomepage.clickResourcesSearch();
+//		res = search.clickSearchByParameterButton();
+//		res.selectGroundResources();
+//		res.clickSearchButton();
+//		List<ResourcesTable> table = res.getListOfResourcesFromTable();
+//		String field = res.getResourcesField(table).getSubclass();
+//		Assert.assertEquals(field,"земельний");
+//		
+//	}
+	
+//	@Test
+//	public void haresTest(){
+//		search = reghomepage.clickResourcesSearch();
+//		res = search.clickSearchByParameterButton();
+//		res.selectGroundResources();
+//		res.clickSearchButton();
+//		List<ResourcesTable> table = res.getListOfResourcesFromTable();
+//		String field = res.getResourcesField(table).getSubclass();
+//		Assert.assertEquals(field,"зайці");
+//	}
+	
 	@Test
-	public void firstTest(){
+	public void waterTest() {
 		search = reghomepage.clickResourcesSearch();
 		res = search.clickSearchByParameterButton();
-		res.selectItalyResources();
+		res.selectWaterResources();
 		res.clickSearchButton();
-		//List<ResourcesTable> table = res.getListOfResourcesFromTable();
-		
-	
+		List<ResourcesTable> table = res.getListOfResourcesFromTable();
+		String field = res.getResourcesField(table).getSubclass();
+		Assert.assertEquals(field,"Water");
 	}
 	
 	@AfterClass
 	public void tearDown() {
-		//res.clickLogout();
+		res.clickLogout();
 		app.quit();
 	}
 

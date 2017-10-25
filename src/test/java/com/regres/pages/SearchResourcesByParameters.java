@@ -80,14 +80,16 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 										// driver.findElement(By.id(SELECT_SUBCLASS_DROPDOWN_ID));
 		searchButton = driver.findElement(By.id(SEARCH_BUTTON_ID));
 		showAllButton = driver.findElement(By.id(SHOW_ALL_BUTTON_ID));
-		perimeterDropdown = driver.findElement(By.xpath(PERIMETER_DROPDOWN_XPATH));
+		perimeterDropdown = driver.findElement(By
+				.xpath(PERIMETER_DROPDOWN_XPATH));
 		perimeterInput = driver.findElement(By.xpath(PERIMETER_INPUT_XPATH));
 		areaDropdown = driver.findElement(By.xpath(AREA_DROPDOWN_XPATH));
 		areaInput = driver.findElement(By.xpath(AREA_INPUT_XPATH));
 	}
 
 	public WebElement getSelectSubclassDropdown() {
-		return selectSubclassDropdown = driver.findElement(By.id(SELECT_SUBCLASS_DROPDOWN_ID));
+		return selectSubclassDropdown = driver.findElement(By
+				.id(SELECT_SUBCLASS_DROPDOWN_ID));
 	}
 
 	public WebElement getSearchButton() {
@@ -187,7 +189,7 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 		new Select(selectSubclassDropdown).selectByVisibleText("Water");
 		// return new SearchResourcesByParameters(driver);
 	}
-
+	
 	public void selectPerimeterLess() {
 		new Select(perimeterDropdown).selectByVisibleText("<");
 	}
@@ -238,9 +240,12 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 
 	public void clickSelectWaterResources() {
 		selectWaterResources();
-		waterVolumeDropdown = driver.findElement(By.xpath(WATER_VOLUME_DROPDOWN_XPATH));
-		waterVolumeInput = driver.findElement(By.xpath(WATER_VOLUME_INPUT_XPATH));
-		waterAreaDropdown = driver.findElement(By.xpath(WATER_AREA_DROPDOWN_XPATH));
+		waterVolumeDropdown = driver.findElement(By
+				.xpath(WATER_VOLUME_DROPDOWN_XPATH));
+		waterVolumeInput = driver.findElement(By
+				.xpath(WATER_VOLUME_INPUT_XPATH));
+		waterAreaDropdown = driver.findElement(By
+				.xpath(WATER_AREA_DROPDOWN_XPATH));
 		waterAreaInput = driver.findElement(By.xpath(WATER_AREA_INPUT_XPATH));
 	}
 
@@ -271,8 +276,10 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 	public void clickShowAll() {
 
 		clickShowAllButton();
-		showEntriesDropdown = driver.findElement(By.name(SHOW_ENTRIES_DROPDOWN_ID));
-		searchInTableInput = driver.findElement(By.xpath(SEARCH_IN_TABLE_INPUT));
+		showEntriesDropdown = driver.findElement(By
+				.name(SHOW_ENTRIES_DROPDOWN_ID));
+		searchInTableInput = driver
+				.findElement(By.xpath(SEARCH_IN_TABLE_INPUT));
 		nextButton = driver.findElement(By.id(NEXT_BUTTON));
 		previousButton = driver.findElement(By.id(PREVIOUS_BUTTON));
 	}
@@ -292,14 +299,17 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 	public void select100EntriesDropdown() {
 		new Select(showEntriesDropdown).selectByVisibleText("100");
 	}
+	
 
 	public List<WebElement> getAllTableBodyRows() {
-		List<WebElement> rows_collection = driver.findElements(By.xpath(TABLE_BODY_ROWS));
+		List<WebElement> rows_collection = driver.findElements(By
+				.xpath(TABLE_BODY_ROWS));
 		return rows_collection;
 	}
 
 	public List<WebElement> getAlltableBodyCell() {
-		List<WebElement> cell_collection = driver.findElements(By.xpath(TABLE_BODY_CELL));
+		List<WebElement> cell_collection = driver.findElements(By
+				.xpath(TABLE_BODY_CELL));
 		return cell_collection;
 	}
 
@@ -307,9 +317,10 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 		return getAlltableBodyCell().size();
 	}
 
-//	public ResurcesTable getSearchParameter(List<UserForSerchTableTest> resourcesList) {
-//		return resourcesList.;
-//	}
+	//public ResourcesTable getResourcesField(List<ResourcesTable> resourcesList) {
+	 public ResourcesTable getResourcesField(List<ResourcesTable> resourcesList) {
+			return resourcesList.get(0);
+	}
 
 	public boolean waitWhileScriptsExecute() {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -318,7 +329,8 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				try {
-					return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
+					return ((Long) ((JavascriptExecutor) driver)
+							.executeScript("return jQuery.active") == 0);
 				} catch (Exception e) {
 					// no jQuery present
 					return true;
@@ -328,7 +340,8 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 		// wait for Javascript to load
 		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+				return ((JavascriptExecutor) driver)
+						.executeScript("return document.readyState").toString()
 						.equals("complete");
 			}
 		};
@@ -341,8 +354,10 @@ public class SearchResourcesByParameters extends ResourcesSearchPage {
 			List<WebElement> celllist = getAlltableBodyCell();
 			int count = getTableBodyCellsCount();
 			for (int j = 0; j <= count - 8; j = j + 8) {
-				resourcesList.add(new ResourcesTable(celllist.get(j + 0).getText(), celllist.get(j + 1).getText(),
-						celllist.get(j + 2).getText(), celllist.get(j + 3).getText(), celllist.get(j + 4).getText()));
+				resourcesList.add(new ResourcesTable(celllist.get(j + 0)
+						.getText(), celllist.get(j + 1).getText(), celllist
+						.get(j + 2).getText(), celllist.get(j + 3).getText(),
+						celllist.get(j + 4).getText()));
 			}
 			return resourcesList;
 		} else {
