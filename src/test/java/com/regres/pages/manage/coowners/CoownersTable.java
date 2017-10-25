@@ -291,12 +291,7 @@ public class CoownersTable extends AdminHomePage {
         // wait for jQuery to load
         ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
-                try {
                     return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
-                } catch (Exception e) {
-                    // no jQuery present
-                    return true;
-                }
             }
         };
 

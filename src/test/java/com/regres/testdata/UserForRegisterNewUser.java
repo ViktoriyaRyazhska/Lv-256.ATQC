@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -286,16 +287,24 @@ public class UserForRegisterNewUser {
     public static void deleteUserInDB(Connection conn, UserForRegisterNewUser userDB) throws SQLException, ClassNotFoundException {
         Statement s = conn.createStatement();
         String foreignCheckNull = "SET FOREIGN_KEY_CHECKS=0";
-        s.addBatch(foreignCheckNull);
-        s.executeBatch();
+        s.execute(foreignCheckNull);
+        if (s != null) s.close();
 
-
-       // String foreignCheckNull = "SET FOREIGN_KEY_CHECKS=0";
         String deleteUser = "Delete from registrator_db.users where login=(?)";
         PreparedStatement st = (PreparedStatement) conn.prepareStatement(deleteUser);
         st.setString(1, userDB.getLogin());
         st.executeUpdate();
-//		st.close();
+        if (st != null) st.close();
+    }
+
+    public static int usersInDBQuantity(Connection conn) throws SQLException, ClassNotFoundException {
+        Statement s = conn.createStatement();
+        ResultSet rs = s.executeQuery("select count(*) from registrator_db.users");
+        int count = 0;
+        while (rs.next()) {
+            count = rs.getInt("count(*)");
+        }
+        return count;
     }
 }
 

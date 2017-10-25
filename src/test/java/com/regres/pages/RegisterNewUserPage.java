@@ -290,6 +290,7 @@ public final class RegisterNewUserPage extends AdminHomePage{
         setConfirmPassword(userForRegisterNewUser.getConfirmPassword());
         setCity(userForRegisterNewUser.getCity());
         setRegion(userForRegisterNewUser.getRegion());
+        setStreet(userForRegisterNewUser.getStreet());
         setDistrict(userForRegisterNewUser.getDistrict());
         setBuilding(userForRegisterNewUser.getBuilding());
         setFlat(userForRegisterNewUser.getFlat());

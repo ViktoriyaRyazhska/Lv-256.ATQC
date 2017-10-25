@@ -4,11 +4,11 @@ import com.regres.application.Application;
 import com.regres.application.ApplicationSources;
 import com.regres.application.ApplicationSourcesRepo;
 import com.regres.pages.AdminHomePage;
-import com.regres.pages.CoownerHomePage;
 import com.regres.pages.LoginPage;
 import com.regres.pages.RegisterNewUserPage;
 import com.regres.testdata.UserContainer;
 import com.regres.testdata.UserForRegisterNewUser;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,14 +18,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class RegisterNewUserTest {
     private Application app;
     private AdminHomePage adminhomepage;
-    Connection conn;
-    RegisterNewUserPage registerNewUserPage;
-    UserForRegisterNewUser userForRegisterNewUser;
+    private Connection conn;
+    private RegisterNewUserPage registerNewUserPage;
+    private UserForRegisterNewUser userForRegisterNewUser;
     private String sheet = "sheet1";
     private File file = new File("UsersForRegisteredTest.xlsx");
 
@@ -36,7 +35,7 @@ public class RegisterNewUserTest {
         LoginPage loginpage = app.load();
         adminhomepage = loginpage.successfullLoginAdmin(UserContainer.getAdmin());
         registerNewUserPage = adminhomepage.clickRegisterNewUser();
-        userForRegisterNewUser=new UserForRegisterNewUser();
+        userForRegisterNewUser = new UserForRegisterNewUser();
     }
 
     @AfterClass
@@ -48,14 +47,22 @@ public class RegisterNewUserTest {
         app.quit();
     }
 
+    //test verify that registerNewUser work correctly
     @Test
-    public void searchInTableByFirstName() throws SQLException, IOException {
-        app.getDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        List<UserForRegisterNewUser> userDBList = userForRegisterNewUser.addUserFromExcelToList(file, sheet);
-        for (UserForRegisterNewUser u : userDBList) {
-            registerNewUserPage.registerNewUser(u);
+    public void registerNewUserTest() throws SQLException, IOException, ClassNotFoundException {
+        //get number of users from BD before registration
+        int userInDBBefore = UserForRegisterNewUser.usersInDBQuantity(conn);
+        //read users from excel and write to list
+        List<UserForRegisterNewUser> userList = userForRegisterNewUser.addUserFromExcelToList(file, sheet);
+        //register user from list
+        for (UserForRegisterNewUser user : userList) {
+            registerNewUserPage.registerNewUser(user);
             registerNewUserPage.clickButtonSend();
             registerNewUserPage = adminhomepage.clickRegisterNewUser();
         }
+        //get number of users from BD after registration
+        int userInDBAfter = UserForRegisterNewUser.usersInDBQuantity(conn);
+        //verified that quantity of registered users same as userList size
+        Assert.assertEquals(userList.size(), userInDBAfter-userInDBBefore);
     }
 }
