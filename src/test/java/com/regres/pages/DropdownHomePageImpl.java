@@ -23,9 +23,9 @@ public class DropdownHomePageImpl extends DropdownHomePage {
 	 */
 	public DropdownHomePageImpl(WebDriver driver) {
 		super(driver);
-		homeButton = driver.findElement(By.xpath(HOME_BUTTON_LOCATOR));
-		userName = driver.findElement(By.cssSelector(USER_NAME_LOCATOR));
-		menuDownButton = driver.findElement(By.cssSelector(MENU_DOWN_BUTTON_LOCATOR));
+//		homeButton = driver.findElement(By.xpath(HOME_BUTTON_LOCATOR));
+//		userName = driver.findElement(By.cssSelector(USER_NAME_LOCATOR));
+//		menuDownButton = driver.findElement(By.cssSelector(MENU_DOWN_BUTTON_LOCATOR));
 	}
 
 	/**
@@ -38,9 +38,9 @@ public class DropdownHomePageImpl extends DropdownHomePage {
 	 */
 	public DropdownHomePageImpl(WebDriver driver, WebElement message) {
 		super(driver);
-		homeButton = driver.findElement(By.xpath(HOME_BUTTON_LOCATOR));
-		userName = driver.findElement(By.cssSelector(USER_NAME_LOCATOR));
-		menuDownButton = driver.findElement(By.cssSelector(MENU_DOWN_BUTTON_LOCATOR));
+//		homeButton = driver.findElement(By.xpath(HOME_BUTTON_LOCATOR));
+//		userName = driver.findElement(By.cssSelector(USER_NAME_LOCATOR));
+//		menuDownButton = driver.findElement(By.cssSelector(MENU_DOWN_BUTTON_LOCATOR));
 		this.message = message;
 	}
 

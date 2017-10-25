@@ -1,4 +1,4 @@
-package com.regres.application;
+package com.regres.entities;
 
 import java.io.File;
 
@@ -20,8 +20,7 @@ public class HibernateSessionFactory {
 		if (session == null) {
 			if (sessionFactory == null) {
 				try {
-					cfg.configure(new File(CONFIG_FILE_LOCATION));
-					cfg.addDirectory(new File("resources/hbm"));
+					cfg.configure();
 					ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 							.applySettings(cfg.getProperties()).build();
 					sessionFactory = cfg.buildSessionFactory(serviceRegistry);

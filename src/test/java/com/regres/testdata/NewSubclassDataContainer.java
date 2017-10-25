@@ -26,6 +26,7 @@ public class NewSubclassDataContainer {
 		newSubclass.setUnitOfMeasurement(properties.getProperty("EXIST_UNIT_OF_MEASUREMENT"));
 		return newSubclass;
 	}
+
 	public static NewSubclass getAttributeValue() {
 		Properties properties = readProperties("resources/new_subclass.properties");
 		NewSubclass newSubclass = new NewSubclass();
@@ -36,15 +37,16 @@ public class NewSubclassDataContainer {
 	// Method returns list of NewSubclasses retrieved from properties files
 	public static List<NewSubclass> getValidData() {
 		Properties properties = readProperties("resources/new_subclass.properties");
-		
-		// Read multiple values from property file and split the result by comma separator
+
+		// Read multiple values from property file and split the result by comma
+		// separator
 		String[] validSubclassNames = properties.getProperty("VALID_NAME_SUBCLASSES").split(",");
 		String[] validParameterDescriptions = properties.getProperty("VALID_PARAMETER_DESCRIPTION").split(",");
 		String[] validUnitsOfMeasurements = properties.getProperty("VALID_UNIT_OF_MEASUREMENT").split(",");
-		
+
 		// Create new list to contain data that will be returned from this method
 		List<NewSubclass> subclasses = new ArrayList<>();
-	
+
 		// Read values and add them to the list
 		for (int i = 0; i < validSubclassNames.length; i++) {
 			NewSubclass newSubclass = new NewSubclass();
@@ -54,10 +56,11 @@ public class NewSubclassDataContainer {
 			newSubclass.setNameClasses(subclassName);
 			newSubclass.setParameterDescription(parameterDescription);
 			newSubclass.setUnitOfMeasurement(unitOfMeasurements);
-			
+		
+
 			subclasses.add(newSubclass);
 		}
-		
+
 		return subclasses;
 	}
 
