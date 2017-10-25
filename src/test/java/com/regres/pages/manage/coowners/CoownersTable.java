@@ -45,7 +45,7 @@ public class CoownersTable extends AdminHomePage {
     private String ROLE_COLUMN_ID = "inputIndex6";
 
     // table columns second row search
-    String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[1]/td[2]";
+    String FIRST_NAME_FIRST_XPATH = ".//tbody/tr[5]/td[2]";
     String LAST_NAME_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[3]";
     String LOGIN_SEARCH_FIRST_XPATH = ".//tbody/tr[1]/td[4]";
     String COMMUNITY_SEARCHN_FIRST_XPATH = ".//tbody/tr[1]/td[5]";
@@ -402,7 +402,7 @@ public class CoownersTable extends AdminHomePage {
         return userList1.equals(userList2);
     }
 
-    public void ClickFirstNameFirstRow() {
+    public void clickFirstNameFirstRow() {
         (new WebDriverWait(driver, 40))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(FIRST_NAME_FIRST_XPATH)));
         getFirstNameFirstRow().click();
@@ -414,7 +414,7 @@ public class CoownersTable extends AdminHomePage {
         ClickSearchButton();
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(PREV_BUTTON_ID)));
         getLoginColumn().clear();
-        ClickFirstNameFirstRow();
+        clickFirstNameFirstRow();
     }
 
     //methods to compare two object lists by FirstName

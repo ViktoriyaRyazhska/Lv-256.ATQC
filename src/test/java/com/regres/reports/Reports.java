@@ -29,7 +29,7 @@ public class Reports {
 
 		report = new ExtentReports();
 		ExtentHtmlReporter htmlreporter = new ExtentHtmlReporter(System.getProperty("user.dir")
-				+ "/test-output/extent-reports/" + formater.format(calendar.getTime()) + ".html"); // setting
+				+ "/test-output/" + formater.format(calendar.getTime()) + ".html"); // setting
 																									// report
 																									// directory
 

@@ -1,8 +1,10 @@
 package com.regres.pages.manage.coowners.actions;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,7 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.regres.pages.ConfirmMessagePage;
 import com.regres.pages.OhErrorPage;
-import com.regres.pages.TitleLocalFooter.ChangeLanguageFields;
 import com.regres.pages.manage.coowners.CoownersTable;
 
 public class ActiveCoownersActionsDropdown extends CoownersTable {
@@ -24,15 +25,18 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	String REGISTRATOR_ROLE_XPATH = "//a[@val=\"REGISTRATOR\"]";
 	String COOWNER_ROLE_XPATH = "//a[@val=\"USER\"]";
 	String COMMISSIONER_ROLE_XPATH = "//a[@val=\"COMMISSIONER\"]";
+	String COMUNITIES_LOCATOR = "//a[href $= 'show-all-communities']";
 
 	By communitiesName = By.className(".communName");
 	private ConfirmMessagePage confirmMessage;
 
+	WebDriverWait wait;
+	
 	// Locators for Confirm message window
 	String CONFIRM_BUTTON_CSSSELECTOR = ".submit.btn.btn-success";
 	// String CONFIRM_BUTTON_XPATH=
 	// "//*[@id='userCommunitySelectModal']/div/div/div[3]/button[2]";
-	String DROPDOWN_INPUT_CSSSELECTOR = ".autocomplete-suggestion.autocomplete-selected";
+	String DROPDOWN_INPUT_CSSSELECTOR = "body div.autocomplete-suggestions div.autocomplete-suggestion.autocomplete-selected";
 	String CLOSE_BUTTON_CLASS_NAME = "close";
 	String CANSEL_BUTTON_CSSSELECTOR = ".btn.btn-info";
 	String TITLE_MESSAGE_CLASS_NAME = "modal-title";
@@ -42,6 +46,7 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 
 	public ActiveCoownersActionsDropdown(WebDriver driver) {
 		super(driver);
+
 	}
 
 	public void clickActionsDropdown() {
@@ -185,6 +190,7 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	public void sendValueInInputField(String value) {
 		clickInputField();
 		getInputField().sendKeys(value);
+		getInputField().click();
 		clickDropdownInput();
 	}
 
@@ -205,12 +211,37 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 		confirmMessage = new ConfirmMessagePage(driver);
 		getConfirmButton().click();
 		initConfMessage();
-//		confirm.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
-//		confirm.setTitleMessage(driver.findElement(By.className("bootbox-body")));
+		// confirm.setOkButton(driver.findElement(By.xpath("//button[@data-bb-handler='ok']")));
+		// confirm.setTitleMessage(driver.findElement(By.className("bootbox-body")));
 		new WebDriverWait(driver, 10)
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bb-handler='ok']")));
 	}
 
+	public ActiveCoownersActionsDropdown clickConfirmButtonNew() {
+		getConfirmButton().click();
+		new WebDriverWait(driver, 10)
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bb-handler='ok']")));
+		clickButton();
+		driver.navigate().refresh();
+		return new ActiveCoownersActionsDropdown(driver);
+	}
+
+	public WebElement getClickButton() {
+		return driver.findElement(By.xpath("//button[@data-bb-handler='ok']"));
+	}
+
+	public void clickButton() {
+		getClickButton().click();
+	}
+	public ActiveCoownersActionsDropdown assignCommunityToFirstUserInRow(String communityName) {
+		clickFirstNameFirstRow();
+		clickActionsDropdown();
+		clickSetCommunity();
+		clickInputField();
+		sendValueInInputField(communityName);
+		clickConfirmButtonNew();
+		return new ActiveCoownersActionsDropdown(driver);
+	}
 	public WebElement getCancelButton() {
 		return driver.findElement(By.cssSelector(CANSEL_BUTTON_CSSSELECTOR));
 	}
@@ -232,7 +263,9 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 	}
 
 	public void clickDropdownInput() {
+	
 		getDropdownInput().click();
+		
 	}
 
 	// Business Logic
@@ -246,10 +279,10 @@ public class ActiveCoownersActionsDropdown extends CoownersTable {
 
 	public static enum LoginPageL10n {
 		CONFIRM_MESSAGE_WHEN_DONOT_CHOSEN_COOWNER(
-				"Для виконання даної операції спочатку потрібно вибрати співвласників, "
-						+ "натиснувши на відповідні стрічки в таблиці",
-				"Для выполнения данной операции сначала нужно выбрать совладельцев, "
-						+ "нажав на соответствующие строки в таблице",
+				"Ð”Ð»Ñ� Ð²Ð¸ÐºÐ¾Ð½Ð°Ð½Ð½Ñ� Ð´Ð°Ð½Ð¾Ñ— Ð¾Ð¿ÐµÑ€Ð°Ñ†Ñ–Ñ— Ñ�Ð¿Ð¾Ñ‡Ð°Ñ‚ÐºÑƒ Ð¿Ð¾Ñ‚Ñ€Ñ–Ð±Ð½Ð¾ Ð²Ð¸Ð±Ñ€Ð°Ñ‚Ð¸ Ñ�Ð¿Ñ–Ð²Ð²Ð»Ð°Ñ�Ð½Ð¸ÐºÑ–Ð², "
+						+ "Ð½Ð°Ñ‚Ð¸Ñ�Ð½ÑƒÐ²ÑˆÐ¸ Ð½Ð° Ð²Ñ–Ð´Ð¿Ð¾Ð²Ñ–Ð´Ð½Ñ– Ñ�Ñ‚Ñ€Ñ–Ñ‡ÐºÐ¸ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ–",
+				"Ð”Ð»Ñ� Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ� Ð´Ð°Ð½Ð½Ð¾Ð¹ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ñ�Ð½Ð°Ñ‡Ð°Ð»Ð° Ð½ÑƒÐ¶Ð½Ð¾ Ð²Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ñ�Ð¾Ð²Ð»Ð°Ð´ÐµÐ»ÑŒÑ†ÐµÐ², "
+						+ "Ð½Ð°Ð¶Ð°Ð² Ð½Ð° Ñ�Ð¾Ð¾Ñ‚Ð²ÐµÑ‚Ñ�Ñ‚Ð²ÑƒÑŽÑ‰Ð¸Ðµ Ñ�Ñ‚Ñ€Ð¾ÐºÐ¸ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ",
 				"To perform this operation you must first select coowners"
 						+ " by clicking on the appropriate rows in the table");
 
