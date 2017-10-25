@@ -130,6 +130,16 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 		}
 		return new CoownersElementsOnPageDropdown(driver);
 	}
+	
+	public int allPages(){
+		int count = 0;
+		for (int i = 0; i < getPaginationSize();i++){
+			clickNextButton();
+			this.clickUserName();
+			count = getTableBodyRowsCount();
+		}
+		return count;
+	}
 
 	// change language
 	@Override
@@ -143,13 +153,13 @@ public class CoownersElementsOnPageDropdown extends CoownersTable {
 	// Localization enum
 	public static enum pageL10n {
 		DROPDOWN_LABEL("елементів на сторінку", "элементов на страницу", "elements on page"), 
-		EXAMPLE_INFO10("10 із 52","10 из 52", "10 of 52"), 
-		EXAMPLE_INFO20("20 із 52", "20 из 52", "20 of 52"), 
-		EXAMPLE_INFO30("30 із 52","30 из 52", "30 of 52"), 
-		EXAMPLE_INFO40("40 із 52", "40 из 52", "40 of 52"), 
-		EXAMPLE_INFO50("50 із 52", "50 из 52","50 of 52"), 
-		EXAMPLE_INFO25("25 із 52", "25 из 52", "25 of 52"), 
-		EXAMPLE_INFO100("52 із 52", "52 из 52", "52 of 52"), 
+		EXAMPLE_INFO10("із","из","of"), 
+//		EXAMPLE_INFO20("20 із 52", "20 из 52", "20 of 52"), 
+//		EXAMPLE_INFO30("30 із 52","30 из 52", "30 of 52"), 
+//		EXAMPLE_INFO40("40 із 52", "40 из 52", "40 of 52"), 
+//		EXAMPLE_INFO50("50 із 52", "50 из 52","50 of 52"), 
+//		EXAMPLE_INFO25("25 із 52", "25 из 52", "25 of 52"), 
+//		EXAMPLE_INFO100("52 із 52", "52 из 52", "52 of 52"), 
 		PREVIOUS_BUTTON("Попер.", "Пред.","Prev"),
 		NEXT_BUTTON("Наст.", "След.", "Next");
 
