@@ -9,24 +9,24 @@ import org.openqa.selenium.WebElement;
  * New Community page, so it extends the last one.
  */
 
-public class EditCommunityPage2 extends AdminHomePage {
+public class EditCommunityPage extends AdminHomePage {
 	String COMMUNITIES_NAME_FILED_NAME = "name";
 	String REG_NUMBER_FILED_NAME = "registrationNumber";
 	String SUBMIT_BUTTON_XPATH = "//input[@type='submit']";
 	String EDIT_COMMUNITY_LABEL = "//h2";
 
 	
-	private static volatile EditCommunityPage2 instance = null;
+	private static volatile EditCommunityPage instance = null;
 
-	public EditCommunityPage2(WebDriver driver) {
+	public EditCommunityPage(WebDriver driver) {
 		super(driver);
 	}
 
-	public static EditCommunityPage2 get(WebDriver driver) {
+	public static EditCommunityPage get(WebDriver driver) {
 		if (instance == null) {
-			synchronized (EditCommunityPage2.class) {
+			synchronized (EditCommunityPage.class) {
 				if (instance == null) {
-					instance = new EditCommunityPage2(driver);
+					instance = new EditCommunityPage(driver);
 				}
 			}
 		}
@@ -55,12 +55,12 @@ public class EditCommunityPage2 extends AdminHomePage {
 	// method clears filled fields from previously created community and fills
 	// it with new data
 	// after what submits changes
-	public AdminCommunitiesPage2 editCreatedCommunities(String communityName2, String regNumber2) {
+	public AdminCommunitiesPage editCreatedCommunities(String communityName2, String regNumber2) {
 		getCommunitiesName().clear();
 		getCommunitiesName().sendKeys(communityName2);
 		getCommunitiesRegistrationNumber().clear();
 		getCommunitiesRegistrationNumber().sendKeys(regNumber2);
 		getSubmitButton().click();
-		return AdminCommunitiesPage2.get(driver);
+		return AdminCommunitiesPage.get(driver);
 	}
 }
