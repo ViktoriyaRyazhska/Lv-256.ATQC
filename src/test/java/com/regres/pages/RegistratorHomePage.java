@@ -15,6 +15,9 @@ public class RegistratorHomePage extends DropdownHomePage {
 
 	public RegistratorHomePage(WebDriver driver) {
 		super(driver);
+		resourcesSearch = driver.findElement(By.cssSelector(RESOURCES_SEARCH_LOCATOR));
+		subclassesOfObjects = driver.findElement(By.xpath(SUBCLASSES_OF_OBJECT_LOCATOR));
+		
 	}
 
 	public WebElement getResourcesSearch() {
