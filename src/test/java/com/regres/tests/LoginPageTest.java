@@ -1,6 +1,7 @@
 package com.regres.tests;
 
 import org.testng.Assert;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;

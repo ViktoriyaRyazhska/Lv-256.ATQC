@@ -35,13 +35,11 @@ public class DropdownHomePage extends TitleLocalFooter {
 	 */
 	public DropdownHomePage(WebDriver driver) {
 		super(driver);
-		homeButton = driver.findElement(By.xpath(HOME_BUTTON_LOCATOR));
-		userName = driver.findElement(By.cssSelector(USER_NAME_LOCATOR));
-		menuDownButton = driver.findElement(By.cssSelector(MENU_DOWN_BUTTON_LOCATOR));
 	}
-/**
- * clicks on dropdown menu and initiates dropdown elements
- */
+
+	/**
+	 * clicks on dropdown menu and initiates dropdown elements
+	 */
 	public void clickMenuDownButton() {
 		getMenuDownButton().click();
 		changePassword = driver.findElement(By.cssSelector(CHANGE_PASSWORD_LOCATOR));
@@ -51,6 +49,7 @@ public class DropdownHomePage extends TitleLocalFooter {
 
 	// Getters and Setters
 	public WebElement getHomeButton() {
+		homeButton = driver.findElement(By.xpath(HOME_BUTTON_LOCATOR));
 		return homeButton;
 	}
 
@@ -59,6 +58,7 @@ public class DropdownHomePage extends TitleLocalFooter {
 	}
 
 	public WebElement getUserName() {
+		userName = driver.findElement(By.cssSelector(USER_NAME_LOCATOR));
 		return userName;
 	}
 
@@ -83,6 +83,7 @@ public class DropdownHomePage extends TitleLocalFooter {
 	}
 
 	public WebElement getMenuDownButton() {
+		menuDownButton = driver.findElement(By.cssSelector(MENU_DOWN_BUTTON_LOCATOR));
 		return menuDownButton;
 	}
 

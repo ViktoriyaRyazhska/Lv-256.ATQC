@@ -13,9 +13,23 @@ import com.regres.pages.LoginPage;
 public class Application {
 
 	private WebDriver driver;
-	private ApplicationSources applicationSources;
+	public ApplicationSources applicationSources;
+	public Application application;
+	
+	public Application getApplication() {
+	 return application;
+	}
 
-	private Application(ApplicationSources applicationSources) {
+
+	public Application(ApplicationSources applicationSources) {
+		this.applicationSources = applicationSources;
+	}
+
+	public ApplicationSources getApplicationSources() {
+		return applicationSources;
+	}
+
+	public void setApplicationSources(ApplicationSources applicationSources) {
 		this.applicationSources = applicationSources;
 	}
 
