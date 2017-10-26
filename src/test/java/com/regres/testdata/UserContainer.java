@@ -25,7 +25,7 @@ public class UserContainer {
 	 */
 	public static User getRegistrator() {
 
-		return User.get().setLogin("registrator").setPassword("registrator").build();
+		return User.get().setLogin("andriy97").setPassword("andriy97").build();
 	}
 
 	/**
