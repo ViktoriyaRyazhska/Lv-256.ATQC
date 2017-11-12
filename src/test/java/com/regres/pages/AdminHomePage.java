@@ -150,22 +150,20 @@ public class AdminHomePage extends CommissionerWithRegistrationHomePage {
         this.closeButtonUnblockAllCoowners.click();
     }
 
-    // click on 'OK' button on confirm Unblock all coowners
-    public AdminHomePage clickOkButtonOnConfirmUnblockAllCoowners() {
-        this.okButtonUnblockAllCoowners.click();
-        return new AdminHomePage(driver);
-    }
-
-    //click on 'Communities' tab
-    public AdminCommunitiesPage2 clickCommunities() {
-        getCommunityButtonMain().click();
-        return AdminCommunitiesPage2.get(driver);
-    }
-
-    public AdminCommunitiesPage clickCommunities2() {
-        this.communities.click();
-        return new AdminCommunitiesPage(driver);
-    }
+	// click on 'OK' button on confirm Unblock all coowners
+	public AdminHomePage clickOkButtonOnConfirmUnblockAllCoowners() {
+		this.okButtonUnblockAllCoowners.click();
+		return new AdminHomePage(driver);
+	}
+  //click on 'Communities' tab
+		public AdminCommunitiesPage clickCommunities() {
+			getCommunityButtonMain().click();
+			return AdminCommunitiesPage.get(driver);
+		}
+		public AdminCommunitiesPageOld clickCommunities2() {
+			this.communities.click();
+			return new AdminCommunitiesPageOld(driver);
+		}
 
     // Business Logic
     @Override

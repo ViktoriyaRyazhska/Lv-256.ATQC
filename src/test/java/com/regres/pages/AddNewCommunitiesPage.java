@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddNewCommunitiesPage2 extends AdminHomePage {
+public class AddNewCommunitiesPage extends AdminHomePage {
 
 	String COMMUNITIES_NAME_FILED_NAME = "name";
 	String REG_NUMBER_FILED_NAME = "registrationNumber";
@@ -16,17 +16,17 @@ public class AddNewCommunitiesPage2 extends AdminHomePage {
 	String REGISTRATION_NUMBER_ERROR_ID = "registrationNumber.errors";
 
 	
-	private static volatile AddNewCommunitiesPage2 instance = null;
+	private static volatile AddNewCommunitiesPage instance = null;
 
-	public AddNewCommunitiesPage2(WebDriver driver) {
+	public AddNewCommunitiesPage(WebDriver driver) {
 		super(driver);
 	}
 
-	public static AddNewCommunitiesPage2 get(WebDriver driver) {
+	public static AddNewCommunitiesPage get(WebDriver driver) {
 		if (instance == null) {
-			synchronized (AddNewCommunitiesPage2.class) {
+			synchronized (AddNewCommunitiesPage.class) {
 				if (instance == null) {
-					instance = new AddNewCommunitiesPage2(driver);
+					instance = new AddNewCommunitiesPage(driver);
 				}
 			}
 		}
@@ -109,13 +109,13 @@ public class AddNewCommunitiesPage2 extends AdminHomePage {
 	}
 
 	// method that creates new community
-	public AdminCommunitiesPage2 createNewCommunities(String communityName, String regNumber) {
+	public AdminCommunitiesPage createNewCommunities(String communityName, String regNumber) {
 		getCommunitiesName().clear();
 		getCommunitiesName().sendKeys(communityName);
 		getCommunitiesRegistrationNumber().clear();
 		getCommunitiesRegistrationNumber().sendKeys(regNumber);
 		clickSubmitButton();
-		return AdminCommunitiesPage2.get(driver);
+		return AdminCommunitiesPage.get(driver);
 	}
 
 	// method that fills communities name and reg number

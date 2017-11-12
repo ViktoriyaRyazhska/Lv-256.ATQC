@@ -22,8 +22,8 @@ public abstract class TitleLocalFooter {
 		titleFirstPart = driver.findElement(By.xpath(TITLE_FIRST_PART_XPATH));
 		titleSecondPart = driver.findElement(By.xpath(TITLE_SECOND_PART_XPATH));
 		//localization_dropdown= driver.findElement(By.id(LOCALIZATION_DROPDOWN_ID));
-		footer= driver.findElement(By.xpath(FOOTER_XPATH));}
-
+		footer= driver.findElement(By.xpath(FOOTER_XPATH));
+	}
 
 	public WebElement getFooter() {
 		footer = driver.findElement(By.xpath(FOOTER_XPATH));
